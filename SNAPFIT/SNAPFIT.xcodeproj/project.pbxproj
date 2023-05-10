@@ -78,12 +78,12 @@
 		C77784762A003B1000B4AB8D /* SNAPFIT */ = {
 			isa = PBXGroup;
 			children = (
-				C7E900102A0BBC2100CC620B /* Plists */,
+				C7E9000D2A0BBBFF00CC620B /* Network */,
+				C7E9000B2A0BBBEC00CC620B /* Global */,
 				C7E9000F2A0BBC0C00CC620B /* Resources */,
 				C7E9000E2A0BBC0500CC620B /* Sources */,
-				C7E9000D2A0BBBFF00CC620B /* Network */,
 				C7E9000C2A0BBBF700CC620B /* Applications */,
-				C7E9000B2A0BBBEC00CC620B /* Global */,
+				C7E900102A0BBC2100CC620B /* Plists */,
 			);
 			path = SNAPFIT;
 			sourceTree = "<group>";
