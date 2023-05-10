@@ -24,6 +24,11 @@
 		C7E900232A0BC0BE00CC620B /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7E9001F2A0BC0BE00CC620B /* Pretendard-SemiBold.ttf */; };
 		C7E900272A0BC54400CC620B /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7E900262A0BC54400CC620B /* SecretKey.plist */; };
 		C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E900282A0BC58000CC620B /* Bundle+.swift */; };
+		C7E9002C2A0BC92200CC620B /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E9002B2A0BC92200CC620B /* APIConstants.swift */; };
+		C7E9002E2A0BC99C00CC620B /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E9002D2A0BC99C00CC620B /* NetworkResult.swift */; };
+		C7E900302A0BC9D600CC620B /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E9002F2A0BC9D600CC620B /* BaseAPI.swift */; };
+		C7E900332A0BCA3800CC620B /* BaseResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E900322A0BCA3800CC620B /* BaseResponseType.swift */; };
+		C7E900352A0BCAE200CC620B /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E900342A0BCAE200CC620B /* NetworkLoggerPlugin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,11 @@
 		C7E9001F2A0BC0BE00CC620B /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
 		C7E900262A0BC54400CC620B /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
 		C7E900282A0BC58000CC620B /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
+		C7E9002B2A0BC92200CC620B /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		C7E9002D2A0BC99C00CC620B /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		C7E9002F2A0BC9D600CC620B /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		C7E900322A0BCA3800CC620B /* BaseResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseType.swift; sourceTree = "<group>"; };
+		C7E900342A0BCAE200CC620B /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +119,9 @@
 		C7E9000D2A0BBBFF00CC620B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C7E9002A2A0BC91100CC620B /* APIEssentials */,
+				C7E900312A0BCA2500CC620B /* APIModels */,
+				C7E900342A0BCAE200CC620B /* NetworkLoggerPlugin.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -184,6 +197,24 @@
 				C777847B2A003B1000B4AB8D /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		C7E9002A2A0BC91100CC620B /* APIEssentials */ = {
+			isa = PBXGroup;
+			children = (
+				C7E9002B2A0BC92200CC620B /* APIConstants.swift */,
+				C7E9002D2A0BC99C00CC620B /* NetworkResult.swift */,
+				C7E9002F2A0BC9D600CC620B /* BaseAPI.swift */,
+			);
+			path = APIEssentials;
+			sourceTree = "<group>";
+		};
+		C7E900312A0BCA2500CC620B /* APIModels */ = {
+			isa = PBXGroup;
+			children = (
+				C7E900322A0BCA3800CC620B /* BaseResponseType.swift */,
+			);
+			path = APIModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,12 +302,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7E900132A0BBC8200CC620B /* UserInfo.swift in Sources */,
+				C7E900352A0BCAE200CC620B /* NetworkLoggerPlugin.swift in Sources */,
 				C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */,
 				C777847C2A003B1000B4AB8D /* HomeViewController.swift in Sources */,
+				C7E900332A0BCA3800CC620B /* BaseResponseType.swift in Sources */,
+				C7E9002E2A0BC99C00CC620B /* NetworkResult.swift in Sources */,
 				C7E9001A2A0BBFF000CC620B /* UIFont+.swift in Sources */,
+				C7E9002C2A0BC92200CC620B /* APIConstants.swift in Sources */,
 				C77784782A003B1000B4AB8D /* AppDelegate.swift in Sources */,
 				C777847A2A003B1000B4AB8D /* SceneDelegate.swift in Sources */,
 				C7E900182A0BBFC000CC620B /* UIColor+.swift in Sources */,
+				C7E900302A0BC9D600CC620B /* BaseAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
