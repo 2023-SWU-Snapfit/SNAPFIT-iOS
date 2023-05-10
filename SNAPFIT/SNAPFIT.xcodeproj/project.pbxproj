@@ -22,6 +22,8 @@
 		C7E900212A0BC0BE00CC620B /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7E9001D2A0BC0BE00CC620B /* Pretendard-Bold.ttf */; };
 		C7E900222A0BC0BE00CC620B /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7E9001E2A0BC0BE00CC620B /* Pretendard-Regular.ttf */; };
 		C7E900232A0BC0BE00CC620B /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7E9001F2A0BC0BE00CC620B /* Pretendard-SemiBold.ttf */; };
+		C7E900272A0BC54400CC620B /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7E900262A0BC54400CC620B /* SecretKey.plist */; };
+		C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E900282A0BC58000CC620B /* Bundle+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		C7E9001D2A0BC0BE00CC620B /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		C7E9001E2A0BC0BE00CC620B /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		C7E9001F2A0BC0BE00CC620B /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
+		C7E900262A0BC54400CC620B /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
+		C7E900282A0BC58000CC620B /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				C77784852A003B1100B4AB8D /* Info.plist */,
+				C7E900262A0BC54400CC620B /* SecretKey.plist */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			children = (
 				C7E900172A0BBFC000CC620B /* UIColor+.swift */,
 				C7E900192A0BBFF000CC620B /* UIFont+.swift */,
+				C7E900282A0BC58000CC620B /* Bundle+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7E900272A0BC54400CC620B /* SecretKey.plist in Resources */,
 				C7E900202A0BC0BE00CC620B /* Pretendard-Medium.ttf in Resources */,
 				C7E900212A0BC0BE00CC620B /* Pretendard-Bold.ttf in Resources */,
 				C7E900222A0BC0BE00CC620B /* Pretendard-Regular.ttf in Resources */,
@@ -264,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7E900132A0BBC8200CC620B /* UserInfo.swift in Sources */,
+				C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */,
 				C777847C2A003B1000B4AB8D /* HomeViewController.swift in Sources */,
 				C7E9001A2A0BBFF000CC620B /* UIFont+.swift in Sources */,
 				C77784782A003B1000B4AB8D /* AppDelegate.swift in Sources */,
