@@ -135,3 +135,6 @@ xcuserdata
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,xcode,swiftpm,swiftpackagemanager,swift
 SNAPFIT/SNAPFIT.xcodeproj/project.xcworkspace/xcuserdata/madilyn.xcuserdatad/UserInterfaceState.xcuserstate
+
+### Preview Code ###
+Preview.swift
