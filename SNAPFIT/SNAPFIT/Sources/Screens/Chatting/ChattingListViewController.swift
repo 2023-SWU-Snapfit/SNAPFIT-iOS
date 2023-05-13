@@ -6,12 +6,20 @@
 //
 
 import UIKit
-import SnapKit
 
-class ChattingListViewController: UIViewController {
-    
+class ChattingListViewController: ListTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableCell") ?? ListTableViewCell()
+        
+        setCellAsChattingList(cell: cell as! ListTableViewCell)
+        return cell
+    }
+    
+    
 }
