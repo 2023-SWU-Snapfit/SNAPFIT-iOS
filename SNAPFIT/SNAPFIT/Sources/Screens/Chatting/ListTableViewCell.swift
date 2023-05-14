@@ -39,6 +39,15 @@ class ListTableViewCell: UITableViewCell {
         }
     }
     
+    func setTitleWithoutSubtitle(titleText: String) {
+        self.title.text = titleText
+        self.contentView.addSubview(self.title)
+        self.title.snp.makeConstraints{ make in
+            make.left.equalTo(self.picture.snp.right).offset(10)
+            make.centerY.equalToSuperview()
+        }
+    }
+    
     func setSubtitle(subtitleText: String) {
         self.subtitle.text = subtitleText
         self.contentView.addSubview(self.subtitle)

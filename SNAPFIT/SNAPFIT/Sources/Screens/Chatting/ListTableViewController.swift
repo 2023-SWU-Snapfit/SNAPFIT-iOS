@@ -53,8 +53,7 @@ extension ListTableViewController: UITableViewDataSource {
     
     func setCellAsHeartList(cell: ListTableViewCell) {
         cell.setPicture()
-        cell.setTitle(titleText: "HeartTitle")
-        cell.setSubtitle(subtitleText: "Subtitles")
+        cell.setTitleWithoutSubtitle(titleText: "HeartTitle")
         cell.setRightAsHeartButton()
     }
     
