@@ -26,7 +26,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setSnapfitBackgroundColor()
+        self.setBackgroundColor()
     }
 }
 
@@ -54,7 +54,7 @@ extension BaseViewController {
     }
     
     /// 모든 뷰의 기본 Background color 설정
-    private func setSnapfitBackgroundColor() {
+    private func setBackgroundColor() {
         self.view.backgroundColor = .sfGrayWhite
     }
     
