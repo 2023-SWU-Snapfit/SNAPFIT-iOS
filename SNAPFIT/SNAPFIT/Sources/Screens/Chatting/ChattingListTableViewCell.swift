@@ -8,12 +8,11 @@
 import UIKit
 import SnapKit
 
-class ListTableViewCell: UITableViewCell {
+class ChattingListTableViewCell: UITableViewCell {
     let picture = UIImageView()
     let title = UILabel()
     let subtitle = UILabel()
     let righttitle = UILabel()
-    let heartButton = UIButton()
     
     func setPicture() {
         self.picture.image = UIImage(named: "AppIcon")
@@ -25,8 +24,8 @@ class ListTableViewCell: UITableViewCell {
         self.contentView.addSubview(self.picture)
         self.picture.snp.makeConstraints{ make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().inset(30)
-            make.height.width.equalTo(60)
+            make.left.equalToSuperview().inset(20)
+            make.height.width.equalTo(50)
         }
     }
     
@@ -34,17 +33,8 @@ class ListTableViewCell: UITableViewCell {
         self.title.text = titleText
         self.contentView.addSubview(self.title)
         self.title.snp.makeConstraints{ make in
-            make.left.equalTo(self.picture.snp.right).offset(10)
+            make.left.equalTo(self.picture.snp.right).offset(8)
             make.centerY.equalToSuperview().offset(-10)
-        }
-    }
-    
-    func setTitleWithoutSubtitle(titleText: String) {
-        self.title.text = titleText
-        self.contentView.addSubview(self.title)
-        self.title.snp.makeConstraints{ make in
-            make.left.equalTo(self.picture.snp.right).offset(10)
-            make.centerY.equalToSuperview()
         }
     }
     
@@ -57,23 +47,12 @@ class ListTableViewCell: UITableViewCell {
         }
     }
     
-    func setRightAsText(rightText: String) {
+    func setRighttitle(rightText: String) {
         self.righttitle.text = rightText
         self.contentView.addSubview(self.righttitle)
         self.righttitle.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.right.equalToSuperview().inset(30)
-        }
-    }
-    
-    func setRightAsHeartButton() {
-        self.heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        self.heartButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-        self.heartButton.tintColor = .sfMainRed
-        self.contentView.addSubview(self.heartButton)
-        self.heartButton.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.right.equalToSuperview().inset(30)
+            make.top.equalTo(self.title)
+            make.right.equalToSuperview().inset(20)
         }
     }
     
