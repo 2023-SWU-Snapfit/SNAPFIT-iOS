@@ -11,15 +11,15 @@ class ChattingListViewController: ListTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableCell") ?? ListTableViewCell()
-        
         setCellAsChattingList(cell: cell as! ListTableViewCell)
         return cell
     }
     
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: 클릭 시 동작
+    }
 }

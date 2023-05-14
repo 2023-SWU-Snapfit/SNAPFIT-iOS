@@ -62,7 +62,6 @@ extension ListTableViewController: UITableViewDataSource {
 
 
 // MARK: - Sample Data for ListTableView
-
 let listTableData = [
     ["Test1 Title", "Test1 Subtitle", "time1"],
     ["Test2 Title", "Test2 Subtitle", "time2"],

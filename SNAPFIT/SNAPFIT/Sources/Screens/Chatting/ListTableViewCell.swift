@@ -12,12 +12,15 @@ class ListTableViewCell: UITableViewCell {
     let picture = UIImageView()
     let title = UILabel()
     let subtitle = UILabel()
-    let righttitle = UILabel() // MARK: - 뷰컨 옮기기
-    let heartButton = UIButton() // MARK: - 뷰컨 옮기기
+    let righttitle = UILabel()
+    let heartButton = UIButton()
     
-    // TODO: 알맞게 사용할 수 있도록 각각의 요소 분리
     func setPicture() {
         self.picture.image = UIImage(named: "AppIcon")
+        self.picture.layer.cornerRadius = 30
+        self.picture.layer.borderWidth = 1
+        self.picture.layer.borderColor = UIColor.clear.cgColor
+        self.picture.clipsToBounds = true
         self.picture.contentMode = .scaleAspectFill
         self.contentView.addSubview(self.picture)
         self.picture.snp.makeConstraints{ make in
