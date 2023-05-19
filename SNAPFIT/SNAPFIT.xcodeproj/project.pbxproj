@@ -11,8 +11,11 @@
 		6A0E39B32A10CD4200DC531A /* ChattingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E39B12A10CD4200DC531A /* ChattingListViewController.swift */; };
 		6A0E39B42A10CD4200DC531A /* ChattingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E39B22A10CD4200DC531A /* ChattingListTableViewCell.swift */; };
 		6A0E39B82A10CD4A00DC531A /* HeartListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E39B62A10CD4A00DC531A /* HeartListTableViewCell.swift */; };
-		6A0E39B92A10CD4A00DC531A /* HeartListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E39B72A10CD4A00DC531A /* HeartListViewController.swift */; };
+		6A0E39B92A10CD4A00DC531A /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E39B72A10CD4A00DC531A /* FavoriteListViewController.swift */; };
 		6A1CFD332A0D1C29006971AE /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1CFD322A0D1C29006971AE /* Preview.swift */; };
+		C71730EE2A17427900155D09 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71730ED2A17427900155D09 /* ReservationViewController.swift */; };
+		C71730F02A17C6C300155D09 /* UITabBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71730EF2A17C6C300155D09 /* UITabBar+.swift */; };
+		C71730F22A17C6EB00155D09 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71730F12A17C6EB00155D09 /* CALayer+.swift */; };
 		C766F1582A1097AF009BC30E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C766F1572A1097AF009BC30E /* BaseViewController.swift */; };
 		C766F15B2A109806009BC30E /* SnapfitActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C766F15A2A109806009BC30E /* SnapfitActivityIndicatorView.swift */; };
 		C766F15D2A1098D3009BC30E /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C766F15C2A1098D3009BC30E /* UIViewController+.swift */; };
@@ -64,8 +67,11 @@
 		6A0E39B12A10CD4200DC531A /* ChattingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChattingListViewController.swift; sourceTree = "<group>"; };
 		6A0E39B22A10CD4200DC531A /* ChattingListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChattingListTableViewCell.swift; sourceTree = "<group>"; };
 		6A0E39B62A10CD4A00DC531A /* HeartListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartListTableViewCell.swift; sourceTree = "<group>"; };
-		6A0E39B72A10CD4A00DC531A /* HeartListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartListViewController.swift; sourceTree = "<group>"; };
+		6A0E39B72A10CD4A00DC531A /* FavoriteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 		6A1CFD322A0D1C29006971AE /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
+		C71730ED2A17427900155D09 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
+		C71730EF2A17C6C300155D09 /* UITabBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+.swift"; sourceTree = "<group>"; };
+		C71730F12A17C6EB00155D09 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		C766F1572A1097AF009BC30E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C766F15A2A109806009BC30E /* SnapfitActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitActivityIndicatorView.swift; sourceTree = "<group>"; };
 		C766F15C2A1098D3009BC30E /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
@@ -136,13 +142,28 @@
 			path = Chatting;
 			sourceTree = "<group>";
 		};
-		6A0E39B52A10CD4A00DC531A /* HeartList */ = {
+		6A0E39B52A10CD4A00DC531A /* FavoriteList */ = {
 			isa = PBXGroup;
 			children = (
 				6A0E39B62A10CD4A00DC531A /* HeartListTableViewCell.swift */,
-				6A0E39B72A10CD4A00DC531A /* HeartListViewController.swift */,
+				6A0E39B72A10CD4A00DC531A /* FavoriteListViewController.swift */,
 			);
-			path = HeartList;
+			path = FavoriteList;
+			sourceTree = "<group>";
+		};
+		C71730EB2A17423000155D09 /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				C71730ED2A17427900155D09 /* ReservationViewController.swift */,
+			);
+			path = Reservation;
+			sourceTree = "<group>";
+		};
+		C71730EC2A17423700155D09 /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mypage;
 			sourceTree = "<group>";
 		};
 		C766F1562A1097A2009BC30E /* Bases */ = {
@@ -291,6 +312,8 @@
 				C766F17D2A10A47B009BC30E /* Notification+Name+.swift */,
 				C766F17F2A10A49C009BC30E /* UIImage+.swift */,
 				C766F1812A10A4E3009BC30E /* UINavigationController.swift */,
+				C71730EF2A17C6C300155D09 /* UITabBar+.swift */,
+				C71730F12A17C6EB00155D09 /* CALayer+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -309,7 +332,9 @@
 		C7E900242A0BC17300CC620B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				6A0E39B52A10CD4A00DC531A /* HeartList */,
+				C71730EC2A17423700155D09 /* Mypage */,
+				C71730EB2A17423000155D09 /* Reservation */,
+				6A0E39B52A10CD4A00DC531A /* FavoriteList */,
 				6A0E39B02A10CD4200DC531A /* Chatting */,
 				C7E900252A0BC17900CC620B /* Home */,
 			);
@@ -436,9 +461,11 @@
 				C766F16E2A10A25A009BC30E /* UITextField.swift in Sources */,
 				C766F1682A10A1C8009BC30E /* UILabel+.swift in Sources */,
 				C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */,
+				C71730F22A17C6EB00155D09 /* CALayer+.swift in Sources */,
 				C777847C2A003B1000B4AB8D /* HomeViewController.swift in Sources */,
 				C7E900332A0BCA3800CC620B /* BaseResponseType.swift in Sources */,
 				C766F1582A1097AF009BC30E /* BaseViewController.swift in Sources */,
+				C71730F02A17C6C300155D09 /* UITabBar+.swift in Sources */,
 				C7E9002E2A0BC99C00CC620B /* NetworkResult.swift in Sources */,
 				C766F1722A10A2B3009BC30E /* UIButton+.swift in Sources */,
 				C766F1742A10A3B6009BC30E /* String+.swift in Sources */,
@@ -453,7 +480,7 @@
 				C7E9002C2A0BC92200CC620B /* APIConstants.swift in Sources */,
 				C766F15D2A1098D3009BC30E /* UIViewController+.swift in Sources */,
 				C766F1802A10A49C009BC30E /* UIImage+.swift in Sources */,
-				6A0E39B92A10CD4A00DC531A /* HeartListViewController.swift in Sources */,
+				6A0E39B92A10CD4A00DC531A /* FavoriteListViewController.swift in Sources */,
 				6A0E39B32A10CD4200DC531A /* ChattingListViewController.swift in Sources */,
 				C766F15B2A109806009BC30E /* SnapfitActivityIndicatorView.swift in Sources */,
 				C766F16C2A10A232009BC30E /* UITableView+.swift in Sources */,
@@ -464,6 +491,7 @@
 				C777847A2A003B1000B4AB8D /* SceneDelegate.swift in Sources */,
 				C7E900182A0BBFC000CC620B /* UIColor+.swift in Sources */,
 				C766F16A2A10A200009BC30E /* UICollectionView+.swift in Sources */,
+				C71730EE2A17427900155D09 /* ReservationViewController.swift in Sources */,
 				C766F17E2A10A47B009BC30E /* Notification+Name+.swift in Sources */,
 				C7E900302A0BC9D600CC620B /* BaseAPI.swift in Sources */,
 				6A0E39B82A10CD4A00DC531A /* HeartListTableViewCell.swift in Sources */,
