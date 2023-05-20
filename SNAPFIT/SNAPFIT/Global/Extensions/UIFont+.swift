@@ -35,4 +35,8 @@ extension UIFont {
     class var m12: UIFont {
         return UIFont(name: "Pretendard-Medium", size: 12.0)!
     }
+    
+    class var r12: UIFont {
+        return UIFont(name: "Pretendard-Regular", size: 12.0)!
+    }
 }
