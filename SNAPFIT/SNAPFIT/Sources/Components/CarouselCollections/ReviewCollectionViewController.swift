@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class ReviewCollectionlViewController: UIViewController {
+    let titleLabel = UILabel()
     let collectionView : UICollectionView = {
         
         let flowLayout = UICollectionViewFlowLayout()
@@ -17,15 +18,26 @@ class ReviewCollectionlViewController: UIViewController {
         flowLayout.minimumLineSpacing = 8
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .init(x: 0, y: 0, width: 10, height: 10), collectionViewLayout: flowLayout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.titleLabel.text = "리뷰(★5.0)"
+        self.titleLabel.font = .b18
+        
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.left.equalTo(20)
+        }
         self.view.addSubview(self.collectionView)
         collectionView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(titleLabel).offset(16)
+            make.left.right.bottom.equalToSuperview()
         }
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -39,13 +51,12 @@ extension ReviewCollectionlViewController: UICollectionViewDelegate {
 
 extension ReviewCollectionlViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewCell", for: indexPath)
         let reviewImage = UIImageView()
-        let star = UIImageView(image: UIImage(systemName: "star.fill"))
         let score = UILabel()
         let reviewDetails = UITextView()
         
@@ -57,10 +68,7 @@ extension ReviewCollectionlViewController: UICollectionViewDataSource {
         reviewImage.backgroundColor = .sfBlack40
         reviewImage.makeRounded(cornerRadius: 8)
         
-        star.tintColor = .sfMainRed
-        star.contentMode = .scaleAspectFit
-        
-        score.text = "5"
+        score.text = "★ 5"
         score.textColor = .sfMainRed
         score.font = .m13
         
@@ -79,21 +87,15 @@ extension ReviewCollectionlViewController: UICollectionViewDataSource {
             make.width.equalTo(110)
             make.height.equalTo(80)
         }
-        cell.addSubview(star)
-        star.snp.makeConstraints{ make in
-            make.top.equalTo(reviewImage.snp.bottom).offset(8)
-            make.left.equalTo(8)
-            make.height.width.equalTo(14)
-        }
         cell.addSubview(score)
         score.snp.makeConstraints{ make in
-            make.top.equalTo(star)
-            make.left.equalTo(star.snp.right)
+            make.top.equalTo(reviewImage.snp.bottom).offset(8)
+            make.left.equalTo(8)
         }
         cell.addSubview(reviewDetails)
         reviewDetails.snp.makeConstraints{ make in
-            make.top.equalTo(star.snp.bottom)
-            make.left.equalTo(star)
+            make.top.equalTo(score.snp.bottom)
+            make.left.equalTo(score)
             make.width.equalTo(reviewImage.snp.width)
             make.bottom.equalToSuperview().inset(8)
         }

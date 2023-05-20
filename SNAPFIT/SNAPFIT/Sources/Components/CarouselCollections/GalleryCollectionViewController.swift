@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class GalleryCollectionlViewController: UIViewController {
+    let titleLabel = UILabel()
+    let moreButton = UIButton()
     let collectionView : UICollectionView = {
         
         let flowLayout = UICollectionViewFlowLayout()
@@ -17,15 +19,38 @@ class GalleryCollectionlViewController: UIViewController {
         flowLayout.minimumLineSpacing = 8
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .init(x: 0, y: 0, width: 10, height: 10), collectionViewLayout: flowLayout)
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.titleLabel.text = "갤러리"
+        self.titleLabel.font = .b18
+        
+        self.moreButton.configuration = .plain()
+        self.moreButton.setTitle("더보기 ", for: .normal)
+        self.moreButton.titleLabel?.font = .m12
+        self.moreButton.tintColor = .sfBlack60
+        let moreButtonImage = UIImage(systemName: "chevron.right", withConfiguration: UIImage.SymbolConfiguration(pointSize: 12))
+        self.moreButton.setImage(moreButtonImage, for: .normal)
+        self.moreButton.semanticContentAttribute = .forceRightToLeft
+        
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.left.equalTo(20)
+        }
+        self.view.addSubview(self.moreButton)
+        self.moreButton.snp.makeConstraints{ make in
+            make.centerY.equalTo(self.titleLabel.snp.centerY)
+            make.right.equalToSuperview().inset(20)
+        }
         self.view.addSubview(self.collectionView)
         collectionView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
+            make.left.right.bottom.equalToSuperview()
         }
         collectionView.dataSource = self
         collectionView.delegate = self
