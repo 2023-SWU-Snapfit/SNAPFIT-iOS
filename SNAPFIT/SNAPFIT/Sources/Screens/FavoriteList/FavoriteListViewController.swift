@@ -1,5 +1,5 @@
 //
-//  HeartListViewController.swift
+//  FavoriteListViewController.swift
 //  SNAPFIT
 //
 //  Created by 강유진 on 2023/05/12.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeartListViewController: UIViewController {
+class FavoriteListViewController: UIViewController {
     let heartListTableView = UITableView()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class HeartListViewController: UIViewController {
     }
 }
 
-extension HeartListViewController: UITableViewDelegate {
+extension FavoriteListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         82
     }
@@ -32,7 +32,7 @@ extension HeartListViewController: UITableViewDelegate {
     }
 }
 
-extension HeartListViewController: UITableViewDataSource {
+extension FavoriteListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         20
     }

@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .systemBackground
-        window?.rootViewController = HomeViewController()
+        window?.rootViewController = SnapfitTabBarController()
         window?.makeKeyAndVisible()
     }
 
