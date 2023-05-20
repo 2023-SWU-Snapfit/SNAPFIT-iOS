@@ -7,8 +7,8 @@
 
 import UIKit
 
-class TextboxView: UITextView {
-    
+class SnapfitTextView: UITextView {
+   
     func setBasicTextbox() {
         self.font = .r14
         self.textAlignment = .natural
@@ -21,10 +21,7 @@ class TextboxView: UITextView {
         self.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
     
-    func setText(text: String =
-"""
-"""
-    ) {
+    func setText(text: String = "") {
         self.text = text
     }
 }
