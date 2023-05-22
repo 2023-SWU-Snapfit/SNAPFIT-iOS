@@ -17,6 +17,7 @@ class MypagePhotographerViewController: BaseViewController {
         static let price = "촬영 비용"
     }
     
+    // MARK: - UI Components
     private let scrollView: UIScrollView = {
         let scrollView: UIScrollView = UIScrollView()
         scrollView.backgroundColor = .sfGrayWhite
@@ -80,7 +81,7 @@ class MypagePhotographerViewController: BaseViewController {
         return priceTextView
     }()
     
-    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,8 +106,8 @@ class MypagePhotographerViewController: BaseViewController {
                           )
     }
     
+    // MARK: - Layout
     private func setLayout() {
-        // MARK: - Layout
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints{ make in
             make.edges.width.equalToSuperview()
@@ -194,6 +195,7 @@ class MypagePhotographerViewController: BaseViewController {
         self.profileImageView.contentMode = .scaleAspectFill
     }
 
+    // MARK: - Methods
     public func setmailText(text: String) {
         self.mailLabel.text = text
     }
@@ -201,7 +203,7 @@ class MypagePhotographerViewController: BaseViewController {
     public func setIntroduceText(text: String) {
         self.introduceTextView.setText(text: text)
     }
-
+    
     public func setPossibleDateText(text: String) {
         if text == "" {
             self.possibleDateTitleLabel.isHidden = true
@@ -216,6 +218,7 @@ class MypagePhotographerViewController: BaseViewController {
         }
         self.possibleDateTextView.setText(text: text)
     }
+    
     public func setPriceText(text: String) {
         if text == "" {
             self.priceTitleLabel.isHidden = true
