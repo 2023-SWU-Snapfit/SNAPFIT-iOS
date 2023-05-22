@@ -72,7 +72,7 @@ final class SnapfitTabBarController: UITabBarController, UITabBarControllerDeleg
         reservationTab.tabBarItem.tag = 2
         
         let mypageTab: UIViewController = self.makeTabVC(
-            vc: BaseNavigationController(rootViewController: BaseViewController()), // TODO: 마이페이지 vc 넣기
+            vc: BaseNavigationController(rootViewController: MypagePhotographerViewController()), // TODO: 마이페이지 vc 넣기
             tabBarTitle: Text.mypageTitle,
             tabBarImg: Text.mypageIconName,
             tabBarSelectedImg: Text.mypageIconName + Text.selected
