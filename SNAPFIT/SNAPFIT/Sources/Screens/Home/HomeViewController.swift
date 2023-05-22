@@ -7,22 +7,32 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: BaseViewController {
+    
+    // MARK: Properties
+    
+    private let navigationView: SnapfitNavigationView = {
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .closeSave)
+        view.setTitle("타이틀")
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        let sampleLabel = UILabel()
-        sampleLabel.text = "View Sample"
-        sampleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(sampleLabel)
-        NSLayoutConstraint.activate([
-            sampleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            sampleLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        ])
+        self.setLayout()
     }
-
 
 }
 
+// MARK: - UI
+
+extension HomeViewController {
+    private func setLayout() {
+        self.view.addSubviews([navigationView])
+        
+        self.navigationView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide)
+        }
+    }
+}
