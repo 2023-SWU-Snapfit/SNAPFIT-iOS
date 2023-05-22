@@ -12,8 +12,7 @@ class HomeViewController: BaseViewController {
     // MARK: Properties
     
     private let navigationView: SnapfitNavigationView = {
-        let view: SnapfitNavigationView = SnapfitNavigationView(type: .closeSave)
-        view.setTitle("타이틀")
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .home)
         return view
     }()
     
