@@ -7,15 +7,21 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class SnapfitTextView: UITextView {
+    
+    private let placeholderLabel: UILabel = UILabel()
+    private let disposeBag: DisposeBag = DisposeBag()
     
     public init(isEditable: Bool) {
         super.init(frame: .zero, textContainer: nil)
         if isEditable {
-            setEditableStyle()
+            self.setEditableStyle()
+            self.setActiveStyle()
         } else {
-            setNotEditableStyle()
+            self.setNotEditableStyle()
         }
     }
     
@@ -62,4 +68,61 @@ class SnapfitTextView: UITextView {
         }
         self.text = text
     }
+    
+    private func setActiveStyle() {
+            self.rx.didBeginEditing
+                .withUnretained(self)
+                .subscribe(onNext: { (owner, _) in
+                    owner.layer.borderColor = UIColor.sfBlack60.cgColor
+                    owner.layer.borderWidth = 2
+                })
+                .disposed(by: disposeBag)
+            
+            self.rx.didEndEditing
+                .withUnretained(self)
+                .subscribe(onNext: { (owner, _) in
+                    owner.layer.borderColor = UIColor.sfBlack60.cgColor
+                    owner.layer.borderWidth = 1
+                })
+                .disposed(by: disposeBag)
+        }
+        
+        private func setPlaceholderLayout() {
+            self.textInputView.addSubview(placeholderLabel)
+            
+            self.placeholderLabel.snp.makeConstraints { make in
+                make.top.equalToSuperview().inset(self.textContainerInset.top)
+                make.left.equalToSuperview().inset(self.textContainerInset.left + 4)
+                make.right.equalToSuperview().inset(self.textContainerInset.right)
+                make.bottom.equalToSuperview().inset(self.textContainerInset.bottom)
+            }
+        }
+        
+        public func setPlaceholder(text: String) {
+            self.placeholderLabel.textColor = .sfBlack40
+            self.placeholderLabel.font = .r14
+            self.placeholderLabel.numberOfLines = 0
+            self.placeholderLabel.text = text
+            self.setPlaceholderLayout()
+            
+            self.rx.text
+                .withUnretained(self)
+                .subscribe(onNext: { (owner, _) in
+                    if owner.text.isEmpty {
+                        owner.placeholderLabel.isHidden = false
+                    } else {
+                        owner.placeholderLabel.isHidden = true
+                    }
+                })
+                .disposed(by: disposeBag)
+            
+            self.rx.didEndEditing
+                .withUnretained(self)
+                .subscribe(onNext: { (owner, _) in
+                    if owner.text.isEmpty {
+                        owner.placeholderLabel.isHidden = false
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
 }

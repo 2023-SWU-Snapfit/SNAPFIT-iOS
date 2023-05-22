@@ -205,12 +205,29 @@ class MypagePhotographerViewController: BaseViewController {
     public func setPossibleDateText(text: String) {
         if text == "" {
             self.possibleDateTitleLabel.isHidden = true
+            self.possibleDateTitleLabel.snp.makeConstraints{ make in
+                make.top.equalTo(possibleDateTitleLabel.snp.bottom)
+            }
+        } else {
+            self.possibleDateTitleLabel.isHidden = false
+            self.possibleDateTextView.snp.makeConstraints{ make in
+                make.top.equalTo(possibleDateTitleLabel.snp.bottom).offset(16)
+            }
         }
         self.possibleDateTextView.setText(text: text)
     }
     public func setPriceText(text: String) {
         if text == "" {
             self.priceTitleLabel.isHidden = true
+            self.priceTextView.snp.makeConstraints{ make in
+                make.top.equalTo(priceTitleLabel.snp.bottom)
+            }
+        } else {
+            self.priceTitleLabel.isHidden = false
+            self.priceTextView.snp.makeConstraints{ make in
+                make.top.equalTo(priceTitleLabel.snp.bottom).offset(16)
+            }
+            
         }
         self.priceTextView.setText(text: text)
     }
