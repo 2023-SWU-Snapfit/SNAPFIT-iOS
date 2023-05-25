@@ -20,6 +20,8 @@
 		C71730EE2A17427900155D09 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71730ED2A17427900155D09 /* ReservationViewController.swift */; };
 		C71730F02A17C6C300155D09 /* UITabBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71730EF2A17C6C300155D09 /* UITabBar+.swift */; };
 		C71730F22A17C6EB00155D09 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71730F12A17C6EB00155D09 /* CALayer+.swift */; };
+		C74499E42A1EDBFE00C21AD4 /* HomeNavigationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74499E32A1EDBFE00C21AD4 /* HomeNavigationTableViewCell.swift */; };
+		C74499E72A1EEBC400C21AD4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74499E62A1EEBC400C21AD4 /* NotificationViewController.swift */; };
 		C744AD5F2A1A75F700D30F14 /* SnapfitNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744AD5E2A1A75F700D30F14 /* SnapfitNavigationView.swift */; };
 		C744AD612A1A81C000D30F14 /* SnapfitSearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744AD602A1A81C000D30F14 /* SnapfitSearchBarButton.swift */; };
 		C766F1582A1097AF009BC30E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C766F1572A1097AF009BC30E /* BaseViewController.swift */; };
@@ -82,6 +84,8 @@
 		C71730ED2A17427900155D09 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		C71730EF2A17C6C300155D09 /* UITabBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+.swift"; sourceTree = "<group>"; };
 		C71730F12A17C6EB00155D09 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		C74499E32A1EDBFE00C21AD4 /* HomeNavigationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationTableViewCell.swift; sourceTree = "<group>"; };
+		C74499E62A1EEBC400C21AD4 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		C744AD5E2A1A75F700D30F14 /* SnapfitNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitNavigationView.swift; sourceTree = "<group>"; };
 		C744AD602A1A81C000D30F14 /* SnapfitSearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitSearchBarButton.swift; sourceTree = "<group>"; };
 		C766F1572A1097AF009BC30E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +197,22 @@
 			children = (
 			);
 			path = Mypage;
+			sourceTree = "<group>";
+		};
+		C74499E22A1EDBE800C21AD4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C74499E32A1EDBFE00C21AD4 /* HomeNavigationTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C74499E52A1EEBB500C21AD4 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				C74499E62A1EEBC400C21AD4 /* NotificationViewController.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		C766F1562A1097A2009BC30E /* Bases */ = {
@@ -378,6 +398,8 @@
 		C7E900252A0BC17900CC620B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C74499E52A1EEBB500C21AD4 /* Notification */,
+				C74499E22A1EDBE800C21AD4 /* Cells */,
 				C777847B2A003B1000B4AB8D /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -498,10 +520,12 @@
 				C766F1682A10A1C8009BC30E /* UILabel+.swift in Sources */,
 				C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */,
 				C744AD612A1A81C000D30F14 /* SnapfitSearchBarButton.swift in Sources */,
+				C74499E72A1EEBC400C21AD4 /* NotificationViewController.swift in Sources */,
 				C71730F22A17C6EB00155D09 /* CALayer+.swift in Sources */,
 				C777847C2A003B1000B4AB8D /* HomeViewController.swift in Sources */,
 				C7E900332A0BCA3800CC620B /* BaseResponseType.swift in Sources */,
 				C766F1582A1097AF009BC30E /* BaseViewController.swift in Sources */,
+				C74499E42A1EDBFE00C21AD4 /* HomeNavigationTableViewCell.swift in Sources */,
 				C71730F02A17C6C300155D09 /* UITabBar+.swift in Sources */,
 				C7E9002E2A0BC99C00CC620B /* NetworkResult.swift in Sources */,
 				6AA612AE2A176BE200C49095 /* GalleryCollectionViewController.swift in Sources */,
