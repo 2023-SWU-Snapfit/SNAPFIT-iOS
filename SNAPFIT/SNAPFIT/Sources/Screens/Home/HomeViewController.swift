@@ -51,6 +51,7 @@ extension HomeViewController {
         self.homeTableView.dataSource = self
         
         self.homeTableView.register(cell: HomeNavigationTableViewCell.self)
+        self.homeTableView.register(cell: HomeReservationDetailTableViewCell.self)
     }
     
     private func setLayout() {
@@ -73,14 +74,20 @@ extension HomeViewController: UITableViewDataSource {
         if let rowType = TableRow(rawValue: indexPath.row) {
             switch rowType {
             case .navigation:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeNavigationTableViewCell.className) as? HomeNavigationTableViewCell else { return HomeNavigationTableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeNavigationTableViewCell.className) as? HomeNavigationTableViewCell
+                else { return UITableViewCell() }
+                
                 cell.navigationView.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
                 cell.navigationView.notificationButton.setAction { [weak self] in
                     self?.navigationController?.pushViewController(NotificationViewController(), animated: true)
                 }
+                
                 return cell
             case .reservationDetail:
-                return UITableViewCell()
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeReservationDetailTableViewCell.className) as? HomeReservationDetailTableViewCell
+                else { return UITableViewCell() }
+                
+                return cell
             case .searchBar:
                 return UITableViewCell()
             case .categoryTag:
@@ -112,6 +119,8 @@ extension HomeViewController: UITableViewDelegate {
             switch rowType {
             case .navigation:
                 return 44
+            case .reservationDetail:
+                return 128
             default:
                 return 100
             }
