@@ -6,20 +6,38 @@
 //
 
 import UIKit
+import SnapKit
 
-class HomeViewController: BaseViewController {
+final class HomeViewController: BaseViewController {
     
+    enum TableRow: Int, CaseIterable {
+        case navigation
+        case reservationDetail
+        case searchBar
+        case categoryTag
+        case photoBySelectedCategory
+        case personalCategoryTitle
+        case photoByPersonalCategory
+        case bestPhotographerTitle
+        case bestPhotographerList
+        case themeTitle
+        case photoByTheme
+    }
     // MARK: Properties
     
-    private let navigationView: SnapfitNavigationView = {
-        let view: SnapfitNavigationView = SnapfitNavigationView(type: .home)
-        return view
+    private let homeTableView: UITableView = {
+        let tableView: UITableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.allowsSelection = false
+        return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setLayout()
+        self.setTableView()
     }
 
 }
@@ -27,11 +45,32 @@ class HomeViewController: BaseViewController {
 // MARK: - UI
 
 extension HomeViewController {
-    private func setLayout() {
-        self.view.addSubviews([navigationView])
+    
+    private func setTableView() {
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
         
-        self.navigationView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide)
+        self.homeTableView.register(cell: HomeNavigationTableViewCell.self)
+    }
+    
+    private func setLayout() {
+        self.view.addSubviews([homeTableView])
+        
+        self.homeTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
+    }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let rowType = TableRow(rawValue: indexPath.row) {
+            switch rowType {
+            case .navigation:
+                return 44
+            default:
+                return 100
+            }
+        } else { return 0 }
     }
 }
