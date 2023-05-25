@@ -52,6 +52,7 @@ extension HomeViewController {
         
         self.homeTableView.register(cell: HomeNavigationTableViewCell.self)
         self.homeTableView.register(cell: HomeReservationDetailTableViewCell.self)
+        self.homeTableView.register(cell: HomeSearchBarTableViewCell.self)
     }
     
     private func setLayout() {
@@ -89,7 +90,10 @@ extension HomeViewController: UITableViewDataSource {
                 
                 return cell
             case .searchBar:
-                return UITableViewCell()
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSearchBarTableViewCell.className) as? HomeSearchBarTableViewCell
+                else { return UITableViewCell() }
+                
+                return cell
             case .categoryTag:
                 return UITableViewCell()
             case .photoBySelectedCategory:
@@ -121,6 +125,8 @@ extension HomeViewController: UITableViewDelegate {
                 return 44
             case .reservationDetail:
                 return 128
+            case .searchBar:
+                return 64
             default:
                 return 100
             }
