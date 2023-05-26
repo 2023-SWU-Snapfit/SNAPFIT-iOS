@@ -20,6 +20,10 @@ extension UIFont {
         return UIFont(name: "Pretendard-SemiBold", size: 18.0)!
     }
     
+    class var b16: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 16.0)!
+    }
+    
     class var b14: UIFont {
         return UIFont(name: "Pretendard-Bold", size: 14.0)!
     }
