@@ -10,7 +10,7 @@ import SnapKit
 
 class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
-    let editButton: UIButton = {
+    let contactButton: UIButton = {
         let contactButton: UIButton = UIButton()
         contactButton.configuration = .filled()
         contactButton.setTitle("문의하기", for: .normal)
@@ -47,8 +47,8 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
     
     private func setMypageLayout() {
-        self.addAtContentView(component: self.editButton)
-        self.editButton.snp.makeConstraints{ make in
+        self.addAtContentView(component: self.contactButton)
+        self.contactButton.snp.makeConstraints{ make in
             make.top.equalTo(338)
             make.right.equalToSuperview().inset(20)
         }
