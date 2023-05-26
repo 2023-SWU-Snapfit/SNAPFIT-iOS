@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ReviewCollectionlViewController: UIViewController {
+class ReviewCollectionViewController: UIViewController {
     let titleLabel = UILabel()
     let collectionView : UICollectionView = {
         
@@ -45,11 +45,11 @@ class ReviewCollectionlViewController: UIViewController {
     }
 }
 
-extension ReviewCollectionlViewController: UICollectionViewDelegate {
+extension ReviewCollectionViewController: UICollectionViewDelegate {
     
 }
 
-extension ReviewCollectionlViewController: UICollectionViewDataSource {
+extension ReviewCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         5
     }

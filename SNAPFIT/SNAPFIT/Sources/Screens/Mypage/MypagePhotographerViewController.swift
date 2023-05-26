@@ -58,8 +58,8 @@ class MypagePhotographerViewController: BaseViewController {
         let introduceTextView: SnapfitTextView = SnapfitTextView(isEditable: false)
         return introduceTextView
     }()
-    private let galleryCarouselViewController: GalleryCollectionlViewController = GalleryCollectionlViewController()
-    private let reviewCarouselViewController: ReviewCollectionlViewController = ReviewCollectionlViewController()
+    private let galleryCarouselViewController: GalleryCollectionViewController = GalleryCollectionViewController()
+    private let reviewCarouselViewController: ReviewCollectionViewController = ReviewCollectionViewController()
     private let possibleDateTitleLabel: UILabel = {
         let possibleDateTitleLabel: UILabel = UILabel()
         possibleDateTitleLabel.text = MypageText.possibleDate

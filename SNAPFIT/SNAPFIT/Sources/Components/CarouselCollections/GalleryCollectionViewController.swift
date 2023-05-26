@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class GalleryCollectionlViewController: UIViewController {
+class GalleryCollectionViewController: UIViewController {
     let titleLabel = UILabel()
     let moreButton = UIButton()
     let collectionView : UICollectionView = {
@@ -58,11 +58,11 @@ class GalleryCollectionlViewController: UIViewController {
     }
 }
 
-extension GalleryCollectionlViewController: UICollectionViewDelegate {
+extension GalleryCollectionViewController: UICollectionViewDelegate {
     
 }
 
-extension GalleryCollectionlViewController: UICollectionViewDataSource {
+extension GalleryCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         8
     }
@@ -77,6 +77,6 @@ extension GalleryCollectionlViewController: UICollectionViewDataSource {
     
 }
 
-extension ReviewCollectionlViewController: UICollectionViewDelegateFlowLayout {
+extension GalleryCollectionViewController: UICollectionViewDelegateFlowLayout {
     
 }
