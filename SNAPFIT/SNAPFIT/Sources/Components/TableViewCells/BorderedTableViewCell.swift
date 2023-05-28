@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FavoriteListTableViewCell: UITableViewCell {
+class BorderedTableViewCell: UITableViewCell {
     let picture = UIImageView()
     let title = UILabel()
     
