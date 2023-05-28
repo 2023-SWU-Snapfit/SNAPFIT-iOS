@@ -7,22 +7,28 @@
 
 import UIKit
 
-class FavoriteListViewController: UIViewController {
-    let heartListTableView = UITableView()
+class FavoriteListViewController: BaseViewController {
+    let favoriteListTableView = UITableView()
+    
+    // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        heartListTableView.separatorStyle = .singleLine
-        heartListTableView.delegate = self
-        heartListTableView.dataSource = self
-        heartListTableView.register(HeartListTableViewCell.self, forCellReuseIdentifier: "heartListTableViewCell")
-        view.addSubview(heartListTableView)
-        heartListTableView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
+        self.view.backgroundColor = .sfGrayWhite
+        self.favoriteListTableView.backgroundColor = .clear
+        self.favoriteListTableView.separatorStyle = .none
+        self.favoriteListTableView.showsVerticalScrollIndicator = false
+        self.favoriteListTableView.delegate = self
+        self.favoriteListTableView.dataSource = self
+        self.favoriteListTableView.register(FavoriteListTableViewCell.self, forCellReuseIdentifier: "favoriteListTableViewCell")
+        view.addSubview(favoriteListTableView)
+        favoriteListTableView.snp.makeConstraints{ make in
+            make.top.bottom.equalToSuperview()
+            make.left.right.equalToSuperview().inset(20)
         }
     }
 }
 
+// MARK: - Extensions
 extension FavoriteListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         82
@@ -37,10 +43,9 @@ extension FavoriteListViewController: UITableViewDataSource {
         20
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "heartListTableViewCell") as! HeartListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteListTableViewCell") as! FavoriteListTableViewCell
         cell.setPicture()
-        cell.setTitle(titleText: "닉네임\(indexPath.row)")
-        cell.setRightButton()
+        cell.setTitle(titleText: "닉네임열글자까지\(indexPath.row)")
         return cell
     }
 }
