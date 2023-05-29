@@ -8,28 +8,30 @@
 import UIKit
 
 class ReservationDetailViewController: BaseViewController {
+    // MARK: - Properties
     private let navigationView: SnapfitNavigationView = {
-        let view: SnapfitNavigationView = SnapfitNavigationView(type: .close)
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backTitle)
         view.setTitle("예약 확인")
         return view
     }()
     
+    // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setLayout()
     }
     
+    // MARK: - Methods
     private func setLayout() {
         self.view.addSubviews([navigationView])
-        self.setNavigationbar()
+        self.setNavigationView()
         self.navigationView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
     
-    private func setNavigationbar() {
-        // TODO: navigationView 고치고 backButton으로 수정 필요
-        self.navigationView.closeButton.setAction {
+    private func setNavigationView() {
+        self.navigationView.backButton.setAction {
             self.dismiss(animated: true)
         }
     }

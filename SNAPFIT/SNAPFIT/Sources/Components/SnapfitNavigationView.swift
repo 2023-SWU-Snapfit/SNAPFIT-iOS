@@ -48,7 +48,7 @@ final class SnapfitNavigationView: UIView {
         return imageView
     }()
     
-    private lazy var backButton: UIButton = {
+    lazy var backButton: UIButton = {
         let button: UIButton = UIButton(type: .system)
         button.setImage(UIImage(named: Text.backButtonImageName), for: .normal)
         return button
