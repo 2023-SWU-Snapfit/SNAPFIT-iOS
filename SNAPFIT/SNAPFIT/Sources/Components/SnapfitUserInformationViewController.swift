@@ -10,7 +10,7 @@ import SnapKit
 
 class SnapfitUserInformationViewController: BaseViewController {
     
-    enum MypageText {
+    enum Text {
         static let phoneApproved = "휴대폰 인증 완료"
         static let nickname = "열글자까지가능한이름"
         static let possibleDate = "예약 가능 날짜"
@@ -38,13 +38,13 @@ class SnapfitUserInformationViewController: BaseViewController {
     }()
     private let phoneApprovedLabel: UILabel = {
         let phoneApprovedLabel: UILabel = UILabel()
-        phoneApprovedLabel.text = MypageText.phoneApproved
+        phoneApprovedLabel.text = Text.phoneApproved
         phoneApprovedLabel.font = .m12
         return phoneApprovedLabel
     }()
     private let nicknameLabel: UILabel = {
         let nicknameLabel: UILabel = UILabel()
-        nicknameLabel.text = MypageText.nickname
+        nicknameLabel.text = Text.nickname
         nicknameLabel.font = .m24
         return nicknameLabel
 
@@ -58,11 +58,11 @@ class SnapfitUserInformationViewController: BaseViewController {
         let introduceTextView: SnapfitTextView = SnapfitTextView(isEditable: false)
         return introduceTextView
     }()
-    private let galleryCarouselViewController: GalleryCollectionViewController = GalleryCollectionViewController()
+    private let galleryCarouselViewController: UserGalleryCollectionViewController = UserGalleryCollectionViewController()
     private let reviewCarouselViewController: ReviewCollectionViewController = ReviewCollectionViewController()
     private let possibleDateTitleLabel: UILabel = {
         let possibleDateTitleLabel: UILabel = UILabel()
-        possibleDateTitleLabel.text = MypageText.possibleDate
+        possibleDateTitleLabel.text = Text.possibleDate
         possibleDateTitleLabel.font = .b18
         return possibleDateTitleLabel
     }()
@@ -72,7 +72,7 @@ class SnapfitUserInformationViewController: BaseViewController {
     }()
     private let priceTitleLabel: UILabel = {
         let priceTitleLabel: UILabel = UILabel()
-        priceTitleLabel.text = MypageText.price
+        priceTitleLabel.text = Text.price
         priceTitleLabel.font = .b18
         return priceTitleLabel
     }()
