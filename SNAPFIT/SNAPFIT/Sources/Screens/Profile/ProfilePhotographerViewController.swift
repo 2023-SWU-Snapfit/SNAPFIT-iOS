@@ -1,19 +1,19 @@
 //
-//  Mypage.swift
+//  ProfilePhotographerViewController.swift
 //  SNAPFIT
 //
-//  Created by 강유진 on 2023/05/16.
+//  Created by 강유진 on 2023/05/26.
 //
 
 import UIKit
 import SnapKit
 
-class MypagePhotographerViewController: SnapfitUserInformationViewController {
+class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
-    let editButton: UIButton = {
+    let contactButton: UIButton = {
         let contactButton: UIButton = UIButton()
         contactButton.configuration = .filled()
-        contactButton.setTitle("수정하기", for: .normal)
+        contactButton.setTitle("문의하기", for: .normal)
         contactButton.titleLabel?.font = .b14
         contactButton.titleLabel?.textColor = .sfWhite
         contactButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
@@ -47,8 +47,8 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     
     
     private func setMypageLayout() {
-        self.addAtContentView(component: self.editButton)
-        self.editButton.snp.makeConstraints{ make in
+        self.addAtContentView(component: self.contactButton)
+        self.contactButton.snp.makeConstraints{ make in
             make.top.equalTo(338)
             make.right.equalToSuperview().inset(20)
         }
