@@ -8,6 +8,11 @@
 import UIKit
 
 extension UIFont {
+    
+    class var b24: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 24.0)!
+    }
+    
     class var m24: UIFont {
         return UIFont(name: "Pretendard-Medium", size: 24.0)!
     }
