@@ -8,26 +8,44 @@
 import UIKit
 
 class FavoriteListViewController: BaseViewController {
-    let favoriteListTableView = UITableView()
+    let titleLabel: UILabel = {
+        let titleLabel: UILabel = UILabel()
+        titleLabel.text = "관심 목록"
+        titleLabel.font = .b24
+        return titleLabel
+    }()
+    let favoriteListTableView: UITableView = {
+        let favoriteListTableView: UITableView = UITableView()
+        favoriteListTableView.backgroundColor = .clear
+        favoriteListTableView.separatorStyle = .none
+        favoriteListTableView.showsVerticalScrollIndicator = false
+        favoriteListTableView.register(BorderedTableViewCell.self, forCellReuseIdentifier: "favoriteListTableViewCell")
+        return favoriteListTableView
+    }()
     
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.setLayout()
+        self.setTitleLayout()
+        self.setTableView()
     }
     
-    private func setLayout() {
-        self.view.backgroundColor = .sfGrayWhite
-        self.favoriteListTableView.backgroundColor = .clear
-        self.favoriteListTableView.separatorStyle = .none
-        self.favoriteListTableView.showsVerticalScrollIndicator = false
+    // MARK: - Method
+    private func setTitleLayout() {
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints{ make in
+            make.top.equalTo(92)
+            make.left.right.equalToSuperview().inset(20)
+        }
+    }
+    
+    private func setTableView() {
         self.favoriteListTableView.delegate = self
         self.favoriteListTableView.dataSource = self
-        self.favoriteListTableView.register(BorderedTableViewCell.self, forCellReuseIdentifier: "favoriteListTableViewCell")
         view.addSubview(favoriteListTableView)
         favoriteListTableView.snp.makeConstraints{ make in
-            make.top.bottom.equalToSuperview()
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
+            make.bottom.equalToSuperview()
             make.left.right.equalToSuperview().inset(20)
         }
     }
