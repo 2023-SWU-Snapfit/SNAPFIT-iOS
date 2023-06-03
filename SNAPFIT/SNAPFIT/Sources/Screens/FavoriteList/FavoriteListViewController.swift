@@ -7,22 +7,51 @@
 
 import UIKit
 
-class FavoriteListViewController: UIViewController {
-    let heartListTableView = UITableView()
+class FavoriteListViewController: BaseViewController {
+    let titleLabel: UILabel = {
+        let titleLabel: UILabel = UILabel()
+        titleLabel.text = "관심 목록"
+        titleLabel.font = .b24
+        return titleLabel
+    }()
+    let favoriteListTableView: UITableView = {
+        let favoriteListTableView: UITableView = UITableView()
+        favoriteListTableView.backgroundColor = .clear
+        favoriteListTableView.separatorStyle = .none
+        favoriteListTableView.showsVerticalScrollIndicator = false
+        favoriteListTableView.register(BorderedTableViewCell.self, forCellReuseIdentifier: "favoriteListTableViewCell")
+        return favoriteListTableView
+    }()
+    
+    // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        heartListTableView.separatorStyle = .singleLine
-        heartListTableView.delegate = self
-        heartListTableView.dataSource = self
-        heartListTableView.register(HeartListTableViewCell.self, forCellReuseIdentifier: "heartListTableViewCell")
-        view.addSubview(heartListTableView)
-        heartListTableView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
+        self.setTitleLayout()
+        self.setTableView()
+    }
+    
+    // MARK: - Method
+    private func setTitleLayout() {
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints{ make in
+            make.top.equalTo(92)
+            make.left.right.equalToSuperview().inset(20)
+        }
+    }
+    
+    private func setTableView() {
+        self.favoriteListTableView.delegate = self
+        self.favoriteListTableView.dataSource = self
+        view.addSubview(favoriteListTableView)
+        favoriteListTableView.snp.makeConstraints{ make in
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
+            make.bottom.equalToSuperview()
+            make.left.right.equalToSuperview().inset(20)
         }
     }
 }
 
+// MARK: - Extensions
 extension FavoriteListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         82
@@ -37,10 +66,9 @@ extension FavoriteListViewController: UITableViewDataSource {
         20
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "heartListTableViewCell") as! HeartListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteListTableViewCell") as! BorderedTableViewCell
         cell.setPicture()
-        cell.setTitle(titleText: "닉네임\(indexPath.row)")
-        cell.setRightButton()
+        cell.setTitle(titleText: "닉네임열글자까지\(indexPath.row)")
         return cell
     }
 }
