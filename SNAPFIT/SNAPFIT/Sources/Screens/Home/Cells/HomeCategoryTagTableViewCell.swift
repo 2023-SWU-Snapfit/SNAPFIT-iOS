@@ -15,7 +15,7 @@ final class HomeCategoryTagTableViewCell: UITableViewCell {
         let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
-        
+        collectionView.contentInset = .init(top: 0, left: 20, bottom: 0, right: 20)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 8
@@ -88,7 +88,7 @@ extension HomeCategoryTagTableViewCell {
         self.contentView.addSubviews([collectionView])
         
         self.collectionView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(20)
+            make.horizontalEdges.equalToSuperview()
             make.top.bottom.equalToSuperview().inset(8)
         }
     }
