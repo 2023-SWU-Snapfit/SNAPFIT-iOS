@@ -24,32 +24,21 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setPhotographerLayout()
+        self.setGeneralUserLayout()
         self.setMypageLayout()
+        self.setInstagramText(text: "bb098765")
         self.setMailText(text: "e-mail.emailLabel.com")
         self.setIntroduceText(text: """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-    한국어 대응 가능
+    6월 말 우정 스냅 사진 촬영 작가 구하는 중!
     """
                              )
-        self.setPossibleDateText(text: """
-    멀티라인 스트링 입력 가능
-    AA - $200
-    AB - $60
-    """
-                                 )
-        self.setPriceText(text: """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    """
-                          )
     }
     
     
     private func setMypageLayout() {
         self.addAtContentView(component: self.editButton)
         self.editButton.snp.makeConstraints{ make in
-            make.top.equalTo(338)
+            make.top.equalTo(172)
             make.right.equalToSuperview().inset(20)
         }
     }

@@ -26,6 +26,7 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setPhotographerLayout()
         self.setMypageLayout()
+        self.setInstagramText(text: "aa1123")
         self.setMailText(text: "e-mail.emailLabel.com")
         self.setIntroduceText(text: """
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
