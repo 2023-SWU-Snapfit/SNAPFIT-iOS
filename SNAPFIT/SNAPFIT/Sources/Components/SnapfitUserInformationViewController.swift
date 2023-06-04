@@ -24,6 +24,7 @@ class SnapfitUserInformationViewController: BaseViewController {
     
     // MARK: - Properties
     private let isPhotographer: Bool = false
+    private let isApproved: Bool = false
     private let scrollView: UIScrollView = {
         let scrollView: UIScrollView = UIScrollView()
         scrollView.backgroundColor = .sfGrayWhite
@@ -73,7 +74,6 @@ class SnapfitUserInformationViewController: BaseViewController {
         nicknameLabel.text = Text.nickname
         nicknameLabel.font = .m24
         return nicknameLabel
-
     }()
     private let instagramSignImageView: UIImageView = {
         let instagramSignImageView: UIImageView = UIImageView()
@@ -85,6 +85,7 @@ class SnapfitUserInformationViewController: BaseViewController {
     private let instagramLabel: UILabel = {
         let instagramLabel: UILabel = UILabel()
         instagramLabel.font = .m12
+        instagramLabel.text = ""
         return instagramLabel
     }()
     private let mailSignImageView: UIImageView = {
@@ -97,6 +98,7 @@ class SnapfitUserInformationViewController: BaseViewController {
     private let mailLabel: UILabel = {
         let mailLabel: UILabel = UILabel()
         mailLabel.font = .m12
+        mailLabel.text = ""
         return mailLabel
     }()
     private let introduceTextView: SnapfitTextView = {
@@ -129,7 +131,6 @@ class SnapfitUserInformationViewController: BaseViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setProfileImageViewStyle()
     }
     
@@ -186,104 +187,13 @@ class SnapfitUserInformationViewController: BaseViewController {
 extension SnapfitUserInformationViewController {
     
     // MARK: - LayoutMethods
-    private func setProfileImageViewStyle() {
-        self.profileImageView.setImageColor(color: .sfBlack40)
-        self.profileImageView.backgroundColor = .sfBlack40
-        self.profileImageView.layer.cornerRadius = 50
-        self.profileImageView.layer.borderWidth = 1
-        self.profileImageView.layer.borderColor = UIColor.clear.cgColor
-        self.profileImageView.clipsToBounds = true
-        self.profileImageView.contentMode = .scaleAspectFill
-    }
-    
-    private func setInstagramLayout() {
-        let topMargin = isPhotographer ? 450 : 285
-        self.contentView.addSubview(self.instagramSignImageView)
-        self.instagramSignImageView.snp.makeConstraints{ make in
-            make.top.equalTo(topMargin)
-            make.left.equalTo(20)
-            make.width.height.equalTo(20)
-        }
-        self.contentView.addSubview(self.instagramLabel)
-        self.instagramLabel.snp.makeConstraints{ make in
-            make.top.equalTo(topMargin)
-            make.left.equalTo(self.instagramSignImageView.snp.right).offset(4)
-            make.height.equalTo(20)
-        }
-    }
-    
-    private func setMailLayout() {
-        let topMargin = isPhotographer ? 450: 285
-        self.contentView.addSubview(self.mailSignImageView)
-        self.mailSignImageView.snp.makeConstraints{ make in
-            make.top.equalTo(topMargin)
-            make.left.equalTo(self.instagramLabel.snp.right).offset(4)
-            make.width.height.equalTo(20)
-        }
-        self.contentView.addSubview(self.mailLabel)
-        self.mailLabel.snp.makeConstraints{ make in
-            make.top.equalTo(topMargin)
-            make.left.equalTo(self.mailSignImageView.snp.right).offset(4)
-            make.height.equalTo(20)
-        }
-    }
-    
-    private func setPhoneApproved() {
-        if isPhotographer {
-            self.contentView.addSubview(self.phoneApprovedImageView)
-            self.phoneApprovedImageView.snp.makeConstraints{ make in
-                make.top.equalTo(380)
-                make.left.equalTo(self.photographerLabel.snp.right).offset(4)
-                make.width.height.equalTo(20)
-            }
-            self.contentView.addSubview(self.phoneApprovedLabel)
-            self.phoneApprovedLabel.snp.makeConstraints{ make in
-                make.top.equalTo(380)
-                make.left.equalTo(self.phoneApprovedImageView.snp.right).offset(4)
-                make.height.equalTo(20)
-            }
-        } else {
-            self.contentView.addSubview(self.phoneApprovedImageView)
-            self.phoneApprovedImageView.snp.makeConstraints{ make in
-                make.top.equalTo(214)
-                make.left.equalTo(20)
-                make.width.height.equalTo(20)
-            }
-            self.contentView.addSubview(self.phoneApprovedLabel)
-            self.phoneApprovedLabel.snp.makeConstraints{ make in
-                make.top.equalTo(214)
-                make.left.equalTo(self.phoneApprovedImageView.snp.right).offset(4)
-                make.height.equalTo(20)
-            }
-        }
-    }
-    
-    private func setGalleryAndReviewLayout() {
-        
-    }
-    
     public func setPhotographerLayout() {
-        self.view.addSubview(self.scrollView)
-        self.scrollView.snp.makeConstraints{ make in
-            make.bottom.left.right.width.equalToSuperview()
-            make.top.equalTo(-48)
-        }
-        self.scrollView.addSubview(contentView)
-        self.contentView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
-            make.width.equalToSuperview()
-        }
         self.contentView.addSubview(self.bannerImageView)
         self.bannerImageView.snp.makeConstraints{ make in
             make.top.width.equalToSuperview()
             make.height.equalTo(320)
         }
-        self.contentView.addSubview(self.profileImageView)
-        self.profileImageView.snp.makeConstraints{ make in
-            make.top.equalTo(270)
-            make.left.equalTo(20)
-            make.height.width.equalTo(100)
-        }
+        self.setEssentialUILayout(profileImageTopConstraint: 270)
         self.contentView.addSubview(self.photographerSignImageView)
         self.photographerSignImageView.snp.makeConstraints{ make in
             make.top.equalTo(380)
@@ -296,57 +206,22 @@ extension SnapfitUserInformationViewController {
             make.left.equalTo(self.photographerSignImageView.snp.right).offset(4)
             make.height.equalTo(20)
         }
-        self.setPhoneApproved()
-        self.contentView.addSubview(self.nicknameLabel)
-        self.nicknameLabel.snp.makeConstraints{ make in
-            make.top.equalTo(408)
-            make.left.equalTo(20)
-        }
-        self.setInstagramLayout()
-        self.setMailLayout()
-        self.contentView.addSubview(self.introduceTextView)
-        self.introduceTextView.snp.makeConstraints{ make in
-            make.top.equalTo(487)
-            make.left.equalTo(20)
-            make.width.equalToSuperview().inset(20)
-        }
-        self.contentView.addSubview(self.galleryCarouselViewController.view)
-        self.galleryCarouselViewController.view.snp.makeConstraints{ make in
-            make.top.equalTo(introduceTextView.snp.bottom).offset(24)
-            make.left.right.width.equalToSuperview()
-            make.height.equalTo(175)
-        }
-        self.contentView.addSubview(self.reviewCarouselViewController.view)
-        self.reviewCarouselViewController.view.snp.makeConstraints{ make in
-            make.top.equalTo(galleryCarouselViewController.view.snp.bottom).offset(24)
-            make.left.right.width.equalToSuperview()
-            make.height.equalTo(220)
-        }
-        self.contentView.addSubview(self.possibleDateTitleLabel)
-        self.possibleDateTitleLabel.snp.makeConstraints{ make in
-            make.top.equalTo(reviewCarouselViewController.view.snp.bottom).offset(24)
-            make.left.equalTo(20)
-        }
-        self.contentView.addSubview(self.possibleDateTextView)
-        self.possibleDateTextView.snp.makeConstraints{ make in
-            make.top.equalTo(possibleDateTitleLabel.snp.bottom).offset(16)
-            make.left.equalTo(20)
-            make.width.equalToSuperview().inset(20)
-        }
-        self.contentView.addSubview(self.priceTitleLabel)
-        self.priceTitleLabel.snp.makeConstraints{ make in
-            make.top.equalTo(possibleDateTextView.snp.bottom).offset(24)
-            make.left.equalTo(20)
-        }
-        self.contentView.addSubview(self.priceTextView)
-        self.priceTextView.snp.makeConstraints{ make in
-            make.top.equalTo(priceTitleLabel.snp.bottom).offset(16)
-            make.left.equalTo(20)
-            make.width.bottom.equalToSuperview().inset(20)
-        }
+        self.setPhoneApproved(topConstraint: 380, leftConstraint: self.photographerLabel.snp.right)
+        self.setInstagramLayout(topConstraint: 450)
+        self.setMailLayout(topConstraint: 450, leftConstraint: self.instagramLabel.snp.right)
+        self.setGalleryAndReviewLayout(isPhotographer: true)
+        self.setPossibleDateAndPrice()
     }
     
     public func setGeneralUserLayout() {
+        self.setEssentialUILayout(profileImageTopConstraint: 104)
+        self.setPhoneApproved(topConstraint: 214, leftConstraint: 20)
+        self.setInstagramLayout(topConstraint: 285)
+        self.setMailLayout(topConstraint: 285, leftConstraint: self.instagramLabel.snp.right)
+        self.setGalleryAndReviewLayout(isPhotographer: false)
+    }
+    
+    private func setEssentialUILayout(profileImageTopConstraint: ConstraintRelatableTarget) {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints{ make in
             make.bottom.left.right.width.equalToSuperview()
@@ -359,24 +234,81 @@ extension SnapfitUserInformationViewController {
         }
         self.contentView.addSubview(self.profileImageView)
         self.profileImageView.snp.makeConstraints{ make in
-            make.top.equalTo(104)
+            make.top.equalTo(profileImageTopConstraint)
             make.left.equalTo(20)
             make.height.width.equalTo(100)
         }
-        self.setPhoneApproved()
         self.contentView.addSubview(self.nicknameLabel)
         self.nicknameLabel.snp.makeConstraints{ make in
-            make.top.equalTo(242)
+            make.top.equalTo(self.profileImageView.snp.bottom).offset(38)
             make.left.equalTo(20)
         }
-        self.setInstagramLayout()
-        self.setMailLayout()
         self.contentView.addSubview(self.introduceTextView)
         self.introduceTextView.snp.makeConstraints{ make in
-            make.top.equalTo(320)
+            make.top.equalTo(self.nicknameLabel.snp.bottom).offset(52)
             make.left.equalTo(20)
             make.width.equalToSuperview().inset(20)
         }
+        
+    }
+    
+    private func setProfileImageViewStyle() {
+        self.profileImageView.setImageColor(color: .sfBlack40)
+        self.profileImageView.backgroundColor = .sfBlack40
+        self.profileImageView.layer.cornerRadius = 50
+        self.profileImageView.layer.borderWidth = 1
+        self.profileImageView.layer.borderColor = UIColor.clear.cgColor
+        self.profileImageView.clipsToBounds = true
+        self.profileImageView.contentMode = .scaleAspectFill
+    }
+    
+    private func setPhoneApproved(topConstraint: ConstraintRelatableTarget, leftConstraint: ConstraintRelatableTarget) {
+        self.contentView.addSubview(self.phoneApprovedImageView)
+        self.phoneApprovedImageView.snp.makeConstraints{ make in
+            make.top.equalTo(topConstraint)
+            make.left.equalTo(leftConstraint)
+            make.width.height.equalTo(20)
+        }
+        self.contentView.addSubview(self.phoneApprovedLabel)
+        self.phoneApprovedLabel.snp.makeConstraints{ make in
+            make.top.equalTo(topConstraint)
+            make.left.equalTo(self.phoneApprovedImageView.snp.right).offset(4)
+            make.height.equalTo(20)
+        }
+    }
+    
+    private func setInstagramLayout(topConstraint: ConstraintRelatableTarget) {
+        self.contentView.addSubview(self.instagramSignImageView)
+        self.instagramSignImageView.snp.makeConstraints{ make in
+            make.top.equalTo(topConstraint)
+            make.left.equalTo(20)
+            make.width.height.equalTo(20)
+        }
+        self.contentView.addSubview(self.instagramLabel)
+        self.instagramLabel.snp.makeConstraints{ make in
+            make.top.equalTo(topConstraint)
+            make.left.equalTo(self.instagramSignImageView.snp.right).offset(4)
+            make.height.equalTo(20)
+        }
+    }
+    
+    private func setMailLayout(topConstraint: ConstraintRelatableTarget, leftConstraint: ConstraintRelatableTarget) {
+        self.contentView.addSubview(self.mailSignImageView)
+        self.mailSignImageView.snp.makeConstraints{ make in
+            make.top.equalTo(topConstraint)
+            make.left.equalTo(leftConstraint).offset(4)
+            make.width.height.equalTo(20)
+        }
+        self.contentView.addSubview(self.mailLabel)
+        self.mailLabel.snp.makeConstraints{ make in
+            make.top.equalTo(topConstraint)
+            make.left.equalTo(self.mailSignImageView.snp.right).offset(4)
+            make.height.equalTo(20)
+        }
+        
+    }
+    
+    private func setGalleryAndReviewLayout(isPhotographer: Bool) {
         self.contentView.addSubview(self.galleryCarouselViewController.view)
         self.galleryCarouselViewController.view.snp.makeConstraints{ make in
             make.top.equalTo(introduceTextView.snp.bottom).offset(24)
@@ -386,8 +318,37 @@ extension SnapfitUserInformationViewController {
         self.contentView.addSubview(self.reviewCarouselViewController.view)
         self.reviewCarouselViewController.view.snp.makeConstraints{ make in
             make.top.equalTo(galleryCarouselViewController.view.snp.bottom).offset(24)
-            make.left.right.width.bottom.equalToSuperview()
             make.height.equalTo(220)
+            make.left.right.width.equalToSuperview()
+            if !isPhotographer {
+                make.bottom.equalToSuperview()
+            }
         }
     }
+    
+    private func setPossibleDateAndPrice() {
+        self.contentView.addSubview(self.possibleDateTitleLabel)
+        self.possibleDateTitleLabel.snp.makeConstraints{ make in
+            make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom).offset(24)
+            make.left.equalTo(20)
+        }
+        self.contentView.addSubview(self.possibleDateTextView)
+        self.possibleDateTextView.snp.makeConstraints{ make in
+            make.top.equalTo(self.possibleDateTitleLabel.snp.bottom).offset(16)
+            make.left.equalTo(20)
+            make.width.equalToSuperview().inset(20)
+        }
+        self.contentView.addSubview(self.priceTitleLabel)
+        self.priceTitleLabel.snp.makeConstraints{ make in
+            make.top.equalTo(self.possibleDateTextView.snp.bottom).offset(24)
+            make.left.equalTo(20)
+        }
+        self.contentView.addSubview(self.priceTextView)
+        self.priceTextView.snp.makeConstraints{ make in
+            make.top.equalTo(priceTitleLabel.snp.bottom).offset(16)
+            make.left.equalTo(20)
+            make.width.bottom.equalToSuperview().inset(20)
+        }
+    }
+    
 }

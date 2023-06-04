@@ -25,7 +25,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setGeneralUserLayout()
-        self.setMypageLayout()
+        self.setProfileLayout()
         self.setMailText(text: "e-mail.emailLabel.com")
         self.setIntroduceText(text: """
     6월 말 우정 스냅 사진 촬영 작가 구하는 중!
@@ -34,7 +34,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     }
     
     
-    private func setMypageLayout() {
+    private func setProfileLayout() {
         self.addAtContentView(component: self.contactButton)
         self.contactButton.snp.makeConstraints{ make in
             make.top.equalTo(172)
