@@ -23,8 +23,8 @@ class SnapfitUserInformationViewController: BaseViewController {
     }
     
     // MARK: - Properties
-    private let isPhotographer: Bool = false
-    private let isApproved: Bool = false
+    private var isPhotographer: Bool = false
+    private var isApproved: Bool = false
     private let scrollView: UIScrollView = {
         let scrollView: UIScrollView = UIScrollView()
         scrollView.backgroundColor = .sfGrayWhite
@@ -139,12 +139,35 @@ class SnapfitUserInformationViewController: BaseViewController {
         self.contentView.addSubview(component)
     }
     
+    public func setIsPhotographer(state: Bool){
+        self.isPhotographer = state
+    }
+    
+    public func setApproved(approveState: Bool) {
+        self.isApproved = approveState
+        if isPhotographer {
+            self.setPhoneApprovedLayout(topConstraint: 380, leftConstraint: self.photographerLabel.snp.right)
+        } else {
+            self.setPhoneApprovedLayout(topConstraint: 214, leftConstraint: 20)
+        }
+    }
+    
     public func setInstagramText(text: String) {
         self.instagramLabel.text = text
+        if isPhotographer {
+            self.setInstagramLayout(topConstraint: 450)
+        } else {
+            self.setInstagramLayout(topConstraint: 285)
+        }
     }
     
     public func setMailText(text: String) {
         self.mailLabel.text = text
+        if isPhotographer {
+            self.setMailLayout(topConstraint: 450, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
+        } else {
+            self.setMailLayout(topConstraint: 285, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
+        }
     }
 
     public func setIntroduceText(text: String) {
@@ -188,6 +211,7 @@ extension SnapfitUserInformationViewController {
     
     // MARK: - LayoutMethods
     public func setPhotographerLayout() {
+        self.isPhotographer = true
         self.contentView.addSubview(self.bannerImageView)
         self.bannerImageView.snp.makeConstraints{ make in
             make.top.width.equalToSuperview()
@@ -204,20 +228,18 @@ extension SnapfitUserInformationViewController {
         self.photographerLabel.snp.makeConstraints{ make in
             make.top.equalTo(380)
             make.left.equalTo(self.photographerSignImageView.snp.right).offset(4)
+            make.width.equalTo(self.photographerLabel.intrinsicContentSize.width + 4)
             make.height.equalTo(20)
         }
-        self.setPhoneApproved(topConstraint: 380, leftConstraint: self.photographerLabel.snp.right)
-        self.setInstagramLayout(topConstraint: 450)
-        self.setMailLayout(topConstraint: 450, leftConstraint: self.instagramLabel.snp.right)
+        self.setPhoneApprovedLayout(topConstraint: 380, leftConstraint: self.photographerLabel.snp.right)
         self.setGalleryAndReviewLayout(isPhotographer: true)
         self.setPossibleDateAndPrice()
     }
     
     public func setGeneralUserLayout() {
+        self.isPhotographer = false
         self.setEssentialUILayout(profileImageTopConstraint: 104)
-        self.setPhoneApproved(topConstraint: 214, leftConstraint: 20)
-        self.setInstagramLayout(topConstraint: 285)
-        self.setMailLayout(topConstraint: 285, leftConstraint: self.instagramLabel.snp.right)
+        self.setPhoneApprovedLayout(topConstraint: 214, leftConstraint: 20)
         self.setGalleryAndReviewLayout(isPhotographer: false)
     }
     
@@ -249,7 +271,6 @@ extension SnapfitUserInformationViewController {
             make.left.equalTo(20)
             make.width.equalToSuperview().inset(20)
         }
-        
     }
     
     private func setProfileImageViewStyle() {
@@ -262,22 +283,25 @@ extension SnapfitUserInformationViewController {
         self.profileImageView.contentMode = .scaleAspectFill
     }
     
-    private func setPhoneApproved(topConstraint: ConstraintRelatableTarget, leftConstraint: ConstraintRelatableTarget) {
-        self.contentView.addSubview(self.phoneApprovedImageView)
-        self.phoneApprovedImageView.snp.makeConstraints{ make in
-            make.top.equalTo(topConstraint)
-            make.left.equalTo(leftConstraint)
-            make.width.height.equalTo(20)
-        }
-        self.contentView.addSubview(self.phoneApprovedLabel)
-        self.phoneApprovedLabel.snp.makeConstraints{ make in
-            make.top.equalTo(topConstraint)
-            make.left.equalTo(self.phoneApprovedImageView.snp.right).offset(4)
-            make.height.equalTo(20)
+    private func setPhoneApprovedLayout(topConstraint: ConstraintRelatableTarget, leftConstraint: ConstraintRelatableTarget) {
+        if isApproved {
+            self.contentView.addSubview(self.phoneApprovedImageView)
+            self.phoneApprovedImageView.snp.makeConstraints{ make in
+                make.top.equalTo(topConstraint)
+                make.left.equalTo(leftConstraint)
+                make.width.height.equalTo(20)
+            }
+            self.contentView.addSubview(self.phoneApprovedLabel)
+            self.phoneApprovedLabel.snp.makeConstraints{ make in
+                make.top.equalTo(topConstraint)
+                make.left.equalTo(self.phoneApprovedImageView.snp.right).offset(4)
+                make.height.equalTo(20)
+            }
         }
     }
     
     private func setInstagramLayout(topConstraint: ConstraintRelatableTarget) {
+        self.instagramSignImageView.isHidden = self.instagramLabel.text == "" ? true : false
         self.contentView.addSubview(self.instagramSignImageView)
         self.instagramSignImageView.snp.makeConstraints{ make in
             make.top.equalTo(topConstraint)
@@ -289,6 +313,7 @@ extension SnapfitUserInformationViewController {
             make.top.equalTo(topConstraint)
             make.left.equalTo(self.instagramSignImageView.snp.right).offset(4)
             make.height.equalTo(20)
+            make.width.equalTo(self.instagramLabel.intrinsicContentSize.width + 4)
         }
     }
     
@@ -296,7 +321,7 @@ extension SnapfitUserInformationViewController {
         self.contentView.addSubview(self.mailSignImageView)
         self.mailSignImageView.snp.makeConstraints{ make in
             make.top.equalTo(topConstraint)
-            make.left.equalTo(leftConstraint).offset(4)
+            make.left.equalTo(leftConstraint)
             make.width.height.equalTo(20)
         }
         self.contentView.addSubview(self.mailLabel)
@@ -305,7 +330,7 @@ extension SnapfitUserInformationViewController {
             make.left.equalTo(self.mailSignImageView.snp.right).offset(4)
             make.height.equalTo(20)
         }
-        
+        self.mailSignImageView.isHidden = self.mailLabel.text == "" ? true : false
     }
     
     private func setGalleryAndReviewLayout(isPhotographer: Bool) {

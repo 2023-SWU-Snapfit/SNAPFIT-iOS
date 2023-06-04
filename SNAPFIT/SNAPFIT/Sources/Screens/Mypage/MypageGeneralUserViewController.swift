@@ -26,6 +26,7 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setGeneralUserLayout()
         self.setMypageLayout()
+        self.setApproved(approveState: true)
         self.setInstagramText(text: "bb098765")
         self.setMailText(text: "e-mail.emailLabel.com")
         self.setIntroduceText(text: """
