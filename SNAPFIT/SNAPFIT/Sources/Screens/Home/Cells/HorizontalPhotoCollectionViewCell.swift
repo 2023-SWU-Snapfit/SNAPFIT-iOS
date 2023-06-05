@@ -1,5 +1,5 @@
 //
-//  VerticalPhotoCollectionViewCell.swift
+//  HorizontalPhotoCollectionViewCell.swift
 //  SNAPFIT
 //
 //  Created by madilyn on 2023/06/03.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class VerticalPhotoCollectionViewCell: UICollectionViewCell {
+final class HorizontalPhotoCollectionViewCell: UICollectionViewCell {
     
     // MARK: Properties
     
@@ -47,7 +47,7 @@ final class VerticalPhotoCollectionViewCell: UICollectionViewCell {
         
         self.imageView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
-            make.height.equalTo(248)
+            make.height.equalTo(154)
         }
         
         self.usernameLabel.snp.makeConstraints { make in

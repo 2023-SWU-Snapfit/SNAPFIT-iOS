@@ -1,5 +1,5 @@
 //
-//  HomePhotoByCategoryTableViewCell.swift
+//  HomePhotoByPersonalCetegoryTableViewCell.swift
 //  SNAPFIT
 //
 //  Created by madilyn on 2023/06/03.
@@ -8,9 +8,16 @@
 import UIKit
 import SnapKit
 
-final class HomePhotoByCategoryTableViewCell: UITableViewCell {
+final class HomePhotoByPersonalCetegoryTableViewCell: UITableViewCell {
     
     // MARK: Properties
+    
+    private let titleLabel: UILabel = {
+        let titleLabel: UILabel = UILabel()
+        titleLabel.font = .b18
+        titleLabel.textColor = .sfBlack100
+        return titleLabel
+    }()
     
     private let collectionView: UICollectionView = {
         let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
@@ -46,19 +53,23 @@ final class HomePhotoByCategoryTableViewCell: UITableViewCell {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        self.collectionView.register(cell: VerticalPhotoCollectionViewCell.self)
+        self.collectionView.register(cell: HorizontalPhotoCollectionViewCell.self)
+    }
+    
+    func setTitle(titleTag: String) {
+        self.titleLabel.text = "#" + titleTag
     }
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: -
 
-extension HomePhotoByCategoryTableViewCell: UICollectionViewDataSource {
+extension HomePhotoByPersonalCetegoryTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalPhotoCollectionViewCell.className, for: indexPath) as? VerticalPhotoCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalPhotoCollectionViewCell.className, for: indexPath) as? HorizontalPhotoCollectionViewCell
         else { return UICollectionViewCell() }
         
         cell.setData(image: UIImage(named: "sampleImage") ?? UIImage(), username: "작가1")
@@ -67,28 +78,33 @@ extension HomePhotoByCategoryTableViewCell: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension HomePhotoByCategoryTableViewCell: UICollectionViewDelegateFlowLayout {
+extension HomePhotoByPersonalCetegoryTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 208, height: 296)
+        return CGSize(width: 208, height: 202)
     }
 }
 
 // MARK: - UI
 
-extension HomePhotoByCategoryTableViewCell {
+extension HomePhotoByPersonalCetegoryTableViewCell {
     
     private func setUI() {
         self.backgroundColor = .clear
     }
     
     private func setLayout() {
-        self.contentView.addSubviews([collectionView])
+        self.contentView.addSubviews([titleLabel, collectionView])
+        
+        self.titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(8)
+            make.horizontalEdges.equalToSuperview().inset(20)
+            make.height.equalTo(21)
+        }
         
         self.collectionView.snp.makeConstraints { make in
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
             make.horizontalEdges.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().inset(8)
         }
     }
 }

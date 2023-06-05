@@ -16,7 +16,6 @@ final class HomeViewController: BaseViewController {
         case searchBar
         case categoryTag
         case photoBySelectedCategory
-        case personalCategoryTitle
         case photoByPersonalCategory
         case bestPhotographerTitle
         case bestPhotographerList
@@ -55,6 +54,7 @@ extension HomeViewController {
         self.homeTableView.register(cell: HomeSearchBarTableViewCell.self)
         self.homeTableView.register(cell: HomeCategoryTagTableViewCell.self)
         self.homeTableView.register(cell: HomePhotoByCategoryTableViewCell.self)
+        self.homeTableView.register(cell: HomePhotoByPersonalCetegoryTableViewCell.self)
     }
     
     private func setLayout() {
@@ -106,10 +106,11 @@ extension HomeViewController: UITableViewDataSource {
                 else { return UITableViewCell() }
                 
                 return cell
-            case .personalCategoryTitle:
-                return UITableViewCell()
             case .photoByPersonalCategory:
-                return UITableViewCell()
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByPersonalCetegoryTableViewCell.className) as? HomePhotoByPersonalCetegoryTableViewCell
+                else { return UITableViewCell() }
+                cell.setTitle(titleTag: "일상")
+                return cell
             case .bestPhotographerTitle:
                 return UITableViewCell()
             case .bestPhotographerList:
@@ -139,6 +140,8 @@ extension HomeViewController: UITableViewDelegate {
                 return 48
             case .photoBySelectedCategory:
                 return 312
+            case .photoByPersonalCategory:
+                return 255
             default:
                 return 100
             }
