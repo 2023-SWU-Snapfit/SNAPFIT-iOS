@@ -26,6 +26,7 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setPhotographerLayout()
         self.setMypageLayout()
+        self.setNickname(text: "닉네임 보여주기")
         self.setApproved(approveState: true)
         self.setInstagramText(text: "snap-iOS")
         self.setMailText(text: "snap-iOS.google.com")

@@ -253,7 +253,7 @@ extension SnapfitUserInformationViewController {
             if isPhotographer {
                 make.top.equalTo(-60)
             } else {
-                make.top.equalToSuperview()
+                make.top.equalTo(-48)
             }
         }
         self.scrollView.addSubview(contentView)
