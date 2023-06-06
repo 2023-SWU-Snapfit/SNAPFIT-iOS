@@ -144,11 +144,6 @@ class SnapfitUserInformationViewController: BaseViewController {
     
     public func setApproved(approveState: Bool) {
         self.isApproved = approveState
-        if isPhotographer {
-            self.setPhoneApprovedLayout(topConstraint: 380, leftConstraint: self.photographerLabel.snp.right)
-        } else {
-            self.setPhoneApprovedLayout(topConstraint: 214, leftConstraint: 20)
-        }
     }
     
     public func setNickname(text: String) {
@@ -157,20 +152,10 @@ class SnapfitUserInformationViewController: BaseViewController {
     
     public func setInstagramText(text: String) {
         self.instagramLabel.text = text
-        if isPhotographer {
-            self.setInstagramLayout(topConstraint: 450)
-        } else {
-            self.setInstagramLayout(topConstraint: 285)
-        }
     }
     
     public func setMailText(text: String) {
         self.mailLabel.text = text
-        if isPhotographer {
-            self.setMailLayout(topConstraint: 450, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
-        } else {
-            self.setMailLayout(topConstraint: 285, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
-        }
     }
 
     public func setIntroduceText(text: String) {
@@ -178,33 +163,10 @@ class SnapfitUserInformationViewController: BaseViewController {
     }
     
     public func setPossibleDateText(text: String) {
-        if text == "" {
-            self.possibleDateTitleLabel.isHidden = true
-            self.possibleDateTitleLabel.snp.makeConstraints{ make in
-                make.top.equalTo(possibleDateTitleLabel.snp.bottom)
-            }
-        } else {
-            self.possibleDateTitleLabel.isHidden = false
-            self.possibleDateTextView.snp.makeConstraints{ make in
-                make.top.equalTo(possibleDateTitleLabel.snp.bottom).offset(16)
-            }
-        }
         self.possibleDateTextView.setText(text: text)
     }
     
     public func setPriceText(text: String) {
-        if text == "" {
-            self.priceTitleLabel.isHidden = true
-            self.priceTextView.snp.makeConstraints{ make in
-                make.top.equalTo(priceTitleLabel.snp.bottom)
-            }
-        } else {
-            self.priceTitleLabel.isHidden = false
-            self.priceTextView.snp.makeConstraints{ make in
-                make.top.equalTo(priceTitleLabel.snp.bottom).offset(16)
-            }
-            
-        }
         self.priceTextView.setText(text: text)
     }
     
@@ -235,6 +197,8 @@ extension SnapfitUserInformationViewController {
             make.height.equalTo(20)
         }
         self.setPhoneApprovedLayout(topConstraint: 380, leftConstraint: self.photographerLabel.snp.right)
+        self.setInstagramLayout(topConstraint: 450)
+        self.setMailLayout(topConstraint: 450, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
         self.setGalleryAndReviewLayout(isPhotographer: true)
         self.setPossibleDateAndPrice()
     }
@@ -243,6 +207,8 @@ extension SnapfitUserInformationViewController {
         self.isPhotographer = false
         self.setEssentialUILayout(profileImageTopConstraint: 104)
         self.setPhoneApprovedLayout(topConstraint: 214, leftConstraint: 20)
+        self.setInstagramLayout(topConstraint: 285)
+        self.setMailLayout(topConstraint: 285, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
         self.setGalleryAndReviewLayout(isPhotographer: false)
     }
     

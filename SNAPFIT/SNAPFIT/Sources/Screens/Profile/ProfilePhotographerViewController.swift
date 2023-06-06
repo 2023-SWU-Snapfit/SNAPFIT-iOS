@@ -31,29 +31,22 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setPhotographerLayout()
         self.setLayout()
-        self.setApproved(approveState: true)
-        self.setNickname(text: "사진작가 민주영")
-        self.setInstagramText(text: "instagram")
-        self.setMailText(text: "e-mail.google.com")
-        self.setIntroduceText(text: "임시 데이터 - 소개글")
-        self.setPossibleDateText(text: "임시 데이터 - 가능한 날짜")
-        self.setPriceText(text: "임시 데이터 - 가격")
     }
     
     // MARK: - Methods
     
-//    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
-//        self.setApproved(approveState: isApproved)
-//        self.setNickname(text: nicknameText)
-//        self.setInstagramText(text: instagramText)
-//    }
-//
-//    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
-//        self.setMailText(text: mailText)
-//        self.setIntroduceText(text: introduceText)
-//        self.setPossibleDateText(text: possibleDateText)
-//        self.setPriceText(text: priceText)
-//    }
+    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
+        self.setApproved(approveState: isApproved)
+        self.setNickname(text: nicknameText)
+        self.setInstagramText(text: instagramText)
+    }
+
+    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
+        self.setMailText(text: mailText)
+        self.setIntroduceText(text: introduceText)
+        self.setPossibleDateText(text: possibleDateText)
+        self.setPriceText(text: priceText)
+    }
     
     private func setLayout() {
         self.view.addSubviews([navigationView])
