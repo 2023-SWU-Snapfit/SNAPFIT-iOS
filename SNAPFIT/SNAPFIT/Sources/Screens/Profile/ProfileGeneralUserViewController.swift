@@ -43,11 +43,9 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
         self.setInstagramText(text: instagramText)
     }
     
-    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
+    public func setAdditionalData(mailText: String,introduceText: String) {
         self.setMailText(text: mailText)
         self.setIntroduceText(text: introduceText)
-        self.setPossibleDateText(text: possibleDateText)
-        self.setPriceText(text: priceText)
     }
     
     private func setLayout() {
