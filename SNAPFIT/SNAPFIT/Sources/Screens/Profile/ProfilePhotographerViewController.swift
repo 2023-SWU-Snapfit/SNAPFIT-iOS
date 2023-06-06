@@ -10,7 +10,12 @@ import SnapKit
 
 class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
-    let contactButton: UIButton = {
+    // MARK: - Properties
+    private let navigationView: SnapfitNavigationView = {
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backLikeMore)
+        return view
+    }()
+    private let contactButton: UIButton = {
         let contactButton: UIButton = UIButton()
         contactButton.configuration = .filled()
         contactButton.setTitle("문의하기", for: .normal)
@@ -25,33 +30,47 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setPhotographerLayout()
-        self.setProfileLayout()
+        self.setLayout()
         self.setApproved(approveState: true)
-        self.setMailText(text: "e-mail.emailLabel.com")
-        self.setIntroduceText(text: """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-    한국어 대응 가능
-    """
-                             )
-        self.setPossibleDateText(text: """
-    멀티라인 스트링 입력 가능
-    AA - $200
-    AB - $60
-    """
-                                 )
-        self.setPriceText(text: """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    """
-                          )
+        self.setNickname(text: "사진작가 민주영")
+        self.setInstagramText(text: "instagram")
+        self.setMailText(text: "e-mail.google.com")
+        self.setIntroduceText(text: "임시 데이터 - 소개글")
+        self.setPossibleDateText(text: "임시 데이터 - 가능한 날짜")
+        self.setPriceText(text: "임시 데이터 - 가격")
     }
     
+    // MARK: - Methods
     
-    private func setProfileLayout() {
+    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
+        self.setApproved(approveState: isApproved)
+        self.setNickname(text: nicknameText)
+        self.setInstagramText(text: instagramText)
+    }
+    
+    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
+        self.setMailText(text: mailText)
+        self.setIntroduceText(text: introduceText)
+        self.setPossibleDateText(text: possibleDateText)
+        self.setPriceText(text: priceText)
+    }
+    
+    private func setLayout() {
+        self.view.addSubviews([navigationView])
+        self.setNavigationView()
+        self.navigationView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide)
+        }
         self.addAtContentView(component: self.contactButton)
         self.contactButton.snp.makeConstraints{ make in
             make.top.equalTo(338)
             make.right.equalToSuperview().inset(20)
+        }
+    }
+    
+    private func setNavigationView() {
+        self.navigationView.backButton.setAction {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }

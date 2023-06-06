@@ -15,7 +15,6 @@ class SnapfitUserInformationViewController: BaseViewController {
         static let photographer = "사진작가"
         static let phoneApprovedSign = "checkmark.square.fill"
         static let phoneApproved = "휴대폰 인증 완료"
-        static let nickname = "열글자까지가능한이름"
         static let instagramSign = "icn_instagram"
         static let mailSign = "icn_mail"
         static let possibleDate = "예약 가능 날짜"
@@ -71,7 +70,7 @@ class SnapfitUserInformationViewController: BaseViewController {
     }()
     private let nicknameLabel: UILabel = {
         let nicknameLabel: UILabel = UILabel()
-        nicknameLabel.text = Text.nickname
+        nicknameLabel.text = ""
         nicknameLabel.font = .m24
         return nicknameLabel
     }()
@@ -150,6 +149,10 @@ class SnapfitUserInformationViewController: BaseViewController {
         } else {
             self.setPhoneApprovedLayout(topConstraint: 214, leftConstraint: 20)
         }
+    }
+    
+    public func setNickname(text: String) {
+        self.nicknameLabel.text = text
     }
     
     public func setInstagramText(text: String) {
@@ -247,7 +250,11 @@ extension SnapfitUserInformationViewController {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints{ make in
             make.bottom.left.right.width.equalToSuperview()
-            make.top.equalTo(-60)
+            if isPhotographer {
+                make.top.equalTo(-60)
+            } else {
+                make.top.equalToSuperview()
+            }
         }
         self.scrollView.addSubview(contentView)
         self.contentView.snp.makeConstraints{ make in
