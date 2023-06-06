@@ -27,24 +27,35 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
         self.setPhotographerLayout()
         self.setMypageLayout()
         self.setApproved(approveState: true)
-        self.setInstagramText(text: "aa1123")
-        self.setMailText(text: "e-mail.email.com")
+        self.setInstagramText(text: "snap-iOS")
+        self.setMailText(text: "snap-iOS.google.com")
         self.setIntroduceText(text: """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-    한국어 대응 가능
+    연인/우정 스냅 경력 3년
+    서울/경기 스냅 사진 전문
     """
-                             )
+        )
         self.setPossibleDateText(text: """
-    멀티라인 스트링 입력 가능
-    AA - $200
-    AB - $60
+    *** 6월은 마지막 주 주말만 가능! ***
+    
+    촬영은 주말만 가능. 촬영 후 보정본 받는 건 촬영 다음 주 목요일까지 가능합니다.
+    일찍 되면 일찍 되는대로 보내드려요.
     """
-                                 )
+        )
         self.setPriceText(text: """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    기본 필름 5장: 100000원
+        - 필름 원본 제공
+        - 마음에 드는 사진 선택 후 보정 5장 제공
+    기본 디지털 5장: 80000원
+        - 디지털 사진 원본 10장 제공
+        - 10장 중 보정본 5장 제공
+    
+    사진 추가 제공은 추가금 있음
+    보정본 장 당 5000원
+    원본 장 당 2000원
+    
+    서울, 경기 외 지역 출장 시 출장비 문의 후 결정
     """
-                          )
+        )
     }
     
     

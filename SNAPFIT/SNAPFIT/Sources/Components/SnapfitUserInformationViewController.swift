@@ -247,7 +247,7 @@ extension SnapfitUserInformationViewController {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints{ make in
             make.bottom.left.right.width.equalToSuperview()
-            make.top.equalTo(-48)
+            make.top.equalTo(-60)
         }
         self.scrollView.addSubview(contentView)
         self.contentView.snp.makeConstraints{ make in
