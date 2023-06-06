@@ -42,18 +42,18 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
     // MARK: - Methods
     
-    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
-        self.setApproved(approveState: isApproved)
-        self.setNickname(text: nicknameText)
-        self.setInstagramText(text: instagramText)
-    }
-    
-    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
-        self.setMailText(text: mailText)
-        self.setIntroduceText(text: introduceText)
-        self.setPossibleDateText(text: possibleDateText)
-        self.setPriceText(text: priceText)
-    }
+//    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
+//        self.setApproved(approveState: isApproved)
+//        self.setNickname(text: nicknameText)
+//        self.setInstagramText(text: instagramText)
+//    }
+//
+//    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
+//        self.setMailText(text: mailText)
+//        self.setIntroduceText(text: introduceText)
+//        self.setPossibleDateText(text: possibleDateText)
+//        self.setPriceText(text: priceText)
+//    }
     
     private func setLayout() {
         self.view.addSubviews([navigationView])

@@ -37,16 +37,16 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     }
     
     // MARK: - Methods
-    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
-        self.setApproved(approveState: isApproved)
-        self.setNickname(text: nicknameText)
-        self.setInstagramText(text: instagramText)
-    }
-    
-    public func setAdditionalData(mailText: String,introduceText: String) {
-        self.setMailText(text: mailText)
-        self.setIntroduceText(text: introduceText)
-    }
+//    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
+//        self.setApproved(approveState: isApproved)
+//        self.setNickname(text: nicknameText)
+//        self.setInstagramText(text: instagramText)
+//    }
+//
+//    public func setAdditionalData(mailText: String,introduceText: String) {
+//        self.setMailText(text: mailText)
+//        self.setIntroduceText(text: introduceText)
+//    }
     
     private func setLayout() {
         self.view.addSubviews([navigationView])
