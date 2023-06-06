@@ -12,7 +12,6 @@ class UserGalleryCollectionViewController: UIViewController {
     let titleLabel = UILabel()
     let moreButton = UIButton()
     let collectionView : UICollectionView = {
-        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         flowLayout.itemSize = CGSize(width: 100, height: 135)
@@ -48,13 +47,14 @@ class UserGalleryCollectionViewController: UIViewController {
             make.right.equalToSuperview().inset(20)
         }
         self.view.addSubview(self.collectionView)
-        collectionView.snp.makeConstraints{ make in
+        self.collectionView.snp.makeConstraints{ make in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
             make.left.right.bottom.equalToSuperview()
         }
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "galleryCell")
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "galleryCell")
+        self.collectionView.backgroundColor = .clear
     }
 }
 
