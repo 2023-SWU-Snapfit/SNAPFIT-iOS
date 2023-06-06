@@ -58,9 +58,9 @@ extension ReservationViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: 셀 선택 시 동작 구현
-        lazy var detailView: ReservationDetailViewController = ReservationDetailViewController()
-        detailView.modalPresentationStyle = .fullScreen
-        self.present(detailView, animated: true)
+        lazy var detailViewController: ReservationDetailViewController = ReservationDetailViewController()
+        detailViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 

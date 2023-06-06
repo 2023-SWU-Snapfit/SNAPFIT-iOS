@@ -57,7 +57,15 @@ extension FavoriteListViewController: UITableViewDelegate {
         82
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: 셀 선택 시 동작 구현
+        if indexPath.row > 5 {
+            lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
+            profileViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
+            profileViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
     }
 }
 
