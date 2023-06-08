@@ -33,17 +33,17 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
 // MARK: Methods
 
 extension BaseViewController {
-//    func hideTabbar() {
-//        if let tabBarController = self.tabBarController as? SnapfitTabBarController {
-//            tabBarController.hideTabbar()
-//        }
-//    }
-//
-//    func showTabbar() {
-//        if let tabBarController = self.tabBarController as? SnapfitTabBarController {
-//            tabBarController.showTabbar()
-//        }
-//    }
+    func hideTabBar() {
+        if let tabBarController = self.tabBarController as? SnapfitTabBarController {
+            tabBarController.hideTabBar()
+        }
+    }
+
+    func showTabBar() {
+        if let tabBarController = self.tabBarController as? SnapfitTabBarController {
+            tabBarController.showTabBar()
+        }
+    }
     
     /// 화면 터치 시 키보드 내리는 메서드
     func hideKeyboardWhenTappedAround() {
