@@ -157,7 +157,7 @@ class SnapfitUserInformationViewController: BaseViewController {
     public func setMailText(text: String) {
         self.mailLabel.text = text
     }
-
+    
     public func setIntroduceText(text: String) {
         self.introduceTextView.setText(text: text)
     }
@@ -274,6 +274,7 @@ extension SnapfitUserInformationViewController {
         self.contentView.addSubview(self.phoneApprovedLabel)
         self.phoneApprovedLabel.snp.makeConstraints{ make in
             make.top.equalTo(380)
+        }
     }
     
     private func setInstagramLayout(topConstraint: ConstraintRelatableTarget) {
