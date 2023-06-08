@@ -146,7 +146,7 @@ class SnapfitUserInformationViewController: BaseViewController {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints{ make in
             make.bottom.left.right.width.equalToSuperview()
-            make.top.equalTo(-48)
+            make.top.equalToSuperview()
         }
         self.scrollView.addSubview(contentView)
         self.contentView.snp.makeConstraints{ make in
@@ -155,7 +155,7 @@ class SnapfitUserInformationViewController: BaseViewController {
         }
         self.contentView.addSubview(self.bannerImageView)
         self.bannerImageView.snp.makeConstraints{ make in
-            make.top.width.equalToSuperview()
+            make.top.centerX.width.equalToSuperview()
             make.height.equalTo(320)
         }
         self.contentView.addSubview(self.profileImageView)
