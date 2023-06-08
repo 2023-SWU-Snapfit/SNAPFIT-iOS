@@ -24,8 +24,6 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setPhotographerLayout()
-        self.setMypageLayout()
         self.setNickname(text: "닉네임 보여주기")
         self.setApproved(approveState: true)
         self.setInstagramText(text: "snap-iOS")
@@ -57,6 +55,8 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     서울, 경기 외 지역 출장 시 출장비 문의 후 결정
     """
         )
+        self.setPhotographerLayout()
+        self.setMypageLayout()
     }
     
     private func setMypageLayout() {

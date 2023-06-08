@@ -316,7 +316,7 @@ extension SnapfitUserInformationViewController {
         self.contentView.addSubview(self.reviewCarouselViewController.view)
         self.reviewCarouselViewController.view.snp.makeConstraints{ make in
             make.top.equalTo(galleryCarouselViewController.view.snp.bottom).offset(24)
-            make.height.equalTo(220)
+            make.height.equalTo(214)
             make.left.right.width.equalToSuperview()
             if !isPhotographer {
                 make.bottom.equalToSuperview()
@@ -347,6 +347,22 @@ extension SnapfitUserInformationViewController {
             make.left.equalTo(20)
             make.width.bottom.equalToSuperview().inset(20)
         }
+        if self.possibleDateTextView.text == "" {
+            self.possibleDateTitleLabel.isHidden = true
+            self.possibleDateTextView.snp.makeConstraints{ make in
+                make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom)
+            }
+            self.priceTitleLabel.snp.makeConstraints{ make in
+                make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom).offset(24)
+                make.left.equalTo(20)
+            }
+        }
+        if self.priceTextView.text == "" {
+            self.priceTitleLabel.isHidden = true
+            self.priceTextView.snp.makeConstraints{ make in
+                make.top.equalTo(self.possibleDateTextView.snp.bottom)
+                make.width.bottom.equalToSuperview().inset(20)
+            }
+        }
     }
-    
 }

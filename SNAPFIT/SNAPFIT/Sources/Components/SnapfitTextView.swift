@@ -42,8 +42,7 @@ class SnapfitTextView: UITextView {
         self.font = .r14
         self.textAlignment = .natural
         self.isEditable = true
-        self.isScrollEnabled = false
-        self.sizeToFit()
+        self.isScrollEnabled = true
         self.backgroundColor = .sfWhite
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8
@@ -123,7 +122,7 @@ class SnapfitTextView: UITextView {
     
     // MARK: - Methods
     public func setText(text: String = "") {
-        if text == "" {
+        if text == "" && !self.isEditable {
             setClearStyle()
         }
         self.text = text
