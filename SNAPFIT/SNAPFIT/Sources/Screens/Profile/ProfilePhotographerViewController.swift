@@ -30,6 +30,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setPhotographerLayout()
+        self.setContactButtonAction()
         self.setLayout()
     }
     
@@ -48,12 +49,17 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
         self.setPriceText(text: priceText)
     }
     
-    private func setLayout() {
-        self.view.addSubviews([navigationView])
-        self.setNavigationView()
-        self.navigationView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide)
+    private func setContactButtonAction() {
+        self.contactButton.setAction {
+            lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
+            suggestionViewController.modalTransitionStyle = .crossDissolve
+            suggestionViewController.modalPresentationStyle = .overFullScreen
+            self.present(suggestionViewController, animated: true)
         }
+    }
+    
+    private func setLayout() {
+        self.setNavigationView()
         self.addAtContentView(component: self.contactButton)
         self.contactButton.snp.makeConstraints{ make in
             make.top.equalTo(338)
@@ -62,6 +68,11 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     }
     
     private func setNavigationView() {
+        self.addAtContentView(component: navigationView)
+        self.navigationView.snp.makeConstraints{ make in
+            make.top.equalTo(60)
+            make.left.right.equalToSuperview()
+        }
         self.navigationView.backButton.setAction {
             self.navigationController?.popViewController(animated: true)
         }
