@@ -112,9 +112,13 @@ class ReservationSuggestionViewController: BaseViewController {
     }
     
     @objc func showDatePicker(_ sender: UITapGestureRecognizer) {
-        print("touched showDatePicker")
+        lazy var datePickerViewController: SnapfitDatePickerViewController = SnapfitDatePickerViewController()
+        datePickerViewController.modalTransitionStyle = .crossDissolve
+        datePickerViewController.modalPresentationStyle = .overFullScreen
+        self.present(datePickerViewController, animated: true)
     }
     
+    // MARK: - Layout Methods
     @objc func moveContentViewUpside(_ notification: Notification) {
         let d = notification.userInfo!
         var r = (d[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
