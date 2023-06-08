@@ -57,7 +57,19 @@ extension FavoriteListViewController: UITableViewDelegate {
         82
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: 셀 선택 시 동작 구현
+        if indexPath.row > 5 {
+            lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
+            profileViewController.modalPresentationStyle = .fullScreen
+            profileViewController.setBasicData(isApproved: true, nicknameText: "이름은 여기에", instagramText: "instaacc")
+            profileViewController.setAdditionalData(mailText: "", introduceText: "소개글은 여기에")
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
+            profileViewController.modalPresentationStyle = .fullScreen
+            profileViewController.setBasicData(isApproved: true, nicknameText: "사진작가이름여기에", instagramText: "instaacc")
+            profileViewController.setAdditionalData(mailText: "photograp.google.com", introduceText: "사진작가의 소개글 멋있죠", possibleDateText: "가능한 날짜 - 임시 날짜", priceText: "가격 ^^")
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
     }
 }
 

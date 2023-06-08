@@ -1,21 +1,21 @@
 //
-//  ProfilePhotographerViewController.swift
+//  ProfileGeneralUserViewController.swift
 //  SNAPFIT
 //
-//  Created by 강유진 on 2023/05/26.
+//  Created by 강유진 on 2023/06/04.
 //
 
 import UIKit
 import SnapKit
 
-class ProfilePhotographerViewController: SnapfitUserInformationViewController {
+class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     
     // MARK: - Properties
     private let navigationView: SnapfitNavigationView = {
         let view: SnapfitNavigationView = SnapfitNavigationView(type: .backLikeMore)
         return view
     }()
-    private let contactButton: UIButton = {
+    let contactButton: UIButton = {
         let contactButton: UIButton = UIButton()
         contactButton.configuration = .filled()
         contactButton.setTitle("문의하기", for: .normal)
@@ -29,23 +29,20 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setPhotographerLayout()
+        self.setGeneralUserLayout()
         self.setLayout()
     }
     
     // MARK: - Methods
-    
     public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
         self.setApproved(approveState: isApproved)
         self.setNickname(text: nicknameText)
         self.setInstagramText(text: instagramText)
     }
 
-    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
+    public func setAdditionalData(mailText: String,introduceText: String) {
         self.setMailText(text: mailText)
         self.setIntroduceText(text: introduceText)
-        self.setPossibleDateText(text: possibleDateText)
-        self.setPriceText(text: priceText)
     }
     
     private func setLayout() {
@@ -56,7 +53,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
         }
         self.addAtContentView(component: self.contactButton)
         self.contactButton.snp.makeConstraints{ make in
-            make.top.equalTo(338)
+            make.top.equalTo(172)
             make.right.equalToSuperview().inset(20)
         }
     }

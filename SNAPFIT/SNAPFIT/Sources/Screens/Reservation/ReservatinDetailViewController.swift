@@ -32,7 +32,7 @@ class ReservationDetailViewController: BaseViewController {
     
     private func setNavigationView() {
         self.navigationView.backButton.setAction {
-            self.dismiss(animated: true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
