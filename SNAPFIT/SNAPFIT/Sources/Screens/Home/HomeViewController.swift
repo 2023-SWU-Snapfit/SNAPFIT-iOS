@@ -30,13 +30,30 @@ final class HomeViewController: BaseViewController {
         return tableView
     }()
     
+    private let addImageButton: UIButton = {
+        let button: UIButton = UIButton(type: .system)
+        button.setImage(UIImage(named: "btn_addGallery")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+    }()
+    
+    // MARK: View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setLayout()
         self.setTableView()
+        self.setAddGalleryButtonAction()
     }
-
+    
+    // MARK: Methods
+    
+    private func setAddGalleryButtonAction() {
+        self.addImageButton.setAction { [weak self] in
+            let uploadImageViewController: BaseViewController = BaseViewController()
+            self?.navigationController?.pushViewController(uploadImageViewController, animated: true)
+        }
+    }
 }
 
 // MARK: - UI
@@ -58,10 +75,15 @@ extension HomeViewController {
     }
     
     private func setLayout() {
-        self.view.addSubviews([homeTableView])
+        self.view.addSubviews([homeTableView, addImageButton])
         
         self.homeTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        self.addImageButton.snp.makeConstraints { make in
+            make.width.height.equalTo(56)
+            make.bottom.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
         }
     }
 }
@@ -148,8 +170,6 @@ extension HomeViewController: UITableViewDelegate {
                 return 187
             case .photoByTheme:
                 return 309
-            default:
-                return 100
             }
         } else { return 0 }
     }
