@@ -93,4 +93,12 @@ final class SnapfitTabBarController: UITabBarController, UITabBarControllerDeleg
         UITabBar.clearShadow()
         self.tabBar.layer.applyShadow(color: UIColor.shadowDefault, alpha: 0.16, x: 0, y: -9, blur: 18)
     }
+    
+    func hideTabBar() {
+        self.tabBar.isHidden = true
+    }
+    
+    func showTabBar() {
+        self.tabBar.isHidden = false
+    }
 }
