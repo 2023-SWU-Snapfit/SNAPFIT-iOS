@@ -21,7 +21,6 @@
 		6A4566BD2A13534C00AE5F62 /* MypagePhotographerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4566BC2A13534C00AE5F62 /* MypagePhotographerViewController.swift */; };
 		6A4CFC112A1893FA00CE5308 /* SnapfitTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CFC102A1893FA00CE5308 /* SnapfitTextView.swift */; };
 		6A8DE5A62A332E39005FCE52 /* DateDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DE5A52A332E39005FCE52 /* DateDataProtocol.swift */; };
-		6A8DE5A82A3339C1005FCE52 /* SnapfitDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DE5A72A3339C1005FCE52 /* SnapfitDateFormatter.swift */; };
 		6AA54F862A2436B8001E9D2C /* ReservatinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA54F852A2436B8001E9D2C /* ReservatinDetailViewController.swift */; };
 		6AA612AE2A176BE200C49095 /* UserGalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA612AD2A176BE200C49095 /* UserGalleryCollectionViewController.swift */; };
 		6AA612B02A17C48B00C49095 /* ReviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */; };
@@ -106,7 +105,6 @@
 		6A4566BC2A13534C00AE5F62 /* MypagePhotographerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypagePhotographerViewController.swift; sourceTree = "<group>"; };
 		6A4CFC102A1893FA00CE5308 /* SnapfitTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitTextView.swift; sourceTree = "<group>"; };
 		6A8DE5A52A332E39005FCE52 /* DateDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDataProtocol.swift; sourceTree = "<group>"; };
-		6A8DE5A72A3339C1005FCE52 /* SnapfitDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitDateFormatter.swift; sourceTree = "<group>"; };
 		6AA54F852A2436B8001E9D2C /* ReservatinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservatinDetailViewController.swift; sourceTree = "<group>"; };
 		6AA612AD2A176BE200C49095 /* UserGalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGalleryCollectionViewController.swift; sourceTree = "<group>"; };
 		6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewController.swift; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 				C766F1632A10A171009BC30E /* Message.swift */,
 				C766F1832A10A507009BC30E /* UserDefaultsManager.swift */,
 				6A8DE5A52A332E39005FCE52 /* DateDataProtocol.swift */,
-				6A8DE5A72A3339C1005FCE52 /* SnapfitDateFormatter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -640,7 +637,6 @@
 				C766F17C2A10A455009BC30E /* UIImageView+.swift in Sources */,
 				6AD2DE132A325513004214E3 /* SnapfitDatePickerViewController.swift in Sources */,
 				C766F1622A109C06009BC30E /* BaseNavigationController.swift in Sources */,
-				6A8DE5A82A3339C1005FCE52 /* SnapfitDateFormatter.swift in Sources */,
 				C777847A2A003B1000B4AB8D /* SceneDelegate.swift in Sources */,
 				C7E900182A0BBFC000CC620B /* UIColor+.swift in Sources */,
 				C766F16A2A10A200009BC30E /* UICollectionView+.swift in Sources */,
