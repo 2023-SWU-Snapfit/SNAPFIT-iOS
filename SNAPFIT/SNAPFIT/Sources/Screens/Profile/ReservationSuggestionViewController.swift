@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ReservationSuggestionViewController: BaseViewController {
+class ReservationSuggestionViewController: BaseViewController, DateDataProtocol {
     
     enum Text{
         static let cancelButtonImage = "icn_x"
@@ -113,9 +113,16 @@ class ReservationSuggestionViewController: BaseViewController {
     
     @objc func showDatePicker(_ sender: UITapGestureRecognizer) {
         lazy var datePickerViewController: SnapfitDatePickerViewController = SnapfitDatePickerViewController()
+        datePickerViewController.dataDelegate = self
         datePickerViewController.modalTransitionStyle = .crossDissolve
         datePickerViewController.modalPresentationStyle = .overFullScreen
         self.present(datePickerViewController, animated: true)
+    }
+    
+    func recieveDateData(date: Date) {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일 a hh시 mm분"
+        self.dateTextView.text = dateFormatter.string(from: date)
     }
     
     // MARK: - Layout Methods

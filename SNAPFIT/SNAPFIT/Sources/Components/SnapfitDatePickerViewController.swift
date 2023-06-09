@@ -10,6 +10,8 @@ import SnapKit
 
 class SnapfitDatePickerViewController: BaseViewController {
     
+    var dataDelegate: DateDataProtocol?
+    
     // MARK: - UIComponents
     let contentView: UIView = {
         let view: UIView = UIView()
@@ -34,7 +36,9 @@ class SnapfitDatePickerViewController: BaseViewController {
     
     // MARK: - Methods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.presentingViewController?.dismiss(animated: true)
+        self.dataDelegate?.recieveDateData(date: self.datePicker.date)
+        self.presentingViewController?.dismiss(animated: true) {
+        }
     }
     
     private func setLayout() {
