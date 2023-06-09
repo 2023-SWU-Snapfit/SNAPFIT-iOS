@@ -18,7 +18,16 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
         static let suggestion = "예약 내용"
         static let suggestionPlaceholder = "문의하고 싶은 사항을 기재해주세요."
         static let sendButton = "문의 보내기"
+        static let dateFormat = "YYYY년 MM월 dd일 a hh시 mm분"
+        static let completeTitle = "예약 문의 완료"
+        static let completeMessage = "예약 문의 전송이 완료되었습니다. 상대방이 예약을 수락하면, 연락 가능한 url을 열람할 수 있습니다."
     }
+    
+    let dateFormatter: DateFormatter = {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = Text.dateFormat
+        return formatter
+    }()
     
     // MARK: - UIComponents
     let contentView: UIView = {
@@ -102,7 +111,9 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
             self.dismiss(animated: true)
         }
         self.sendButton.setAction {
-            self.dismiss(animated: true)
+            self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
+                self.dismiss(animated: true)
+            })
         }
     }
     
@@ -120,9 +131,7 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
     }
     
     func recieveDateData(date: Date) {
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY년 MM월 dd일 a hh시 mm분"
-        self.dateTextView.text = dateFormatter.string(from: date)
+        self.dateTextView.text = self.dateFormatter.string(from: date)
     }
     
     // MARK: - Layout Methods
