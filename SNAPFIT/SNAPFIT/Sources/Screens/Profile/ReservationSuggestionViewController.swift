@@ -20,7 +20,12 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
         static let sendButton = "문의 보내기"
         static let dateFormat = "YYYY년 MM월 dd일 a hh시 mm분"
         static let completeTitle = "예약 문의 완료"
-        static let completeMessage = "예약 문의 전송이 완료되었습니다. 상대방이 예약을 수락하면, 연락 가능한 url을 열람할 수 있습니다."
+        static let completeMessage = """
+        예약 문의 전송이 완료되었습니다.
+        상대방이 예약을 수락하면, 연락 가능한 url을 열람할 수 있습니다.
+        """
+        static let errorTitle = "내용 입력 필수"
+        static let errorMessage = "필요한 내용을 전부 채워주세요."
     }
     
     let dateFormatter: DateFormatter = {
@@ -62,7 +67,7 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
     let dateTextView: SnapfitTextView = {
         let textView: SnapfitTextView = SnapfitTextView(isEditable: false)
         textView.setFont(font: .m13)
-        textView.text = Text.datePlaceholder
+        textView.setPlaceholder(text: Text.datePlaceholder)
         textView.isSelectable = false
         return textView
     }()
@@ -75,7 +80,7 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
     let suggestionTextView: SnapfitTextView = {
         let textView: SnapfitTextView = SnapfitTextView(isEditable: true)
         textView.setFont(font: .m13)
-//        textView.setPlaceholder(text: Text.suggestionPlaceholder)
+        textView.setPlaceholder(text: Text.suggestionPlaceholder)
         return textView
     }()
     let sendButton: UIButton = {
@@ -111,9 +116,13 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
             self.dismiss(animated: true)
         }
         self.sendButton.setAction {
-            self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
-                self.dismiss(animated: true)
-            })
+            if self.dateTextView.text == "" || self.suggestionTextView.text == "" {
+                self.makeAlert(title: Text.errorTitle, message: Text.errorMessage, okAction: nil)
+            } else {
+                self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
+                    self.dismiss(animated: true)
+                })
+            }
         }
     }
     
