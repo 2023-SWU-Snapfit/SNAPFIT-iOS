@@ -57,17 +57,34 @@ extension FavoriteListViewController: UITableViewDelegate {
         82
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row > 5 {
-            lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
-            profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setBasicData(isApproved: true, nicknameText: "이름은 여기에", instagramText: "instaacc")
-            profileViewController.setAdditionalData(mailText: "", introduceText: "소개글은 여기에")
-            self.navigationController?.pushViewController(profileViewController, animated: true)
-        } else {
+        let currentUser = users[indexPath.row]
+        if currentUser.isPhotographer {
             lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
             profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setBasicData(isApproved: true, nicknameText: "사진작가이름여기에", instagramText: "instaacc")
-            profileViewController.setAdditionalData(mailText: "photograp.google.com", introduceText: "사진작가의 소개글 멋있죠", possibleDateText: "가능한 날짜 - 임시 날짜", priceText: "가격 ^^")
+            profileViewController.setBasicData(
+                isApproved: true,
+                nicknameText: currentUser.userName,
+                instagramText: currentUser.instagramID
+            )
+            profileViewController.setAdditionalData(
+                mailText: currentUser.emailAddress ?? "",
+                introduceText: currentUser.introduceText ?? "",
+                possibleDateText: currentUser.possibleDateText ?? "",
+                priceText: currentUser.priceText ?? ""
+            )
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
+            profileViewController.modalPresentationStyle = .fullScreen
+            profileViewController.setBasicData(
+                isApproved: true,
+                nicknameText: currentUser.userName,
+                instagramText: currentUser.instagramID
+            )
+            profileViewController.setAdditionalData(
+                mailText: currentUser.emailAddress ?? "",
+                introduceText: currentUser.introduceText ?? ""
+            )
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
     }
@@ -75,12 +92,12 @@ extension FavoriteListViewController: UITableViewDelegate {
 
 extension FavoriteListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        return users.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteListTableViewCell") as! BorderedTableViewCell
-        cell.setPicture()
-        cell.setTitle(titleText: "닉네임열글자까지\(indexPath.row)")
+        cell.setPicture(users[indexPath.row].profileImage)
+        cell.setTitle(titleText: "\(users[indexPath.row].userName)")
         return cell
     }
 }

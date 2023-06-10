@@ -26,6 +26,7 @@
 		6AA612B02A17C48B00C49095 /* ReviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */; };
 		6AC8A1D72A3448EF006A0689 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8A1D62A3448EF006A0689 /* DummyData.swift */; };
 		6AC8A1D92A344BAE006A0689 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8A1D82A344BAE006A0689 /* ModelData.swift */; };
+		6AC8A1DB2A3456EB006A0689 /* Users.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AC8A1DA2A3456EB006A0689 /* Users.json */; };
 		6AD2DE132A325513004214E3 /* SnapfitDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2DE122A325513004214E3 /* SnapfitDatePickerViewController.swift */; };
 		C70C48952A301A560052019B /* PhotographerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48942A301A560052019B /* PhotographerListTableViewCell.swift */; };
 		C70C48972A301B9F0052019B /* PhotographerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48962A301B9F0052019B /* PhotographerCollectionViewCell.swift */; };
@@ -112,6 +113,7 @@
 		6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewController.swift; sourceTree = "<group>"; };
 		6AC8A1D62A3448EF006A0689 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		6AC8A1D82A344BAE006A0689 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		6AC8A1DA2A3456EB006A0689 /* Users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Users.json; sourceTree = "<group>"; };
 		6AD2DE122A325513004214E3 /* SnapfitDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitDatePickerViewController.swift; sourceTree = "<group>"; };
 		C70C48942A301A560052019B /* PhotographerListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographerListTableViewCell.swift; sourceTree = "<group>"; };
 		C70C48962A301B9F0052019B /* PhotographerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				C766F1832A10A507009BC30E /* UserDefaultsManager.swift */,
 				6A8DE5A52A332E39005FCE52 /* DateDataProtocol.swift */,
 				6AC8A1D62A3448EF006A0689 /* DummyData.swift */,
+				6AC8A1DA2A3456EB006A0689 /* Users.json */,
 				6AC8A1D82A344BAE006A0689 /* ModelData.swift */,
 			);
 			path = Utils;
@@ -569,6 +572,7 @@
 				C7E900272A0BC54400CC620B /* SecretKey.plist in Resources */,
 				C7E900202A0BC0BE00CC620B /* Pretendard-Medium.ttf in Resources */,
 				C7E900212A0BC0BE00CC620B /* Pretendard-Bold.ttf in Resources */,
+				6AC8A1DB2A3456EB006A0689 /* Users.json in Resources */,
 				C7E900222A0BC0BE00CC620B /* Pretendard-Regular.ttf in Resources */,
 				C77784842A003B1100B4AB8D /* LaunchScreen.storyboard in Resources */,
 				C7E900232A0BC0BE00CC620B /* Pretendard-SemiBold.ttf in Resources */,

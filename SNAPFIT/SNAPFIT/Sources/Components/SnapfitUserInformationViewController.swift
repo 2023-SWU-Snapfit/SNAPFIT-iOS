@@ -31,14 +31,14 @@ class SnapfitUserInformationViewController: BaseViewController {
         return scrollView
     }()
     private let contentView: UIView = UIView()
-    private let bannerImageView: UIImageView = {
+    let bannerImageView: UIImageView = {
         let bannerImageView: UIImageView = UIImageView()
         bannerImageView.setImageColor(color: .sfBlack40)
         bannerImageView.backgroundColor = .sfBlack20
         return bannerImageView
         
     }()
-    private let profileImageView: UIImageView = {
+    let profileImageView: UIImageView = {
         let profileImageView: UIImageView = UIImageView()
         return profileImageView
     }()
@@ -170,6 +170,14 @@ class SnapfitUserInformationViewController: BaseViewController {
         self.priceTextView.setText(text: text)
     }
     
+    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
+        self.setApproved(approveState: isApproved)
+        self.setNickname(text: nicknameText)
+        self.setInstagramText(text: instagramText)
+    }
+    public func setGalleryAndReviewData(galleryImages: [UIImage], reviews: [Review]) {
+        
+    }
 }
 
 extension SnapfitUserInformationViewController {

@@ -21,7 +21,8 @@ class BorderedTableViewCell: UITableViewCell {
         self.layer.cornerRadius = 8
     }
     
-    func setPicture() {
+    func setPicture(_ newImage: UIImage?) {
+        if let image = newImage { self.picture.image = image }
         self.picture.backgroundColor = .sfBlack20
         self.picture.layer.cornerRadius = 20
         self.picture.layer.borderWidth = 1

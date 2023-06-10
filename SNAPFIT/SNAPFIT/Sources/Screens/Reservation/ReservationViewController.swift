@@ -70,7 +70,7 @@ extension ReservationViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! BorderedTableViewCell
-        cell.setPicture()
+        cell.setPicture(nil)
         cell.setTitle(titleText: "여기도닉네임이\(indexPath.row)")
         return cell
     }
