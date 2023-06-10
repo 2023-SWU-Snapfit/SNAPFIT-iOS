@@ -8,6 +8,11 @@
 import UIKit
 
 final class ReservationViewController: BaseViewController {
+    
+    // MARK: - Properties
+    
+    
+    // MARK: - UIComponents
     let titleLabel: UILabel = {
         let titleLabel: UILabel = UILabel()
         titleLabel.text = "예약 관리"
@@ -66,12 +71,12 @@ extension ReservationViewController: UITableViewDelegate {
 
 extension ReservationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        11
+        3
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! BorderedTableViewCell
-        cell.setPicture(nil)
-        cell.setTitle(titleText: "여기도닉네임이\(indexPath.row)")
+        cell.setPicture(users[indexPath.row * 2 + 2].profileImage)
+        cell.setTitle(titleText: "\(users[indexPath.row * 2 + 2].userName)")
         return cell
     }
 }

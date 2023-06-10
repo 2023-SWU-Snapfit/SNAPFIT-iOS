@@ -31,15 +31,22 @@ class SnapfitUserInformationViewController: BaseViewController {
         return scrollView
     }()
     private let contentView: UIView = UIView()
-    let bannerImageView: UIImageView = {
+    private let bannerImageView: UIImageView = {
         let bannerImageView: UIImageView = UIImageView()
         bannerImageView.setImageColor(color: .sfBlack40)
         bannerImageView.backgroundColor = .sfBlack20
         return bannerImageView
         
     }()
-    let profileImageView: UIImageView = {
+    private let profileImageView: UIImageView = {
         let profileImageView: UIImageView = UIImageView()
+        profileImageView.setImageColor(color: .sfBlack40)
+        profileImageView.backgroundColor = .sfBlack40
+        profileImageView.layer.cornerRadius = 50
+        profileImageView.layer.borderWidth = 1
+        profileImageView.layer.borderColor = UIColor.clear.cgColor
+        profileImageView.clipsToBounds = true
+        profileImageView.contentMode = .scaleAspectFill
         return profileImageView
     }()
     private let photographerSignImageView: UIImageView = {
@@ -130,7 +137,6 @@ class SnapfitUserInformationViewController: BaseViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setProfileImageViewStyle()
     }
     
     // MARK: - Methods
@@ -170,13 +176,26 @@ class SnapfitUserInformationViewController: BaseViewController {
         self.priceTextView.setText(text: text)
     }
     
+    public func setProfileImage(profileImage: UIImage?) {
+        if let newImage = profileImage {
+            self.profileImageView.image = newImage
+        }
+    }
+    
+    public func setBannerImage(bannerImage: UIImage?) {
+        if let newImage = bannerImage {
+            self.bannerImageView.image = newImage
+        }
+    }
+    
     public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
         self.setApproved(approveState: isApproved)
         self.setNickname(text: nicknameText)
         self.setInstagramText(text: instagramText)
     }
     public func setGalleryAndReviewData(galleryImages: [UIImage], reviews: [Review]) {
-        
+        self.galleryCarouselViewController.setGallery(galleryImages: galleryImages)
+        self.reviewCarouselViewController.setReview(reviews: reviews)
     }
 }
 
@@ -254,15 +273,6 @@ extension SnapfitUserInformationViewController {
         }
     }
     
-    private func setProfileImageViewStyle() {
-        self.profileImageView.setImageColor(color: .sfBlack40)
-        self.profileImageView.backgroundColor = .sfBlack40
-        self.profileImageView.layer.cornerRadius = 50
-        self.profileImageView.layer.borderWidth = 1
-        self.profileImageView.layer.borderColor = UIColor.clear.cgColor
-        self.profileImageView.clipsToBounds = true
-        self.profileImageView.contentMode = .scaleAspectFill
-    }
     
     private func setPhoneApprovedLayout(topConstraint: ConstraintRelatableTarget, leftConstraint: ConstraintRelatableTarget) {
         if isApproved {

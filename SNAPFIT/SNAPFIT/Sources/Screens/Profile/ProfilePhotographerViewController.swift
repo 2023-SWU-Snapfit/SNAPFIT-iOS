@@ -35,11 +35,24 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     }
     
     // MARK: - Methods
-    public func setProfileImages(profileImage: UIImage, bannerImage: UIImage) {
-        self.profileImageView.image = profileImage
-        self.bannerImageView.image = bannerImage
+    public func setUserInformation(currentUser: User) {
+        self.setProfileImage(profileImage: currentUser.profileImage)
+        self.setBannerImage(bannerImage: currentUser.backgroundImage)
+        self.setBasicData(
+            isApproved: true,
+            nicknameText: currentUser.userName,
+            instagramText: currentUser.instagramID
+        )
+        self.setAdditionalData(
+            mailText: currentUser.emailAddress ?? "",
+            introduceText: currentUser.introduceText ?? "",
+            possibleDateText: currentUser.possibleDateText ?? "",
+            priceText: currentUser.priceText ?? ""
+        )
+        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
     }
-    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
+    
+    private func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
         self.setMailText(text: mailText)
         self.setIntroduceText(text: introduceText)
         self.setPossibleDateText(text: possibleDateText)

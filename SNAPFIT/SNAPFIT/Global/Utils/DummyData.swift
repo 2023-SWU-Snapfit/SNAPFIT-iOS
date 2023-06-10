@@ -72,7 +72,7 @@ struct User: Codable, Hashable {
 
 struct Review: Codable, Hashable {
     var imageName: String
-    var images: UIImage? {
+    var image: UIImage? {
         if imageName != "" {
             return UIImage(named: imageName)
         }

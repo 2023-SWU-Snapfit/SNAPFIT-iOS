@@ -61,30 +61,12 @@ extension FavoriteListViewController: UITableViewDelegate {
         if currentUser.isPhotographer {
             lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
             profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setBasicData(
-                isApproved: true,
-                nicknameText: currentUser.userName,
-                instagramText: currentUser.instagramID
-            )
-            profileViewController.setAdditionalData(
-                mailText: currentUser.emailAddress ?? "",
-                introduceText: currentUser.introduceText ?? "",
-                possibleDateText: currentUser.possibleDateText ?? "",
-                priceText: currentUser.priceText ?? ""
-            )
+            profileViewController.setUserInformation(currentUser: currentUser)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
             profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setBasicData(
-                isApproved: true,
-                nicknameText: currentUser.userName,
-                instagramText: currentUser.instagramID
-            )
-            profileViewController.setAdditionalData(
-                mailText: currentUser.emailAddress ?? "",
-                introduceText: currentUser.introduceText ?? ""
-            )
+            profileViewController.setUserInformation(currentUser: currentUser)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
     }
@@ -92,7 +74,7 @@ extension FavoriteListViewController: UITableViewDelegate {
 
 extension FavoriteListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return users.count - 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteListTableViewCell") as! BorderedTableViewCell

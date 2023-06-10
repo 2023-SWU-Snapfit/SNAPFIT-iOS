@@ -9,9 +9,14 @@ import UIKit
 import SnapKit
 
 class ReviewCollectionViewController: UIViewController {
+    
+    // MARK: - Properties
+    private var numOfItems: Int = 0
+    private var reviews: [Review] = []
+    
+    // MARK: - UI Components
     let titleLabel = UILabel()
     let collectionView : UICollectionView = {
-        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         flowLayout.itemSize = CGSize(width: 126, height: 172)
@@ -26,7 +31,7 @@ class ReviewCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.titleLabel.text = "리뷰(★5.0)"
+        self.titleLabel.text = "리뷰(★ \(String(format: "%.1f", self.avgScore())))"
         self.titleLabel.font = .b18
         
         self.view.addSubview(self.titleLabel)
@@ -43,6 +48,18 @@ class ReviewCollectionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reviewCell")
     }
+    
+    // MARK: - Methods
+    public func setReview(reviews: [Review]) {
+        self.numOfItems = reviews.count
+        self.reviews = reviews
+    }
+    
+    private func avgScore() -> Double {
+        let scores = self.reviews.map { $0.score }
+        return Double(scores.reduce(0,+))/Double(scores.count)
+    }
+
 }
 
 extension ReviewCollectionViewController: UICollectionViewDelegate {
@@ -51,7 +68,7 @@ extension ReviewCollectionViewController: UICollectionViewDelegate {
 
 extension ReviewCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        self.numOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,13 +83,17 @@ extension ReviewCollectionViewController: UICollectionViewDataSource {
         cell.makeRounded(cornerRadius: 8)
         
         reviewImage.backgroundColor = .sfBlack40
+        if let newImage = reviews[indexPath.row].image {
+            reviewImage.image = newImage
+        }
+        reviewImage.contentMode = .scaleAspectFill
         reviewImage.makeRounded(cornerRadius: 8)
         
-        score.text = "★ 5"
+        score.text = "★ \(reviews[indexPath.row].score)"
         score.textColor = .sfMainRed
         score.font = .m13
         
-        reviewDetails.text = "후기 텍스트 뷰 구현 중 입니다. 임시 내용으로 총 3줄까지 표기됩니다. 별점 아래에 살세 후기를 일부 보여줍니다."
+        reviewDetails.text = self.reviews[indexPath.row].contentText
         reviewDetails.font = .m13
         reviewDetails.textColor = .sfBlack100
         reviewDetails.isScrollEnabled = false
@@ -91,6 +112,7 @@ extension ReviewCollectionViewController: UICollectionViewDataSource {
         score.snp.makeConstraints{ make in
             make.top.equalTo(reviewImage.snp.bottom).offset(8)
             make.left.equalTo(8)
+            make.height.equalTo(20)
         }
         cell.addSubview(reviewDetails)
         reviewDetails.snp.makeConstraints{ make in
