@@ -13,6 +13,8 @@ import UIKit
 //reviewText, reviewScore, reviewImageText 이거 세개는 갯수 맞추기
 //backgroundImage는 profileView에서 bannerImage와 동일한 역할
 var users: [User] = load("Users.json")
+var favorites: [User] = users
+var reservations: [User] = [users[0], users[4], users[8]]
 
 struct User: Codable, Hashable {
     var userName: String

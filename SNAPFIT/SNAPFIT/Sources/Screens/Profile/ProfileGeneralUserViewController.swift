@@ -10,6 +10,8 @@ import SnapKit
 
 class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     
+    var currentUser: User!
+    
     // MARK: - Properties
     private let navigationView: SnapfitNavigationView = {
         let view: SnapfitNavigationView = SnapfitNavigationView(type: .backLikeMore)
@@ -36,6 +38,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     
     // MARK: - Methods
     public func setUserInformation(currentUser: User) {
+        self.currentUser = currentUser
         self.setProfileImage(profileImage: currentUser.profileImage)
         self.setBasicData(
             isApproved: true,
@@ -57,6 +60,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     private func setContactButtonAction() {
         self.contactButton.setAction {
             lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
+            suggestionViewController.setUserData(user: self.currentUser)
             suggestionViewController.modalTransitionStyle = .crossDissolve
             suggestionViewController.modalPresentationStyle = .overFullScreen
             self.present(suggestionViewController, animated: true)

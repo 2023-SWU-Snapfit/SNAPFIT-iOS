@@ -9,9 +9,6 @@ import UIKit
 
 final class ReservationViewController: BaseViewController {
     
-    // MARK: - Properties
-    
-    
     // MARK: - UIComponents
     let titleLabel: UILabel = {
         let titleLabel: UILabel = UILabel()
@@ -33,6 +30,11 @@ final class ReservationViewController: BaseViewController {
         super.viewDidLoad()
         self.setTitleLayout()
         self.setTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        self.reservationTableView.reloadData()
     }
     
     // MARK: - Method    
@@ -71,12 +73,12 @@ extension ReservationViewController: UITableViewDelegate {
 
 extension ReservationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        return reservations.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! BorderedTableViewCell
-        cell.setPicture(users[indexPath.row * 2 + 2].profileImage)
-        cell.setTitle(titleText: "\(users[indexPath.row * 2 + 2].userName)")
+        cell.setPicture(reservations[indexPath.row].profileImage)
+        cell.setTitle(titleText: reservations[indexPath.row].userName)
         return cell
     }
 }

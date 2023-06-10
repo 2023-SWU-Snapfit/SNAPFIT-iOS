@@ -10,6 +10,7 @@ import SnapKit
 
 class ReservationSuggestionViewController: BaseViewController, DateDataProtocol {
     
+    // MARK: - Properties
     enum Text{
         static let cancelButtonImage = "icn_x"
         static let title = "예약 문의"
@@ -28,6 +29,7 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
         static let errorMessage = "필요한 내용을 전부 채워주세요."
     }
     
+    var currentUser: User!
     let dateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = Text.dateFormat
@@ -120,7 +122,9 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
                 self.makeAlert(title: Text.errorTitle, message: Text.errorMessage, okAction: nil)
             } else {
                 self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
+                    reservations.append(self.currentUser)
                     self.dismiss(animated: true)
+                    print(reservations.count)
                 })
             }
         }
@@ -139,8 +143,12 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
         self.present(datePickerViewController, animated: true)
     }
     
-    func recieveDateData(date: Date) {
+    public func recieveDateData(date: Date) {
         self.dateTextView.text = self.dateFormatter.string(from: date)
+    }
+    
+    public func setUserData(user: User) {
+        self.currentUser = user
     }
     
     // MARK: - Layout Methods

@@ -74,12 +74,12 @@ extension FavoriteListViewController: UITableViewDelegate {
 
 extension FavoriteListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count - 1
+        return favorites.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteListTableViewCell") as! BorderedTableViewCell
-        cell.setPicture(users[indexPath.row].profileImage)
-        cell.setTitle(titleText: "\(users[indexPath.row].userName)")
+        cell.setPicture(favorites[indexPath.row].profileImage)
+        cell.setTitle(titleText: "\(favorites[indexPath.row].userName)")
         return cell
     }
 }
