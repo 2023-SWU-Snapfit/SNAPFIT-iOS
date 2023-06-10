@@ -1,0 +1,19 @@
+[
+    {
+        "userName": "사진쟁이 햄또븐",
+        "isApproved": true,
+        "isPhotographer": true,
+        "instagramID": "htv_photo",
+        "emailAddress": "hamthoven@gmail.com",
+        "introduceText": "안녕하세요~ 우정 사진 전문입니다~",
+        "possibleDateText": "가능 날짜는 문의 주세요!",
+        "priceText": "가격 디엠 문의",
+
+        "profileImageName": "sampleImage3",
+        "backgroundImageName": "sampleImage14",
+        "galleryImageText": ["sampleImage16", "sampleImage14"],
+        "reviewText": ["진짜 멋져요", "마음에 들게 나왔어요. 2회차 찍습니다~", "다음에도 찍을 것 같아요!"],
+        "reviewScore": [4, 5, 3],
+        "reviewImageText": ["sampleImage3", "sampleImage14", "sampleImage16"]
+    }
+]
