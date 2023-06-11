@@ -117,7 +117,11 @@ extension HomeViewController: UITableViewDataSource {
             case .searchBar:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSearchBarTableViewCell.className) as? HomeSearchBarTableViewCell
                 else { return UITableViewCell() }
-                
+                cell.searchButton.removeTarget(nil, action: nil, for: .allTouchEvents)
+                cell.searchButton.setAction { [weak self] in
+                    let searchViewController: SearchViewController = SearchViewController()
+                    self?.navigationController?.pushViewController(searchViewController, animated: true)
+                }
                 return cell
             case .categoryTag:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCategoryTagTableViewCell.className) as? HomeCategoryTagTableViewCell

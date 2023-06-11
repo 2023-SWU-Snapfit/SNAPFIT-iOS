@@ -79,8 +79,7 @@ final class SnapfitNavigationView: UIView {
     }()
     
     lazy var searchBarButton: UIButton = {
-        let button: UIButton = UIButton(type: .system)
-        // TODO: search bar button 구현
+        let button = SnapfitSearchBarButton(type: .system)
         return button
     }()
     
@@ -156,7 +155,12 @@ extension SnapfitNavigationView {
         self.addSubviews([backButton, searchBarButton])
         
         self.setLeftButtonLayout(button: self.backButton)
-        // TODO: search Bar Button Layout
+        self.searchBarButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(self.backButton.snp.right)
+            make.right.equalToSuperview().inset(8)
+            make.height.equalTo(40)
+        }
     }
     
     private func setBackLayout() {
