@@ -20,6 +20,7 @@ final class HomeViewController: BaseViewController {
         case bestPhotographerList
         case photoByTheme
     }
+    
     // MARK: Properties
     
     private let homeTableView: UITableView = {

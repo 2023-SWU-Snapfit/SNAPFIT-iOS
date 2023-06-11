@@ -61,7 +61,7 @@ extension HomePhotoByCategoryTableViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalPhotoCollectionViewCell.className, for: indexPath) as? VerticalPhotoCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.setData(image: UIImage(named: "sampleImage") ?? UIImage(), username: "작가1")
+        cell.setData(image: UIImage(named: "sampleImage1") ?? UIImage(), username: "작가1")
         
         return cell
     }
