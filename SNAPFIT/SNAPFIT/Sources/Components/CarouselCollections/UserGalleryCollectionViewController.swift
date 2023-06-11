@@ -9,6 +9,12 @@ import UIKit
 import SnapKit
 
 class UserGalleryCollectionViewController: UIViewController {
+    
+    // MARK: - Properties
+    private var numOfItems: Int = 0
+    private var images: [UIImage] = []
+    
+    // MARK: - UIComponents
     let titleLabel = UILabel()
     let moreButton = UIButton()
     let collectionView : UICollectionView = {
@@ -19,9 +25,11 @@ class UserGalleryCollectionViewController: UIViewController {
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .init(x: 0, y: 0, width: 10, height: 10), collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
+        
         return collectionView
     }()
     
+    // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,6 +64,13 @@ class UserGalleryCollectionViewController: UIViewController {
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "galleryCell")
         self.collectionView.backgroundColor = .clear
     }
+    
+    // MARK: - Methods
+    
+    public func setGallery(galleryImages: [UIImage]) {
+        self.numOfItems = galleryImages.count
+        self.images = galleryImages
+    }
 }
 
 extension UserGalleryCollectionViewController: UICollectionViewDelegate {
@@ -64,13 +79,19 @@ extension UserGalleryCollectionViewController: UICollectionViewDelegate {
 
 extension UserGalleryCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+        return self.numOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath)
         cell.backgroundColor = .sfBlack40
         cell.makeRounded(cornerRadius: 8)
+        let imageView: UIImageView = UIImageView(image: images[indexPath.row])
+        imageView.contentMode = .scaleAspectFill
+        cell.addSubview(imageView)
+        imageView.snp.makeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
         return cell
     }
     

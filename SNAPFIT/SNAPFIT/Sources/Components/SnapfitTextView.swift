@@ -42,13 +42,13 @@ class SnapfitTextView: UITextView {
         self.font = .r14
         self.textAlignment = .natural
         self.isEditable = true
-        self.isScrollEnabled = false
-        self.sizeToFit()
+        self.isScrollEnabled = true
         self.backgroundColor = .sfWhite
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8
         self.layer.borderColor = UIColor.sfBlack60.cgColor
         self.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        self.textContainer.size = CGSize(width: 10, height: 30)
     }
     
     func setNotEditableStyle() {
@@ -62,6 +62,7 @@ class SnapfitTextView: UITextView {
         self.layer.cornerRadius = 8
         self.layer.borderColor = UIColor.sfBlack60.cgColor
         self.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        self.textContainer.size = CGSize(width: 10, height: 30)
     }
     
     private func setActiveStyle() {
@@ -82,9 +83,13 @@ class SnapfitTextView: UITextView {
             .disposed(by: disposeBag)
     }
     
+    public func setFont(font: UIFont) {
+        self.font = font
+        self.placeholderLabel.font = font
+    }
+    
     private func setPlaceholderLayout() {
         self.textInputView.addSubview(placeholderLabel)
-        
         self.placeholderLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(self.textContainerInset.top)
             make.left.equalToSuperview().inset(self.textContainerInset.left + 4)
@@ -123,7 +128,7 @@ class SnapfitTextView: UITextView {
     
     // MARK: - Methods
     public func setText(text: String = "") {
-        if text == "" {
+        if text == "" && !self.isEditable {
             setClearStyle()
         }
         self.text = text

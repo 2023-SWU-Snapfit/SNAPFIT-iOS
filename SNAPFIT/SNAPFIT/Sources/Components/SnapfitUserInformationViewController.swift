@@ -40,6 +40,13 @@ class SnapfitUserInformationViewController: BaseViewController {
     }()
     private let profileImageView: UIImageView = {
         let profileImageView: UIImageView = UIImageView()
+        profileImageView.setImageColor(color: .sfBlack40)
+        profileImageView.backgroundColor = .sfBlack40
+        profileImageView.layer.cornerRadius = 50
+        profileImageView.layer.borderWidth = 1
+        profileImageView.layer.borderColor = UIColor.clear.cgColor
+        profileImageView.clipsToBounds = true
+        profileImageView.contentMode = .scaleAspectFill
         return profileImageView
     }()
     private let photographerSignImageView: UIImageView = {
@@ -130,7 +137,6 @@ class SnapfitUserInformationViewController: BaseViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setProfileImageViewStyle()
     }
     
     // MARK: - Methods
@@ -170,6 +176,27 @@ class SnapfitUserInformationViewController: BaseViewController {
         self.priceTextView.setText(text: text)
     }
     
+    public func setProfileImage(profileImage: UIImage?) {
+        if let newImage = profileImage {
+            self.profileImageView.image = newImage
+        }
+    }
+    
+    public func setBannerImage(bannerImage: UIImage?) {
+        if let newImage = bannerImage {
+            self.bannerImageView.image = newImage
+        }
+    }
+    
+    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
+        self.setApproved(approveState: isApproved)
+        self.setNickname(text: nicknameText)
+        self.setInstagramText(text: instagramText)
+    }
+    public func setGalleryAndReviewData(galleryImages: [UIImage], reviews: [Review]) {
+        self.galleryCarouselViewController.setGallery(galleryImages: galleryImages)
+        self.reviewCarouselViewController.setReview(reviews: reviews)
+    }
 }
 
 extension SnapfitUserInformationViewController {
@@ -246,15 +273,6 @@ extension SnapfitUserInformationViewController {
         }
     }
     
-    private func setProfileImageViewStyle() {
-        self.profileImageView.setImageColor(color: .sfBlack40)
-        self.profileImageView.backgroundColor = .sfBlack40
-        self.profileImageView.layer.cornerRadius = 50
-        self.profileImageView.layer.borderWidth = 1
-        self.profileImageView.layer.borderColor = UIColor.clear.cgColor
-        self.profileImageView.clipsToBounds = true
-        self.profileImageView.contentMode = .scaleAspectFill
-    }
     
     private func setPhoneApprovedLayout(topConstraint: ConstraintRelatableTarget, leftConstraint: ConstraintRelatableTarget) {
         if isApproved {
@@ -316,7 +334,7 @@ extension SnapfitUserInformationViewController {
         self.contentView.addSubview(self.reviewCarouselViewController.view)
         self.reviewCarouselViewController.view.snp.makeConstraints{ make in
             make.top.equalTo(galleryCarouselViewController.view.snp.bottom).offset(24)
-            make.height.equalTo(220)
+            make.height.equalTo(214)
             make.left.right.width.equalToSuperview()
             if !isPhotographer {
                 make.bottom.equalToSuperview()
@@ -347,6 +365,22 @@ extension SnapfitUserInformationViewController {
             make.left.equalTo(20)
             make.width.bottom.equalToSuperview().inset(20)
         }
+        if self.possibleDateTextView.text == "" {
+            self.possibleDateTitleLabel.isHidden = true
+            self.possibleDateTextView.snp.makeConstraints{ make in
+                make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom)
+            }
+            self.priceTitleLabel.snp.makeConstraints{ make in
+                make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom).offset(24)
+                make.left.equalTo(20)
+            }
+        }
+        if self.priceTextView.text == "" {
+            self.priceTitleLabel.isHidden = true
+            self.priceTextView.snp.makeConstraints{ make in
+                make.top.equalTo(self.possibleDateTextView.snp.bottom)
+                make.width.bottom.equalToSuperview().inset(20)
+            }
+        }
     }
-    
 }

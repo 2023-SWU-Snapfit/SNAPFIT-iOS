@@ -10,7 +10,9 @@ import SnapKit
 
 class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
-    // MARK: - Properties
+    var currentUser: User!
+    
+    // MARK: - UIComponents
     private let navigationView: SnapfitNavigationView = {
         let view: SnapfitNavigationView = SnapfitNavigationView(type: .backLikeMore)
         return view
@@ -30,30 +32,48 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setPhotographerLayout()
+        self.setContactButtonAction()
         self.setLayout()
     }
     
     // MARK: - Methods
-    
-    public func setBasicData(isApproved: Bool, nicknameText: String, instagramText: String) {
-        self.setApproved(approveState: isApproved)
-        self.setNickname(text: nicknameText)
-        self.setInstagramText(text: instagramText)
+    public func setUserInformation(currentUser: User) {
+        self.currentUser = currentUser
+        self.setProfileImage(profileImage: currentUser.profileImage)
+        self.setBannerImage(bannerImage: currentUser.backgroundImage)
+        self.setBasicData(
+            isApproved: true,
+            nicknameText: currentUser.userName,
+            instagramText: currentUser.instagramID
+        )
+        self.setAdditionalData(
+            mailText: currentUser.emailAddress ?? "",
+            introduceText: currentUser.introduceText ?? "",
+            possibleDateText: currentUser.possibleDateText ?? "",
+            priceText: currentUser.priceText ?? ""
+        )
+        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
     }
-
-    public func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
+    
+    private func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
         self.setMailText(text: mailText)
         self.setIntroduceText(text: introduceText)
         self.setPossibleDateText(text: possibleDateText)
         self.setPriceText(text: priceText)
     }
     
-    private func setLayout() {
-        self.view.addSubviews([navigationView])
-        self.setNavigationView()
-        self.navigationView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide)
+    private func setContactButtonAction() {
+        self.contactButton.setAction {
+            lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
+            suggestionViewController.setUserData(user: self.currentUser)
+            suggestionViewController.modalTransitionStyle = .crossDissolve
+            suggestionViewController.modalPresentationStyle = .overFullScreen
+            self.present(suggestionViewController, animated: true)
         }
+    }
+    
+    private func setLayout() {
+        self.setNavigationView()
         self.addAtContentView(component: self.contactButton)
         self.contactButton.snp.makeConstraints{ make in
             make.top.equalTo(338)
@@ -62,6 +82,11 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     }
     
     private func setNavigationView() {
+        self.addAtContentView(component: navigationView)
+        self.navigationView.snp.makeConstraints{ make in
+            make.top.equalTo(60)
+            make.left.right.equalToSuperview()
+        }
         self.navigationView.backButton.setAction {
             self.navigationController?.popViewController(animated: true)
         }
