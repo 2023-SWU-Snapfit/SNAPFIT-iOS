@@ -72,7 +72,7 @@ extension PhotographerListTableViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotographerCollectionViewCell.className, for: indexPath) as? PhotographerCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.setData(profileImage: UIImage(named: "sampleImage1") ?? UIImage(), username: "작가이름작가이름작가")
+        cell.setData(profileImage: UIImage(named: "sampleImage\(Tag.shared.category.shuffled()[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
         
         return cell
     }

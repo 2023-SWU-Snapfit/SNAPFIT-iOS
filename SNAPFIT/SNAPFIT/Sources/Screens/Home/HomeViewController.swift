@@ -21,7 +21,7 @@ final class HomeViewController: BaseViewController {
         case photoByTheme
     }
     
-    // MARK: Properties
+    // MARK: Components
     
     private let homeTableView: UITableView = {
         let tableView: UITableView = UITableView(frame: .zero, style: .plain)
@@ -36,6 +36,10 @@ final class HomeViewController: BaseViewController {
         button.setImage(UIImage(named: "btn_addGallery")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
+    
+    // MARK: Properties
+    
+    private var isReserved: Bool = false
     
     // MARK: View Life Cycle
     
@@ -136,7 +140,7 @@ extension HomeViewController: UITableViewDataSource {
             case .photoByPersonalCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByPersonalCetegoryTableViewCell.className) as? HomePhotoByPersonalCetegoryTableViewCell
                 else { return UITableViewCell() }
-                cell.setTitle(titleTag: "일상")
+                cell.setTitle(titleTag: Tag.shared.category.shuffled()[0].name)
                 return cell
             case .bestPhotographerList:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotographerListTableViewCell.className) as? PhotographerListTableViewCell
@@ -146,7 +150,7 @@ extension HomeViewController: UITableViewDataSource {
             case .photoByTheme:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByThemeTableViewCell.className) as? HomePhotoByThemeTableViewCell
                 else { return UITableViewCell() }
-                cell.setData(title: "6월 추천", image: UIImage(named: "sampleImage2") ?? UIImage(), tagsText: "#반려동물 #화사한 #여름")
+                cell.setData(title: "6월 추천", image: UIImage(named: "sampleImage15") ?? UIImage(), tagsText: "#반려동물 #화사한 #여름")
                 return cell
             }
         } else { return UITableViewCell() }
@@ -162,7 +166,7 @@ extension HomeViewController: UITableViewDelegate {
             case .navigation:
                 return 44
             case .reservationDetail:
-                return 128
+                return self.isReserved ? 128 : 0
             case .searchBar:
                 return 64
             case .categoryTag:

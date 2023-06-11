@@ -45,6 +45,8 @@ final class HomeCategoryTagTableViewCell: UITableViewCell {
         self.collectionView.delegate = self
         
         self.collectionView.register(cell: TagCollectionViewCell.self)
+        
+        self.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
     }
 }
 
@@ -59,7 +61,7 @@ extension HomeCategoryTagTableViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.className, for: indexPath) as? TagCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.setData(title: "가족")
+        cell.setData(title: Tag.shared.category[indexPath.row].name)
         
         return cell
     } 
@@ -68,7 +70,7 @@ extension HomeCategoryTagTableViewCell: UICollectionViewDataSource {
 extension HomeCategoryTagTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sizingCell = TagCollectionViewCell()
-        sizingCell.setData(title: "가족")
+        sizingCell.setData(title: Tag.shared.category[indexPath.row].name)
         
         let cellWidth = sizingCell.titleLabel.frame.width + 32
         let cellHeight = 32
