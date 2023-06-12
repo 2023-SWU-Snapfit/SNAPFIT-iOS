@@ -146,6 +146,14 @@ extension HomeViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotographerListTableViewCell.className) as? PhotographerListTableViewCell
                 else { return UITableViewCell() }
                 cell.setTitle(titleTag: "인기 작가")
+                let userList: [SummaryUser] = [
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[2].id)") ?? UIImage(), username: users[2].userName, isPhotographer: true),
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
+                ]
+                cell.setData(data: userList)
                 return cell
             case .photoByTheme:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByThemeTableViewCell.className) as? HomePhotoByThemeTableViewCell

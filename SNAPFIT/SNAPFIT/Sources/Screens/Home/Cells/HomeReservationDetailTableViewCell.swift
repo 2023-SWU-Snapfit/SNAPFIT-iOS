@@ -15,6 +15,7 @@ final class HomeReservationDetailTableViewCell: UITableViewCell {
         static let rightArrowImageName = "icn_rightArrow_verySmall"
         static let detailButtonTitle = "예약 내역"
     }
+    
     // MARK: Properties
     
     private let cardView: UIView = {
