@@ -13,6 +13,7 @@ final class SnapfitNavigationView: UIView {
     enum NavigationType {
         case home
         case backTitle
+        case backSearchButton
         case backSearch
         case back
         case close
@@ -83,6 +84,12 @@ final class SnapfitNavigationView: UIView {
         return button
     }()
     
+    lazy var searchTextField: SnapfitSearchTextField = {
+        let textField: SnapfitSearchTextField = SnapfitSearchTextField()
+        textField.placeholder = "분위기, 작가 등을 검색해 보세요."
+        return textField
+    }()
+    
     lazy var saveButton: UIButton = {
         let button: UIButton = UIButton(type: .system)
         button.setTitle(Text.saveText, for: .normal)
@@ -101,6 +108,7 @@ final class SnapfitNavigationView: UIView {
         switch type {
         case .home: self.setHomeLayout()
         case .backTitle: self.setBackTitleLayout()
+        case .backSearchButton: self.setBackSearchButtonLayout()
         case .backSearch: self.setBackSearchLayout()
         case .back: self.setBackLayout()
         case .close: self.setCloseLayout()
@@ -151,11 +159,23 @@ extension SnapfitNavigationView {
         self.setTitleLabelLayout()
     }
     
-    private func setBackSearchLayout() {
+    private func setBackSearchButtonLayout() {
         self.addSubviews([backButton, searchBarButton])
         
         self.setLeftButtonLayout(button: self.backButton)
         self.searchBarButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(self.backButton.snp.right)
+            make.right.equalToSuperview().inset(8)
+            make.height.equalTo(40)
+        }
+    }
+    
+    private func setBackSearchLayout() {
+        self.addSubviews([backButton, searchTextField])
+        
+        self.setLeftButtonLayout(button: self.backButton)
+        self.searchTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(self.backButton.snp.right)
             make.right.equalToSuperview().inset(8)
