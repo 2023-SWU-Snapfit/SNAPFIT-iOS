@@ -21,7 +21,7 @@ final class CategoryPhotoCollectionViewCell: UICollectionViewCell {
     
     private let blackView: UIView = {
         let view = UIView()
-        view.backgroundColor = .sfBlack100.withAlphaComponent(0.5)
+        view.backgroundColor = .sfBlack100.withAlphaComponent(0.7)
         view.clipsToBounds = true
         return view
     }()

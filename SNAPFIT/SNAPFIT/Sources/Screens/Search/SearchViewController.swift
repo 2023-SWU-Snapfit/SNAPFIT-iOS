@@ -13,7 +13,7 @@ final class SearchViewController: BaseViewController {
     // MARK: Properties
     
     private let navigationView: SnapfitNavigationView = {
-        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backSearch)
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backSearchButton)
         return view
     }()
     
@@ -46,7 +46,7 @@ final class SearchViewController: BaseViewController {
     
     private func setSearhButtonAction() {
         self.navigationView.searchBarButton.setAction { [weak self] in
-            self?.navigationController?.pushViewController(BaseViewController(), animated: true)
+            self?.navigationController?.pushViewController(SearchInputViewController(), animated: true)
         }
     }
     
@@ -77,8 +77,8 @@ extension SearchViewController: UICollectionViewDataSource {
 
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let searchResultViewController: BaseViewController = BaseViewController()
-        
+        let searchResultViewController: SearchInputViewController = SearchInputViewController()
+        searchResultViewController.setSearchByCategoryTag()
         self.navigationController?.pushViewController(searchResultViewController, animated: true)
     }
 }
