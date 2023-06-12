@@ -12,19 +12,19 @@ final class Tag {
     
     private init() { }
     
-    let camera: [TagDTO] = [
+    let camera: [TagEntity] = [
         .init(id: 1, name: "필름"),
         .init(id: 2, name: "디지털")
     ]
     
-    let peopleCount: [TagDTO] = [
+    let peopleCount: [TagEntity] = [
         .init(id: 1, name: "1인"),
         .init(id: 2, name: "아기"),
         .init(id: 3, name: "임신"),
         .init(id: 4, name: "우정")
     ]
     
-    let category: [TagDTO] = [
+    let category: [TagEntity] = [
         .init(id: 1, name: "결혼/웨딩"),
         .init(id: 2, name: "아기"),
         .init(id: 3, name: "임신"),
@@ -41,7 +41,7 @@ final class Tag {
         .init(id: 14, name: "기타")
     ]
     
-    let mood: [TagDTO] = [
+    let mood: [TagEntity] = [
         .init(id: 1, name: "봄"),
         .init(id: 2, name: "여름"),
         .init(id: 3, name: "가을"),
@@ -70,7 +70,7 @@ final class Tag {
     ]
 }
 
-struct TagDTO {
+struct TagEntity {
     let id: Int
     let name: String
     
