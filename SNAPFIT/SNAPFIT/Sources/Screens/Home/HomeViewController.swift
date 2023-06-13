@@ -93,6 +93,17 @@ extension HomeViewController {
     }
 }
 
+// MARK: - SendUpdateDelegate
+
+extension HomeViewController: SendUpdateDelegate {
+    func sendUpdate(data: Any?) {
+        lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
+        profileViewController.modalPresentationStyle = .fullScreen
+        profileViewController.setUserInformation(currentUser: users.shuffled()[0])
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+}
+
 // MARK: - UITableViewDataSource
 
 extension HomeViewController: UITableViewDataSource {
@@ -154,6 +165,7 @@ extension HomeViewController: UITableViewDataSource {
                     SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
                 ]
                 cell.setData(data: userList)
+                cell.sendUpdateDelegate = self
                 return cell
             case .photoByTheme:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByThemeTableViewCell.className) as? HomePhotoByThemeTableViewCell

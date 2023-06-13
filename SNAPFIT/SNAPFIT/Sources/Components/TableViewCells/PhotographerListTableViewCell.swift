@@ -36,6 +36,7 @@ final class PhotographerListTableViewCell: UITableViewCell {
     // MARK: Properties
     
     var userList: [SummaryUser] = []
+    var sendUpdateDelegate: SendUpdateDelegate?
     
     // MARK: Initializer
     
@@ -84,6 +85,14 @@ extension PhotographerListTableViewCell: UICollectionViewDataSource {
 //        cell.setData(profileImage: UIImage(named: "sampleImage\(Tag.shared.category.shuffled()[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
         
         return cell
+    }
+}
+
+// MARK: -
+
+extension PhotographerListTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.sendUpdateDelegate?.sendUpdate(data: nil)
     }
 }
 

@@ -87,6 +87,17 @@ extension SearchInputViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - SendUpdateDelegate
+
+extension SearchInputViewController: SendUpdateDelegate {
+    func sendUpdate(data: Any?) {
+        lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
+        profileViewController.modalPresentationStyle = .fullScreen
+        profileViewController.setUserInformation(currentUser: users.shuffled()[0])
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+}
+
 // MARK: - UITableViewDataSource
 
 extension SearchInputViewController: UITableViewDataSource {
@@ -134,7 +145,7 @@ extension SearchInputViewController: UITableViewDataSource {
                 
                 cell.setTitle(titleTag: "유저 검색 결과")
                 cell.setData(data: self.searchResults.users)
-                
+                cell.sendUpdateDelegate = self
                 return cell
             }
         } else { return UITableViewCell() }
