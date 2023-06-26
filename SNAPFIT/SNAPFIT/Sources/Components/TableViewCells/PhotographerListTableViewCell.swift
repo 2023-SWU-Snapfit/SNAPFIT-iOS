@@ -10,7 +10,7 @@ import SnapKit
 
 final class PhotographerListTableViewCell: UITableViewCell {
     
-    // MARK: Properties
+    // MARK: UIComponents
     
     private let titleLabel: UILabel = {
         let titleLabel: UILabel = UILabel()
@@ -32,6 +32,11 @@ final class PhotographerListTableViewCell: UITableViewCell {
         collectionView.setCollectionViewLayout(layout, animated: false)
         return collectionView
     }()
+    
+    // MARK: Properties
+    
+    var userList: [SummaryUser] = []
+    var sendUpdateDelegate: SendUpdateDelegate?
     
     // MARK: Initializer
     
@@ -59,22 +64,35 @@ final class PhotographerListTableViewCell: UITableViewCell {
     func setTitle(titleTag: String) {
         self.titleLabel.text = titleTag
     }
+    
+    func setData(data: [SummaryUser]) {
+        self.userList = data
+        self.collectionView.reloadData()
+    }
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension PhotographerListTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.userList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotographerCollectionViewCell.className, for: indexPath) as? PhotographerCollectionViewCell
         else { return UICollectionViewCell() }
-        
-        cell.setData(profileImage: UIImage(named: "sampleImage") ?? UIImage(), username: "작가이름작가이름작가")
+        cell.setData(profileImage: self.userList[indexPath.row].image, username: self.userList[indexPath.row].username)
+//        cell.setData(profileImage: UIImage(named: "sampleImage\(Tag.shared.category.shuffled()[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
         
         return cell
+    }
+}
+
+// MARK: -
+
+extension PhotographerListTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.sendUpdateDelegate?.sendUpdate(data: nil)
     }
 }
 

@@ -20,7 +20,8 @@ final class HomeViewController: BaseViewController {
         case bestPhotographerList
         case photoByTheme
     }
-    // MARK: Properties
+    
+    // MARK: Components
     
     private let homeTableView: UITableView = {
         let tableView: UITableView = UITableView(frame: .zero, style: .plain)
@@ -35,6 +36,10 @@ final class HomeViewController: BaseViewController {
         button.setImage(UIImage(named: "btn_addGallery")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
+    
+    // MARK: Properties
+    
+    private var isReserved: Bool = false
     
     // MARK: View Life Cycle
     
@@ -88,6 +93,17 @@ extension HomeViewController {
     }
 }
 
+// MARK: - SendUpdateDelegate
+
+extension HomeViewController: SendUpdateDelegate {
+    func sendUpdate(data: Any?) {
+        lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
+        profileViewController.modalPresentationStyle = .fullScreen
+        profileViewController.setUserInformation(currentUser: users.shuffled()[0])
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+}
+
 // MARK: - UITableViewDataSource
 
 extension HomeViewController: UITableViewDataSource {
@@ -116,7 +132,11 @@ extension HomeViewController: UITableViewDataSource {
             case .searchBar:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSearchBarTableViewCell.className) as? HomeSearchBarTableViewCell
                 else { return UITableViewCell() }
-                
+                cell.searchButton.removeTarget(nil, action: nil, for: .allTouchEvents)
+                cell.searchButton.setAction { [weak self] in
+                    let searchViewController: SearchViewController = SearchViewController()
+                    self?.navigationController?.pushViewController(searchViewController, animated: true)
+                }
                 return cell
             case .categoryTag:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCategoryTagTableViewCell.className) as? HomeCategoryTagTableViewCell
@@ -131,17 +151,26 @@ extension HomeViewController: UITableViewDataSource {
             case .photoByPersonalCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByPersonalCetegoryTableViewCell.className) as? HomePhotoByPersonalCetegoryTableViewCell
                 else { return UITableViewCell() }
-                cell.setTitle(titleTag: "일상")
+                cell.setTitle(titleTag: Tag.shared.category.shuffled()[0].name)
                 return cell
             case .bestPhotographerList:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotographerListTableViewCell.className) as? PhotographerListTableViewCell
                 else { return UITableViewCell() }
                 cell.setTitle(titleTag: "인기 작가")
+                let userList: [SummaryUser] = [
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[2].id)") ?? UIImage(), username: users[2].userName, isPhotographer: true),
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
+                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
+                ]
+                cell.setData(data: userList)
+                cell.sendUpdateDelegate = self
                 return cell
             case .photoByTheme:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByThemeTableViewCell.className) as? HomePhotoByThemeTableViewCell
                 else { return UITableViewCell() }
-                cell.setData(title: "6월 추천", image: UIImage(named: "sampleImage2") ?? UIImage(), tagsText: "#반려동물 #화사한 #여름")
+                cell.setData(title: "6월 추천", image: UIImage(named: "sampleImage15") ?? UIImage(), tagsText: "#반려동물 #화사한 #여름")
                 return cell
             }
         } else { return UITableViewCell() }
@@ -157,7 +186,7 @@ extension HomeViewController: UITableViewDelegate {
             case .navigation:
                 return 44
             case .reservationDetail:
-                return 128
+                return self.isReserved ? 128 : 0
             case .searchBar:
                 return 64
             case .categoryTag:
