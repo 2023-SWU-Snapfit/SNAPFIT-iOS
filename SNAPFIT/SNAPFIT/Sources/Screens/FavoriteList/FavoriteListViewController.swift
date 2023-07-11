@@ -8,12 +8,6 @@
 import UIKit
 
 class FavoriteListViewController: BaseViewController {
-    let titleLabel: UILabel = {
-        let titleLabel: UILabel = UILabel()
-        titleLabel.text = "관심 목록"
-        titleLabel.font = .b24
-        return titleLabel
-    }()
     let favoriteListTableView: UITableView = {
         let favoriteListTableView: UITableView = UITableView()
         favoriteListTableView.backgroundColor = .clear
@@ -26,17 +20,18 @@ class FavoriteListViewController: BaseViewController {
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setTitleLayout()
+        self.setNavigationTitle()
         self.setTableView()
     }
     
     // MARK: - Method
-    private func setTitleLayout() {
-        self.view.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints{ make in
-            make.top.equalTo(92)
-            make.left.right.equalToSuperview().inset(20)
-        }
+    private func setNavigationTitle() {
+        self.navigationItem.title = "관심 목록"
+        self.navigationItem.largeTitleDisplayMode = .always
+        let attributes = [NSAttributedString.Key.font: UIFont.b24]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : UIFont]
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     private func setTableView() {
@@ -44,7 +39,7 @@ class FavoriteListViewController: BaseViewController {
         self.favoriteListTableView.dataSource = self
         view.addSubview(favoriteListTableView)
         favoriteListTableView.snp.makeConstraints{ make in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
+            make.top.equalToSuperview().offset(16)
             make.bottom.equalToSuperview()
             make.left.right.equalToSuperview().inset(20)
         }

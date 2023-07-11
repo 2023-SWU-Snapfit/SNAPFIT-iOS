@@ -10,12 +10,6 @@ import UIKit
 final class ReservationViewController: BaseViewController {
     
     // MARK: - UIComponents
-    let titleLabel: UILabel = {
-        let titleLabel: UILabel = UILabel()
-        titleLabel.text = "예약 관리"
-        titleLabel.font = .b24
-        return titleLabel
-    }()
     let reservationTableView: UITableView = {
         let reservationTableView: UITableView = UITableView()
             reservationTableView.backgroundColor = .clear
@@ -28,7 +22,7 @@ final class ReservationViewController: BaseViewController {
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setTitleLayout()
+        self.setNavigationTitle()
         self.setTableView()
     }
     
@@ -37,13 +31,15 @@ final class ReservationViewController: BaseViewController {
         self.reservationTableView.reloadData()
     }
     
-    // MARK: - Method    
-    private func setTitleLayout() {
-        self.view.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints{ make in
-            make.top.equalTo(92)
-            make.left.right.equalToSuperview().inset(20)
-        }
+    // MARK: - Method
+    
+    private func setNavigationTitle() {
+        self.navigationItem.title = "예약관리"
+        self.navigationItem.largeTitleDisplayMode = .always
+        let attributes = [NSAttributedString.Key.font: UIFont.b24]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : UIFont]
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     private func setTableView() {
@@ -51,7 +47,7 @@ final class ReservationViewController: BaseViewController {
         self.reservationTableView.dataSource = self
         self.view.addSubview(reservationTableView)
         self.reservationTableView.snp.makeConstraints{ make in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
+            make.top.equalToSuperview().offset(16)
             make.bottom.equalToSuperview()
             make.left.right.equalToSuperview().inset(20)
         }

@@ -60,6 +60,7 @@ class ReservationTableViewCell: BorderedTableViewCell {
     // MARK: - Method
     override func layoutSubviews() {
         self.frame.size = CGSize(width: self.frame.width, height: 112)
+        self.backgroundColor = .white
         self.layer.borderColor = UIColor.sfBlack100.cgColor
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8
