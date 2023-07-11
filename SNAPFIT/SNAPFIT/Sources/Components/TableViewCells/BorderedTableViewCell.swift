@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 class BorderedTableViewCell: UITableViewCell {
-    let picture = UIImageView()
-    let title = UILabel()
+    let picture: UIImageView = UIImageView()
+    let nameLabel: UILabel = UILabel()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -21,7 +21,12 @@ class BorderedTableViewCell: UITableViewCell {
         self.layer.cornerRadius = 8
     }
     
-    func setPicture(_ newImage: UIImage?) {
+    func setAsFavoriteList(userImage: UIImage?, userName: String) {
+        self.setPicture(userImage)
+        self.setFavoriteUserName(name: userName)
+    }
+    
+    private func setPicture(_ newImage: UIImage?) {
         if let image = newImage { self.picture.image = image }
         self.picture.backgroundColor = .sfBlack20
         self.picture.layer.cornerRadius = 20
@@ -37,11 +42,11 @@ class BorderedTableViewCell: UITableViewCell {
         }
     }
     
-    func setTitle(titleText: String) {
-        self.title.text = titleText
-        self.title.font = .m13
-        self.contentView.addSubview(self.title)
-        self.title.snp.makeConstraints{ make in
+    private func setFavoriteUserName(name: String) {
+        self.nameLabel.text = name
+        self.nameLabel.font = .m13
+        self.contentView.addSubview(self.nameLabel)
+        self.nameLabel.snp.makeConstraints{ make in
             make.left.equalTo(self.picture.snp.right).offset(12)
             make.centerY.equalToSuperview()
         }

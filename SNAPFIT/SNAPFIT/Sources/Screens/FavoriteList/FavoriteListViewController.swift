@@ -78,8 +78,7 @@ extension FavoriteListViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteListTableViewCell") as! BorderedTableViewCell
-        cell.setPicture(favorites[indexPath.row].profileImage)
-        cell.setTitle(titleText: "\(favorites[indexPath.row].userName)")
+        cell.setAsFavoriteList(userImage: favorites[indexPath.row].profileImage, userName: "\(favorites[indexPath.row].userName)")
         return cell
     }
 }

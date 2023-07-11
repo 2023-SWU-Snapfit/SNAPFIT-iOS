@@ -21,7 +21,7 @@ final class ReservationViewController: BaseViewController {
             reservationTableView.backgroundColor = .clear
             reservationTableView.separatorStyle = .none
             reservationTableView.showsVerticalScrollIndicator = false
-            reservationTableView.register(BorderedTableViewCell.self, forCellReuseIdentifier: "reservationTableViewCell")
+            reservationTableView.register(ReservationTableViewCell.self, forCellReuseIdentifier: "reservationTableViewCell")
         return reservationTableView
     }()
     
@@ -61,7 +61,7 @@ final class ReservationViewController: BaseViewController {
 // MARK: - Extensions
 extension ReservationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        82
+        128
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: 셀 선택 시 동작 구현
@@ -76,9 +76,8 @@ extension ReservationViewController: UITableViewDataSource {
         return reservations.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! BorderedTableViewCell
-        cell.setPicture(reservations[indexPath.row].profileImage)
-        cell.setTitle(titleText: reservations[indexPath.row].userName)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! ReservationTableViewCell
+        cell.setAsReservationList(userName: "\(favorites[indexPath.row].userName)", lastDate: Date(), isFixed: false, isFinished: false)
         return cell
     }
 }
