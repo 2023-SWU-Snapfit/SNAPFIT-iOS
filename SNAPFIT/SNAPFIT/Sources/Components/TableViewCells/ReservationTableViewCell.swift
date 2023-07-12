@@ -92,15 +92,18 @@ class ReservationTableViewCell: BorderedTableViewCell {
     }
     
     private func setLeftTag(_ isFixed: Bool, _ isFinished: Bool) {
-        self.stateButton.isEnabled = false
         switch (isFixed, isFinished) {
         case (true, true):
-            print("tt")
+            self.stateButton.isEnabled = true
+            self.stateButton.setTitle(Text.tagFinished, for: .normal)
         case (false, true):
-            print("ft")
+            self.stateButton.isEnabled = false
+            self.stateButton.setTitle(Text.tagOngoing, for: .normal)
         case (true, false):
-            print("tf")
+            self.stateButton.isEnabled = true
+            self.stateButton.setTitle(Text.tagDday + "9", for: .normal)
         default:
+            self.stateButton.isEnabled = false
             self.stateButton.setTitle(Text.tagWait, for: .normal)
         }
         self.contentView.addSubview(self.stateButton)
@@ -113,18 +116,20 @@ class ReservationTableViewCell: BorderedTableViewCell {
     private func setRightButton(_ isFixed: Bool, _ isFinished: Bool) {
         switch (isFixed, isFinished) {
         case (true, true):
-            print("tt")
+            self.rightButton.setTitle(Text.buttonReview, for: .normal)
         case (false, true):
-            print("ft")
-        case (true, false):
-            print("tf")
-        default:
             self.rightButton.setTitle(Text.buttonContact, for: .normal)
+        case (true, false):
+            self.rightButton.setTitle(Text.buttonReview, for: .normal)
+            self.rightButton.isEnabled = false
+        default: break
         }
-        self.contentView.addSubview(self.rightButton)
-        self.rightButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(64)
-            make.trailing.equalToSuperview().inset(16)
+        if isFixed || isFinished {
+            self.contentView.addSubview(self.rightButton)
+            self.rightButton.snp.makeConstraints{ make in
+                make.top.equalToSuperview().inset(64)
+                make.trailing.equalToSuperview().inset(16)
+            }
         }
     }
 }
