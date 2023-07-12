@@ -27,8 +27,14 @@ final class ReservationViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
         self.reservationTableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: - Method

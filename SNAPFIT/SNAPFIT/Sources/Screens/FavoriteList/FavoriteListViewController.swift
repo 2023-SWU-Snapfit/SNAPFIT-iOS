@@ -24,6 +24,16 @@ class FavoriteListViewController: BaseViewController {
         self.setTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - Method
     private func setNavigationTitle() {
         self.navigationItem.title = "관심 목록"
