@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ReservationSuggestionViewController: BaseViewController, DateDataProtocol {
+class ReservationSuggestionViewController: BaseViewController, DateDataDelegate {
     
     // MARK: - Properties
     enum Text{

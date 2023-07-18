@@ -20,7 +20,7 @@
 		6A3FA4C32A2C10AC000382CF /* ProfileGeneralUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FA4C22A2C10AC000382CF /* ProfileGeneralUserViewController.swift */; };
 		6A4566BD2A13534C00AE5F62 /* MypagePhotographerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4566BC2A13534C00AE5F62 /* MypagePhotographerViewController.swift */; };
 		6A4CFC112A1893FA00CE5308 /* SnapfitTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CFC102A1893FA00CE5308 /* SnapfitTextView.swift */; };
-		6A8DE5A62A332E39005FCE52 /* DateDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DE5A52A332E39005FCE52 /* DateDataProtocol.swift */; };
+		6A8DE5A62A332E39005FCE52 /* ReservationDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DE5A52A332E39005FCE52 /* ReservationDataProtocol.swift */; };
 		6AA54F862A2436B8001E9D2C /* ReservatinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA54F852A2436B8001E9D2C /* ReservatinDetailViewController.swift */; };
 		6AA612AE2A176BE200C49095 /* UserGalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA612AD2A176BE200C49095 /* UserGalleryCollectionViewController.swift */; };
 		6AA612B02A17C48B00C49095 /* ReviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */; };
@@ -116,7 +116,7 @@
 		6A3FA4C22A2C10AC000382CF /* ProfileGeneralUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGeneralUserViewController.swift; sourceTree = "<group>"; };
 		6A4566BC2A13534C00AE5F62 /* MypagePhotographerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypagePhotographerViewController.swift; sourceTree = "<group>"; };
 		6A4CFC102A1893FA00CE5308 /* SnapfitTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitTextView.swift; sourceTree = "<group>"; };
-		6A8DE5A52A332E39005FCE52 /* DateDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDataProtocol.swift; sourceTree = "<group>"; };
+		6A8DE5A52A332E39005FCE52 /* ReservationDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDataProtocol.swift; sourceTree = "<group>"; };
 		6AA54F852A2436B8001E9D2C /* ReservatinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservatinDetailViewController.swift; sourceTree = "<group>"; };
 		6AA612AD2A176BE200C49095 /* UserGalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGalleryCollectionViewController.swift; sourceTree = "<group>"; };
 		6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewController.swift; sourceTree = "<group>"; };
@@ -335,7 +335,6 @@
 				C766F15F2A109AAB009BC30E /* ClassName.swift */,
 				C766F1632A10A171009BC30E /* Message.swift */,
 				C766F1832A10A507009BC30E /* UserDefaultsManager.swift */,
-				6A8DE5A52A332E39005FCE52 /* DateDataProtocol.swift */,
 				6AC8A1D62A3448EF006A0689 /* DummyData.swift */,
 				6AC8A1DA2A3456EB006A0689 /* Users.json */,
 				6AC8A1D82A344BAE006A0689 /* ModelData.swift */,
@@ -554,6 +553,7 @@
 		FF2939792A376A6300C169E3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				6A8DE5A52A332E39005FCE52 /* ReservationDataProtocol.swift */,
 				FF29397A2A376A6F00C169E3 /* SendUpdateDelegate.swift */,
 			);
 			path = Protocols;
@@ -703,7 +703,7 @@
 				C7ED7D6A2A31CB4B0043B172 /* HomePhotoByThemeTableViewCell.swift in Sources */,
 				C74499EB2A1FA36C00C21AD4 /* HomeSearchBarTableViewCell.swift in Sources */,
 				C798F8292A2B7AE400886D0E /* HorizontalPhotoCollectionViewCell.swift in Sources */,
-				6A8DE5A62A332E39005FCE52 /* DateDataProtocol.swift in Sources */,
+				6A8DE5A62A332E39005FCE52 /* ReservationDataProtocol.swift in Sources */,
 				C766F15B2A109806009BC30E /* SnapfitActivityIndicatorView.swift in Sources */,
 				C766F16C2A10A232009BC30E /* UITableView+.swift in Sources */,
 				FF29397B2A376A6F00C169E3 /* SendUpdateDelegate.swift in Sources */,

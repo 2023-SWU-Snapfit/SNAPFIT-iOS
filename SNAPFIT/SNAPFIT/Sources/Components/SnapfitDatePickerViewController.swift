@@ -10,7 +10,7 @@ import SnapKit
 
 class SnapfitDatePickerViewController: BaseViewController {
     
-    var dataDelegate: DateDataProtocol?
+    var dataDelegate: DateDataDelegate?
     
     // MARK: - UIComponents
     let contentView: UIView = {

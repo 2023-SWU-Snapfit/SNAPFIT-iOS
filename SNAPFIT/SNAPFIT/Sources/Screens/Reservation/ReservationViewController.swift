@@ -69,7 +69,7 @@ extension ReservationViewController: UITableViewDelegate {
         // TODO: 셀 선택 시 동작 구현
         lazy var detailViewController: ReservationDetailViewController = ReservationDetailViewController()
         detailViewController.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        self.navigationController?.present(detailViewController, animated: true)
     }
 }
 
