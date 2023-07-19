@@ -115,14 +115,20 @@ class ReservationTableViewCell: BorderedTableViewCell {
     
     private func setRightButton(_ isFixed: Bool, _ isFinished: Bool) {
         switch (isFixed, isFinished) {
-        case (true, true):
-            self.rightButton.setTitle(Text.buttonReview, for: .normal)
-        case (false, true):
-            self.rightButton.setTitle(Text.buttonContact, for: .normal)
-        case (true, false):
-            self.rightButton.setTitle(Text.buttonReview, for: .normal)
-            self.rightButton.isEnabled = false
-        default: break
+            case (true, true):
+                self.rightButton.setTitle(Text.buttonReview, for: .normal)
+                self.rightButton.isEnabled = true
+                self.rightButton.isHidden = false
+            case (false, true):
+                self.rightButton.setTitle(Text.buttonContact, for: .normal)
+                self.rightButton.isEnabled = true
+                self.rightButton.isHidden = false
+            case (true, false):
+                self.rightButton.setTitle(Text.buttonReview, for: .normal)
+                self.rightButton.isEnabled = false
+                self.rightButton.isHidden = false
+            default:
+                self.rightButton.isHidden = true
         }
         if isFixed || isFinished {
             self.contentView.addSubview(self.rightButton)

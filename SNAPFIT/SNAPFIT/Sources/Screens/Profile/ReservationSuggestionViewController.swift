@@ -122,9 +122,9 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
                 self.makeAlert(title: Text.errorTitle, message: Text.errorMessage, okAction: nil)
             } else {
                 self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
-                    reservations.append(self.currentUser)
+                    reservationData.append(Reservation(userIndex: users.firstIndex(where: {$0.userName == self.currentUser.userName}) ?? 0, dateText: "\(self.dateFormatter.string(from: Date()))", lastUpdateText: "\(self.dateFormatter.string(from: Date()))"))
                     self.dismiss(animated: true)
-                    print(reservations.count)
+                    print(reservationData.count)
                 })
             }
         }

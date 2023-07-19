@@ -104,7 +104,10 @@ class ReservationDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
+        self.setButtonStyle(false, false)
+        self.setButtonStyle(false, false)
         self.setLayout()
+        self.setButtonLayout(false, false)
     }
     
     // MARK: - Methods
@@ -113,6 +116,23 @@ class ReservationDetailViewController: BaseViewController {
             self.dismiss(animated: true)
         }
     }
+    
+    private func setButtonStyle(_ isFixed: Bool, _ isFinished: Bool) {
+        switch (isFixed, isFinished) {
+            case (true, true):
+                print("")
+            case (false, true):
+                print("")
+            case (true, false):
+                print("")
+            default: break
+        }
+    }
+    
+    private func setChatLink(_ isFixed: Bool, _ isFinished: Bool) {
+        
+    }
+    
     private func setLayout() {
         self.view.addSubviews([navigationView])
         self.navigationView.snp.makeConstraints { make in
@@ -165,15 +185,20 @@ class ReservationDetailViewController: BaseViewController {
             make.top.equalTo(self.chatlinkLabel.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(20)
         }
-        self.view.addSubview(self.confirmButton)
-        self.confirmButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(44)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        self.view.addSubview(self.urlButton)
-        self.urlButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.confirmButton.snp.top).offset(-16)
-            make.leading.trailing.equalToSuperview().inset(20)
+    }
+    
+    private func setButtonLayout(_ isFixed: Bool, _ isFinished: Bool) {
+        if isFixed || isFinished {
+            self.view.addSubview(self.confirmButton)
+            self.confirmButton.snp.makeConstraints { make in
+                make.bottom.equalToSuperview().inset(44)
+                make.leading.trailing.equalToSuperview().inset(20)
+            }
+            self.view.addSubview(self.urlButton)
+            self.urlButton.snp.makeConstraints { make in
+                make.bottom.equalTo(self.confirmButton.snp.top).offset(-16)
+                make.leading.trailing.equalToSuperview().inset(20)
+            }
         }
     }
 }

@@ -28,6 +28,7 @@
 		6AC8A1D92A344BAE006A0689 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8A1D82A344BAE006A0689 /* ModelData.swift */; };
 		6AC8A1DB2A3456EB006A0689 /* Users.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AC8A1DA2A3456EB006A0689 /* Users.json */; };
 		6AD2DE132A325513004214E3 /* SnapfitDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2DE122A325513004214E3 /* SnapfitDatePickerViewController.swift */; };
+		6AD589942A67EC42009C7A3C /* Reservations.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AD589932A67EC41009C7A3C /* Reservations.json */; };
 		6AF625492A5D1AC200B6FF9E /* ReservationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF625482A5D1AC200B6FF9E /* ReservationTableViewCell.swift */; };
 		C70C48952A301A560052019B /* PhotographerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48942A301A560052019B /* PhotographerListTableViewCell.swift */; };
 		C70C48972A301B9F0052019B /* PhotographerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48962A301B9F0052019B /* PhotographerCollectionViewCell.swift */; };
@@ -124,6 +125,7 @@
 		6AC8A1D82A344BAE006A0689 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		6AC8A1DA2A3456EB006A0689 /* Users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Users.json; sourceTree = "<group>"; };
 		6AD2DE122A325513004214E3 /* SnapfitDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitDatePickerViewController.swift; sourceTree = "<group>"; };
+		6AD589932A67EC41009C7A3C /* Reservations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Reservations.json; sourceTree = "<group>"; };
 		6AF625482A5D1AC200B6FF9E /* ReservationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationTableViewCell.swift; sourceTree = "<group>"; };
 		C70C48942A301A560052019B /* PhotographerListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographerListTableViewCell.swift; sourceTree = "<group>"; };
 		C70C48962A301B9F0052019B /* PhotographerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		C766F15E2A109AA1009BC30E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6AD589932A67EC41009C7A3C /* Reservations.json */,
 				C766F15F2A109AAB009BC30E /* ClassName.swift */,
 				C766F1632A10A171009BC30E /* Message.swift */,
 				C766F1832A10A507009BC30E /* UserDefaultsManager.swift */,
@@ -634,6 +637,7 @@
 				6AC8A1DB2A3456EB006A0689 /* Users.json in Resources */,
 				C7E900222A0BC0BE00CC620B /* Pretendard-Regular.ttf in Resources */,
 				C77784842A003B1100B4AB8D /* LaunchScreen.storyboard in Resources */,
+				6AD589942A67EC42009C7A3C /* Reservations.json in Resources */,
 				C7E900232A0BC0BE00CC620B /* Pretendard-SemiBold.ttf in Resources */,
 				C7E900152A0BBCCE00CC620B /* Colorsets.xcassets in Resources */,
 				C77784812A003B1100B4AB8D /* Assets.xcassets in Resources */,

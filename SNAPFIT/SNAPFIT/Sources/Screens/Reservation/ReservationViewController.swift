@@ -75,11 +75,18 @@ extension ReservationViewController: UITableViewDelegate {
 
 extension ReservationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reservations.count
+        return reservationData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let user = users[reservationData[indexPath.row].userIndex]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! ReservationTableViewCell
-        cell.setAsReservationList(userName: "\(favorites[indexPath.row].userName)", lastDate: Date(), isFixed: false, isFinished: true)
+        cell.setAsReservationList(
+            userName: "\(user.userName)",
+            lastDate: reservationData[indexPath.row].lastUpdate,
+            isFixed: reservationData[indexPath.row].isFixed,
+            isFinished: reservationData[indexPath.row].isFinished
+        )
         return cell
     }
 }
