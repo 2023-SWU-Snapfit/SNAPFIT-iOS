@@ -29,6 +29,7 @@
 		6AC8A1DB2A3456EB006A0689 /* Users.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AC8A1DA2A3456EB006A0689 /* Users.json */; };
 		6AD2DE132A325513004214E3 /* SnapfitDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2DE122A325513004214E3 /* SnapfitDatePickerViewController.swift */; };
 		6AD589942A67EC42009C7A3C /* Reservations.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AD589932A67EC41009C7A3C /* Reservations.json */; };
+		6AD589962A6811C9009C7A3C /* DateDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD589952A6811C9009C7A3C /* DateDataDelegate.swift */; };
 		6AF625492A5D1AC200B6FF9E /* ReservationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF625482A5D1AC200B6FF9E /* ReservationTableViewCell.swift */; };
 		C70C48952A301A560052019B /* PhotographerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48942A301A560052019B /* PhotographerListTableViewCell.swift */; };
 		C70C48972A301B9F0052019B /* PhotographerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48962A301B9F0052019B /* PhotographerCollectionViewCell.swift */; };
@@ -126,6 +127,7 @@
 		6AC8A1DA2A3456EB006A0689 /* Users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Users.json; sourceTree = "<group>"; };
 		6AD2DE122A325513004214E3 /* SnapfitDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitDatePickerViewController.swift; sourceTree = "<group>"; };
 		6AD589932A67EC41009C7A3C /* Reservations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Reservations.json; sourceTree = "<group>"; };
+		6AD589952A6811C9009C7A3C /* DateDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDataDelegate.swift; sourceTree = "<group>"; };
 		6AF625482A5D1AC200B6FF9E /* ReservationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationTableViewCell.swift; sourceTree = "<group>"; };
 		C70C48942A301A560052019B /* PhotographerListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographerListTableViewCell.swift; sourceTree = "<group>"; };
 		C70C48962A301B9F0052019B /* PhotographerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 			children = (
 				6A8DE5A52A332E39005FCE52 /* ReservationDataProtocol.swift */,
 				FF29397A2A376A6F00C169E3 /* SendUpdateDelegate.swift */,
+				6AD589952A6811C9009C7A3C /* DateDataDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				C74499F12A1FAEDD00C21AD4 /* TagCollectionViewCell.swift in Sources */,
 				C7E9002C2A0BC92200CC620B /* APIConstants.swift in Sources */,
 				C74499EF2A1FAD1300C21AD4 /* HomeCategoryTagTableViewCell.swift in Sources */,
+				6AD589962A6811C9009C7A3C /* DateDataDelegate.swift in Sources */,
 				C766F15D2A1098D3009BC30E /* UIViewController+.swift in Sources */,
 				FF2939742A364EA800C169E3 /* SearchResult.swift in Sources */,
 				C70C48972A301B9F0052019B /* PhotographerCollectionViewCell.swift in Sources */,

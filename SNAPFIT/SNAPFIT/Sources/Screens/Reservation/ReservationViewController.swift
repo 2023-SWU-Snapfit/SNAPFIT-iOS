@@ -8,6 +8,8 @@
 import UIKit
 
 final class ReservationViewController: BaseViewController {
+    // MARK: - Properties
+    var dataDelegate: ReservationDataDelegate?
     
     // MARK: - UIComponents
     let reservationTableView: UITableView = {
@@ -69,6 +71,8 @@ extension ReservationViewController: UITableViewDelegate {
         // TODO: 셀 선택 시 동작 구현
         lazy var detailViewController: ReservationDetailViewController = ReservationDetailViewController()
         detailViewController.modalPresentationStyle = .fullScreen
+        self.dataDelegate = detailViewController
+        dataDelegate?.recieveReservationData(reservationData: reservationData[indexPath.row])
         self.navigationController?.present(detailViewController, animated: true)
     }
 }
@@ -78,7 +82,7 @@ extension ReservationViewController: UITableViewDataSource {
         return reservationData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user = users[reservationData[indexPath.row].userIndex]
+        let user = reservationData[indexPath.row].senderID == 133 ? users[reservationData[indexPath.row].recieverID] : users[reservationData[indexPath.row].senderID]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! ReservationTableViewCell
         cell.setAsReservationList(
@@ -90,3 +94,4 @@ extension ReservationViewController: UITableViewDataSource {
         return cell
     }
 }
+

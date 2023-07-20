@@ -7,11 +7,6 @@
 
 import Foundation
 
-public protocol DateDataDelegate {
-    
-    func recieveDateData(date: Date)
-}
-
-public protocol ReservationDataDelegate: DateDataDelegate {
-    func recieveReservationData(name: String, date: Date, contents: String)
+protocol ReservationDataDelegate: DateDataDelegate {
+    func recieveReservationData(reservationData: Reservation)
 }

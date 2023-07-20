@@ -12,6 +12,7 @@ import UIKit
 //필수요소: isApproved, isPhotographer, galleryImageText, reviewText, reviewScore, reviewImageText
 //reviewText, reviewScore, reviewImageText 이거 세개는 갯수 맞추기
 //backgroundImage는 profileView에서 bannerImage와 동일한 역할
+//자신의 ID 133으로 가정하고 작성
 var users: [User] = load("Users.json")
 var favorites: [User] = users
 var reservationData: [Reservation] = load("Reservations.json")
@@ -85,7 +86,8 @@ struct Review: Codable, Hashable {
 }
 
 struct Reservation: Codable, Hashable {
-    var userIndex: Int
+    var senderID: Int = 133
+    var recieverID: Int
     var dateText: String
     var date: Date {
         let dateFormatter = DateFormatter()

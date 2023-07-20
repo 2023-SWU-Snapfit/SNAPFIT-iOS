@@ -8,7 +8,6 @@
 import UIKit
 
 class ReservationDetailViewController: BaseViewController {
-    // MARK: - Properties
     enum Text {
         static let navigationTitle = "예약 확인"
         static let senderTitle = "보낸 사람"
@@ -19,6 +18,9 @@ class ReservationDetailViewController: BaseViewController {
         static let confirmButtonTitle = "예약 확정하기"
     }
     
+    // MARK: - Properties
+    var reservation: Reservation = Reservation(recieverID: 0, dateText: "", lastUpdateText: "")
+    
     // MARK: - UI Components
     private let navigationView: SnapfitNavigationView = {
         let view: SnapfitNavigationView = SnapfitNavigationView(type: .backTitle)
@@ -28,19 +30,19 @@ class ReservationDetailViewController: BaseViewController {
     private let senderLabel: UILabel = {
         let label: UILabel = UILabel()
         label.text = Text.senderTitle
-        label.font = .r14
+        label.font = .m13
         return label
     }()
     private let profileImageView: UIImageView = {
         let view: UIImageView = UIImageView()
-        view.image = UIImage(named: "sampleImage13")
+        view.image = UIImage(named: "AppIcon")
         view.makeRounded(cornerRadius: 25)
         return view
     }()
     private let nameLabel: UILabel = {
         let label: UILabel = UILabel()
-        label.text = "예약자 님"
-        label.font = .m13
+        label.text = ""
+        label.font = .r14
         return label
     }()
     private let dateLabel: UILabel = {
@@ -62,7 +64,7 @@ class ReservationDetailViewController: BaseViewController {
     }()
     private let contentsTextView: SnapfitTextView = {
         let view: SnapfitTextView = SnapfitTextView(isEditable: false)
-        view.text = "예약 문의드립니다~ 원하는 촬영은 ㅇㅇㅇ예약 문의드립니다~ 원하는 촬영은 ㅇㅇㅇ예약 문의드립니다~ 원하는 촬영은 ㅇㅇㅇ예약 문의드립니다~ 원하는 촬영은 ㅇㅇㅇ예약 문의드립니다~ 원하는 촬영은 ㅇㅇㅇ"
+        view.text = ""
         return view
     }()
     private let chatlinkLabel: UILabel = {
@@ -104,10 +106,11 @@ class ReservationDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationView()
-        self.setButtonStyle(false, false)
-        self.setButtonStyle(false, false)
+        self.setData()
+        self.setButtonStyle(self.reservation.isFixed, self.reservation.isFinished)
+        self.setChatLinkLayout(self.reservation.isFixed, self.reservation.isFinished)
         self.setLayout()
-        self.setButtonLayout(false, false)
+        self.setButtonLayout(self.reservation.isFixed, self.reservation.isFinished)
     }
     
     // MARK: - Methods
@@ -117,20 +120,49 @@ class ReservationDetailViewController: BaseViewController {
         }
     }
     
+    private func setData() {
+        let otherID: Int = self.reservation.senderID == 133 ? self.reservation.recieverID : self.reservation.senderID
+        self.profileImageView.image = users[otherID].profileImage
+        self.nameLabel.text = "\(users[otherID].userName) 님"
+        self.dateTextView.text = self.reservation.dateText
+        self.contentsTextView.text = self.reservation.contentsText
+    }
+    
     private func setButtonStyle(_ isFixed: Bool, _ isFinished: Bool) {
+        if self.reservation.senderID == 133 {
+            self.urlButton.isHidden = true
+            self.confirmButton.isHidden = true
+            return
+        }
         switch (isFixed, isFinished) {
             case (true, true):
-                print("")
+                self.urlButton.isEnabled = false
+                self.confirmButton.isEnabled = false
             case (false, true):
-                print("")
+                self.urlButton.isEnabled = false
+                self.confirmButton.isEnabled = true
             case (true, false):
-                print("")
-            default: break
+                self.urlButton.isEnabled = false
+                self.confirmButton.isEnabled = false
+            default:
+                self.urlButton.isEnabled = true
+                self.confirmButton.isEnabled = true
         }
     }
     
-    private func setChatLink(_ isFixed: Bool, _ isFinished: Bool) {
-        
+    private func setChatLinkLayout(_ isFixed: Bool, _ isFinished: Bool) {
+        if self.reservation.senderID == 133 && (isFinished == true || isFixed == true){
+            self.view.addSubview(self.chatlinkLabel)
+            self.chatlinkLabel.snp.makeConstraints { make in
+                make.top.equalToSuperview().inset(520)
+                make.leading.trailing.equalToSuperview().inset(20)
+            }
+            self.view.addSubview(self.chatilinkTextView)
+            self.chatilinkTextView.snp.makeConstraints { make in
+                make.top.equalTo(self.chatlinkLabel.snp.bottom).offset(8)
+                make.leading.trailing.equalToSuperview().inset(20)
+            }
+        }
     }
     
     private func setLayout() {
@@ -175,16 +207,6 @@ class ReservationDetailViewController: BaseViewController {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(144)
         }
-        self.view.addSubview(self.chatlinkLabel)
-        self.chatlinkLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.contentsTextView.snp.bottom).offset(24)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        self.view.addSubview(self.chatilinkTextView)
-        self.chatilinkTextView.snp.makeConstraints { make in
-            make.top.equalTo(self.chatlinkLabel.snp.bottom).offset(8)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
     }
     
     private func setButtonLayout(_ isFixed: Bool, _ isFinished: Bool) {
@@ -201,4 +223,16 @@ class ReservationDetailViewController: BaseViewController {
             }
         }
     }
+}
+
+extension ReservationDetailViewController: ReservationDataDelegate {
+    func recieveReservationData(reservationData: Reservation) {
+        self.reservation = reservationData
+    }
+    
+    func recieveDateData(date: Date) {
+        
+    }
+    
+    
 }
