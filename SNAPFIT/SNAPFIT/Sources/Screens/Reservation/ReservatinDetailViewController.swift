@@ -107,6 +107,7 @@ class ReservationDetailViewController: BaseViewController {
         super.viewDidLoad()
         self.setNavigationView()
         self.setData()
+        self.setConfirmButtonAction()
         self.setButtonStyle(self.reservation.isFixed, self.reservation.isFinished)
         self.setChatLinkLayout(self.reservation.isFixed, self.reservation.isFinished)
         self.setLayout()
@@ -126,6 +127,14 @@ class ReservationDetailViewController: BaseViewController {
         self.nameLabel.text = "\(users[otherID].userName) 님"
         self.dateTextView.text = self.reservation.dateText
         self.contentsTextView.text = self.reservation.contentsText
+    }
+    
+    func setConfirmButtonAction() {
+        self.confirmButton.setAction {
+            self.makeAlertWithCancel(okTitle: "확인") { _ in
+                self.confirmButton.isEnabled = false
+            }
+        }
     }
     
     private func setButtonStyle(_ isFixed: Bool, _ isFinished: Bool) {
@@ -150,6 +159,7 @@ class ReservationDetailViewController: BaseViewController {
         }
     }
     
+    // MARK: - Layout Methods
     private func setChatLinkLayout(_ isFixed: Bool, _ isFinished: Bool) {
         if self.reservation.senderID == 133 && (isFinished == true || isFixed == true){
             self.view.addSubview(self.chatlinkLabel)
@@ -225,6 +235,7 @@ class ReservationDetailViewController: BaseViewController {
     }
 }
 
+// MARK: - Extension: DataDelegate
 extension ReservationDetailViewController: ReservationDataDelegate {
     func recieveReservationData(reservationData: Reservation) {
         self.reservation = reservationData
