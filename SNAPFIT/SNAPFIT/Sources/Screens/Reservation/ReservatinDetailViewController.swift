@@ -80,9 +80,9 @@ class ReservationDetailViewController: BaseViewController {
     }()
     private let urlButton: UIButton = {
         let button: UIButton = UIButton()
-        button.setTitle(Text.urlButtonTitle, for: .normal)
+        let attributes = [NSAttributedString.Key.font : UIFont.b14]
+        button.setAttributedTitle(NSAttributedString(string: Text.urlButtonTitle, attributes: attributes), for: .normal)
         button.configuration = .filled()
-        button.titleLabel?.font = .b14
         button.titleLabel?.textColor = .sfWhite
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
         button.tintColor = .sfBlack100
@@ -91,9 +91,9 @@ class ReservationDetailViewController: BaseViewController {
     }()
     private let confirmButton: UIButton = {
         let button: UIButton = UIButton()
-        button.setTitle(Text.confirmButtonTitle, for: .normal)
+        let attributes = [NSAttributedString.Key.font : UIFont.b14]
+        button.setAttributedTitle(NSAttributedString(string: Text.confirmButtonTitle, attributes: attributes), for: .normal)
         button.configuration = .filled()
-        button.titleLabel?.font = .b14
         button.titleLabel?.textColor = .sfWhite
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
         button.tintColor = .sfBlack100

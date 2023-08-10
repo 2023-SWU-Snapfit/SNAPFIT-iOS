@@ -94,8 +94,8 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
     let sendButton: UIButton = {
         let button: UIButton = UIButton()
         button.configuration = .filled()
-        button.setTitle(Text.sendButton, for: .normal)
-        button.titleLabel?.font = .b14
+        let attributes = [NSAttributedString.Key.font : UIFont.b14]
+        button.setAttributedTitle(NSAttributedString(string: Text.sendButton, attributes: attributes), for: .normal)
         button.titleLabel?.textColor = .sfWhite
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
         button.tintColor = .sfBlack100

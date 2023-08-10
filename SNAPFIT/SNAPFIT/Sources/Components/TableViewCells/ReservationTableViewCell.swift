@@ -49,8 +49,6 @@ class ReservationTableViewCell: BorderedTableViewCell {
     let rightButton: UIButton = {
         let button: UIButton = UIButton()
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
-        
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .black)
         button.configuration = .filled()
         button.configuration?.baseBackgroundColor = .sfBlack100
         button.configuration?.background.cornerRadius = 8
@@ -114,17 +112,19 @@ class ReservationTableViewCell: BorderedTableViewCell {
     }
     
     private func setRightButton(_ isFixed: Bool, _ isFinished: Bool) {
+        
+        let attributes = [NSAttributedString.Key.font : UIFont.b14]
         switch (isFixed, isFinished) {
             case (true, true):
-                self.rightButton.setTitle(Text.buttonReview, for: .normal)
+                self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
                 self.rightButton.isEnabled = true
                 self.rightButton.isHidden = false
             case (false, true):
-                self.rightButton.setTitle(Text.buttonContact, for: .normal)
+                self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonContact, attributes: attributes), for: .normal)
                 self.rightButton.isEnabled = true
                 self.rightButton.isHidden = false
             case (true, false):
-                self.rightButton.setTitle(Text.buttonReview, for: .normal)
+                self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
                 self.rightButton.isEnabled = false
                 self.rightButton.isHidden = false
             default:

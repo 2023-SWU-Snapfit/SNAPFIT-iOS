@@ -24,9 +24,9 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     private let editButton: UIButton = {
         let contactButton: UIButton = UIButton()
         contactButton.configuration = .filled()
-        contactButton.setTitle("수정하기", for: .normal)
-        contactButton.titleLabel?.font = .b14
         contactButton.titleLabel?.textColor = .sfWhite
+        let attributes = [NSAttributedString.Key.font : UIFont.b14]
+        contactButton.setAttributedTitle(NSAttributedString(string: "수정하기", attributes: attributes), for: .normal)
         contactButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
         contactButton.tintColor = .sfBlack100
         contactButton.makeRounded(cornerRadius: 10)
