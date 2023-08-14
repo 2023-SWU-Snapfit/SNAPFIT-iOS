@@ -12,9 +12,10 @@ import UIKit
 //필수요소: isApproved, isPhotographer, galleryImageText, reviewText, reviewScore, reviewImageText
 //reviewText, reviewScore, reviewImageText 이거 세개는 갯수 맞추기
 //backgroundImage는 profileView에서 bannerImage와 동일한 역할
+//자신의 ID 133으로 가정하고 작성
 var users: [User] = load("Users.json")
 var favorites: [User] = users
-var reservations: [User] = [users[0], users[4], users[8]]
+var reservationData: [Reservation] = load("Reservations.json")
 
 struct User: Codable, Hashable {
     var userName: String
@@ -63,7 +64,7 @@ struct User: Codable, Hashable {
     }
 //    private var reservationDate: [Date]
 //    private var reservationText: [String]
-//    var reservations: [Reservation] {
+//    var reservationUsers: [Reservation] {
 //        var rArray: [Reservation] = []
 //        for index in 0..<reservationDate.count {
 //            rArray.append(Reservation(date: reservationDate[index], contentsText: reservationText[index]))
@@ -85,6 +86,21 @@ struct Review: Codable, Hashable {
 }
 
 struct Reservation: Codable, Hashable {
-    var date: Date
+    var senderID: Int = 133
+    var recieverID: Int
+    var dateText: String
+    var date: Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일 a hh시 mm분"
+        return dateFormatter.date(from: dateText) ?? Date()
+    }
     var contentsText: String = ""
+    var isFixed: Bool = false
+    var isFinished: Bool = false
+    var lastUpdateText: String
+    var lastUpdate: Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY.MM.dd HH:mm"
+        return dateFormatter.date(from: lastUpdateText) ?? Date()
+    }
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ViewToPreview: UIViewControllerRepresentable{
 
-    typealias UIViewControllerType = SnapfitTabBarController
-    let targetView = SnapfitTabBarController()
+    typealias UIViewControllerType = ReservationDetailViewController
+    let targetView = ReservationDetailViewController()
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
         return targetView

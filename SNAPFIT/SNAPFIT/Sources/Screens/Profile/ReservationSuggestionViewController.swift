@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ReservationSuggestionViewController: BaseViewController, DateDataProtocol {
+class ReservationSuggestionViewController: BaseViewController, DateDataDelegate {
     
     // MARK: - Properties
     enum Text{
@@ -19,7 +19,8 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
         static let suggestion = "예약 내용"
         static let suggestionPlaceholder = "문의하고 싶은 사항을 기재해주세요."
         static let sendButton = "문의 보내기"
-        static let dateFormat = "YYYY년 MM월 dd일 a hh시 mm분"
+        static let reservationDateFormat = "YYYY년 MM월 dd일 a hh시 mm분"
+        static let lastDateFormat = "YYYY.MM.dd HH:mm"
         static let completeTitle = "예약 문의 완료"
         static let completeMessage = """
         예약 문의 전송이 완료되었습니다.
@@ -30,9 +31,14 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
     }
     
     var currentUser: User!
-    let dateFormatter: DateFormatter = {
+    let reservationDateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
-        formatter.dateFormat = Text.dateFormat
+        formatter.dateFormat = Text.reservationDateFormat
+        return formatter
+    }()
+    let lastDateFormatter: DateFormatter = {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = Text.lastDateFormat
         return formatter
     }()
     
@@ -88,8 +94,8 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
     let sendButton: UIButton = {
         let button: UIButton = UIButton()
         button.configuration = .filled()
-        button.setTitle(Text.sendButton, for: .normal)
-        button.titleLabel?.font = .b14
+        let attributes = [NSAttributedString.Key.font : UIFont.b14]
+        button.setAttributedTitle(NSAttributedString(string: Text.sendButton, attributes: attributes), for: .normal)
         button.titleLabel?.textColor = .sfWhite
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
         button.tintColor = .sfBlack100
@@ -121,10 +127,11 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
             if self.dateTextView.text == "" || self.suggestionTextView.text == "" {
                 self.makeAlert(title: Text.errorTitle, message: Text.errorMessage, okAction: nil)
             } else {
+                
                 self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
-                    reservations.append(self.currentUser)
+                    reservationData.append(Reservation(recieverID: users.firstIndex(where: {$0.userName == self.currentUser.userName}) ?? 0, dateText: self.dateTextView.text, lastUpdateText: "\(self.lastDateFormatter.string(from: Date()))"))
                     self.dismiss(animated: true)
-                    print(reservations.count)
+                    print(reservationData.count)
                 })
             }
         }
@@ -144,7 +151,7 @@ class ReservationSuggestionViewController: BaseViewController, DateDataProtocol 
     }
     
     public func recieveDateData(date: Date) {
-        self.dateTextView.text = self.dateFormatter.string(from: date)
+        self.dateTextView.text = self.reservationDateFormatter.string(from: date)
     }
     
     public func setUserData(user: User) {

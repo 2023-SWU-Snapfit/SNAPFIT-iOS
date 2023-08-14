@@ -15,8 +15,24 @@ class UserGalleryCollectionViewController: UIViewController {
     private var images: [UIImage] = []
     
     // MARK: - UIComponents
-    let titleLabel = UILabel()
-    let moreButton = UIButton()
+    let titleLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.text = "갤러리"
+        label.font = .b18
+        return label
+    }()
+    let moreButton: UIButton = {
+        let button: UIButton = UIButton()
+        button.configuration = .plain()
+        let attributes = [NSAttributedString.Key.font : UIFont.m12]
+        button.setAttributedTitle(NSAttributedString(string: "더보기 ", attributes: attributes), for: .normal)
+        button.tintColor = .sfBlack60
+        let moreButtonImage = UIImage(systemName: "chevron.right", withConfiguration: UIImage.SymbolConfiguration(pointSize: 12))
+        button.setImage(moreButtonImage, for: .normal)
+        button.semanticContentAttribute = .forceRightToLeft
+        return button
+    }()
+
     let collectionView : UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -32,18 +48,21 @@ class UserGalleryCollectionViewController: UIViewController {
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.titleLabel.text = "갤러리"
-        self.titleLabel.font = .b18
-        
-        self.moreButton.configuration = .plain()
-        self.moreButton.setTitle("더보기 ", for: .normal)
-        self.moreButton.titleLabel?.font = .m12
-        self.moreButton.tintColor = .sfBlack60
-        let moreButtonImage = UIImage(systemName: "chevron.right", withConfiguration: UIImage.SymbolConfiguration(pointSize: 12))
-        self.moreButton.setImage(moreButtonImage, for: .normal)
-        self.moreButton.semanticContentAttribute = .forceRightToLeft
-        
+        self.setLayout()
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "galleryCell")
+        self.collectionView.backgroundColor = .clear
+    }
+    
+    // MARK: - Methods
+    
+    public func setGallery(galleryImages: [UIImage]) {
+        self.numOfItems = galleryImages.count
+        self.images = galleryImages
+    }
+    
+    func setLayout() {
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview()
@@ -59,17 +78,6 @@ class UserGalleryCollectionViewController: UIViewController {
             make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
             make.left.right.bottom.equalToSuperview()
         }
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "galleryCell")
-        self.collectionView.backgroundColor = .clear
-    }
-    
-    // MARK: - Methods
-    
-    public func setGallery(galleryImages: [UIImage]) {
-        self.numOfItems = galleryImages.count
-        self.images = galleryImages
     }
 }
 
