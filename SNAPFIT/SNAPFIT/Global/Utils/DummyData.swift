@@ -58,7 +58,7 @@ struct User: Codable, Hashable {
     var reviews: [Review] {
         var rArray: [Review] = []
         for index in 0..<reviewScore.count {
-            rArray.append(Review(imageName: reviewImageText[index], score: reviewScore[index], contentText: reviewText[index]))
+            rArray.append(Review(userName: "\(users[index].userName)", imageName: reviewImageText[index], score: reviewScore[index], contentText: reviewText[index]))
         }
         return rArray
     }
@@ -74,6 +74,7 @@ struct User: Codable, Hashable {
 }
 
 struct Review: Codable, Hashable {
+    var userName: String
     var imageName: String
     var image: UIImage? {
         if imageName != "" {

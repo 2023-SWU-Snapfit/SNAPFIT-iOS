@@ -24,6 +24,8 @@ class SnapfitUserInformationViewController: BaseViewController {
     // MARK: - Properties
     private var isPhotographer: Bool = false
     private var isApproved: Bool = false
+    
+    // MARK: - UIComponents
     private let scrollView: UIScrollView = {
         let scrollView: UIScrollView = UIScrollView()
         scrollView.backgroundColor = .sfGrayWhite
@@ -196,6 +198,16 @@ class SnapfitUserInformationViewController: BaseViewController {
     public func setGalleryAndReviewData(galleryImages: [UIImage], reviews: [Review]) {
         self.galleryCarouselViewController.setGallery(galleryImages: galleryImages)
         self.reviewCarouselViewController.setReview(reviews: reviews)
+        self.reviewCarouselViewController.setDelegate(self)
+    }
+}
+
+extension SnapfitUserInformationViewController: SendUpdateDelegate {
+    func sendUpdate(data: Any?) {
+        lazy var viewController: ReviewDetailViewController = ReviewDetailViewController()
+        viewController.review = data as? Review
+        viewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

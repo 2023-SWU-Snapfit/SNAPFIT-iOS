@@ -15,10 +15,10 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     let bannerImage: UIImage = UIImage(named: "sampleImage25")!
     let galleryImages: [UIImage] = [UIImage(named: "sampleImage23")!, UIImage(named: "sampleImage26")!, UIImage(named: "sampleImage28")!, UIImage(named: "sampleImage29")!]
     let reviewData: [Review] = [
-        Review(imageName: "sampleImage27", score: 4, contentText: "개인 프로필로 하나 찍었어요~"),
-        Review(imageName: "sampleImage25", score: 5, contentText: "커플 스냅 사진 분위기 진짜 잘 맞아서 좋아요"),
-        Review(imageName: "sampleImage24", score: 5, contentText: "자연스러운 분위기 선호해서 마음에 듭니다"),
-        Review(imageName: "sampleImage28", score: 5, contentText: "분위기 있게 찍고 싶었는데 잘 나왔네요 ㅎㅎ")]
+        Review(userName: "오인하", imageName: "sampleImage27", score: 4, contentText: "개인 프로필로 하나 찍었어요~"),
+        Review(userName: "한도윤", imageName: "sampleImage25", score: 5, contentText: "커플 스냅 사진 분위기 진짜 잘 맞아서 좋아요"),
+        Review(userName: "류태현", imageName: "sampleImage24", score: 5, contentText: "자연스러운 분위기 선호해서 마음에 듭니다"),
+        Review(userName: "민주영", imageName: "sampleImage28", score: 5, contentText: "분위기 있게 찍고 싶었는데 잘 나왔네요 ㅎㅎ")]
     
     // MARK: - UIComponents
     private let editButton: UIButton = {

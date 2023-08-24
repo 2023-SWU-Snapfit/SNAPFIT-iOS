@@ -10,6 +10,7 @@ import SnapKit
 
 class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
+    // MARK: - Properties
     var currentUser: User!
     
     // MARK: - UIComponents
