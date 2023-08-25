@@ -33,6 +33,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setGeneralUserLayout()
         self.setContactButtonAction()
+        self.setMoreButtonAction()
         self.setLayout()
     }
     
@@ -64,6 +65,22 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
             suggestionViewController.modalTransitionStyle = .crossDissolve
             suggestionViewController.modalPresentationStyle = .overFullScreen
             self.present(suggestionViewController, animated: true)
+        }
+    }
+    
+    private func setMoreButtonAction() {
+        self.navigationView.moreButton.setAction {
+            self.makeTwoAlertWithCancel(
+                okTitle: "신고하기",
+                secondOkTitle: "차단하기",
+                okAction: { _ in
+                    // TODO: 신고 action 추가
+                    print("신고")
+                },
+                secondOkAction: { _ in
+                    // TODO: 차단 action 추가
+                    print("차단")
+                })
         }
     }
     
