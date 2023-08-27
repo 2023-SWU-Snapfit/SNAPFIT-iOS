@@ -13,7 +13,7 @@ class ReviewCollectionViewController: UIViewController {
     // MARK: - Properties
     private var numOfItems: Int = 0
     private var reviews: [Review] = []
-    var sendUpdateDelegate: SendUpdateDelegate?
+    var reviewDataDelegate: ReviewDataDelegate?
     
     // MARK: - UI Components
     let titleLabel = UILabel()
@@ -43,7 +43,7 @@ class ReviewCollectionViewController: UIViewController {
     }
     
     public func setDelegate(_ receiver: SnapfitUserInformationViewController) {
-        self.sendUpdateDelegate = receiver
+        self.reviewDataDelegate = receiver
     }
     
     private func avgScore() -> Double {
@@ -76,7 +76,7 @@ class ReviewCollectionViewController: UIViewController {
 
 extension ReviewCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.sendUpdateDelegate?.sendUpdate(data: self.reviews[indexPath.row])
+        self.reviewDataDelegate?.sendReview(data: self.reviews[indexPath.row])
     }
 }
 

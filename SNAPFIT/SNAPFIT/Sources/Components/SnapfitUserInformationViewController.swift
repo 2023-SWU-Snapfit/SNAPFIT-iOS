@@ -202,10 +202,10 @@ class SnapfitUserInformationViewController: BaseViewController {
     }
 }
 
-extension SnapfitUserInformationViewController: SendUpdateDelegate {
-    func sendUpdate(data: Any?) {
+extension SnapfitUserInformationViewController: ReviewDataDelegate {
+    func sendReview(data: Review) {
         lazy var viewController: ReviewDetailViewController = ReviewDetailViewController()
-        viewController.review = data as? Review
+        viewController.review = data
         viewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(viewController, animated: true)
     }

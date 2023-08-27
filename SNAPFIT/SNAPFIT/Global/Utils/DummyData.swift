@@ -62,6 +62,44 @@ struct User: Codable, Hashable {
         }
         return rArray
     }
+    
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.userName = try container.decode(String.self, forKey: .userName)
+        self.isApproved = try container.decode(Bool.self, forKey: .isApproved)
+        self.isPhotographer = try container.decode(Bool.self, forKey: .isPhotographer)
+        self.instagramID = try container.decode(String.self, forKey: .instagramID)
+        self.emailAddress = try container.decodeIfPresent(String.self, forKey: .emailAddress)
+        self.introduceText = try container.decodeIfPresent(String.self, forKey: .introduceText)
+        self.possibleDateText = try container.decodeIfPresent(String.self, forKey: .possibleDateText)
+        self.priceText = try container.decodeIfPresent(String.self, forKey: .priceText)
+        self.profileImageName = try container.decodeIfPresent(String.self, forKey: .profileImageName)
+        self.backgroundImageName = try container.decodeIfPresent(String.self, forKey: .backgroundImageName)
+        self.galleryImageText = try container.decode([String].self, forKey: .galleryImageText)
+        self.reviewText = try container.decode([String].self, forKey: .reviewText)
+        self.reviewScore = try container.decode([Int].self, forKey: .reviewScore)
+        self.reviewImageText = try container.decode([String].self, forKey: .reviewImageText)
+    }
+    
+    init(userName: String, isApproved: Bool, isPhotographer: Bool, instagramID: String, emailAddress: String?, introduceText: String?, possibleDateText: String?, priceText: String?) {
+        self.userName = userName
+        self.isApproved = isApproved
+        self.isPhotographer = isPhotographer
+        self.instagramID = instagramID
+        self.emailAddress = emailAddress
+        self.introduceText = introduceText
+        self.possibleDateText = possibleDateText
+        self.priceText = priceText
+        self.profileImageName = "sampleImage23"
+        self.backgroundImageName = "sampleImage25"
+        self.galleryImageText = ["sampleImage23", "sampleImage26", "sampleImage28", "sampleImage29"]
+        self.reviewText = ["dd", "bb", "Good!"]
+        self.reviewScore = [5,3,4]
+        self.reviewImageText = ["", "sampleImage23", "sampleImage29"]
+    }
+    
+    
 //    private var reservationDate: [Date]
 //    private var reservationText: [String]
 //    var reservationUsers: [Reservation] {
