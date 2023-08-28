@@ -10,4 +10,69 @@ import SnapKit
 
 class MypageGeneralUserEditingViewController: SnapfitUserInformationEditingViewController {
     
+    // MARK: - Properties
+    var currentUser: User!
+    var sendUpdateDelegate: SendUpdateDelegate?
+    
+    // MARK: - UIComponents
+    private let navigationView: SnapfitNavigationView = {
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backSave)
+        return view
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setGeneralUserLayout()
+        self.setEditingActions()
+        self.setSaveButtonAction()
+        self.setLayout()
+    }
+    
+    // MARK: - Methods
+    public func setUserInformation(currentUser: User) {
+        self.currentUser = currentUser
+        self.setProfileImage(profileImage: currentUser.profileImage)
+        self.setBasicData(
+            isApproved: true,
+            nicknameText: currentUser.userName,
+            instagramText: currentUser.instagramID
+        )
+        self.setAdditionalData(
+            mailText: currentUser.emailAddress ?? "",
+            introduceText: currentUser.introduceText ?? "",
+            possibleDateText: currentUser.possibleDateText ?? "",
+            priceText: currentUser.priceText ?? ""
+        )
+    }
+    
+    private func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
+        self.setMailText(text: mailText)
+        self.setIntroduceText(text: introduceText)
+        self.setPossibleDateText(text: possibleDateText)
+        self.setPriceText(text: priceText)
+    }
+    
+    private func setSaveButtonAction() {
+        self.navigationView.saveButton.setAction {
+            self.currentUser = self.getNewUserInformation()
+            self.sendUpdateDelegate?.sendUpdate(data: self.currentUser)
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func setLayout() {
+        self.setNavigationView()
+    }
+    
+    private func setNavigationView() {
+        self.navigationView.tintColor = .sfWhite
+        self.addAtContentView(component: navigationView)
+        self.navigationView.snp.makeConstraints{ make in
+            make.top.equalTo(60)
+            make.left.right.equalToSuperview()
+        }
+        self.navigationView.backButton.setAction {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
 }

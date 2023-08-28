@@ -28,6 +28,8 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
     // MARK: - Properties
     private var isPhotographer: Bool = false
     private var isApproved: Bool = false
+    private let imagePicker: UIImagePickerController = UIImagePickerController()
+    private var isSelectProfile: Bool = true
     
     // MARK: - UIComponents
     private let scrollView: UIScrollView = {
@@ -159,6 +161,7 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
         self.setNotification()
         self.setTextViewDelegate()
         self.setOneTapAction()
+        self.setImagePicker()
     }
     
     private func setNotification() {
@@ -183,7 +186,9 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
     }
     
     public func getNewUserInformation() -> User {
-        return User(userName: self.nicknameTextView.text, isApproved: self.isApproved, isPhotographer: self.isPhotographer, instagramID: self.instagramTextField.text, emailAddress: self.mailTextField.text, introduceText: self.introduceTextView.text, possibleDateText: self.possibleDateTextView.text, priceText: self.priceTextView.text)
+        let newUser = User(userName: self.nicknameTextView.text, isApproved: self.isApproved, isPhotographer: self.isPhotographer, instagramID: self.instagramTextField.text, emailAddress: self.mailTextField.text, introduceText: self.introduceTextView.text, possibleDateText: self.possibleDateTextView.text, priceText: self.priceTextView.text)
+        // TODO: image 변경된 사항 추가
+        return newUser
     }
     
     public func setIsPhotographer(state: Bool){
@@ -239,15 +244,28 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
     @objc func moveContentViewUpside(_ notification: Notification) {
         let d = notification.userInfo!
         let r = (d[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        self.priceTextView.snp.updateConstraints{ make in
-            make.bottom.equalToSuperview().inset(r.height)
+        
+        if isPhotographer {
+            self.priceTextView.snp.updateConstraints{ make in
+                make.bottom.equalToSuperview().inset(r.height)
+            }
+        } else {
+            self.introduceTextView.snp.updateConstraints{ make in
+                make.bottom.equalToSuperview().inset(r.height)
+            }
         }
     }
     
     @objc func moveContentViewCenter(_ notification: Notification) {
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        self.priceTextView.snp.updateConstraints{ make in
-            make.bottom.equalToSuperview().inset(20)
+        if isPhotographer {
+            self.priceTextView.snp.updateConstraints{ make in
+                make.bottom.equalToSuperview().inset(20)
+            }
+        } else {
+            self.introduceTextView.snp.updateConstraints{ make in
+                make.bottom.equalToSuperview().inset(20)
+            }
         }
     }
 }
@@ -280,7 +298,6 @@ extension SnapfitUserInformationEditingViewController {
         self.setInstagramLayout()
         self.setMailLayout()
         self.setIntroduceLayout()
-        self.setPossibleDateAndPriceLayout()
     }
     
     private func setEssentialUILayout(profileImageTopConstraint: ConstraintRelatableTarget) {
@@ -362,6 +379,9 @@ extension SnapfitUserInformationEditingViewController {
             make.left.equalTo(20)
             make.width.equalToSuperview().inset(20)
             make.height.equalTo(134)
+            if !isPhotographer {
+                make.bottom.equalToSuperview().inset(20)
+            }
         }
     }
     
@@ -402,14 +422,54 @@ extension SnapfitUserInformationEditingViewController: UITextViewDelegate {
         self.possibleDateTextView.delegate = self
         self.priceTextView.delegate = self
     }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
-        let offset: CGFloat = textView.frame.origin.y - 400
-        if self.scrollView.frame.size.height + offset > self.contentView.frame.height {
-            print("A")
-            self.scrollView.setContentOffset(CGPoint(x:0, y: self.scrollView.frame.height - 300), animated: true)
+        if isPhotographer {
+            let offset: CGFloat = textView.frame.origin.y - 400
+            if self.scrollView.frame.size.height + offset > self.contentView.frame.height {
+                self.scrollView.setContentOffset(CGPoint(x:0, y: self.scrollView.frame.height - 300), animated: true)
+            } else {
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+            }
         } else {
-            print("B")
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 60), animated: true)
         }
+    }
+}
+
+extension SnapfitUserInformationEditingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func setImagePicker() {
+        self.imagePicker.delegate = self
+        self.profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectProfileImage)))
+        self.profileImageView.isUserInteractionEnabled = true
+        
+        self.bannerImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectBannerImage)))
+        self.bannerImageView.isUserInteractionEnabled = true
+    }
+    private func openLibrary() {
+        self.imagePicker.sourceType = .photoLibrary
+        self.imagePicker.modalPresentationStyle = .fullScreen
+        self.present(self.imagePicker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if isSelectProfile {
+                self.profileImageView.image = image
+            } else {
+                self.bannerImageView.image = image
+            }
+        }
+        self.dismiss(animated: true)
+    }
+    
+    @objc func selectProfileImage() {
+        self.isSelectProfile = true
+        self.openLibrary()
+    }
+    
+    @objc func selectBannerImage() {
+        self.isSelectProfile = false
+        self.openLibrary()
     }
 }

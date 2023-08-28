@@ -40,6 +40,7 @@ class ReviewCollectionViewController: UIViewController {
     public func setReview(reviews: [Review]) {
         self.numOfItems = reviews.count
         self.reviews = reviews
+        self.titleLabel.text = "리뷰(★ \(String(format: "%.1f", self.avgScore())))"
     }
     
     public func setDelegate(_ receiver: SnapfitUserInformationViewController) {

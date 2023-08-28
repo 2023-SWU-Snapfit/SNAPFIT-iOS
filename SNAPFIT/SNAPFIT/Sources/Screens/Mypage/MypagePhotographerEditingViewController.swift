@@ -54,9 +54,10 @@ class MypagePhotographerEditingViewController: SnapfitUserInformationEditingView
     }
     
     private func setSaveButtonAction() {
-        self.navigationView.moreButton.setAction {
+        self.navigationView.saveButton.setAction {
             self.currentUser = self.getNewUserInformation()
             self.sendUpdateDelegate?.sendUpdate(data: self.currentUser)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

@@ -10,6 +10,29 @@ import SnapKit
 
 class MypageGeneralUserViewController: SnapfitUserInformationViewController {
     
+    var currentUser: User = User(
+        userName: "bb098765",
+        isApproved: true,
+        isPhotographer: false,
+        instagramID: "",
+        emailAddress: "e-mail.emailLabel.com",
+        introduceText: """
+    6월 말 우정 스냅 사진 촬영 작가 구하는 중!
+    -- 경기 전북 출장 가능 --
+    """,
+        possibleDateText: "",
+        priceText: """
+    가격 문의 바로 주세요
+    """)
+    
+    let profileImage: UIImage = UIImage(named: "sampleImage23")!
+    let galleryImages: [UIImage] = [UIImage(named: "sampleImage23")!, UIImage(named: "sampleImage26")!, UIImage(named: "sampleImage28")!, UIImage(named: "sampleImage29")!]
+    let reviewData: [Review] = [
+        Review(userName: "오인하", imageName: "sampleImage27", score: 4, contentText: "개인 프로필로 하나 찍었어요~"),
+        Review(userName: "한도윤", imageName: "sampleImage25", score: 5, contentText: "커플 스냅 사진 분위기 진짜 잘 맞아서 좋아요"),
+        Review(userName: "류태현", imageName: "sampleImage24", score: 3, contentText: "자연스러운 분위기 선호해서 마음에 듭니다"),
+        Review(userName: "민주영", imageName: "sampleImage28", score: 5, contentText: "분위기 있게 찍고 싶었는데 잘 나왔네요 ㅎㅎ")]
+    
     let editButton: UIButton = {
         let button: UIButton = UIButton()
         button.configuration = .filled()
@@ -27,15 +50,8 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         self.setEditButtonAction()
         
         self.setGeneralUserLayout()
+        self.setMypageData()
         self.setMypageLayout()
-        self.setApproved(approveState: true)
-        self.setInstagramText(text: "bb098765")
-        self.setMailText(text: "e-mail.emailLabel.com")
-        self.setIntroduceText(text: """
-    6월 말 우정 스냅 사진 촬영 작가 구하는 중!
-    -- 경기 전북 출장 가능 --
-    """
-                             )
     }
     
     private func setMypageLayout() {
@@ -46,9 +62,34 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         }
     }
     
+    public func setMypageData() {
+        self.setProfileImage(profileImage: self.profileImage)
+        self.setBasicData(
+            isApproved: true,
+            nicknameText: currentUser.userName,
+            instagramText: currentUser.instagramID
+        )
+        self.setMailText(text: currentUser.emailAddress ?? "")
+        self.setIntroduceText(text: currentUser.introduceText ?? "")
+        self.setGalleryAndReviewData(galleryImages: self.galleryImages, reviews: self.reviewData)
+    }
+    
     private func setEditButtonAction() {
         self.editButton.setAction {
-            self.navigationController?.pushViewController(SnapfitUserInformationEditingViewController(), animated: true)
+            lazy var viewController: MypageGeneralUserEditingViewController = MypageGeneralUserEditingViewController()
+            viewController.setUserInformation(currentUser: self.currentUser)
+            viewController.sendUpdateDelegate = self
+            viewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
+    }
+}
+
+extension MypageGeneralUserViewController: SendUpdateDelegate {
+    func sendUpdate(data: Any?) {
+        // TODO: user data 업데이트 코드
+        guard let newUserData = data as? User else { return }
+        self.currentUser.userName = newUserData.userName
+        self.setNickname(text: newUserData.userName)
     }
 }

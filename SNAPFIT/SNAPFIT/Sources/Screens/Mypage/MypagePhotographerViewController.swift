@@ -40,7 +40,7 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     원본 장 당 2000원
     
     서울, 경기 외 지역 출장 시 출장비 문의 후 결정
-""")
+    """)
     let profileImage: UIImage = UIImage(named: "sampleImage23")!
     let bannerImage: UIImage = UIImage(named: "sampleImage25")!
     let galleryImages: [UIImage] = [UIImage(named: "sampleImage23")!, UIImage(named: "sampleImage26")!, UIImage(named: "sampleImage28")!, UIImage(named: "sampleImage29")!]
@@ -68,12 +68,6 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
         self.setEditButtonAction()
         
         self.setMypageData()
-        self.setNickname(text: self.currentUser.userName)
-        self.setApproved(approveState: self.currentUser.isApproved)
-        self.setInstagramText(text: self.currentUser.instagramID)
-        self.setMailText(text: self.currentUser.emailAddress!)
-        self.setIntroduceText(text:self.currentUser.introduceText ?? "")
-        self.setPossibleDateText(text:self.currentUser.possibleDateText ?? "")
         self.setPhotographerLayout()
         self.setMypageLayout()
     }
@@ -87,6 +81,13 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     }
     
     public func setMypageData() {
+        self.setNickname(text: self.currentUser.userName)
+        self.setApproved(approveState: self.currentUser.isApproved)
+        self.setInstagramText(text: self.currentUser.instagramID)
+        self.setMailText(text: self.currentUser.emailAddress!)
+        self.setIntroduceText(text:self.currentUser.introduceText ?? "")
+        self.setPossibleDateText(text:self.currentUser.possibleDateText ?? "")
+        self.setPriceText(text: self.currentUser.priceText ?? "")
         self.setProfileImage(profileImage: self.profileImage)
         self.setBannerImage(bannerImage: self.bannerImage)
         self.setGalleryAndReviewData(galleryImages: self.galleryImages, reviews: self.reviewData)
