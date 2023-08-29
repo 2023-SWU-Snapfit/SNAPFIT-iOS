@@ -51,6 +51,10 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
         Review(userName: "민주영", imageName: "sampleImage28", score: 5, contentText: "분위기 있게 찍고 싶었는데 잘 나왔네요 ㅎㅎ")]
     
     // MARK: - UIComponents
+    private let navigationView: SnapfitNavigationView = {
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backSave)
+        return view
+    }()
     private let editButton: UIButton = {
         let button: UIButton = UIButton()
         button.configuration = .filled()
@@ -66,10 +70,10 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setEditButtonAction()
-        
         self.setMypageData()
         self.setPhotographerLayout()
         self.setMypageLayout()
+        self.setNavigationView()
     }
     
     private func setMypageLayout() {
@@ -100,6 +104,19 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
         viewController.modalPresentationStyle = .fullScreen
         self.editButton.setAction {
             self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    private func setNavigationView() {
+        self.addAtContentView(component: navigationView)
+        self.navigationView.snp.makeConstraints{ make in
+            make.top.equalTo(60)
+            make.left.right.equalToSuperview()
+        }
+        self.navigationView.saveButton.setAction {
+            lazy var settingViewController: SettingViewController = SettingViewController()
+            settingViewController.modalPresentationStyle = .fullScreen
+            self.present(settingViewController, animated: true)
         }
     }
 }
