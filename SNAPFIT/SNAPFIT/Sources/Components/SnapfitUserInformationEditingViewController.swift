@@ -80,6 +80,7 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
         view.setEditableStyle()
         view.setFont(font: .m13)
         view.setPlaceholder(text: Text.nicknamePlaceholder)
+        view.setLetterCount(limit: 10)
         view.isScrollEnabled = false
         return view
     }()
