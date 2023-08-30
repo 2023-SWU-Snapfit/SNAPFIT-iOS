@@ -10,6 +10,12 @@ import SnapKit
 
 class MypageGeneralUserViewController: SnapfitUserInformationViewController {
     
+    enum Text {
+        static let settingSign = "icn_setting"
+        static let editTitle = "수정하기"
+    }
+    
+    // MARK: - UI Components
     var currentUser: User = User(
         userName: "bb098765",
         isApproved: true,
@@ -34,15 +40,17 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         Review(userName: "민주영", imageName: "sampleImage28", score: 5, contentText: "분위기 있게 찍고 싶었는데 잘 나왔네요 ㅎㅎ")]
     
     // MARK: - UI Components
-    private let navigationView: SnapfitNavigationView = {
-        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backSave)
-        return view
+    private let settingButton: UIButton = {
+        let button: UIButton = UIButton()
+        button.tintColor = .sfBlack100
+        button.setImage(UIImage(named: Text.settingSign), for: .normal)
+        return button
     }()
     let editButton: UIButton = {
         let button: UIButton = UIButton()
         button.configuration = .filled()
         let attributes = [NSAttributedString.Key.font : UIFont.b14]
-        button.setAttributedTitle(NSAttributedString(string: "수정하기", attributes: attributes), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: Text.editTitle, attributes: attributes), for: .normal)
         button.titleLabel?.textColor = .sfWhite
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
         button.tintColor = .sfBlack100
@@ -58,7 +66,7 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         self.setGeneralUserLayout()
         self.setMypageData()
         self.setMypageLayout()
-        self.setNavigationView()
+        self.setSettingButton()
     }
     
     private func setMypageLayout() {
@@ -91,13 +99,14 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         }
     }
     
-    private func setNavigationView() {
-        self.addAtContentView(component: navigationView)
-        self.navigationView.snp.makeConstraints{ make in
+    private func setSettingButton() {
+        self.addAtContentView(component: self.settingButton)
+        self.settingButton.snp.makeConstraints{ make in
             make.top.equalTo(60)
-            make.left.right.equalToSuperview()
+            make.trailing.equalTo(0)
+            make.width.height.equalTo(48)
         }
-        self.navigationView.saveButton.setAction {
+        self.settingButton.setAction {
             lazy var settingViewController: SettingViewController = SettingViewController()
             settingViewController.modalPresentationStyle = .fullScreen
             self.present(settingViewController, animated: true)
