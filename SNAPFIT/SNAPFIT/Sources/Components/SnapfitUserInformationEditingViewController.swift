@@ -81,6 +81,7 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
         view.setFont(font: .m13)
         view.setPlaceholder(text: Text.nicknamePlaceholder)
         view.setLetterCount(limit: 10)
+        view.banEnter()
         view.isScrollEnabled = false
         return view
     }()
@@ -96,6 +97,7 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
         view.setEditableStyle()
         view.setFont(font: .m13)
         view.setPlaceholder(text: Text.instagramPlaceholder)
+        view.banEnter()
         view.isScrollEnabled = false
         return view
     }()
@@ -111,6 +113,7 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
         view.setEditableStyle()
         view.setFont(font: .m13)
         view.setPlaceholder(text: Text.mailPlaceholder)
+        view.banEnter()
         view.isScrollEnabled = false
         return view
     }()

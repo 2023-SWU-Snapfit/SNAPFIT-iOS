@@ -28,6 +28,7 @@ class SettingContactTableViewCell: UITableViewCell {
         let textview: SnapfitTextView = SnapfitTextView(isEditable: true)
         textview.setPlaceholder(text: Text.placeholder)
         textview.setEditableStyle()
+        textview.banEnter()
         textview.isScrollEnabled = false
         return textview
     }()

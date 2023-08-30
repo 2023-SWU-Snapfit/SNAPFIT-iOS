@@ -143,9 +143,9 @@ class SnapfitTextView: UITextView {
         self.rx.text.distinctUntilChanged()
             .withUnretained(self)
             .subscribe(onNext: { (owner, _) in
-                self.letterCountLabel.text = "\(self.text.count)/\(limit)"
-                if self.text.count > limit {
-                    self.text = "\(self.text.prefix(10))"
+                owner.letterCountLabel.text = "\(self.text.count)/\(limit)"
+                if owner.text.count > limit {
+                    owner.text = "\(self.text.prefix(10))"
                 }
             })
             .disposed(by: disposeBag)
@@ -159,6 +159,18 @@ class SnapfitTextView: UITextView {
         }
         self.textInputView.clipsToBounds = false
         self.clipsToBounds = false
+    }
+    
+    public func banEnter() {
+        self.rx.text.distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, _) in
+                if owner.text.hasSuffix("\n") {
+                    owner.text = owner.text.trimmingCharacters(in: ["\n"])
+                    owner.endEditing(true)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Methods
