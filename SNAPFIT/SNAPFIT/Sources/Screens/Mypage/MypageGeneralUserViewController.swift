@@ -33,6 +33,11 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         Review(userName: "류태현", imageName: "sampleImage24", score: 3, contentText: "자연스러운 분위기 선호해서 마음에 듭니다"),
         Review(userName: "민주영", imageName: "sampleImage28", score: 5, contentText: "분위기 있게 찍고 싶었는데 잘 나왔네요 ㅎㅎ")]
     
+    // MARK: - UI Components
+    private let navigationView: SnapfitNavigationView = {
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backSave)
+        return view
+    }()
     let editButton: UIButton = {
         let button: UIButton = UIButton()
         button.configuration = .filled()
@@ -44,6 +49,7 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         button.makeRounded(cornerRadius: 10)
         return button
     }()
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +58,7 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         self.setGeneralUserLayout()
         self.setMypageData()
         self.setMypageLayout()
+        self.setNavigationView()
     }
     
     private func setMypageLayout() {
@@ -81,6 +88,19 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
             viewController.sendUpdateDelegate = self
             viewController.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    private func setNavigationView() {
+        self.addAtContentView(component: navigationView)
+        self.navigationView.snp.makeConstraints{ make in
+            make.top.equalTo(60)
+            make.left.right.equalToSuperview()
+        }
+        self.navigationView.saveButton.setAction {
+            lazy var settingViewController: SettingViewController = SettingViewController()
+            settingViewController.modalPresentationStyle = .fullScreen
+            self.present(settingViewController, animated: true)
         }
     }
 }
