@@ -10,7 +10,7 @@ import Moya
 
 /// Logs network activity (outgoing requests and incoming responses).
 public final class NetworkLoggerPlugin: PluginType {
-    fileprivate let loggerId = "Moya_Logger"
+    fileprivate let loggerId = "📸 SNAPFIT Logger"
     fileprivate let dateFormatString = "dd/MM/yyyy HH:mm:ss"
     fileprivate let dateFormatter = DateFormatter()
     fileprivate let separator = ", "
@@ -68,17 +68,17 @@ private extension NetworkLoggerPlugin {
     }
     
     func format(_ loggerId: String, date: String, identifier: String, message: String) -> String {
-        return "\(loggerId): [\(date)] \(identifier): \(message)"
+        return "\(loggerId) [\(date)] \(identifier): \(message)"
     }
     
     func logNetworkRequest(_ request: URLRequest?) -> [String] {
         
         var output = [String]()
         
-        output += [format(loggerId, date: date, identifier: "Request", message: request?.description ?? "(invalid request)")]
+        output += [format(loggerId, date: date, identifier: "URL", message: request?.description ?? "(invalid request)")]
         
         if let headers = request?.allHTTPHeaderFields {
-            output += [format(loggerId, date: date, identifier: "Request Headers", message: headers.description)]
+            output += [format(loggerId, date: date, identifier: "Headers", message: headers.description)]
         }
         
         if let bodyStream = request?.httpBodyStream {
@@ -86,7 +86,7 @@ private extension NetworkLoggerPlugin {
         }
         
         if let httpMethod = request?.httpMethod {
-            output += [format(loggerId, date: date, identifier: "HTTP Request Method", message: httpMethod)]
+            output += [format(loggerId, date: date, identifier: "HTTP Method", message: httpMethod)]
         }
         
         if let body = request?.httpBody, let stringOutput = requestDataFormatter?(body) ?? String(data: body, encoding: .utf8), isVerbose {
@@ -102,12 +102,15 @@ private extension NetworkLoggerPlugin {
         }
         
         var output = [String]()
-        output += [format(loggerId, date: date, identifier: "Response", message: response.description)]
+//        output += [format(loggerId, date: date, identifier: "Response", message: response.description)]
+        
+        output += [format(loggerId, date: date, identifier: "Status Code", message: "\(response.statusCode)")]
         
         if let data = data, let stringData = String(data: responseDataFormatter?(data) ?? data, encoding: String.Encoding.utf8), isVerbose {
             output += [stringData]
         }
         
+        output += ["=============================================================="]
         return output
     }
 }
