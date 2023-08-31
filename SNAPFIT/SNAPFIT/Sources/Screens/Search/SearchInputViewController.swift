@@ -167,6 +167,13 @@ extension SearchInputViewController: UITableViewDelegate {
             }
         } else { return 0 }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        lazy var vc: PhotoViewController = PhotoViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.setData(image: self.searchResults.photos[indexPath.row].image)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - UI
