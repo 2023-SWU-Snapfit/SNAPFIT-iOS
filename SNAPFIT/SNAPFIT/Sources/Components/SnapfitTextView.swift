@@ -12,7 +12,21 @@ import RxCocoa
 
 class SnapfitTextView: UITextView {
     
-    private let placeholderLabel: UILabel = UILabel()
+    private let placeholderLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.textColor = .sfBlack40
+        label.font = .r14
+        label.numberOfLines = 0
+        return label
+    }()
+    private let letterCountLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.text = "0/10"
+        label.font = .m13
+        label.textColor = .sfBlack40
+        label.numberOfLines = 1
+        return label
+    }()
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Initialization
@@ -99,9 +113,6 @@ class SnapfitTextView: UITextView {
     }
     
     public func setPlaceholder(text: String) {
-        self.placeholderLabel.textColor = .sfBlack40
-        self.placeholderLabel.font = .r14
-        self.placeholderLabel.numberOfLines = 0
         self.placeholderLabel.text = text
         self.setPlaceholderLayout()
         
@@ -126,11 +137,51 @@ class SnapfitTextView: UITextView {
             .disposed(by: disposeBag)
     }
     
+    public func setLetterCount(limit: Int) {
+        self.setLetterCountLayout()
+        
+        self.rx.text.distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, _) in
+                owner.letterCountLabel.text = "\(self.text.count)/\(limit)"
+                if owner.text.count > limit {
+                    owner.text = "\(self.text.prefix(10))"
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func setLetterCountLayout() {
+        self.textInputView.addSubview(self.letterCountLabel)
+        self.letterCountLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(self.textInputView.snp.top)
+            make.trailing.equalToSuperview().inset(self.textContainerInset)
+        }
+        self.textInputView.clipsToBounds = false
+        self.clipsToBounds = false
+    }
+    
+    public func banEnter() {
+        self.rx.text.distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, _) in
+                if owner.text.hasSuffix("\n") {
+                    owner.text = owner.text.trimmingCharacters(in: ["\n"])
+                    owner.endEditing(true)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // MARK: - Methods
     public func setText(text: String = "") {
         if text == "" && !self.isEditable {
             setClearStyle()
         }
         self.text = text
+    }
+    
+    public func getCount() -> Int {
+        return self.text.count
     }
 }

@@ -10,6 +10,7 @@ import SnapKit
 
 class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
+    // MARK: - Properties
     var currentUser: User!
     
     // MARK: - UIComponents
@@ -33,6 +34,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setPhotographerLayout()
         self.setContactButtonAction()
+        self.setMoreButtonAction()
         self.setLayout()
     }
     
@@ -60,6 +62,22 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
         self.setIntroduceText(text: introduceText)
         self.setPossibleDateText(text: possibleDateText)
         self.setPriceText(text: priceText)
+    }
+    
+    private func setMoreButtonAction() {
+        self.navigationView.moreButton.setAction {
+            self.makeTwoAlertWithCancel(
+                okTitle: "신고하기",
+                secondOkTitle: "차단하기",
+                okAction: { _ in
+                    // TODO: 신고 action 추가
+                    print("신고")
+                },
+                secondOkAction: { _ in
+                    // TODO: 차단 action 추가
+                    print("차단")
+                })
+        }
     }
     
     private func setContactButtonAction() {

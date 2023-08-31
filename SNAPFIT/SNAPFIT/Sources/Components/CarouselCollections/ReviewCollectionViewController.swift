@@ -13,6 +13,7 @@ class ReviewCollectionViewController: UIViewController {
     // MARK: - Properties
     private var numOfItems: Int = 0
     private var reviews: [Review] = []
+    var reviewDataDelegate: ReviewDataDelegate?
     
     // MARK: - UI Components
     let titleLabel = UILabel()
@@ -28,9 +29,36 @@ class ReviewCollectionViewController: UIViewController {
         return collectionView
     }()
     
+    // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setCollection()
+        self.setComponents()
+    }
+    
+    // MARK: - Methods
+    public func setReview(reviews: [Review]) {
+        self.numOfItems = reviews.count
+        self.reviews = reviews
+        self.titleLabel.text = "리뷰(★ \(String(format: "%.1f", self.avgScore())))"
+    }
+    
+    public func setDelegate(_ receiver: SnapfitUserInformationViewController) {
+        self.reviewDataDelegate = receiver
+    }
+    
+    private func avgScore() -> Double {
+        let scores = self.reviews.map { $0.score }
+        return Double(scores.reduce(0,+))/Double(scores.count)
+    }
+    
+    private func setCollection() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reviewCell")
+    }
+    
+    private func setComponents() {
         self.titleLabel.text = "리뷰(★ \(String(format: "%.1f", self.avgScore())))"
         self.titleLabel.font = .b18
         
@@ -44,26 +72,13 @@ class ReviewCollectionViewController: UIViewController {
             make.top.equalTo(titleLabel).offset(16)
             make.left.right.bottom.equalToSuperview()
         }
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reviewCell")
     }
-    
-    // MARK: - Methods
-    public func setReview(reviews: [Review]) {
-        self.numOfItems = reviews.count
-        self.reviews = reviews
-    }
-    
-    private func avgScore() -> Double {
-        let scores = self.reviews.map { $0.score }
-        return Double(scores.reduce(0,+))/Double(scores.count)
-    }
-
 }
 
 extension ReviewCollectionViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.reviewDataDelegate?.sendReview(data: self.reviews[indexPath.row])
+    }
 }
 
 extension ReviewCollectionViewController: UICollectionViewDataSource {
@@ -98,6 +113,7 @@ extension ReviewCollectionViewController: UICollectionViewDataSource {
         reviewDetails.textColor = .sfBlack100
         reviewDetails.isScrollEnabled = false
         reviewDetails.isEditable = false
+        reviewDetails.isSelectable = false
         reviewDetails.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         reviewDetails.textContainer.maximumNumberOfLines = 3
         reviewDetails.textContainer.lineBreakMode = .byTruncatingTail
