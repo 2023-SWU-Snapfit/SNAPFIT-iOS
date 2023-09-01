@@ -12,5 +12,5 @@ class UserInfo {
     
     init() { }
     
-    var userID: Int?
+    var userID: Int = -1
 }
