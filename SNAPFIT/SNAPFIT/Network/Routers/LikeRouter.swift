@@ -42,7 +42,10 @@ extension LikeRouter: TargetType {
     var headers: [String: String]? {
         switch self {
         default:
-            return ["Content-Type": "application/json"]
+            return [
+                "Content-Type": "application/json",
+                "accesstoken": UserInfo.shared.accessToken
+            ]
         }
     }
 }
