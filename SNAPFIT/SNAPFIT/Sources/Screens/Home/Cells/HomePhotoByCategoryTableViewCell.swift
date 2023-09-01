@@ -26,6 +26,9 @@ final class HomePhotoByCategoryTableViewCell: UITableViewCell {
         return collectionView
     }()
     
+    var sendImageDelegate: SendImageDelegate?
+    var categoryData = Tag.shared.category.shuffled()
+    
     // MARK: Initializer
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -61,9 +64,15 @@ extension HomePhotoByCategoryTableViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalPhotoCollectionViewCell.className, for: indexPath) as? VerticalPhotoCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.setData(image: UIImage(named: "sampleImage\(Tag.shared.category.shuffled()[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
+        cell.setData(image: UIImage(named: "sampleImage\(self.categoryData[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
         
         return cell
+    }
+}
+
+extension HomePhotoByCategoryTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.sendImageDelegate?.sendUpdate(image: UIImage(named: "sampleImage\(self.categoryData[indexPath.row].id)") ?? UIImage())
     }
 }
 

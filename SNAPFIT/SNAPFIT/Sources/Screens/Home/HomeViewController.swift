@@ -104,6 +104,15 @@ extension HomeViewController: SendUpdateDelegate {
     }
 }
 
+extension HomeViewController: SendImageDelegate {
+    func sendUpdate(image: UIImage) {
+        lazy var vc: PhotoViewController = PhotoViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.setData(image: image)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 // MARK: - UITableViewDataSource
 
 extension HomeViewController: UITableViewDataSource {
@@ -146,12 +155,13 @@ extension HomeViewController: UITableViewDataSource {
             case .photoBySelectedCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByCategoryTableViewCell.className) as? HomePhotoByCategoryTableViewCell
                 else { return UITableViewCell() }
-                
+                cell.sendImageDelegate = self
                 return cell
             case .photoByPersonalCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByPersonalCetegoryTableViewCell.className) as? HomePhotoByPersonalCetegoryTableViewCell
                 else { return UITableViewCell() }
                 cell.setTitle(titleTag: Tag.shared.category.shuffled()[0].name)
+                cell.sendImageDelegate = self
                 return cell
             case .bestPhotographerList:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotographerListTableViewCell.className) as? PhotographerListTableViewCell

@@ -33,6 +33,9 @@ final class HomePhotoByPersonalCetegoryTableViewCell: UITableViewCell {
         return collectionView
     }()
     
+    var sendImageDelegate: SendImageDelegate?
+    var categoryData = Tag.shared.category.shuffled()
+    
     // MARK: Initializer
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -72,15 +75,19 @@ extension HomePhotoByPersonalCetegoryTableViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalPhotoCollectionViewCell.className, for: indexPath) as? HorizontalPhotoCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.setData(image: UIImage(named: "sampleImage\(Tag.shared.category.shuffled()[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
+        cell.setData(image: UIImage(named: "sampleImage\(self.categoryData[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
         
         return cell
     }
 }
 
-extension HomePhotoByPersonalCetegoryTableViewCell: UICollectionViewDelegateFlowLayout {
+extension HomePhotoByPersonalCetegoryTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 208, height: 202)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.sendImageDelegate?.sendUpdate(image: UIImage(named: "sampleImage\(self.categoryData[indexPath.row].id)") ?? UIImage())
     }
 }
 

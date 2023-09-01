@@ -28,6 +28,7 @@ final class NotificationViewController: BaseViewController {
         super.viewDidLoad()
         
         self.setLayout()
+        self.setBackButtonAction(self.navigationView.backButton)
     }
     
     // MARK: Methods
