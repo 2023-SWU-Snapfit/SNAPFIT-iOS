@@ -110,6 +110,7 @@
 		FF2939782A37375200C169E3 /* PhotoSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939772A37375200C169E3 /* PhotoSearchResultTableViewCell.swift */; };
 		FF29397B2A376A6F00C169E3 /* SendUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29397A2A376A6F00C169E3 /* SendUpdateDelegate.swift */; };
 		FF2E86A12AA20BCE00258D75 /* BaseResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A02AA20BCE00258D75 /* BaseResponseType.swift */; };
+		FF2E86A32AA20C0600258D75 /* SnapfitMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A22AA20C0600258D75 /* SnapfitMoyaProvider.swift */; };
 		FFD375D82AA0E749005099EC /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD375D72AA0E749005099EC /* BaseService.swift */; };
 /* End PBXBuildFile section */
 
@@ -215,6 +216,7 @@
 		FF2939772A37375200C169E3 /* PhotoSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		FF29397A2A376A6F00C169E3 /* SendUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateDelegate.swift; sourceTree = "<group>"; };
 		FF2E86A02AA20BCE00258D75 /* BaseResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseType.swift; sourceTree = "<group>"; };
+		FF2E86A22AA20C0600258D75 /* SnapfitMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitMoyaProvider.swift; sourceTree = "<group>"; };
 		FFD375D72AA0E749005099EC /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -537,6 +539,7 @@
 				C7E9002B2A0BC92200CC620B /* APIConstants.swift */,
 				C7E9002D2A0BC99C00CC620B /* NetworkResult.swift */,
 				FF2E86A02AA20BCE00258D75 /* BaseResponseType.swift */,
+				FF2E86A22AA20C0600258D75 /* SnapfitMoyaProvider.swift */,
 			);
 			path = APIEssentials;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 				FF2939692A363D3300C169E3 /* Tag.swift in Sources */,
 				C766F1782A10A41C009BC30E /* UserDefaults+.swift in Sources */,
 				6A04FE8A2A20CD5100FADEC8 /* SnapfitUserInformationViewController.swift in Sources */,
+				FF2E86A32AA20C0600258D75 /* SnapfitMoyaProvider.swift in Sources */,
 				C766F1602A109AAB009BC30E /* ClassName.swift in Sources */,
 				FF2E86A12AA20BCE00258D75 /* BaseResponseType.swift in Sources */,
 				C74499F12A1FAEDD00C21AD4 /* TagCollectionViewCell.swift in Sources */,
