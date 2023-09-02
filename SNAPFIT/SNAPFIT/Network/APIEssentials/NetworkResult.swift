@@ -5,9 +5,9 @@
 //  Created by madilyn on 2023/05/10.
 //
 
-enum NetworkResult<T> {
-    case success(T)
-    case requestErr(T)
+enum NetworkResult<ResponseData> {
+    case success(ResponseData)
+    case requestErr(ResponseData)
     case pathErr
     case serverErr
     case networkFail

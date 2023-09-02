@@ -2,7 +2,7 @@
 //  BaseResponseType.swift
 //  SNAPFIT
 //
-//  Created by madilyn on 2023/05/10.
+//  Created by Jungbin on 2023/09/01.
 //
 
 import Foundation

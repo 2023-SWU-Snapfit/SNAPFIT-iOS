@@ -1,14 +1,14 @@
 //
-//  BaseAPI.swift
+//  BaseService.swift
 //  SNAPFIT
 //
-//  Created by madilyn on 2023/05/10.
+//  Created by Jungbin on 2023/09/01.
 //
 
 import Foundation
 import Moya
 
-class BaseAPI {
+class BaseService {
     func judgeStatus<T: Codable>(by statusCode: Int, _ data: Data, _ type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(BaseResponseType<T>.self, from: data)

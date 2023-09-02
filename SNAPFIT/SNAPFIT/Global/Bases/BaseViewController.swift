@@ -78,4 +78,8 @@ extension BaseViewController {
             self?.navigationController?.popViewController(animated: true)
         }
     }
+    
+    func showNetworkErrorAlert() {
+        self.makeAlert(title: Message.networkError.text)
+    }
 }
