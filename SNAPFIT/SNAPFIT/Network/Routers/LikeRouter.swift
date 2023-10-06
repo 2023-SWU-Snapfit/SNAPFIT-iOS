@@ -10,6 +10,7 @@ import Moya
 
 enum LikeRouter {
     case getLikeList
+    case postLike(targetId: Int)
 }
 
 extension LikeRouter: TargetType {
@@ -20,7 +21,7 @@ extension LikeRouter: TargetType {
     
     var path: String {
         switch self {
-        case .getLikeList:
+        case .getLikeList, .postLike:
             return "/like"
         }
     }
@@ -29,6 +30,8 @@ extension LikeRouter: TargetType {
         switch self {
         case .getLikeList:
             return .get
+        case .postLike:
+            return .put
         }
     }
     
@@ -36,6 +39,11 @@ extension LikeRouter: TargetType {
         switch self {
         case .getLikeList:
             return .requestPlain
+        case .postLike(let targetId):
+            let body : [String : Any] = [
+                LikePutRequestDTO.CodingKeys.targetId.rawValue : targetId
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
     

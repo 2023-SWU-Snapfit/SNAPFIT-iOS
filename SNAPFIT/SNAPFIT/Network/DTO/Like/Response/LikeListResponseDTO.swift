@@ -9,14 +9,14 @@ import Foundation
 
 // MARK: - LikeListResponseDTOElement
 struct LikeListResponseDTOElement: Codable {
-    let id: Int
     let targetID: Int
-    let userID: Int
+    let nickname: String
+    let profileImageUrl: String?
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
         case targetID = "targetId"
-        case userID = "userId"
+        case nickname = "nickname"
+        case profileImageUrl = "profileImageUrl"
     }
 }
 
