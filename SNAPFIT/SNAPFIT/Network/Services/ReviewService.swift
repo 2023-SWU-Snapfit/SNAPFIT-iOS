@@ -8,7 +8,6 @@
 import Foundation
 import Moya
 
-// TODO: Data로 된 postReview 수정
 internal protocol ReviewServiceProtocol {
     func getReviewList(userId: Int, completion: @escaping (NetworkResult<Any>) -> (Void))
     func getReviewDetail(reviewId: Int, completion: @escaping (NetworkResult<Any>) -> (Void))

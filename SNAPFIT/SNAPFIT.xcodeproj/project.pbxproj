@@ -15,8 +15,16 @@
 		6A0E39B82A10CD4A00DC531A /* BorderedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E39B62A10CD4A00DC531A /* BorderedTableViewCell.swift */; };
 		6A0E39B92A10CD4A00DC531A /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E39B72A10CD4A00DC531A /* FavoriteListViewController.swift */; };
 		6A1CFD332A0D1C29006971AE /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1CFD322A0D1C29006971AE /* Preview.swift */; };
+		6A2AE6162ACEC43900B42FF8 /* LikePutRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2AE6152ACEC43900B42FF8 /* LikePutRequestDTO.swift */; };
+		6A2AE6192ACEC8AC00B42FF8 /* ReservationPostRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2AE6182ACEC8AC00B42FF8 /* ReservationPostRequestDTO.swift */; };
 		6A2D0BB72A9D7CC900B3E123 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D0BB62A9D7CC900B3E123 /* SettingViewController.swift */; };
 		6A3002BF2A30D2D9004D5A60 /* ReservationSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3002BE2A30D2D9004D5A60 /* ReservationSuggestionViewController.swift */; };
+		6A3C4D432AA45A73005E021E /* ReviewListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C4D422AA45A73005E021E /* ReviewListResponseDTO.swift */; };
+		6A3C4D452AA45DC1005E021E /* ReviewDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C4D442AA45DC1005E021E /* ReviewDetailResponseDTO.swift */; };
+		6A3C4D472AA4873A005E021E /* ReviewDeleteRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C4D462AA4873A005E021E /* ReviewDeleteRequestDTO.swift */; };
+		6A3C4D4B2AA48E41005E021E /* ReviewPostRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C4D4A2AA48E41005E021E /* ReviewPostRequestDTO.swift */; };
+		6A3F09522AA344B300C51179 /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3F09512AA344B300C51179 /* ReviewRouter.swift */; };
+		6A3F09542AA3475300C51179 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3F09532AA3475300C51179 /* ReviewService.swift */; };
 		6A3FA4C12A2C1099000382CF /* MypageGeneralUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FA4C02A2C1099000382CF /* MypageGeneralUserViewController.swift */; };
 		6A3FA4C32A2C10AC000382CF /* ProfileGeneralUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FA4C22A2C10AC000382CF /* ProfileGeneralUserViewController.swift */; };
 		6A4448C12A98375F00208092 /* SnapfitUserInformationEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4448C02A98375F00208092 /* SnapfitUserInformationEditingViewController.swift */; };
@@ -29,6 +37,17 @@
 		6AA54F862A2436B8001E9D2C /* ReservatinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA54F852A2436B8001E9D2C /* ReservatinDetailViewController.swift */; };
 		6AA612AE2A176BE200C49095 /* UserGalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA612AD2A176BE200C49095 /* UserGalleryCollectionViewController.swift */; };
 		6AA612B02A17C48B00C49095 /* ReviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */; };
+		6AAB9AB82ACD5DEE00B09A0A /* ReportRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB9AB72ACD5DEE00B09A0A /* ReportRouter.swift */; };
+		6AAB9ABA2ACD5DFB00B09A0A /* BlockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB9AB92ACD5DFB00B09A0A /* BlockRouter.swift */; };
+		6AAB9ABC2ACD717F00B09A0A /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB9ABB2ACD717F00B09A0A /* ReportService.swift */; };
+		6AAB9ABE2ACD725900B09A0A /* ReportRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB9ABD2ACD725900B09A0A /* ReportRequestDTO.swift */; };
+		6AAB9AC12ACD758600B09A0A /* BlockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB9AC02ACD758600B09A0A /* BlockService.swift */; };
+		6AAB9AC42ACD75C600B09A0A /* BlockRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB9AC32ACD75C600B09A0A /* BlockRequestDTO.swift */; };
+		6AB8075E2AD14EE600FAF8BE /* ReservationPutRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8075D2AD14EE600FAF8BE /* ReservationPutRequestDTO.swift */; };
+		6AB807622AD14F2600FAF8BE /* ReservationListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB807612AD14F2600FAF8BE /* ReservationListResponseDTO.swift */; };
+		6AB807642AD14F3F00FAF8BE /* ReservationDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB807632AD14F3F00FAF8BE /* ReservationDetailResponseDTO.swift */; };
+		6AB807662AD153E300FAF8BE /* ReservationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB807652AD153E300FAF8BE /* ReservationRouter.swift */; };
+		6AB807682AD157A600FAF8BE /* ReservationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB807672AD157A600FAF8BE /* ReservationService.swift */; };
 		6AC8A1D72A3448EF006A0689 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8A1D62A3448EF006A0689 /* DummyData.swift */; };
 		6AC8A1D92A344BAE006A0689 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8A1D82A344BAE006A0689 /* ModelData.swift */; };
 		6AC8A1DB2A3456EB006A0689 /* Users.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AC8A1DA2A3456EB006A0689 /* Users.json */; };
@@ -108,13 +127,13 @@
 		FF2939762A36E32500C169E3 /* SearchResultTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939752A36E32500C169E3 /* SearchResultTableViewHeaderView.swift */; };
 		FF2939782A37375200C169E3 /* PhotoSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939772A37375200C169E3 /* PhotoSearchResultTableViewCell.swift */; };
 		FF29397B2A376A6F00C169E3 /* SendUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29397A2A376A6F00C169E3 /* SendUpdateDelegate.swift */; };
+		FF29397D2A380F7100C169E3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29397C2A380F7100C169E3 /* PhotoViewController.swift */; };
 		FF2E86A12AA20BCE00258D75 /* BaseResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A02AA20BCE00258D75 /* BaseResponseType.swift */; };
 		FF2E86A32AA20C0600258D75 /* SnapfitMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A22AA20C0600258D75 /* SnapfitMoyaProvider.swift */; };
 		FF2E86A52AA20C7D00258D75 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A42AA20C7D00258D75 /* LikeService.swift */; };
 		FF2E86A82AA20C8900258D75 /* LikeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A72AA20C8900258D75 /* LikeRouter.swift */; };
 		FF2E86AD2AA20EB100258D75 /* LikeListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */; };
 		FFD375D82AA0E749005099EC /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD375D72AA0E749005099EC /* BaseService.swift */; };
-		FF29397D2A380F7100C169E3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29397C2A380F7100C169E3 /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,8 +144,16 @@
 		6A0E39B62A10CD4A00DC531A /* BorderedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedTableViewCell.swift; sourceTree = "<group>"; };
 		6A0E39B72A10CD4A00DC531A /* FavoriteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 		6A1CFD322A0D1C29006971AE /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
+		6A2AE6152ACEC43900B42FF8 /* LikePutRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePutRequestDTO.swift; sourceTree = "<group>"; };
+		6A2AE6182ACEC8AC00B42FF8 /* ReservationPostRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationPostRequestDTO.swift; sourceTree = "<group>"; };
 		6A2D0BB62A9D7CC900B3E123 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		6A3002BE2A30D2D9004D5A60 /* ReservationSuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationSuggestionViewController.swift; sourceTree = "<group>"; };
+		6A3C4D422AA45A73005E021E /* ReviewListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListResponseDTO.swift; sourceTree = "<group>"; };
+		6A3C4D442AA45DC1005E021E /* ReviewDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailResponseDTO.swift; sourceTree = "<group>"; };
+		6A3C4D462AA4873A005E021E /* ReviewDeleteRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeleteRequestDTO.swift; sourceTree = "<group>"; };
+		6A3C4D4A2AA48E41005E021E /* ReviewPostRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostRequestDTO.swift; sourceTree = "<group>"; };
+		6A3F09512AA344B300C51179 /* ReviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRouter.swift; sourceTree = "<group>"; };
+		6A3F09532AA3475300C51179 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		6A3FA4C02A2C1099000382CF /* MypageGeneralUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageGeneralUserViewController.swift; sourceTree = "<group>"; };
 		6A3FA4C22A2C10AC000382CF /* ProfileGeneralUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGeneralUserViewController.swift; sourceTree = "<group>"; };
 		6A4448C02A98375F00208092 /* SnapfitUserInformationEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitUserInformationEditingViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +166,17 @@
 		6AA54F852A2436B8001E9D2C /* ReservatinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservatinDetailViewController.swift; sourceTree = "<group>"; };
 		6AA612AD2A176BE200C49095 /* UserGalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGalleryCollectionViewController.swift; sourceTree = "<group>"; };
 		6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewController.swift; sourceTree = "<group>"; };
+		6AAB9AB72ACD5DEE00B09A0A /* ReportRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRouter.swift; sourceTree = "<group>"; };
+		6AAB9AB92ACD5DFB00B09A0A /* BlockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockRouter.swift; sourceTree = "<group>"; };
+		6AAB9ABB2ACD717F00B09A0A /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
+		6AAB9ABD2ACD725900B09A0A /* ReportRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRequestDTO.swift; sourceTree = "<group>"; };
+		6AAB9AC02ACD758600B09A0A /* BlockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockService.swift; sourceTree = "<group>"; };
+		6AAB9AC32ACD75C600B09A0A /* BlockRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockRequestDTO.swift; sourceTree = "<group>"; };
+		6AB8075D2AD14EE600FAF8BE /* ReservationPutRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationPutRequestDTO.swift; sourceTree = "<group>"; };
+		6AB807612AD14F2600FAF8BE /* ReservationListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListResponseDTO.swift; sourceTree = "<group>"; };
+		6AB807632AD14F3F00FAF8BE /* ReservationDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailResponseDTO.swift; sourceTree = "<group>"; };
+		6AB807652AD153E300FAF8BE /* ReservationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRouter.swift; sourceTree = "<group>"; };
+		6AB807672AD157A600FAF8BE /* ReservationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationService.swift; sourceTree = "<group>"; };
 		6AC8A1D62A3448EF006A0689 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		6AC8A1D82A344BAE006A0689 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		6AC8A1DA2A3456EB006A0689 /* Users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Users.json; sourceTree = "<group>"; };
@@ -217,13 +255,13 @@
 		FF2939752A36E32500C169E3 /* SearchResultTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewHeaderView.swift; sourceTree = "<group>"; };
 		FF2939772A37375200C169E3 /* PhotoSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		FF29397A2A376A6F00C169E3 /* SendUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateDelegate.swift; sourceTree = "<group>"; };
+		FF29397C2A380F7100C169E3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FF2E86A02AA20BCE00258D75 /* BaseResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseType.swift; sourceTree = "<group>"; };
 		FF2E86A22AA20C0600258D75 /* SnapfitMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitMoyaProvider.swift; sourceTree = "<group>"; };
 		FF2E86A42AA20C7D00258D75 /* LikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
 		FF2E86A72AA20C8900258D75 /* LikeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRouter.swift; sourceTree = "<group>"; };
 		FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListResponseDTO.swift; sourceTree = "<group>"; };
 		FFD375D72AA0E749005099EC /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
-		FF29397C2A380F7100C169E3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +317,42 @@
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
+		6A2AE6172ACEC88300B42FF8 /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				6AB807602AD14EF500FAF8BE /* Response */,
+				6AB8075F2AD14EEB00FAF8BE /* Request */,
+			);
+			path = Reservation;
+			sourceTree = "<group>";
+		};
+		6A3C4D482AA489BB005E021E /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				6A3C4D422AA45A73005E021E /* ReviewListResponseDTO.swift */,
+				6A3C4D442AA45DC1005E021E /* ReviewDetailResponseDTO.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		6A3C4D492AA489CD005E021E /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				6A3C4D462AA4873A005E021E /* ReviewDeleteRequestDTO.swift */,
+				6A3C4D4A2AA48E41005E021E /* ReviewPostRequestDTO.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		6A3C4D4C2AA48F6F005E021E /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				6A3C4D482AA489BB005E021E /* Response */,
+				6A3C4D492AA489CD005E021E /* Request */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
 		6A4566BE2A13536200AE5F62 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +373,48 @@
 				6AA612AF2A17C48B00C49095 /* ReviewCollectionViewController.swift */,
 			);
 			path = CarouselCollections;
+			sourceTree = "<group>";
+		};
+		6AAB9ABF2ACD727600B09A0A /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				6AAB9ABD2ACD725900B09A0A /* ReportRequestDTO.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		6AAB9AC22ACD75B600B09A0A /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				6AAB9AC32ACD75C600B09A0A /* BlockRequestDTO.swift */,
+			);
+			path = Block;
+			sourceTree = "<group>";
+		};
+		6AB6B9142ACFDD2D005C31ED /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				6A2AE6152ACEC43900B42FF8 /* LikePutRequestDTO.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		6AB8075F2AD14EEB00FAF8BE /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				6A2AE6182ACEC8AC00B42FF8 /* ReservationPostRequestDTO.swift */,
+				6AB8075D2AD14EE600FAF8BE /* ReservationPutRequestDTO.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		6AB807602AD14EF500FAF8BE /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				6AB807612AD14F2600FAF8BE /* ReservationListResponseDTO.swift */,
+				6AB807632AD14F3F00FAF8BE /* ReservationDetailResponseDTO.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		C71730EB2A17423000155D09 /* Reservation */ = {
@@ -596,6 +712,10 @@
 			isa = PBXGroup;
 			children = (
 				FF2E86A72AA20C8900258D75 /* LikeRouter.swift */,
+				6A3F09512AA344B300C51179 /* ReviewRouter.swift */,
+				6AAB9AB72ACD5DEE00B09A0A /* ReportRouter.swift */,
+				6AAB9AB92ACD5DFB00B09A0A /* BlockRouter.swift */,
+				6AB807652AD153E300FAF8BE /* ReservationRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -603,7 +723,11 @@
 		FF2E86A92AA20E3800258D75 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				6A2AE6172ACEC88300B42FF8 /* Reservation */,
+				6AAB9AC22ACD75B600B09A0A /* Block */,
+				6AAB9ABF2ACD727600B09A0A /* Report */,
 				FF2E86AA2AA20E9000258D75 /* Like */,
+				6A3C4D4C2AA48F6F005E021E /* Review */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -612,6 +736,7 @@
 			isa = PBXGroup;
 			children = (
 				FF2E86AB2AA20E9C00258D75 /* Response */,
+				6AB6B9142ACFDD2D005C31ED /* Request */,
 			);
 			path = Like;
 			sourceTree = "<group>";
@@ -629,6 +754,10 @@
 			children = (
 				FFD375D72AA0E749005099EC /* BaseService.swift */,
 				FF2E86A42AA20C7D00258D75 /* LikeService.swift */,
+				6A3F09532AA3475300C51179 /* ReviewService.swift */,
+				6AAB9ABB2ACD717F00B09A0A /* ReportService.swift */,
+				6AAB9AC02ACD758600B09A0A /* BlockService.swift */,
+				6AB807672AD157A600FAF8BE /* ReservationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -733,25 +862,34 @@
 				FFD375D82AA0E749005099EC /* BaseService.swift in Sources */,
 				C766F16E2A10A25A009BC30E /* UITextField.swift in Sources */,
 				C74499ED2A1FA84700C21AD4 /* SnapfitSearchTextField.swift in Sources */,
+				6AB8075E2AD14EE600FAF8BE /* ReservationPutRequestDTO.swift in Sources */,
 				C766F1682A10A1C8009BC30E /* UILabel+.swift in Sources */,
 				C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */,
 				C744AD612A1A81C000D30F14 /* SnapfitSearchBarButton.swift in Sources */,
 				6A4448C12A98375F00208092 /* SnapfitUserInformationEditingViewController.swift in Sources */,
+				6A3C4D452AA45DC1005E021E /* ReviewDetailResponseDTO.swift in Sources */,
 				6AFE86862A9B5A57007A8713 /* ReviewDataDelegate.swift in Sources */,
 				C74499E72A1EEBC400C21AD4 /* NotificationViewController.swift in Sources */,
 				6A85665A2A99D97300F66321 /* MypagePhotographerEditingViewController.swift in Sources */,
+				6AAB9AC42ACD75C600B09A0A /* BlockRequestDTO.swift in Sources */,
+				6AAB9ABE2ACD725900B09A0A /* ReportRequestDTO.swift in Sources */,
+				6AAB9ABA2ACD5DFB00B09A0A /* BlockRouter.swift in Sources */,
+				6A2AE6192ACEC8AC00B42FF8 /* ReservationPostRequestDTO.swift in Sources */,
 				FF2939782A37375200C169E3 /* PhotoSearchResultTableViewCell.swift in Sources */,
 				C71730F22A17C6EB00155D09 /* CALayer+.swift in Sources */,
 				C777847C2A003B1000B4AB8D /* HomeViewController.swift in Sources */,
 				C798F8252A2B661200886D0E /* VerticalPhotoCollectionViewCell.swift in Sources */,
 				C766F1582A1097AF009BC30E /* BaseViewController.swift in Sources */,
 				C70C48952A301A560052019B /* PhotographerListTableViewCell.swift in Sources */,
+				6A3C4D432AA45A73005E021E /* ReviewListResponseDTO.swift in Sources */,
 				C74499E42A1EDBFE00C21AD4 /* HomeNavigationTableViewCell.swift in Sources */,
 				C71730F02A17C6C300155D09 /* UITabBar+.swift in Sources */,
 				FF2939672A36340000C169E3 /* SearchViewController.swift in Sources */,
 				C7E9002E2A0BC99C00CC620B /* NetworkResult.swift in Sources */,
 				6AA612AE2A176BE200C49095 /* UserGalleryCollectionViewController.swift in Sources */,
 				C744AD5F2A1A75F700D30F14 /* SnapfitNavigationView.swift in Sources */,
+				6A2AE6162ACEC43900B42FF8 /* LikePutRequestDTO.swift in Sources */,
+				6AAB9AC12ACD758600B09A0A /* BlockService.swift in Sources */,
 				C766F1722A10A2B3009BC30E /* UIButton+.swift in Sources */,
 				C766F1742A10A3B6009BC30E /* String+.swift in Sources */,
 				C766F1762A10A3FB009BC30E /* ImageCacheManager.swift in Sources */,
@@ -766,25 +904,30 @@
 				6AC8A1D72A3448EF006A0689 /* DummyData.swift in Sources */,
 				FF2939692A363D3300C169E3 /* Tag.swift in Sources */,
 				C766F1782A10A41C009BC30E /* UserDefaults+.swift in Sources */,
+				6A3F09522AA344B300C51179 /* ReviewRouter.swift in Sources */,
 				6A04FE8A2A20CD5100FADEC8 /* SnapfitUserInformationViewController.swift in Sources */,
 				FF2E86A32AA20C0600258D75 /* SnapfitMoyaProvider.swift in Sources */,
 				C766F1602A109AAB009BC30E /* ClassName.swift in Sources */,
 				FF2E86A12AA20BCE00258D75 /* BaseResponseType.swift in Sources */,
+				6A3F09542AA3475300C51179 /* ReviewService.swift in Sources */,
 				FF2E86AD2AA20EB100258D75 /* LikeListResponseDTO.swift in Sources */,
 				C74499F12A1FAEDD00C21AD4 /* TagCollectionViewCell.swift in Sources */,
 				C7E9002C2A0BC92200CC620B /* APIConstants.swift in Sources */,
 				C74499EF2A1FAD1300C21AD4 /* HomeCategoryTagTableViewCell.swift in Sources */,
 				6AD589962A6811C9009C7A3C /* DateDataDelegate.swift in Sources */,
 				FF2E86A82AA20C8900258D75 /* LikeRouter.swift in Sources */,
+				6AAB9ABC2ACD717F00B09A0A /* ReportService.swift in Sources */,
 				C766F15D2A1098D3009BC30E /* UIViewController+.swift in Sources */,
 				FF2939742A364EA800C169E3 /* SearchResult.swift in Sources */,
 				C70C48972A301B9F0052019B /* PhotographerCollectionViewCell.swift in Sources */,
+				6AB807642AD14F3F00FAF8BE /* ReservationDetailResponseDTO.swift in Sources */,
 				FF29396E2A36464700C169E3 /* SearchInputViewController.swift in Sources */,
 				C766F1802A10A49C009BC30E /* UIImage+.swift in Sources */,
 				6A0E39B92A10CD4A00DC531A /* FavoriteListViewController.swift in Sources */,
 				6A0E39B32A10CD4200DC531A /* ChattingListViewController.swift in Sources */,
 				6A85665C2A99D98900F66321 /* MypageGeneralUserEditingViewController.swift in Sources */,
 				C7ED7D6A2A31CB4B0043B172 /* HomePhotoByThemeTableViewCell.swift in Sources */,
+				6AAB9AB82ACD5DEE00B09A0A /* ReportRouter.swift in Sources */,
 				C74499EB2A1FA36C00C21AD4 /* HomeSearchBarTableViewCell.swift in Sources */,
 				C798F8292A2B7AE400886D0E /* HorizontalPhotoCollectionViewCell.swift in Sources */,
 				6A8DE5A62A332E39005FCE52 /* ReservationDataProtocol.swift in Sources */,
@@ -792,7 +935,9 @@
 				C766F16C2A10A232009BC30E /* UITableView+.swift in Sources */,
 				FF29397B2A376A6F00C169E3 /* SendUpdateDelegate.swift in Sources */,
 				6AD458542A94B47F001D90A2 /* ReviewDetailViewController.swift in Sources */,
+				6AB807682AD157A600FAF8BE /* ReservationService.swift in Sources */,
 				C766F1822A10A4E3009BC30E /* UINavigationController.swift in Sources */,
+				6AB807662AD153E300FAF8BE /* ReservationRouter.swift in Sources */,
 				6A2D0BB72A9D7CC900B3E123 /* SettingViewController.swift in Sources */,
 				6A4566BD2A13534C00AE5F62 /* MypagePhotographerViewController.swift in Sources */,
 				C798F8272A2B777300886D0E /* HomePhotoByPersonalCetegoryTableViewCell.swift in Sources */,
@@ -803,7 +948,10 @@
 				C777847A2A003B1000B4AB8D /* SceneDelegate.swift in Sources */,
 				C7E900182A0BBFC000CC620B /* UIColor+.swift in Sources */,
 				C766F16A2A10A200009BC30E /* UICollectionView+.swift in Sources */,
+				6AB807622AD14F2600FAF8BE /* ReservationListResponseDTO.swift in Sources */,
+				6A3C4D4B2AA48E41005E021E /* ReviewPostRequestDTO.swift in Sources */,
 				C71730EE2A17427900155D09 /* ReservationViewController.swift in Sources */,
+				6A3C4D472AA4873A005E021E /* ReviewDeleteRequestDTO.swift in Sources */,
 				6AF625492A5D1AC200B6FF9E /* ReservationTableViewCell.swift in Sources */,
 				FF2939762A36E32500C169E3 /* SearchResultTableViewHeaderView.swift in Sources */,
 				6AA3236D2A9F19F20005453E /* SettingContactTableViewCell.swift in Sources */,

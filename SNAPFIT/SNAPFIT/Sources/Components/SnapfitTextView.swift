@@ -145,7 +145,7 @@ class SnapfitTextView: UITextView {
             .subscribe(onNext: { (owner, _) in
                 owner.letterCountLabel.text = "\(self.text.count)/\(limit)"
                 if owner.text.count > limit {
-                    owner.text = "\(self.text.prefix(10))"
+                    owner.text = "\(self.text.prefix(limit))"
                 }
             })
             .disposed(by: disposeBag)
