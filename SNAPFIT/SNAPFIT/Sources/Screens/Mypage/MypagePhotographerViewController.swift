@@ -21,7 +21,7 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     isApproved: true,
     isPhotographer: true,
     instagramID: "snap-fit",
-    emailAddress: "snap-fit.google.com",
+    emailAddress: "snap-fit@google.com",
     introduceText: """
     연인/우정 스냅 경력 3년
     서울/경기 스냅 사진 전문
