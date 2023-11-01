@@ -17,6 +17,9 @@ final class SignInViewController: BaseViewController {
         static let signIn = "로그인"
         static let signUp = "회원가입"
         static let info = "회원가입 시 이용약관과 개인정보 처리 방침에 동의하게 됩니다."
+        static let privacyPolicy = "개인정보 처리 방침"
+        static let terms = "이용약관"
+        
     }
     
     // MARK: UIComponents
@@ -70,6 +73,7 @@ final class SignInViewController: BaseViewController {
         label.font = .r12
         label.textColor = .sfBlack50
         label.textAlignment = .center
+        label.setHyperlinkedStyle(to: [Text.privacyPolicy, Text.terms], with: .m12)
         return label
     }()
     
