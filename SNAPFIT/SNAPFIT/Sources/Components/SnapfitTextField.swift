@@ -40,5 +40,6 @@ extension SnapfitTextField {
         self.returnKeyType = .done
         self.addLeftPadding(16)
         self.clearButtonMode = .always
+        self.autocorrectionType = .no
     }
 }
