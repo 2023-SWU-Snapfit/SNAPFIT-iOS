@@ -116,6 +116,7 @@
 		FF2E86AD2AA20EB100258D75 /* LikeListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */; };
 		FF896BE92AF1CD27000800ED /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BE82AF1CD27000800ED /* SignInViewController.swift */; };
 		FF896BEB2AF1FA79000800ED /* SnapfitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */; };
+		FF896BED2AF220F1000800ED /* SnapfitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEC2AF220F1000800ED /* SnapfitButton.swift */; };
 		FFD375D82AA0E749005099EC /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD375D72AA0E749005099EC /* BaseService.swift */; };
 /* End PBXBuildFile section */
 
@@ -227,6 +228,7 @@
 		FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListResponseDTO.swift; sourceTree = "<group>"; };
 		FF896BE82AF1CD27000800ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitTextField.swift; sourceTree = "<group>"; };
+		FF896BEC2AF220F1000800ED /* SnapfitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitButton.swift; sourceTree = "<group>"; };
 		FFD375D72AA0E749005099EC /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -364,6 +366,7 @@
 				C70C48962A301B9F0052019B /* PhotographerCollectionViewCell.swift */,
 				6AD2DE122A325513004214E3 /* SnapfitDatePickerViewController.swift */,
 				FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */,
+				FF896BEC2AF220F1000800ED /* SnapfitButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				FFD375D82AA0E749005099EC /* BaseService.swift in Sources */,
 				C766F16E2A10A25A009BC30E /* UITextField.swift in Sources */,
 				C74499ED2A1FA84700C21AD4 /* SnapfitSearchTextField.swift in Sources */,
+				FF896BED2AF220F1000800ED /* SnapfitButton.swift in Sources */,
 				C766F1682A10A1C8009BC30E /* UILabel+.swift in Sources */,
 				C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */,
 				C744AD612A1A81C000D30F14 /* SnapfitSearchBarButton.swift in Sources */,
