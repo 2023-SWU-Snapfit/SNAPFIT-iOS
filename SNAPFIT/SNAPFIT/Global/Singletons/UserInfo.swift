@@ -14,4 +14,6 @@ class UserInfo {
     
     var userID: Int = -1
     var accessToken: String = ""
+    var nickname: String = ""
+    var deviceToken: String = "deviceToken"
 }
