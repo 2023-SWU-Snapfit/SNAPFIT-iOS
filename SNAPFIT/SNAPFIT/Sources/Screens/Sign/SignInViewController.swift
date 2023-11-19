@@ -92,6 +92,25 @@ final class SignInViewController: BaseViewController {
     // MARK: Methods
     
     
+// MARK: - Network
+
+extension SignInViewController {
+    private func requestSignIn(data: SignInRequestDTO, completion: @escaping (SignInResponseDTO) -> ()) {
+        self.startActivityIndicator()
+        SignService.shared.requestSignIn(data: data) { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? SignInResponseDTO {
+                    completion(result)
+                }
+            case .requestErr:
+                self.makeAlert(title: "아이디 혹은 비밀번호가 맞지 않습니다.")
+            default:
+                self.showNetworkErrorAlert()
+            }
+            self.stopActivityIndicator()
+        }
+    }
 }
 
 // MARK: - UI
