@@ -48,6 +48,7 @@ final class SignInViewController: BaseViewController {
     private let passwordTextField: SnapfitTextField = {
         let textField: SnapfitTextField = SnapfitTextField()
         textField.placeholder = Text.passwordPlaceholder
+        textField.isSecureTextEntry = true
         return textField
     }()
     
