@@ -87,10 +87,23 @@ final class SignInViewController: BaseViewController {
         super.viewDidLoad()
         
         self.setLayout()
+        self.setSignInButtonAction()
     }
     
     // MARK: Methods
     
+    private func setSignInButtonAction() {
+        self.signInButton.setAction { [weak self] in
+            self?.requestSignIn(data: self?.signInData() ?? SignInRequestDTO(email: "", password: "", deviceToken: ""), completion: { response in
+                UserInfo.shared.accessToken = response.accesstoken
+                UserInfo.shared.userID = response.user.userID
+                UserInfo.shared.nickname = response.user.nickname
+                
+                let tabBarController = SnapfitTabBarController()
+                self?.present(tabBarController, animated: true)
+            })
+        }
+    }
     
 // MARK: - Network
 
