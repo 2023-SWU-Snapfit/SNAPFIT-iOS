@@ -105,6 +105,15 @@ final class SignInViewController: BaseViewController {
         }
     }
     
+    private func signInData() -> SignInRequestDTO {
+        let email = self.idTextField.text ?? ""
+        let password = self.passwordTextField.text ?? ""
+        let deviceToken = UserInfo.shared.deviceToken
+        
+        return SignInRequestDTO(email: email, password: password, deviceToken: deviceToken)
+    }
+}
+
 // MARK: - Network
 
 extension SignInViewController {
