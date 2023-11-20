@@ -31,7 +31,7 @@ extension ReviewRouter: TargetType {
             case .postReview:
                 return "/review"
             case .deleteReview(let id):
-                return "/review/\(id)"
+            return "/review/\(id.reviewId)"
         }
     }
     
@@ -59,11 +59,8 @@ extension ReviewRouter: TargetType {
             let idData = MultipartFormData(provider: .data("\(data.receiverId)".data(using: .utf8)!), name: ReviewPostRequestDTO.CodingKeys.receiverId.rawValue)
             let contentData = MultipartFormData(provider: .data(data.content.data(using: .utf8)!), name: ReviewPostRequestDTO.CodingKeys.content.rawValue)
             return .uploadMultipart([imageData, starData, idData, contentData])
-        case .deleteReview(let data):
-            let body: [String : Any] = [
-                ReviewDeleteRequestDTO.CodingKeys.reviewId.rawValue : data.reviewId,
-            ]
-            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .deleteReview:
+            return .requestPlain
         }
     }
     
