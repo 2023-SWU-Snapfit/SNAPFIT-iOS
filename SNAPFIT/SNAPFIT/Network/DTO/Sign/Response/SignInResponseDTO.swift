@@ -11,11 +11,11 @@ import Foundation
 
 struct SignInResponseDTO: Codable {
     let user: User
-    let accesstoken: String
+    let accessToken: String
 
     enum CodingKeys: String, CodingKey {
         case user = "user"
-        case accesstoken = "accesstoken"
+        case accessToken = "accesstoken"
     }
     
     // MARK: - User
