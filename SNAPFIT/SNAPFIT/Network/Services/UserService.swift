@@ -7,7 +7,7 @@
 
 import Foundation
 internal protocol UserServiceProtocol {
-    func putUser(targetId: Int, data: UserPutRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void))
+    func putUser(data: UserPutRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void))
     func getUserList(input: String, limit: Int?, completion: @escaping (NetworkResult<Any>) -> (Void))
     func getUserDetail(targetId: Int, completion: @escaping (NetworkResult<Any>) -> (Void))
 }
@@ -21,7 +21,7 @@ final class UserService: BaseService {
 
 extension UserService: UserServiceProtocol {
     
-    func putUser(targetId: Int, data: UserPutRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+    func putUser(data: UserPutRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         
         self.provider.request(.putUser(data: data)) { result in
             switch result {

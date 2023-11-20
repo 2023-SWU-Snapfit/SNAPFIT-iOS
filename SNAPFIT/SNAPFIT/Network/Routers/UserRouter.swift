@@ -42,9 +42,9 @@ extension UserRouter: TargetType {
         switch self {
         case .putUser(let data):
             let profileImageUrlData = MultipartFormData(
-                provider: .data(data.profileImageUrl), name: UserPutRequestDTO.CodingKeys.profileImageUrl.rawValue)
+                provider: .data(data.profileImageUrl), name: UserPutRequestDTO.CodingKeys.profileImageUrl.rawValue, fileName: "image1.png", mimeType: "image/png")
             let thumbnailData = MultipartFormData(
-                provider: .data(data.thumbnail), name: UserPutRequestDTO.CodingKeys.thumbnail.rawValue)
+                provider: .data(data.thumbnail), name: UserPutRequestDTO.CodingKeys.thumbnail.rawValue, fileName: "image2.png", mimeType: "image/png")
             let nicknameData = MultipartFormData(
                 provider: .data(data.nickname.data(using: .utf8)!), name: UserPutRequestDTO.CodingKeys.nickname.rawValue)
             let instagramIdData = MultipartFormData(
@@ -59,7 +59,7 @@ extension UserRouter: TargetType {
                 provider: .data("\(data.onPush)".data(using: .utf8)!), name: UserPutRequestDTO.CodingKeys.onPush.rawValue)
             let availableTimeData = MultipartFormData(
                 provider: .data(data.availableTime.data(using: .utf8)!), name: UserPutRequestDTO.CodingKeys.availableTime.rawValue)
-            return .uploadMultipart([ profileImageUrlData, thumbnailData, nicknameData,  instagramIdData, infoData, costData, contactUrlData, onPushData,  availableTimeData,
+            return .uploadMultipart([profileImageUrlData, thumbnailData, nicknameData,  instagramIdData, infoData, costData, contactUrlData, onPushData,  availableTimeData,
             ])
         case .getUserList(let input, let limit):
             let body: [String : Any] = [
