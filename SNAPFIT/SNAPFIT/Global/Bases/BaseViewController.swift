@@ -90,7 +90,5 @@ extension BaseViewController {
         
         UserDefaultsManager.email = email
         UserDefaultsManager.password = password
-        
-        debugPrint(UserDefaultsManager.email, UserDefaultsManager.password)
     }
 }
