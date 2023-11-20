@@ -10,6 +10,7 @@ import Moya
 
 internal protocol LikeServiceProtocol {
     func getLikeList(completion: @escaping (NetworkResult<Any>) -> (Void))
+    func postLike(targetId: Int, completion: @escaping (NetworkResult<Any>) -> (Void))
 }
 
 final class LikeService: BaseService {
@@ -20,7 +21,6 @@ final class LikeService: BaseService {
 }
 
 extension LikeService: LikeServiceProtocol {
-    
     // [GET] 좋아요 리스트
     
     func getLikeList(completion: @escaping (NetworkResult<Any>) -> (Void)) {
@@ -36,4 +36,21 @@ extension LikeService: LikeServiceProtocol {
             }
         }
     }
+    
+    
+    func postLike(targetId: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        self.provider.request(.postLike(targetId: targetId)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, LikePutRequestDTO.self)
+                completion(networkResult)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    
 }

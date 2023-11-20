@@ -72,6 +72,10 @@ final class ReservationViewController: BaseViewController {
     
     // MARK: - Method
     
+    private func reviewDetail() {
+        self.navigationController?.pushViewController(ReviewEditViewController(), animated: true)
+    }
+    
     private func setNavigationTitle() {
         self.navigationItem.title = "예약관리"
         self.navigationItem.largeTitleDisplayMode = .always
@@ -164,7 +168,9 @@ extension ReservationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var user: User
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! ReservationTableViewCell
-        
+        cell.rightButton.setAction {
+            self.reviewDetail()
+        }
         if self.isFixedTab {
             user = fixedReservation[indexPath.row].senderID == 133 ? users[fixedReservation[indexPath.row].recieverID] : users[fixedReservation[indexPath.row].senderID]
             cell.setAsReservationList(
