@@ -22,9 +22,6 @@ class FavoriteListViewController: BaseViewController {
         super.viewDidLoad()
         self.setNavigationTitle()
         self.setTableView()
-        ReservationService.shared.getReservationDetail(reservationId: 10) { data in
-            print(data)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
