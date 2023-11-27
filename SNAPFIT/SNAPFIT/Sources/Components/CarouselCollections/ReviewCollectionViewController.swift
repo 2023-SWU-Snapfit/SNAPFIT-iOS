@@ -21,7 +21,7 @@ class ReviewCollectionViewController: UIViewController {
     let collectionView : UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        flowLayout.itemSize = CGSize(width: 126, height: 172)
+        flowLayout.itemSize = CGSize(width: 126, height: 98)
         flowLayout.minimumLineSpacing = 8
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .init(x: 0, y: 0, width: 10, height: 10), collectionViewLayout: flowLayout)
@@ -35,7 +35,6 @@ class ReviewCollectionViewController: UIViewController {
         super.viewDidLoad()
         self.setCollection()
         self.setComponents()
-        print("😉 \(self.numOfItems)")
     }
     
     
@@ -108,16 +107,6 @@ extension ReviewCollectionViewController: UICollectionViewDataSource {
         score.textColor = .sfMainRed
         score.font = .m13
         
-        reviewDetails.text = "\(self.reviews[indexPath.row])"
-        reviewDetails.font = .m13
-        reviewDetails.textColor = .sfBlack100
-        reviewDetails.isScrollEnabled = false
-        reviewDetails.isEditable = false
-        reviewDetails.isSelectable = false
-        reviewDetails.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        reviewDetails.textContainer.maximumNumberOfLines = 3
-        reviewDetails.textContainer.lineBreakMode = .byTruncatingTail
-        
         cell.addSubview(reviewImage)
         reviewImage.snp.makeConstraints{ make in
             make.top.left.equalTo(8)
@@ -129,13 +118,6 @@ extension ReviewCollectionViewController: UICollectionViewDataSource {
             make.top.equalTo(reviewImage.snp.bottom).offset(8)
             make.left.equalTo(8)
             make.height.equalTo(20)
-        }
-        cell.addSubview(reviewDetails)
-        reviewDetails.snp.makeConstraints{ make in
-            make.top.equalTo(score.snp.bottom)
-            make.left.equalTo(score)
-            make.width.equalTo(reviewImage.snp.width)
-            make.bottom.equalToSuperview().inset(8)
         }
         return cell
     }

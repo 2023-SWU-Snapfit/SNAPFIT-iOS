@@ -54,16 +54,15 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
     public func setMypageData() {
         getMyUserData { result in
             self.setNickname(text: result.nickname)
-//            self.setApproved(approveState: result.)
+            self.setApproved(approveState: true)
             self.setInstagramText(text: result.instagramId)
             self.setMailText(text: result.email)
             self.setIntroduceText(text: result.info ?? "")
-            self.setPossibleDateText(text: "")
+            self.setPossibleDateText(text: "아~ 힘드네요")
             self.setPriceText(text: result.cost ?? "")
-            self.setProfileImage(profileImage: UIImage())
-            self.setBannerImage(bannerImage: result.thumbnailImage)
+            self.setProfileImage(profileImage: result.profileImageUrl)
+            self.setBannerImage(bannerImage: result.thumbnailImageUrl)
             self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0)
-            
         }
     }
     

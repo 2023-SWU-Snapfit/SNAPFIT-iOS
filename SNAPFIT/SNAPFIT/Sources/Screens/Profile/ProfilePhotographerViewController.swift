@@ -39,10 +39,10 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     }
     
     // MARK: - Methods
-    public func setUserInformation() {
-        getMyUserData { result in
-            self.setProfileImage(profileImage: result.profileImage)
-            self.setBannerImage(bannerImage: result.thumbnailImage)
+    public func setUserInformation(targetID: Int) {
+        getUserData(targetID: targetID) { result in
+            self.setProfileImage(profileImage: result.profileImageUrl)
+            self.setBannerImage(bannerImage: result.thumbnailImageUrl)
             self.setBasicData(
                 isApproved: true,
                 nicknameText: result.nickname,
@@ -51,17 +51,29 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
             self.setAdditionalData(
                 mailText: result.email,
                 introduceText: result.info ?? "",
-                possibleDateText: "",
+                possibleDateText: "dd",
                 priceText: result.cost ?? ""
             )
-            //            self.setGalleryAndReviewData(galleryImages: result.gallery, reviews: result.review)
+            if result.averageStars != 0.0 {
+                ReviewService.shared.getReviewList(userId: targetID) { networkResult in
+                    switch networkResult {
+                    case .success(let responseData):
+                        if let result = responseData as? ReviewListResponseDTO {
+                            self.setGptData(gptReview: result.gptReview)
+                        }
+                    default:
+                        print("DEFAULT")
+                    }
+                }
+            }
+            self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0.0)
         }
     }
     
     public func setUserInformation(currentUser: User) {
         self.currentUser = currentUser
-        self.setProfileImage(profileImage: currentUser.profileImage)
-        self.setBannerImage(bannerImage: currentUser.backgroundImage)
+//        self.setProfileImage(profileImage: currentUser.profileImage.)
+//        self.setBannerImage(bannerImage: currentUser.backgroundImage)
         self.setBasicData(
             isApproved: true,
             nicknameText: currentUser.userName,

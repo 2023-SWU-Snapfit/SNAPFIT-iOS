@@ -38,9 +38,26 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     }
     
     // MARK: - Methods
+    public func setUserInformation(targetID: Int) {
+        getUserData(targetID: targetID) { result in
+            self.setProfileImage(profileImage: result.profileImageUrl)
+            self.setBasicData(
+                isApproved: true,
+                nicknameText: result.nickname,
+                instagramText: result.instagramId
+            )
+            self.setAdditionalData(
+                mailText: result.email,
+                introduceText: result.info ?? ""
+            )
+            self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0.0)
+        }
+    }
+    
     public func setUserInformation(currentUser: User) {
         self.currentUser = currentUser
-        self.setProfileImage(profileImage: currentUser.profileImage)
+        //        self.setProfileImage(profileImage: currentUser.profileImage.)
+        //        self.setBannerImage(bannerImage: currentUser.backgroundImage)
         self.setBasicData(
             isApproved: true,
             nicknameText: currentUser.userName,
@@ -50,7 +67,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
             mailText: currentUser.emailAddress ?? "",
             introduceText: currentUser.introduceText ?? ""
         )
-//        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
+        //        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
     }
     
     private func setAdditionalData(mailText: String,introduceText: String) {
@@ -61,6 +78,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     private func setContactButtonAction() {
         self.contactButton.setAction {
             lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
+            // TODO: [RESERVATION] 예약 버튼 클릭 후 동작 
 //            suggestionViewController.setUserData(user: self.currentUser)
             suggestionViewController.modalTransitionStyle = .crossDissolve
             suggestionViewController.modalPresentationStyle = .overFullScreen

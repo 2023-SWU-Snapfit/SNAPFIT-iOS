@@ -60,6 +60,7 @@ class UserGalleryCollectionViewController: UIViewController {
     public func setGallery(gallery: [Gallery]) {
         self.numOfItems = gallery.count
         self.gallaryData = gallery
+        self.collectionView.reloadData()
     }
     
     func setLayout() {

@@ -78,15 +78,18 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
     }
     
     public func setMypageData() {
-        self.setProfileImage(profileImage: self.profileImage)
-        self.setBasicData(
-            isApproved: true,
-            nicknameText: currentUser.userName,
-            instagramText: currentUser.instagramID
-        )
-        self.setMailText(text: currentUser.emailAddress ?? "")
-        self.setIntroduceText(text: currentUser.introduceText ?? "")
-//        self.setGalleryAndReviewData(galleryImages: self.galleryImages, reviews: self.reviewData)
+        getMyUserData { result in
+            self.setNickname(text: result.nickname)
+            self.setApproved(approveState: true)
+            self.setInstagramText(text: result.instagramId)
+            self.setMailText(text: result.email)
+            self.setIntroduceText(text: result.info ?? "")
+            self.setPossibleDateText(text: "")
+            self.setPriceText(text: result.cost ?? "")
+            self.setProfileImage(profileImage: result.profileImageUrl)
+            self.setBannerImage(bannerImage: result.thumbnailImageUrl)
+            self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0)
+        }
     }
     
     private func setEditButtonAction() {

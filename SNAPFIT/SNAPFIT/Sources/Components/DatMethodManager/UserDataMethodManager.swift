@@ -23,8 +23,26 @@ func getMyUserPosition() -> String {
 }
 
 func getMyUserData(completion: @escaping(UserDetailResponseDTO) -> ()) {
-    UserService.shared.getUserDetail(targetId: 11) { networkResult in
-        print(networkResult)
+    UserService.shared.getUserDetail(targetId: UserInfo.shared.userID) { networkResult in
+        switch networkResult {
+        case .success(let responseData):
+            if let result = responseData as? UserDetailResponseDTO {
+                completion(result)
+            }
+        case .requestErr(_):
+            print("requestError")
+        case .pathErr:
+            print("pathErr")
+        case .serverErr:
+            print("serverErr")
+        case .networkFail:
+            print("networkErr")
+        }
+    }
+}
+
+func getUserData(targetID: Int, completion: @escaping(UserDetailResponseDTO) -> ()) {
+    UserService.shared.getUserDetail(targetId: targetID) { networkResult in
         switch networkResult {
         case .success(let responseData):
             if let result = responseData as? UserDetailResponseDTO {
