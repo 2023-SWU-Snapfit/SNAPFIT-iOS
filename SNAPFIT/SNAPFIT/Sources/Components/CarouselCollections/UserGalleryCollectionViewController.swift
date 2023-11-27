@@ -12,7 +12,7 @@ class UserGalleryCollectionViewController: UIViewController {
     
     // MARK: - Properties
     private var numOfItems: Int = 0
-    private var images: [UIImage] = []
+    private var gallaryData: [Gallery] = []
     
     // MARK: - UIComponents
     let titleLabel: UILabel = {
@@ -57,9 +57,9 @@ class UserGalleryCollectionViewController: UIViewController {
     
     // MARK: - Methods
     
-    public func setGallery(galleryImages: [UIImage]) {
-        self.numOfItems = galleryImages.count
-        self.images = galleryImages
+    public func setGallery(gallery: [Gallery]) {
+        self.numOfItems = gallery.count
+        self.gallaryData = gallery
     }
     
     func setLayout() {
@@ -94,7 +94,8 @@ extension UserGalleryCollectionViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath)
         cell.backgroundColor = .sfBlack40
         cell.makeRounded(cornerRadius: 8)
-        let imageView: UIImageView = UIImageView(image: images[indexPath.row])
+        let imageView: UIImageView = UIImageView()
+        imageView.setImageUrl(self.gallaryData[indexPath.row].photoUrl)
         imageView.contentMode = .scaleAspectFill
         cell.addSubview(imageView)
         imageView.snp.makeConstraints{ make in

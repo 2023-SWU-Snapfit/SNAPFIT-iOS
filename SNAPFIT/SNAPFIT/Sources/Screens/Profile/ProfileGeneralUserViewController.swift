@@ -50,7 +50,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
             mailText: currentUser.emailAddress ?? "",
             introduceText: currentUser.introduceText ?? ""
         )
-        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
+//        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
     }
     
     private func setAdditionalData(mailText: String,introduceText: String) {
@@ -61,7 +61,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     private func setContactButtonAction() {
         self.contactButton.setAction {
             lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
-            suggestionViewController.setUserData(user: self.currentUser)
+//            suggestionViewController.setUserData(user: self.currentUser)
             suggestionViewController.modalTransitionStyle = .crossDissolve
             suggestionViewController.modalPresentationStyle = .overFullScreen
             self.present(suggestionViewController, animated: true)

@@ -195,9 +195,9 @@ class SnapfitUserInformationViewController: BaseViewController {
         self.setNickname(text: nicknameText)
         self.setInstagramText(text: instagramText)
     }
-    public func setGalleryAndReviewData(galleryImages: [UIImage], reviews: [Review]) {
-        self.galleryCarouselViewController.setGallery(galleryImages: galleryImages)
-        self.reviewCarouselViewController.setReview(reviews: reviews)
+    public func setGalleryAndReviewData(gallery: [Gallery], reviews: [UserReviewList], avgStars: Float) {
+        self.galleryCarouselViewController.setGallery(gallery: gallery)
+        self.reviewCarouselViewController.setReview(reviews: reviews, avgStars: avgStars)
         self.reviewCarouselViewController.setDelegate(self)
     }
 }

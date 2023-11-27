@@ -72,12 +72,12 @@ final class SnapfitTabBarController: UITabBarController, UITabBarControllerDeleg
         reservationTab.tabBarItem.tag = 2
         
         let mypageTab: UIViewController = self.makeTabVC(
-            vc: BaseNavigationController(rootViewController: MypagePhotographerViewController()), // TODO: 마이페이지 vc 넣기
+            vc: BaseNavigationController(rootViewController: UserInfo.shared.userPosition == UserPosition.general.rawValue ? MypageGeneralUserViewController() :  MypagePhotographerViewController()),
             tabBarTitle: Text.mypageTitle,
             tabBarImg: Text.mypageIconName,
             tabBarSelectedImg: Text.mypageIconName + Text.selected
         )
-        reservationTab.tabBarItem.tag = 3
+        mypageTab.tabBarItem.tag = 3
         
         let tabs = [homeTab, favoriteListTab, reservationTab, mypageTab]
         self.setViewControllers(tabs, animated: true)

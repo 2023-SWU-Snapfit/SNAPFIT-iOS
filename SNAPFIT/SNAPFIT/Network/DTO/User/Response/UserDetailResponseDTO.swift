@@ -22,8 +22,8 @@ struct UserDetailResponseDTOElement: Codable {
     let email: String
     let info: String?
     let gallery: [Gallery]
-    let averageStars: Float
-    let review: [ReviewListResponseDTOElement]
+    let averageStars: Float?
+    let review: [UserReviewList]
     let cost: String?
     
     enum CodingKeys: String, CodingKey {
@@ -61,6 +61,18 @@ struct Gallery: Codable {
         case isDeleted = "isDeleted"
         case tag = "tag"
         case isPinned = "isPinned"
+    }
+}
+
+struct UserReviewList: Codable {
+    let id: Int
+    let star: Int
+    let photoUrl: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case star = "star"
+        case photoUrl = "photoUrl"
     }
 }
 

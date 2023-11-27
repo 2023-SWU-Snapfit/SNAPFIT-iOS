@@ -86,7 +86,7 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
         )
         self.setMailText(text: currentUser.emailAddress ?? "")
         self.setIntroduceText(text: currentUser.introduceText ?? "")
-        self.setGalleryAndReviewData(galleryImages: self.galleryImages, reviews: self.reviewData)
+//        self.setGalleryAndReviewData(galleryImages: self.galleryImages, reviews: self.reviewData)
     }
     
     private func setEditButtonAction() {

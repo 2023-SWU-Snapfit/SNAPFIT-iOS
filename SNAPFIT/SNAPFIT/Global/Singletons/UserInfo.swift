@@ -13,5 +13,6 @@ class UserInfo {
     init() { }
     
     var userID: Int = -1
+    var userPosition: String = ""
     var accessToken: String = ""
 }

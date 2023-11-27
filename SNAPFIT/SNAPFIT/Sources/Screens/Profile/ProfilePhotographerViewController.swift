@@ -39,6 +39,25 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     }
     
     // MARK: - Methods
+    public func setUserInformation() {
+        getMyUserData { result in
+            self.setProfileImage(profileImage: result.profileImage)
+            self.setBannerImage(bannerImage: result.thumbnailImage)
+            self.setBasicData(
+                isApproved: true,
+                nicknameText: result.nickname,
+                instagramText: result.instagramId
+            )
+            self.setAdditionalData(
+                mailText: result.email,
+                introduceText: result.info ?? "",
+                possibleDateText: "",
+                priceText: result.cost ?? ""
+            )
+            //            self.setGalleryAndReviewData(galleryImages: result.gallery, reviews: result.review)
+        }
+    }
+    
     public func setUserInformation(currentUser: User) {
         self.currentUser = currentUser
         self.setProfileImage(profileImage: currentUser.profileImage)
@@ -54,7 +73,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
             possibleDateText: currentUser.possibleDateText ?? "",
             priceText: currentUser.priceText ?? ""
         )
-        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
+//        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
     }
     
     private func setAdditionalData(mailText: String,introduceText: String, possibleDateText: String, priceText: String) {
@@ -83,7 +102,6 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     private func setContactButtonAction() {
         self.contactButton.setAction {
             lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
-            suggestionViewController.setUserData(user: self.currentUser)
             suggestionViewController.modalTransitionStyle = .crossDissolve
             suggestionViewController.modalPresentationStyle = .overFullScreen
             self.present(suggestionViewController, animated: true)
