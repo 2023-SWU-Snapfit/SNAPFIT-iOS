@@ -80,7 +80,16 @@ final class SignInViewController: BaseViewController {
     
     // MARK: Properties
     
+    // MARK: Initializer
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+        self.modalPresentationStyle = .fullScreen
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: View Life Cycle
     
@@ -89,6 +98,7 @@ final class SignInViewController: BaseViewController {
         
         self.setLayout()
         self.setSignInButtonAction()
+        self.setSignUpButtonAction()
     }
     
     // MARK: Methods
@@ -117,6 +127,14 @@ final class SignInViewController: BaseViewController {
         let deviceToken = UserInfo.shared.deviceToken
         
         return SignInRequestDTO(email: email, password: password, deviceToken: deviceToken)
+    }
+    
+    private func setSignUpButtonAction() {
+        self.signUpButton.setAction { [weak self] in
+            let vc = BaseNavigationController(rootViewController: SignUpSelectPositionViewController())
+            vc.modalPresentationStyle = .fullScreen
+            self?.present(vc, animated: true)
+        }
     }
 }
 
