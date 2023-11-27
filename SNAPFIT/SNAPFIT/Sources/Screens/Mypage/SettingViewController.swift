@@ -28,7 +28,7 @@ class SettingViewController: BaseViewController {
     private let contactCell: SettingContactTableViewCell = {
         let cell: SettingContactTableViewCell = SettingContactTableViewCell()
         cell.setLayout()
-        cell.setText(newText: "snapFit.google.com")
+        cell.setText(newText: "snapFit@google.com")
         cell.selectionStyle = .none
         return cell
     }()

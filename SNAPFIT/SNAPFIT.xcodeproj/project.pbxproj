@@ -125,6 +125,10 @@
 		C7E9003B2A0BCE0800CC620B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C7E9003A2A0BCE0800CC620B /* RxCocoa */; };
 		C7E9003D2A0BCE0800CC620B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C7E9003C2A0BCE0800CC620B /* RxSwift */; };
 		C7ED7D6A2A31CB4B0043B172 /* HomePhotoByThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED7D692A31CB4B0043B172 /* HomePhotoByThemeTableViewCell.swift */; };
+		FF127F362B04404700BD617F /* SignInRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F352B04404700BD617F /* SignInRequestDTO.swift */; };
+		FF127F382B0440DD00BD617F /* SignRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F372B0440DD00BD617F /* SignRouter.swift */; };
+		FF127F3A2B0442C500BD617F /* SignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F392B0442C500BD617F /* SignService.swift */; };
+		FF127F3D2B04438700BD617F /* SignInResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */; };
 		FF2939672A36340000C169E3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939662A36340000C169E3 /* SearchViewController.swift */; };
 		FF2939692A363D3300C169E3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939682A363D3300C169E3 /* Tag.swift */; };
 		FF29396C2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29396B2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift */; };
@@ -139,6 +143,15 @@
 		FF2E86A52AA20C7D00258D75 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A42AA20C7D00258D75 /* LikeService.swift */; };
 		FF2E86A82AA20C8900258D75 /* LikeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A72AA20C8900258D75 /* LikeRouter.swift */; };
 		FF2E86AD2AA20EB100258D75 /* LikeListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */; };
+		FF896BE92AF1CD27000800ED /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BE82AF1CD27000800ED /* SignInViewController.swift */; };
+		FF896BEB2AF1FA79000800ED /* SnapfitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */; };
+		FF896BED2AF220F1000800ED /* SnapfitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEC2AF220F1000800ED /* SnapfitButton.swift */; };
+		FF9837642B14D4C2004EE542 /* SignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9837632B14D4C2004EE542 /* SignUpRequestDTO.swift */; };
+		FF9837662B14D6A0004EE542 /* SignUpRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9837652B14D6A0004EE542 /* SignUpRequestData.swift */; };
+		FF9968332B0CC2BC00FCEAF5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9968322B0CC2BC00FCEAF5 /* SplashViewController.swift */; };
+		FF9968372B0D618300FCEAF5 /* SignUpVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9968362B0D618300FCEAF5 /* SignUpVerifyViewController.swift */; };
+		FF9968392B0D66E300FCEAF5 /* VerifyPhoneNumberRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9968382B0D66E300FCEAF5 /* VerifyPhoneNumberRequestDTO.swift */; };
+		FF99683D2B0DA82400FCEAF5 /* SignUpSelectPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF99683C2B0DA82400FCEAF5 /* SignUpSelectPositionViewController.swift */; };
 		FFD375D82AA0E749005099EC /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD375D72AA0E749005099EC /* BaseService.swift */; };
 /* End PBXBuildFile section */
 
@@ -259,6 +272,10 @@
 		C7E9002D2A0BC99C00CC620B /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		C7E900342A0BCAE200CC620B /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		C7ED7D692A31CB4B0043B172 /* HomePhotoByThemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePhotoByThemeTableViewCell.swift; sourceTree = "<group>"; };
+		FF127F352B04404700BD617F /* SignInRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequestDTO.swift; sourceTree = "<group>"; };
+		FF127F372B0440DD00BD617F /* SignRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignRouter.swift; sourceTree = "<group>"; };
+		FF127F392B0442C500BD617F /* SignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignService.swift; sourceTree = "<group>"; };
+		FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseDTO.swift; sourceTree = "<group>"; };
 		FF2939662A36340000C169E3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FF2939682A363D3300C169E3 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		FF29396B2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -273,6 +290,15 @@
 		FF2E86A42AA20C7D00258D75 /* LikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
 		FF2E86A72AA20C8900258D75 /* LikeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRouter.swift; sourceTree = "<group>"; };
 		FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListResponseDTO.swift; sourceTree = "<group>"; };
+		FF896BE82AF1CD27000800ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitTextField.swift; sourceTree = "<group>"; };
+		FF896BEC2AF220F1000800ED /* SnapfitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitButton.swift; sourceTree = "<group>"; };
+		FF9837632B14D4C2004EE542 /* SignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestDTO.swift; sourceTree = "<group>"; };
+		FF9837652B14D6A0004EE542 /* SignUpRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestData.swift; sourceTree = "<group>"; };
+		FF9968322B0CC2BC00FCEAF5 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		FF9968362B0D618300FCEAF5 /* SignUpVerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVerifyViewController.swift; sourceTree = "<group>"; };
+		FF9968382B0D66E300FCEAF5 /* VerifyPhoneNumberRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneNumberRequestDTO.swift; sourceTree = "<group>"; };
+		FF99683C2B0DA82400FCEAF5 /* SignUpSelectPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectPositionViewController.swift; sourceTree = "<group>"; };
 		FFD375D72AA0E749005099EC /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -514,6 +540,8 @@
 				C74499F02A1FAEDD00C21AD4 /* TagCollectionViewCell.swift */,
 				C70C48962A301B9F0052019B /* PhotographerCollectionViewCell.swift */,
 				6AD2DE122A325513004214E3 /* SnapfitDatePickerViewController.swift */,
+				FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */,
+				FF896BEC2AF220F1000800ED /* SnapfitButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -630,6 +658,7 @@
 				FF2939682A363D3300C169E3 /* Tag.swift */,
 				C7E900122A0BBC8200CC620B /* UserInfo.swift */,
 				C766F1752A10A3FB009BC30E /* ImageCacheManager.swift */,
+				FF9837652B14D6A0004EE542 /* SignUpRequestData.swift */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -674,6 +703,7 @@
 		C7E900242A0BC17300CC620B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				FF896BE72AF1CD17000800ED /* Sign */,
 				FF2939652A3633F400C169E3 /* Search */,
 				6A04FE872A20CCAC00FADEC8 /* Profile */,
 				C71730EB2A17423000155D09 /* Reservation */,
@@ -705,6 +735,33 @@
 				FF2E86A22AA20C0600258D75 /* SnapfitMoyaProvider.swift */,
 			);
 			path = APIEssentials;
+			sourceTree = "<group>";
+		};
+		FF127F332B04402C00BD617F /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				FF127F3B2B04432500BD617F /* Response */,
+				FF127F342B04403100BD617F /* Request */,
+			);
+			path = Sign;
+			sourceTree = "<group>";
+		};
+		FF127F342B04403100BD617F /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				FF127F352B04404700BD617F /* SignInRequestDTO.swift */,
+				FF9968382B0D66E300FCEAF5 /* VerifyPhoneNumberRequestDTO.swift */,
+				FF9837632B14D4C2004EE542 /* SignUpRequestDTO.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		FF127F3B2B04432500BD617F /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		FF2939652A3633F400C169E3 /* Search */ = {
@@ -751,6 +808,7 @@
 			isa = PBXGroup;
 			children = (
 				FF2E86A72AA20C8900258D75 /* LikeRouter.swift */,
+				FF127F372B0440DD00BD617F /* SignRouter.swift */,
 				6A3F09512AA344B300C51179 /* ReviewRouter.swift */,
 				6AAB9AB72ACD5DEE00B09A0A /* ReportRouter.swift */,
 				6AAB9AB92ACD5DFB00B09A0A /* BlockRouter.swift */,
@@ -763,6 +821,7 @@
 		FF2E86A92AA20E3800258D75 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				FF127F332B04402C00BD617F /* Sign */,
 				6A2BDB972ADD7F4E002AA2FF /* User */,
 				6A2AE6172ACEC88300B42FF8 /* Reservation */,
 				6AAB9AC22ACD75B600B09A0A /* Block */,
@@ -790,11 +849,23 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		FF896BE72AF1CD17000800ED /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				FF896BE82AF1CD27000800ED /* SignInViewController.swift */,
+				FF9968322B0CC2BC00FCEAF5 /* SplashViewController.swift */,
+				FF9968362B0D618300FCEAF5 /* SignUpVerifyViewController.swift */,
+				FF99683C2B0DA82400FCEAF5 /* SignUpSelectPositionViewController.swift */,
+			);
+			path = Sign;
+			sourceTree = "<group>";
+		};
 		FFD375D62AA0E73E005099EC /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				FFD375D72AA0E749005099EC /* BaseService.swift */,
 				FF2E86A42AA20C7D00258D75 /* LikeService.swift */,
+				FF127F392B0442C500BD617F /* SignService.swift */,
 				6A3F09532AA3475300C51179 /* ReviewService.swift */,
 				6AAB9ABB2ACD717F00B09A0A /* ReportService.swift */,
 				6AAB9AC02ACD758600B09A0A /* BlockService.swift */,
@@ -895,15 +966,19 @@
 			files = (
 				C798F8232A2B65A000886D0E /* HomePhotoByCategoryTableViewCell.swift in Sources */,
 				C7E900132A0BBC8200CC620B /* UserInfo.swift in Sources */,
+				FF127F3A2B0442C500BD617F /* SignService.swift in Sources */,
+				FF9968332B0CC2BC00FCEAF5 /* SplashViewController.swift in Sources */,
 				C74499E92A1EEF8600C21AD4 /* HomeReservationDetailTableViewCell.swift in Sources */,
 				6A4CFC112A1893FA00CE5308 /* SnapfitTextView.swift in Sources */,
 				C7E900352A0BCAE200CC620B /* NetworkLoggerPlugin.swift in Sources */,
 				C766F1842A10A507009BC30E /* UserDefaultsManager.swift in Sources */,
 				6AA612B02A17C48B00C49095 /* ReviewCollectionViewController.swift in Sources */,
+				FF99683D2B0DA82400FCEAF5 /* SignUpSelectPositionViewController.swift in Sources */,
 				C766F17A2A10A43F009BC30E /* UIStackView+.swift in Sources */,
 				FFD375D82AA0E749005099EC /* BaseService.swift in Sources */,
 				C766F16E2A10A25A009BC30E /* UITextField.swift in Sources */,
 				C74499ED2A1FA84700C21AD4 /* SnapfitSearchTextField.swift in Sources */,
+				FF896BED2AF220F1000800ED /* SnapfitButton.swift in Sources */,
 				6AB8075E2AD14EE600FAF8BE /* ReservationPutRequestDTO.swift in Sources */,
 				C766F1682A10A1C8009BC30E /* UILabel+.swift in Sources */,
 				C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */,
@@ -912,6 +987,7 @@
 				6A3C4D452AA45DC1005E021E /* ReviewDetailResponseDTO.swift in Sources */,
 				6AFE86862A9B5A57007A8713 /* ReviewDataDelegate.swift in Sources */,
 				C74499E72A1EEBC400C21AD4 /* NotificationViewController.swift in Sources */,
+				FF9968392B0D66E300FCEAF5 /* VerifyPhoneNumberRequestDTO.swift in Sources */,
 				6A85665A2A99D97300F66321 /* MypagePhotographerEditingViewController.swift in Sources */,
 				6AEC75452ADE9A41004847DA /* UserListResponseDTO.swift in Sources */,
 				6AAB9AC42ACD75C600B09A0A /* BlockRequestDTO.swift in Sources */,
@@ -923,12 +999,15 @@
 				C777847C2A003B1000B4AB8D /* HomeViewController.swift in Sources */,
 				C798F8252A2B661200886D0E /* VerticalPhotoCollectionViewCell.swift in Sources */,
 				C766F1582A1097AF009BC30E /* BaseViewController.swift in Sources */,
+				FF9837662B14D6A0004EE542 /* SignUpRequestData.swift in Sources */,
 				C70C48952A301A560052019B /* PhotographerListTableViewCell.swift in Sources */,
 				6A3C4D432AA45A73005E021E /* ReviewListResponseDTO.swift in Sources */,
 				C74499E42A1EDBFE00C21AD4 /* HomeNavigationTableViewCell.swift in Sources */,
 				C71730F02A17C6C300155D09 /* UITabBar+.swift in Sources */,
 				FF2939672A36340000C169E3 /* SearchViewController.swift in Sources */,
 				C7E9002E2A0BC99C00CC620B /* NetworkResult.swift in Sources */,
+				FF127F382B0440DD00BD617F /* SignRouter.swift in Sources */,
+				FF896BE92AF1CD27000800ED /* SignInViewController.swift in Sources */,
 				6AA612AE2A176BE200C49095 /* UserGalleryCollectionViewController.swift in Sources */,
 				C744AD5F2A1A75F700D30F14 /* SnapfitNavigationView.swift in Sources */,
 				6A2AE6162ACEC43900B42FF8 /* LikePutRequestDTO.swift in Sources */,
@@ -944,6 +1023,7 @@
 				6A3002BF2A30D2D9004D5A60 /* ReservationSuggestionViewController.swift in Sources */,
 				6A04FE8C2A20E73F00FADEC8 /* ProfilePhotographerViewController.swift in Sources */,
 				C7E9001A2A0BBFF000CC620B /* UIFont+.swift in Sources */,
+				FF896BEB2AF1FA79000800ED /* SnapfitTextField.swift in Sources */,
 				6A1CFD332A0D1C29006971AE /* Preview.swift in Sources */,
 				C766F1702A10A27A009BC30E /* UIView+.swift in Sources */,
 				6AC8A1D72A3448EF006A0689 /* DummyData.swift in Sources */,
@@ -951,6 +1031,7 @@
 				C766F1782A10A41C009BC30E /* UserDefaults+.swift in Sources */,
 				6A3F09522AA344B300C51179 /* ReviewRouter.swift in Sources */,
 				6A04FE8A2A20CD5100FADEC8 /* SnapfitUserInformationViewController.swift in Sources */,
+				FF9837642B14D4C2004EE542 /* SignUpRequestDTO.swift in Sources */,
 				FF2E86A32AA20C0600258D75 /* SnapfitMoyaProvider.swift in Sources */,
 				C766F1602A109AAB009BC30E /* ClassName.swift in Sources */,
 				FF2E86A12AA20BCE00258D75 /* BaseResponseType.swift in Sources */,
@@ -1003,8 +1084,11 @@
 				FF2939762A36E32500C169E3 /* SearchResultTableViewHeaderView.swift in Sources */,
 				6AA3236D2A9F19F20005453E /* SettingContactTableViewCell.swift in Sources */,
 				C766F17E2A10A47B009BC30E /* Notification+Name+.swift in Sources */,
+				FF127F3D2B04438700BD617F /* SignInResponseDTO.swift in Sources */,
+				FF9968372B0D618300FCEAF5 /* SignUpVerifyViewController.swift in Sources */,
 				6AA54F862A2436B8001E9D2C /* ReservatinDetailViewController.swift in Sources */,
 				FF29396C2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift in Sources */,
+				FF127F362B04404700BD617F /* SignInRequestDTO.swift in Sources */,
 				6A3FA4C32A2C10AC000382CF /* ProfileGeneralUserViewController.swift in Sources */,
 				6A3D83A92AF9F9B400869535 /* ReviewEditViewController.swift in Sources */,
 				FF29397D2A380F7100C169E3 /* PhotoViewController.swift in Sources */,
