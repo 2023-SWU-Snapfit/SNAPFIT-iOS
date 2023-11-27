@@ -62,6 +62,18 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
             self.setPriceText(text: result.cost ?? "")
             self.setProfileImage(profileImage: result.profileImageUrl)
             self.setBannerImage(bannerImage: result.thumbnailImageUrl)
+            if result.averageStars != 0.0 {
+                ReviewService.shared.getReviewList(userId: UserInfo.shared.userID) { networkResult in
+                    switch networkResult {
+                    case .success(let responseData):
+                        if let result = responseData as? ReviewListResponseDTO {
+                            self.setGptData(gptReview: result.gptReview)
+                        }
+                    default:
+                        print("DEFAULT")
+                    }
+                }
+            }
             self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0)
         }
     }

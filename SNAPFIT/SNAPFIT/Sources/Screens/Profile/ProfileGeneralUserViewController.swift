@@ -50,6 +50,18 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
                 mailText: result.email,
                 introduceText: result.info ?? ""
             )
+            if result.averageStars != 0.0 {
+                ReviewService.shared.getReviewList(userId: targetID) { networkResult in
+                    switch networkResult {
+                    case .success(let responseData):
+                        if let result = responseData as? ReviewListResponseDTO {
+                            self.setGptData(gptReview: result.gptReview)
+                        }
+                    default:
+                        print("DEFAULT")
+                    }
+                }
+            }
             self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0.0)
         }
     }
