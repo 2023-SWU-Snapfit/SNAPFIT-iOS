@@ -82,4 +82,13 @@ extension BaseViewController {
     func showNetworkErrorAlert() {
         self.makeAlert(title: Message.networkError.text)
     }
+    
+    func setUserInfo(accessToken: String, userID: Int, nickname: String, email: String, password: String) {
+        UserInfo.shared.accessToken = accessToken
+        UserInfo.shared.userID = userID
+        UserInfo.shared.nickname = nickname
+        
+        UserDefaultsManager.email = email
+        UserDefaultsManager.password = password
+    }
 }

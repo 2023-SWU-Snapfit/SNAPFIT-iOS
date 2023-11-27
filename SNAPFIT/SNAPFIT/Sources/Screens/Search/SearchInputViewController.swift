@@ -74,7 +74,7 @@ extension SearchInputViewController: UITextFieldDelegate {
                 SearchResult.PhotoSearchResult(image: UIImage(named: "sampleImage\(Tag.shared.category[9].id)") ?? UIImage(), tagsText: "#\(Tag.shared.mood[9].name)", username: users[9].userName)
             ],
             users: [
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[2].id)") ?? UIImage(), username: users[2].userName, isPhotographer: true),
+                SummaryUser(userId: 1, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
                 SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
                 SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
                 SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
@@ -93,7 +93,7 @@ extension SearchInputViewController: SendUpdateDelegate {
     func sendUpdate(data: Any?) {
         lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
         profileViewController.modalPresentationStyle = .fullScreen
-        profileViewController.setUserInformation(currentUser: users.shuffled()[0])
+        profileViewController.setUserInformation(currentUser: users[2])
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
