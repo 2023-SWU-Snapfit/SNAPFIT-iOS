@@ -1,19 +1,18 @@
 //
-//  LikeRouter.swift
+//  ReportUserRouter.swift
 //  SNAPFIT
 //
-//  Created by Jungbin on 2023/09/01.
+//  Created by 강유진 on 2023/10/04.
 //
 
 import Foundation
 import Moya
 
-enum LikeRouter {
-    case getLikeList
-    case postLike(targetId: Int)
+enum ReportRouter {
+    case postReport(targetId: Int)
 }
 
-extension LikeRouter: TargetType {
+extension ReportRouter: TargetType {
     
     var baseURL: URL {
         return URL(string: APIConstants.baseURL)!
@@ -21,27 +20,23 @@ extension LikeRouter: TargetType {
     
     var path: String {
         switch self {
-        case .getLikeList, .postLike:
-            return "/like"
+        case .postReport:
+            return "/report"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getLikeList:
-            return .get
-        case .postLike:
-            return .put
+        case .postReport:
+            return .post
         }
     }
     
     var task: Task {
         switch self {
-        case .getLikeList:
-            return .requestPlain
-        case .postLike(let targetId):
+        case .postReport(let targetId):
             let body : [String : Any] = [
-                LikePutRequestDTO.CodingKeys.targetId.rawValue : targetId
+                ReportRequestDTO.CodingKeys.targetId.rawValue : targetId
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }

@@ -115,20 +115,20 @@ class ReservationTableViewCell: BorderedTableViewCell {
         
         let attributes = [NSAttributedString.Key.font : UIFont.b14]
         switch (isFixed, isFinished) {
-            case (true, true):
-                self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
-                self.rightButton.isEnabled = true
-                self.rightButton.isHidden = false
-            case (false, true):
-                self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonContact, attributes: attributes), for: .normal)
-                self.rightButton.isEnabled = true
-                self.rightButton.isHidden = false
-            case (true, false):
-                self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
-                self.rightButton.isEnabled = false
-                self.rightButton.isHidden = false
-            default:
-                self.rightButton.isHidden = true
+        case (true, true):
+            self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
+            self.rightButton.isEnabled = true
+            self.rightButton.isHidden = false
+        case (false, true):
+            self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonContact, attributes: attributes), for: .normal)
+            self.rightButton.isEnabled = true
+            self.rightButton.isHidden = false
+        case (true, false):
+            self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
+            self.rightButton.isEnabled = false
+            self.rightButton.isHidden = false
+        default:
+            self.rightButton.isHidden = true
         }
         if isFixed || isFinished {
             self.contentView.addSubview(self.rightButton)
