@@ -10,6 +10,7 @@ import Moya
 
 enum SignRouter {
     case requestSignIn(data: SignInRequestDTO)
+    case verifyPhoneNumber(data: VerifyPhoneNumberRequestDTO)
 }
 
 extension SignRouter: TargetType {
@@ -22,12 +23,14 @@ extension SignRouter: TargetType {
         switch self {
         case .requestSignIn:
             return "/auth/login"
+        case .verifyPhoneNumber:
+            return "/auth/sms"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .requestSignIn:
+        case .requestSignIn, .verifyPhoneNumber:
             return .post
         }
     }
@@ -41,12 +44,17 @@ extension SignRouter: TargetType {
                 "deviceToken": data.deviceToken
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .verifyPhoneNumber(let data):
+            let body: [String: Any] = [
+                "phoneNumber": data.phoneNumber
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .requestSignIn:
+        case .requestSignIn, .verifyPhoneNumber:
             return ["Content-Type": "application/json"]
         }
     }

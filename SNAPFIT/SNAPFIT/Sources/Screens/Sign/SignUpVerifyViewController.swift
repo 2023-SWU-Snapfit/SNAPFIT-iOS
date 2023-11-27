@@ -97,6 +97,25 @@ final class SignUpVerifyViewController: BaseViewController {
     }
 }
 
+// MARK: - Network
+
+extension SignUpVerifyViewController {
+    private func sendCode(data: VerifyPhoneNumberRequestDTO) {
+        self.startActivityIndicator()
+        SignService.shared.verifyPhoneNumber(data: data) { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let code: String = responseData as? String {
+                    self.makeAlert(title: "인증 번호 전송에 성공하였습니다.")
+                    self.code = code
+                }
+            default:
+                self.showNetworkErrorAlert()
+            }
+            self.stopActivityIndicator()
+        }
+    }
+}
 
 // MARK: - UI
 
