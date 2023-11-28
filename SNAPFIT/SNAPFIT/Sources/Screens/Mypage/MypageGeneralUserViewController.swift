@@ -62,10 +62,9 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setEditButtonAction()
-        
-        self.setGeneralUserLayout()
         self.setMypageData()
         self.setMypageLayout()
+        self.setGeneralUserLayout()
         self.setSettingButton()
     }
     
@@ -89,18 +88,23 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
             self.setProfileImage(profileImage: result.profileImageUrl)
             self.setBannerImage(bannerImage: result.thumbnailImageUrl)
             if result.averageStars != 0.0 {
+                let galleryData = result.gallery
+                let reviewsData = result.review
+                let avgStars = result.averageStars
                 ReviewService.shared.getReviewList(userId: UserInfo.shared.userID) { networkResult in
                     switch networkResult {
                     case .success(let responseData):
                         if let result = responseData as? ReviewListResponseDTO {
                             self.setGptData(gptReview: result.gptReview)
+                            self.setGalleryAndReviewData(gallery: galleryData, reviews: reviewsData, avgStars: avgStars ?? 0)
                         }
                     default:
                         print("DEFAULT")
                     }
                 }
+            } else {
+                self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0)
             }
-            self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0)
         }
     }
     

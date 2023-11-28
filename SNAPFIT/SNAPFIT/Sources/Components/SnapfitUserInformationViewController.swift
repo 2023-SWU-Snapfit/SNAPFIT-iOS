@@ -19,12 +19,12 @@ class SnapfitUserInformationViewController: BaseViewController {
         static let mailSign = "icn_mail"
         static let possibleDate = "예약 가능 날짜"
         static let price = "촬영 비용"
+        static let gpt = "요약 리뷰"
     }
     
     // MARK: - Properties
     private var isPhotographer: Bool = false
     private var isApproved: Bool = false
-    private var padding: CGFloat = 0
     
     // MARK: - UIComponents
     private let scrollView: UIScrollView = {
@@ -113,6 +113,12 @@ class SnapfitUserInformationViewController: BaseViewController {
     private let introduceTextView: SnapfitTextView = {
         let introduceTextView: SnapfitTextView = SnapfitTextView(isEditable: false)
         return introduceTextView
+    }()
+    private let gptTitleLabel: UILabel = {
+        let titleLabel: UILabel = UILabel()
+        titleLabel.text = Text.gpt
+        titleLabel.font = .b18
+        return titleLabel
     }()
     private let gptTextView: SnapfitTextView = {
         let gptTextView: SnapfitTextView = SnapfitTextView(isEditable:  false)
@@ -249,6 +255,7 @@ extension SnapfitUserInformationViewController {
         self.setPhoneApprovedLayout(topConstraint: 380, leftConstraint: self.photographerLabel.snp.right)
         self.setInstagramLayout(topConstraint: 450)
         self.setMailLayout(topConstraint: 450, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
+        self.setGptTextViewLayout()
         self.setGalleryAndReviewLayout(isPhotographer: true)
         self.setPossibleDateAndPrice()
     }
@@ -259,6 +266,7 @@ extension SnapfitUserInformationViewController {
         self.setPhoneApprovedLayout(topConstraint: 214, leftConstraint: 20)
         self.setInstagramLayout(topConstraint: 285)
         self.setMailLayout(topConstraint: 285, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
+        self.setGptTextViewLayout()
         self.setGalleryAndReviewLayout(isPhotographer: false)
     }
     
@@ -348,19 +356,23 @@ extension SnapfitUserInformationViewController {
     }
     
     private func setGptTextViewLayout() {
+        self.contentView.addSubview(self.gptTitleLabel)
+        self.gptTitleLabel.snp.makeConstraints{ make in
+            make.top.equalTo(self.introduceTextView.snp.bottom).offset(24)
+            make.left.equalTo(20)
+        }
         self.view.addSubview(self.gptTextView)
         self.gptTextView.snp.makeConstraints { make in
-            make.top.equalTo(introduceTextView.snp.bottom).offset(24)
+            make.top.equalTo(self.gptTitleLabel.snp.bottom).offset(16)
             make.left.equalTo(20)
             make.width.equalToSuperview().inset(20)
         }
-        self.padding = self.gptTextView.bounds.height + 24
     }
     
     private func setGalleryAndReviewLayout(isPhotographer: Bool) {
         self.contentView.addSubview(self.galleryCarouselViewController.view)
         self.galleryCarouselViewController.view.snp.makeConstraints{ make in
-            make.top.equalTo(introduceTextView.snp.bottom).offset(24 + padding)
+            make.top.equalTo(gptTextView.snp.bottom).offset(24)
             make.left.right.width.equalToSuperview()
             make.height.equalTo(175)
         }
@@ -378,42 +390,43 @@ extension SnapfitUserInformationViewController {
     func setPossibleDateAndPrice() {
         self.contentView.addSubview(self.possibleDateTitleLabel)
         self.possibleDateTitleLabel.snp.makeConstraints{ make in
-            make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom).offset(24 + padding)
+            make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom).offset(24)
             make.left.equalTo(20)
         }
         self.contentView.addSubview(self.possibleDateTextView)
         self.possibleDateTextView.snp.makeConstraints{ make in
-            make.top.equalTo(self.possibleDateTitleLabel.snp.bottom).offset(16 + padding)
+            make.top.equalTo(self.possibleDateTitleLabel.snp.bottom).offset(16)
             make.left.equalTo(20)
             make.width.equalToSuperview().inset(20)
         }
         self.contentView.addSubview(self.priceTitleLabel)
         self.priceTitleLabel.snp.makeConstraints{ make in
-            make.top.equalTo(self.possibleDateTextView.snp.bottom).offset(24 + padding)
+            make.top.equalTo(self.possibleDateTextView.snp.bottom).offset(24)
             make.left.equalTo(20)
         }
         self.contentView.addSubview(self.priceTextView)
         self.priceTextView.snp.makeConstraints{ make in
-            make.top.equalTo(priceTitleLabel.snp.bottom).offset(16 + padding)
+            make.top.equalTo(priceTitleLabel.snp.bottom).offset(16)
             make.left.equalTo(20)
             make.width.bottom.equalToSuperview().inset(20)
         }
-        if self.possibleDateTextView.text == "" {
-            self.possibleDateTitleLabel.isHidden = true
-            self.possibleDateTextView.snp.makeConstraints{ make in
-                make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom).offset(padding)
-            }
-            self.priceTitleLabel.snp.makeConstraints{ make in
-                make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom).offset(24 + padding)
-                make.left.equalTo(20)
-            }
-        }
-        if self.priceTextView.text == "" {
-            self.priceTitleLabel.isHidden = true
-            self.priceTextView.snp.makeConstraints{ make in
-                make.top.equalTo(self.possibleDateTextView.snp.bottom).offset(padding)
-                make.width.bottom.equalToSuperview().inset(20)
-            }
-        }
+        // MARK: - 데이터 없으면 안보이게 처리하던 부분
+//        if self.possibleDateTextView.text == "" {
+//            self.possibleDateTitleLabel.isHidden = true
+//            self.possibleDateTextView.snp.makeConstraints{ make in
+//                make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom)
+//            }
+//            self.priceTitleLabel.snp.makeConstraints{ make in
+//                make.top.equalTo(self.reviewCarouselViewController.view.snp.bottom)
+//                make.left.equalTo(20)
+//            }
+//        }
+//        if self.priceTextView.text == "" {
+//            self.priceTitleLabel.isHidden = true
+//            self.priceTextView.snp.makeConstraints{ make in
+//                make.top.equalTo(self.possibleDateTextView.snp.bottom)
+//                make.width.bottom.equalToSuperview().inset(20)
+//            }
+//        }
     }
 }
