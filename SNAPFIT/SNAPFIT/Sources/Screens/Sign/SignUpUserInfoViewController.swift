@@ -135,7 +135,13 @@ final class SignUpUserInfoViewController: BaseViewController, UINavigationContro
     
     private func setNextButtonAction() {
         self.navigationView.nextButton.setAction { [weak self] in
-            
+            SignUpRequestData.shared.profileImageUrl = self?.photoImageView.image ?? UIImage()
+            SignUpRequestData.shared.email = self?.emailTextField.text ?? ""
+            SignUpRequestData.shared.nickname = self?.nicknameTextField.text ?? ""
+            SignUpRequestData.shared.password = self?.passwordTextField.text ?? ""
+            SignUpRequestData.shared.instagramId = self?.instagramTextField.text ?? ""
+            SignUpRequestData.shared.cost = self?.costTextField.text ?? ""
+            SignUpRequestData.shared.contactUrl = self?.contactUrlTextField.text ?? ""
             self?.navigationController?.pushViewController(SignUpSelectPhotoViewController(), animated: true)
         }
     }
