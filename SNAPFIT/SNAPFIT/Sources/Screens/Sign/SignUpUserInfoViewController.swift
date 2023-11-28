@@ -135,6 +135,7 @@ final class SignUpUserInfoViewController: BaseViewController, UINavigationContro
     
     private func setNextButtonAction() {
         self.navigationView.nextButton.setAction { [weak self] in
+            
             self?.navigationController?.pushViewController(SignUpSelectPhotoViewController(), animated: true)
         }
     }

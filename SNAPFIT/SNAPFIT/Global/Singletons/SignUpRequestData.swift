@@ -17,6 +17,7 @@ class SignUpRequestData {
     var email: String = ""
     var nickname: String = ""
     var password: String = ""
+    var instagramId: String = ""
     var cost: String = ""
     var position: String = ""
     var contactUrl: String = ""
