@@ -22,4 +22,8 @@ class SignUpRequestData {
     var position: String = ""
     var contactUrl: String = ""
     var interest: [Int] = []
+    
+    func dtoData() -> SignUpRequestDTO {
+        return .init(profileImageUrl: self.profileImageUrl, email: self.email, nickname: self.nickname, password: self.password, instagramId: self.instagramId, cost: self.cost, position: self.position, contactUrl: self.contactUrl, interest: self.interest)
+    }
 }
