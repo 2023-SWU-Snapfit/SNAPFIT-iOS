@@ -30,7 +30,6 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
         static let errorMessage = "필요한 내용을 전부 채워주세요."
     }
     
-    var currentUser: User!
     let reservationDateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = Text.reservationDateFormat
@@ -129,9 +128,8 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
             } else {
                 
                 self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
-                    reservationData.append(Reservation(recieverID: users.firstIndex(where: {$0.userName == self.currentUser.userName}) ?? 0, dateText: self.dateTextView.text, lastUpdateText: "\(self.lastDateFormatter.string(from: Date()))"))
-                    self.dismiss(animated: true)
-                    print(reservationData.count)
+                    // TODO: [RESERVATION] 예약 보내기 기능 연결
+                    print("TODO: [RESERVATION] 예약 보내기 기능 연결하자")
                 })
             }
         }
@@ -152,10 +150,6 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
     
     public func recieveDateData(date: Date) {
         self.dateTextView.text = self.reservationDateFormatter.string(from: date)
-    }
-    
-    public func setUserData(user: User) {
-        self.currentUser = user
     }
     
     // MARK: - Layout Methods

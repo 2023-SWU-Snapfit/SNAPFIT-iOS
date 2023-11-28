@@ -8,6 +8,8 @@
 import UIKit
 
 class FavoriteListViewController: BaseViewController {
+    
+    private var likeList: [LikeListResponseDTOElement] = []
     let favoriteListTableView: UITableView = {
         let favoriteListTableView: UITableView = UITableView()
         favoriteListTableView.backgroundColor = .clear
@@ -22,14 +24,29 @@ class FavoriteListViewController: BaseViewController {
         super.viewDidLoad()
         self.setNavigationTitle()
         self.setTableView()
-        ReservationService.shared.getReservationDetail(reservationId: 10) { data in
-            print(data)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        LikeService.shared.getLikeList { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? LikeListResponseDTO {
+                    self.likeList = result
+                    self.favoriteListTableView.reloadData()
+                    print(result)
+                }
+            case .requestErr(_):
+                print("requestError")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkErr")
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,16 +82,17 @@ extension FavoriteListViewController: UITableViewDelegate {
         82
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentUser = users[indexPath.row]
-        if currentUser.isPhotographer {
+        let currentUserID = likeList[indexPath.row].targetID
+        // TODO: [PROFILE] 프로필 포지션 알게 되면 포지션 따라서로 변경
+        if currentUserID % 2 == 0 {
             lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
             profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setUserInformation(currentUser: currentUser)
+            profileViewController.setUserInformation(targetID: 24)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
             profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setUserInformation(currentUser: currentUser)
+            profileViewController.setUserInformation(targetID: 11)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
     }
@@ -82,11 +100,11 @@ extension FavoriteListViewController: UITableViewDelegate {
 
 extension FavoriteListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favorites.count
+        return self.likeList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteListTableViewCell") as! BorderedTableViewCell
-        cell.setAsFavoriteList(userImage: favorites[indexPath.row].profileImage, userName: "\(favorites[indexPath.row].userName)")
+        cell.setAsFavoriteList(userImageUrl: likeList[indexPath.row].profileImageUrl, userName: likeList[indexPath.row].nickname)
         return cell
     }
 }
