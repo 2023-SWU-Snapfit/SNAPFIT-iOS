@@ -114,6 +114,8 @@ final class SignUpUserInfoViewController: BaseViewController, UINavigationContro
         self.setImagePickerController()
         self.setPhotoButtonAction()
         self.setNextButtonAction()
+        self.setNicknameCheckButtonAction()
+        self.setEmailCheckButtonAction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,6 +170,18 @@ final class SignUpUserInfoViewController: BaseViewController, UINavigationContro
     private func setImagePickerController() {
         self.imagePickerController.delegate = self
     }
+    
+    private func setNicknameCheckButtonAction() {
+        self.nicknameCheckButton.setAction { [weak self] in
+            self?.checkNickname(nickname: self?.nicknameTextField.text ?? "")
+        }
+    }
+    
+    private func setEmailCheckButtonAction() {
+        self.emailCheckButton.setAction { [weak self] in
+            self?.checkEmail(email: self?.emailTextField.text ?? "")
+        }
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate
@@ -204,6 +218,36 @@ extension SignUpUserInfoViewController: UITextFieldDelegate {
             CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.height),
             animated: true
         )
+    }
+}
+
+// MARK: - Network
+
+extension SignUpUserInfoViewController {
+    private func checkEmail(email: String) {
+        SignService.shared.checkEmail(data: email) { networkResult in
+            switch networkResult {
+            case .success:
+                self.makeAlert(title: "사용 가능한 이메일입니다.")
+            case .requestErr:
+                self.makeAlert(title: "중복된 이메일입니다.")
+            default:
+                self.showNetworkErrorAlert()
+            }
+        }
+    }
+    
+    private func checkNickname(nickname: String) {
+        SignService.shared.checkEmail(data: nickname) { networkResult in
+            switch networkResult {
+            case .success:
+                self.makeAlert(title: "사용 가능한 닉네임입니다.")
+            case .requestErr:
+                self.makeAlert(title: "중복된 닉네임입니다.")
+            default:
+                self.showNetworkErrorAlert()
+            }
+        }
     }
 }
 

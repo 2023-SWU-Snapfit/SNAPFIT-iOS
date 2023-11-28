@@ -11,6 +11,8 @@ import Moya
 enum SignRouter {
     case requestSignIn(data: SignInRequestDTO)
     case verifyPhoneNumber(data: VerifyPhoneNumberRequestDTO)
+    case checkEmail(data: String)
+    case checkNickname(data: String)
 }
 
 extension SignRouter: TargetType {
@@ -25,12 +27,16 @@ extension SignRouter: TargetType {
             return "/auth/login"
         case .verifyPhoneNumber:
             return "/auth/sms"
+        case .checkEmail:
+            return "/auth/duplication-check/email"
+        case .checkNickname:
+            return "/auth/duplication-check/nickname"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .requestSignIn, .verifyPhoneNumber:
+        case .requestSignIn, .verifyPhoneNumber, .checkEmail, .checkNickname:
             return .post
         }
     }
@@ -49,12 +55,22 @@ extension SignRouter: TargetType {
                 "phoneNumber": data.phoneNumber
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .checkNickname(let data):
+            let body: [String: Any] = [
+                "nickname": data
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .checkEmail(let data):
+            let body: [String: Any] = [
+                "email": data
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .requestSignIn, .verifyPhoneNumber:
+        case .requestSignIn, .verifyPhoneNumber, .checkEmail, .checkNickname:
             return ["Content-Type": "application/json"]
         }
     }
