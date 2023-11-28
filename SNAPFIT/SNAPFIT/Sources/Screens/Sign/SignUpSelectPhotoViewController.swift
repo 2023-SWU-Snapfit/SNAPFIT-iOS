@@ -52,6 +52,7 @@ final class SignUpSelectPhotoViewController: BaseViewController {
         self.setCollectionView()
         self.setLayout()
         self.setBackButtonAction(self.navigationView.backButton)
+        self.setNextButtonAction()
     }
     
     // MARK: Methods
@@ -61,6 +62,75 @@ final class SignUpSelectPhotoViewController: BaseViewController {
         self.collectionView.delegate = self
         
         self.collectionView.register(cell: SelectPhotoCollectionViewCell.self)
+    }
+    
+    private func interestTags() -> [Int] {
+        var index: [Int] = []
+        var tags: [Int] = []
+        
+        self.collectionView.indexPathsForSelectedItems?.forEach({
+            index.append($0.row)
+        })
+        
+        index.forEach { i in
+            switch i {
+            case 0:
+                tags.append(contentsOf: [7, 2, 4, 27])
+            case 1:
+                tags.append(contentsOf: [8, 9, 2, 3])
+            case 2:
+                tags.append(contentsOf: [10, 9, 2, 4])
+            case 3:
+                tags.append(contentsOf: [11, 9, 2, 3])
+            case 4:
+                tags.append(contentsOf: [12, 9, 2, 5])
+            case 5:
+                tags.append(contentsOf: [13, 9, 2, 5])
+            case 6:
+                tags.append(contentsOf: [14, 9, 2, 4])
+            case 7:
+                tags.append(contentsOf: [15, 9, 2, 3])
+            case 8:
+                tags.append(contentsOf: [16, 9, 2, 3])
+            case 9:
+                tags.append(contentsOf: [17, 9, 2, 4])
+            case 10:
+                tags.append(contentsOf: [18, 9, 2, 4])
+            case 11:
+                tags.append(contentsOf: [19, 9, 1, 3])
+            default:
+                tags.append(2)
+            }
+        }
+        tags = Array(Set(tags))
+        
+        return tags
+    }
+    
+    private func setNextButtonAction() {
+        self.navigationView.nextButton.setAction { [weak self] in
+            SignUpRequestData.shared.interest = self?.interestTags() ?? []
+            self?.requestSignUp(data: SignUpRequestData.shared.dtoData())
+        }
+    }
+}
+
+// MARK: - Network
+
+extension SignUpSelectPhotoViewController {
+    private func requestSignUp(data: SignUpRequestDTO) {
+        self.startActivityIndicator()
+        SignService.shared.requestSignUp(data: data) { networkResult in
+            switch networkResult {
+            case .success:
+                self.makeAlert(title: "📸", message: "회원가입이 완료되었습니다.", okTitle: "로그인하러 가기", completion:  {
+                    self.dismiss(animated: true)
+                })
+            default:
+                self.showNetworkErrorAlert()
+            }
+            self.stopActivityIndicator()
+        }
     }
 }
 
