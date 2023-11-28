@@ -21,13 +21,13 @@ class BorderedTableViewCell: UITableViewCell {
         self.layer.cornerRadius = 8
     }
     
-    func setAsFavoriteList(userImage: UIImage?, userName: String) {
-        self.setPicture(userImage)
+    func setAsFavoriteList(userImageUrl: String?, userName: String) {
+        self.setPicture(userImageUrl)
         self.setFavoriteUserName(name: userName)
     }
     
-    private func setPicture(_ newImage: UIImage?) {
-        if let image = newImage { self.picture.image = image }
+    private func setPicture(_ newImageUrl: String?) {
+        if let imageUrl = newImageUrl { self.picture.setImageUrl(imageUrl) }
         self.picture.backgroundColor = .sfBlack20
         self.picture.layer.cornerRadius = 20
         self.picture.layer.borderWidth = 1

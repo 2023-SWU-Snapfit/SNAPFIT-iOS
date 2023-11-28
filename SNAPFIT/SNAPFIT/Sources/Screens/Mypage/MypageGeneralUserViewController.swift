@@ -62,10 +62,9 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setEditButtonAction()
-        
-        self.setGeneralUserLayout()
         self.setMypageData()
         self.setMypageLayout()
+        self.setGeneralUserLayout()
         self.setSettingButton()
     }
     
@@ -78,15 +77,35 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
     }
     
     public func setMypageData() {
-        self.setProfileImage(profileImage: self.profileImage)
-        self.setBasicData(
-            isApproved: true,
-            nicknameText: currentUser.userName,
-            instagramText: currentUser.instagramID
-        )
-        self.setMailText(text: currentUser.emailAddress ?? "")
-        self.setIntroduceText(text: currentUser.introduceText ?? "")
-        self.setGalleryAndReviewData(galleryImages: self.galleryImages, reviews: self.reviewData)
+        getMyUserData { result in
+            self.setNickname(text: result.nickname)
+            self.setApproved(approveState: true)
+            self.setInstagramText(text: result.instagramId)
+            self.setMailText(text: result.email)
+            self.setIntroduceText(text: result.info ?? "")
+            self.setPossibleDateText(text: "")
+            self.setPriceText(text: result.cost ?? "")
+            self.setProfileImage(profileImage: result.profileImageUrl)
+            self.setBannerImage(bannerImage: result.thumbnailImageUrl)
+            if result.averageStars != 0.0 {
+                let galleryData = result.gallery
+                let reviewsData = result.review
+                let avgStars = result.averageStars
+                ReviewService.shared.getReviewList(userId: UserInfo.shared.userID) { networkResult in
+                    switch networkResult {
+                    case .success(let responseData):
+                        if let result = responseData as? ReviewListResponseDTO {
+                            self.setGptData(gptReview: result.gptReview)
+                            self.setGalleryAndReviewData(gallery: galleryData, reviews: reviewsData, avgStars: avgStars ?? 0)
+                        }
+                    default:
+                        print("DEFAULT")
+                    }
+                }
+            } else {
+                self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0)
+            }
+        }
     }
     
     private func setEditButtonAction() {
