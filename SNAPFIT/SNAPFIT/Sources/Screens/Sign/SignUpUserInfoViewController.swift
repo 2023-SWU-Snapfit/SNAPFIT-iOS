@@ -233,6 +233,7 @@ extension SignUpUserInfoViewController: UITextFieldDelegate {
 
 extension SignUpUserInfoViewController {
     private func checkEmail(email: String) {
+        self.startActivityIndicator()
         SignService.shared.checkEmail(data: email) { networkResult in
             switch networkResult {
             case .success:
@@ -242,10 +243,12 @@ extension SignUpUserInfoViewController {
             default:
                 self.showNetworkErrorAlert()
             }
+            self.stopActivityIndicator()
         }
     }
     
     private func checkNickname(nickname: String) {
+        self.startActivityIndicator()
         SignService.shared.checkEmail(data: nickname) { networkResult in
             switch networkResult {
             case .success:
@@ -255,6 +258,7 @@ extension SignUpUserInfoViewController {
             default:
                 self.showNetworkErrorAlert()
             }
+            self.stopActivityIndicator()
         }
     }
 }
