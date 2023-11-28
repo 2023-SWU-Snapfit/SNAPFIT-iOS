@@ -19,9 +19,9 @@ final class Tag {
     
     let peopleCount: [TagEntity] = [
         .init(id: 1, name: "1인"),
-        .init(id: 2, name: "아기"),
-        .init(id: 3, name: "임신"),
-        .init(id: 4, name: "우정")
+        .init(id: 2, name: "2인"),
+        .init(id: 3, name: "단체"),
+        .init(id: 4, name: "없음")
     ]
     
     let category: [TagEntity] = [
