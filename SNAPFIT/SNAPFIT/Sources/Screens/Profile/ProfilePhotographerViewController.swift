@@ -12,6 +12,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
     // MARK: - Properties
     var currentUser: User!
+    var targetID: Int = 0
     
     // MARK: - UIComponents
     private let navigationView: SnapfitNavigationView = {
@@ -40,6 +41,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
     // MARK: - Methods
     public func setUserInformation(targetID: Int) {
+        self.targetID = targetID
         getUserData(targetID: targetID) { result in
             self.setProfileImage(profileImage: result.profileImageUrl)
             self.setBannerImage(bannerImage: result.thumbnailImageUrl)
@@ -114,6 +116,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     private func setContactButtonAction() {
         self.contactButton.setAction {
             lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
+            suggestionViewController.setUserData(userID: self.targetID)
             suggestionViewController.modalTransitionStyle = .crossDissolve
             suggestionViewController.modalPresentationStyle = .overFullScreen
             self.present(suggestionViewController, animated: true)

@@ -35,7 +35,6 @@ class FavoriteListViewController: BaseViewController {
                 if let result = responseData as? LikeListResponseDTO {
                     self.likeList = result
                     self.favoriteListTableView.reloadData()
-                    print(result)
                 }
             case .requestErr(_):
                 print("requestError")

@@ -29,7 +29,8 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
         static let errorTitle = "내용 입력 필수"
         static let errorMessage = "필요한 내용을 전부 채워주세요."
     }
-    
+    var reservedDate: Date = Date()
+    var targetID: Int = 0
     let reservationDateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = Text.reservationDateFormat
@@ -126,11 +127,14 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
             if self.dateTextView.text == "" || self.suggestionTextView.text == "" {
                 self.makeAlert(title: Text.errorTitle, message: Text.errorMessage, okAction: nil)
             } else {
-                
-                self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
-                    // TODO: [RESERVATION] 예약 보내기 기능 연결
-                    print("TODO: [RESERVATION] 예약 보내기 기능 연결하자")
-                })
+                ReservationService.shared.postReservation(data: ReservationPostRequestDTO(receiverId: self.targetID, dateTime: self.reservedDate, content: self.suggestionTextView.text)) { networkResult in
+                    switch networkResult {
+                    case .success(_):
+                        self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in  })
+                    default:
+                        self.makeAlert(title: "오류 발생", message: Message.networkError.text, okAction: { _ in  })
+                    }
+                }
             }
         }
     }
@@ -138,6 +142,10 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
     private func setTextViewTapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(showDatePicker))
         self.dateTextView.addGestureRecognizer(tap)
+    }
+    
+    public func setUserData(userID: Int) {
+        self.targetID = userID
     }
     
     @objc func showDatePicker(_ sender: UITapGestureRecognizer) {
