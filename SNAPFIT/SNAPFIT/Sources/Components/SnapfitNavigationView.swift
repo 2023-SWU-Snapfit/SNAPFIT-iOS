@@ -21,6 +21,7 @@ final class SnapfitNavigationView: UIView {
         case backTitleMore
         case closeSave
         case backSave
+        case backNext
     }
     
     enum Text {
@@ -31,6 +32,7 @@ final class SnapfitNavigationView: UIView {
         static let likeButtonImageName = "icn_heart"
         static let moreButtonIamgeName = "icn_more"
         static let saveText = "저장"
+        static let nextText = "다음"
     }
     
     // MARK: Properties
@@ -98,6 +100,14 @@ final class SnapfitNavigationView: UIView {
         return button
     }()
     
+    lazy var nextButton: UIButton = {
+        let button: UIButton = UIButton(type: .system)
+        button.setTitle(Text.nextText, for: .normal)
+        button.setTitleColor(.sfBlack100, for: .normal)
+        button.titleLabel?.font = .b16
+        return button
+    }()
+    
     // MARK: Initializer
     
     init(type: NavigationType) {
@@ -116,6 +126,7 @@ final class SnapfitNavigationView: UIView {
         case .backTitleMore: self.backTitleMoreLayout()
         case .closeSave: self.setCloseSaveLayout()
         case .backSave: self.setBackSaveLayout()
+        case .backNext: self.setBackNextLayout()
         }
     }
     
@@ -228,6 +239,13 @@ extension SnapfitNavigationView {
         
         self.setLeftButtonLayout(button: self.backButton)
         self.setRightButtonLayout(button: self.saveButton)
+    }
+    
+    private func setBackNextLayout() {
+        self.addSubviews([backButton, nextButton])
+        
+        self.setLeftButtonLayout(button: self.backButton)
+        self.setRightButtonLayout(button: self.nextButton)
     }
     
     private func setRightButtonLayout(button: UIButton) {
