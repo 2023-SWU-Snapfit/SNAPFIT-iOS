@@ -129,6 +129,8 @@
 		FF127F382B0440DD00BD617F /* SignRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F372B0440DD00BD617F /* SignRouter.swift */; };
 		FF127F3A2B0442C500BD617F /* SignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F392B0442C500BD617F /* SignService.swift */; };
 		FF127F3D2B04438700BD617F /* SignInResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */; };
+		FF1418E42B161B7C004D657E /* SignUpSelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E22B161B7C004D657E /* SignUpSelectPhotoViewController.swift */; };
+		FF1418E52B161B7C004D657E /* SignUpUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E32B161B7C004D657E /* SignUpUserInfoViewController.swift */; };
 		FF2939672A36340000C169E3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939662A36340000C169E3 /* SearchViewController.swift */; };
 		FF2939692A363D3300C169E3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939682A363D3300C169E3 /* Tag.swift */; };
 		FF29396C2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29396B2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift */; };
@@ -276,6 +278,8 @@
 		FF127F372B0440DD00BD617F /* SignRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignRouter.swift; sourceTree = "<group>"; };
 		FF127F392B0442C500BD617F /* SignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignService.swift; sourceTree = "<group>"; };
 		FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseDTO.swift; sourceTree = "<group>"; };
+		FF1418E22B161B7C004D657E /* SignUpSelectPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSelectPhotoViewController.swift; sourceTree = "<group>"; };
+		FF1418E32B161B7C004D657E /* SignUpUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpUserInfoViewController.swift; sourceTree = "<group>"; };
 		FF2939662A36340000C169E3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FF2939682A363D3300C169E3 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		FF29396B2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -854,6 +858,8 @@
 			children = (
 				FF896BE82AF1CD27000800ED /* SignInViewController.swift */,
 				FF9968322B0CC2BC00FCEAF5 /* SplashViewController.swift */,
+				FF1418E22B161B7C004D657E /* SignUpSelectPhotoViewController.swift */,
+				FF1418E32B161B7C004D657E /* SignUpUserInfoViewController.swift */,
 				FF9968362B0D618300FCEAF5 /* SignUpVerifyViewController.swift */,
 				FF99683C2B0DA82400FCEAF5 /* SignUpSelectPositionViewController.swift */,
 			);
@@ -1033,6 +1039,7 @@
 				6A04FE8A2A20CD5100FADEC8 /* SnapfitUserInformationViewController.swift in Sources */,
 				FF9837642B14D4C2004EE542 /* SignUpRequestDTO.swift in Sources */,
 				FF2E86A32AA20C0600258D75 /* SnapfitMoyaProvider.swift in Sources */,
+				FF1418E42B161B7C004D657E /* SignUpSelectPhotoViewController.swift in Sources */,
 				C766F1602A109AAB009BC30E /* ClassName.swift in Sources */,
 				FF2E86A12AA20BCE00258D75 /* BaseResponseType.swift in Sources */,
 				6A3F09542AA3475300C51179 /* ReviewService.swift in Sources */,
@@ -1046,6 +1053,7 @@
 				C766F15D2A1098D3009BC30E /* UIViewController+.swift in Sources */,
 				6A2BDB942ADD7E9C002AA2FF /* UserRouter.swift in Sources */,
 				FF2939742A364EA800C169E3 /* SearchResult.swift in Sources */,
+				FF1418E52B161B7C004D657E /* SignUpUserInfoViewController.swift in Sources */,
 				C70C48972A301B9F0052019B /* PhotographerCollectionViewCell.swift in Sources */,
 				6AB807642AD14F3F00FAF8BE /* ReservationDetailResponseDTO.swift in Sources */,
 				FF29396E2A36464700C169E3 /* SearchInputViewController.swift in Sources */,
