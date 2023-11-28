@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SignUpUserInfoViewController: BaseViewController {
+final class SignUpUserInfoViewController: BaseViewController, UINavigationControllerDelegate {
     
     // MARK: UIComponents
     
@@ -36,6 +36,7 @@ final class SignUpUserInfoViewController: BaseViewController {
     
     private let photoImageView: UIImageView = {
         let imageView: UIImageView = UIImageView(image: UIImage(named: "img_emptyProfile"))
+        imageView.makeRounded(cornerRadius: 40)
         return imageView
     }()
     
@@ -95,6 +96,12 @@ final class SignUpUserInfoViewController: BaseViewController {
     // MARK: Properties
     
     private var keyboardHeight: CGFloat = 0
+    private let imagePickerController: UIImagePickerController = {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
+        return imagePickerController
+    }()
     
     // MARK: View Life Cycle
     
@@ -104,6 +111,9 @@ final class SignUpUserInfoViewController: BaseViewController {
         self.setLayout()
         self.setBackButtonAction(self.navigationView.backButton)
         self.setTextFieldDelegate()
+        self.setImagePickerController()
+        self.setPhotoButtonAction()
+        self.setNextButtonAction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,7 +158,31 @@ final class SignUpUserInfoViewController: BaseViewController {
         self.costTextField.delegate = self
         self.contactUrlTextField.delegate = self
     }
+    
+    private func setPhotoButtonAction() {
+        self.photoButton.setAction { [weak self] in
+            self?.present(self?.imagePickerController ?? UIViewController(), animated: true)
+        }
+    }
+    
+    private func setImagePickerController() {
+        self.imagePickerController.delegate = self
+    }
 }
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension SignUpUserInfoViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true) {
+            if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                self.photoImageView.image = image
+            }
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
 
 extension SignUpUserInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
