@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReservationDetailViewController: BaseViewController {
+class ReservationDetailViewController: BaseViewController, UITextViewDelegate {
     enum Text {
         static let navigationTitle = "예약 확인"
         static let senderTitle = "보낸 사람"
@@ -77,9 +77,10 @@ class ReservationDetailViewController: BaseViewController {
         label.font = .m13
         return label
     }()
-    private let chatilinkTextView: SnapfitTextView = {
+    private let chatlinkTextView: SnapfitTextView = {
         let view: SnapfitTextView = SnapfitTextView(isEditable: false)
-        view.text = "open.kakao.com/link=2931e77ois22dd2h11"
+        view.text = "https://open.kakao.com/o/s5BvMXUf"
+        view.tintColor = .sfBlack100
         return view
     }()
     private let urlButton: UIButton = {
@@ -111,6 +112,7 @@ class ReservationDetailViewController: BaseViewController {
         super.viewDidLoad()
         self.setNavigationView()
         self.setData()
+        self.setChatLinkAction()
         self.setConfirmButtonAction()
         self.setUrlButtonAction()
         self.setLayout()
@@ -132,6 +134,7 @@ class ReservationDetailViewController: BaseViewController {
                     self.isConfirmed = result.isConfirmed
                     self.isOpenUrl = result.isOpenUrl
                     self.senderID = result.senderId
+                    self.chatlinkTextView.text = result.contactUrl
                     if UserInfo.shared.userID == result.receiverId {
                         self.senderLabel.text = Text.senderTitle
                         self.profileImageView.setImageUrl(result.senderProfileImageUrl ?? "")
@@ -209,6 +212,17 @@ class ReservationDetailViewController: BaseViewController {
         }
     }
     
+    private func setChatLinkAction() {
+        self.chatlinkTextView.delegate = self
+        self.chatlinkTextView.dataDetectorTypes = .link
+        self.chatlinkTextView.isSelectable = true
+        self.chatlinkTextView.isUserInteractionEnabled = true
+    }
+    
+    private func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) async -> Bool {
+        await UIApplication.shared.open(URL)
+    }
+    
     private func toReservationDate(_ targetString: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.ssssZ"
@@ -235,8 +249,8 @@ class ReservationDetailViewController: BaseViewController {
                 make.top.equalToSuperview().inset(520)
                 make.leading.trailing.equalToSuperview().inset(20)
             }
-            self.view.addSubview(self.chatilinkTextView)
-            self.chatilinkTextView.snp.makeConstraints { make in
+            self.view.addSubview(self.chatlinkTextView)
+            self.chatlinkTextView.snp.makeConstraints { make in
                 make.top.equalTo(self.chatlinkLabel.snp.bottom).offset(8)
                 make.leading.trailing.equalToSuperview().inset(20)
             }
