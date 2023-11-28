@@ -38,8 +38,8 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setEditButtonAction()
         self.setMypageData()
-        self.setPhotographerLayout()
         self.setMypageLayout()
+        self.setPhotographerLayout()
         self.setSettingButton()
     }
     
@@ -58,23 +58,29 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
             self.setInstagramText(text: result.instagramId)
             self.setMailText(text: result.email)
             self.setIntroduceText(text: result.info ?? "")
-            self.setPossibleDateText(text: "아~ 힘드네요")
+            // TODO: [USER] possibleData 더미 교체
+            self.setPossibleDateText(text: "아")
             self.setPriceText(text: result.cost ?? "")
             self.setProfileImage(profileImage: result.profileImageUrl)
             self.setBannerImage(bannerImage: result.thumbnailImageUrl)
             if result.averageStars != 0.0 {
+                let galleryData = result.gallery
+                let reviewsData = result.review
+                let avgStars = result.averageStars
                 ReviewService.shared.getReviewList(userId: UserInfo.shared.userID) { networkResult in
                     switch networkResult {
                     case .success(let responseData):
                         if let result = responseData as? ReviewListResponseDTO {
                             self.setGptData(gptReview: result.gptReview)
+                            self.setGalleryAndReviewData(gallery: galleryData, reviews: reviewsData, avgStars: avgStars ?? 0)
                         }
                     default:
                         print("DEFAULT")
                     }
                 }
+            } else {
+                self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0)
             }
-            self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0)
         }
     }
     
