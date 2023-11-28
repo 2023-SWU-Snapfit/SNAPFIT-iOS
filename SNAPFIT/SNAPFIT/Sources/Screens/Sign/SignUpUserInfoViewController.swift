@@ -60,6 +60,7 @@ final class SignUpUserInfoViewController: BaseViewController, UINavigationContro
     private let passwordTextField: SnapfitTextField = {
         let textField: SnapfitTextField = SnapfitTextField()
         textField.placeholder = "비밀번호 (필수)"
+        textField.isSecureTextEntry = true
         return textField
     }()
     
