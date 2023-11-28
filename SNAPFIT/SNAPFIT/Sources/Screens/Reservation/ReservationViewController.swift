@@ -143,7 +143,7 @@ final class ReservationViewController: BaseViewController {
             case .success(let responseData):
                 if let result = responseData as? ReservationListResponseDTO {
                     self.fixedReservation = result.filter({ $0.isConfirmed == true })
-                    self.notFixedReservation = result.filter({ $0.isOpenUrl == false })
+                    self.notFixedReservation = result.filter({ $0.isConfirmed == false })
                 }
                 self.reservationTableView.reloadData()
             default:
@@ -163,9 +163,9 @@ final class ReservationViewController: BaseViewController {
         }
     }
     
-    func toReservationDate(_ targetString: String) -> Date? { //"yyyy-MM-dd HH:mm:ss"
+    func toReservationDate(_ targetString: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.ssssZ"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         if let date = dateFormatter.date(from: targetString) {
             return date
@@ -188,7 +188,6 @@ extension ReservationViewController: UITableViewDelegate {
         128
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: 셀 선택 시 동작 구현
         lazy var detailViewController: ReservationDetailViewController = ReservationDetailViewController()
         detailViewController.reservationID = self.isFixedTab ? fixedReservation[indexPath.row].id : self.notFixedReservation[indexPath.row].id
         detailViewController.modalPresentationStyle = .fullScreen
@@ -206,15 +205,16 @@ extension ReservationViewController: UITableViewDataSource {
             self.reviewDetail()
         }
         if self.isFixedTab {
-            let nickname =  fixedReservation[indexPath.row].senderId == UserInfo.shared.userID ? fixedReservation[indexPath.row].receiverNickname : fixedReservation[indexPath.row].senderNickname
+            let nickname = fixedReservation[indexPath.row].senderId == UserInfo.shared.userID ? fixedReservation[indexPath.row].receiverNickname : fixedReservation[indexPath.row].senderNickname
             cell.setAsReservationList(
                 userName: "\(nickname)",
                 lastDate: toReservationDate(fixedReservation[indexPath.row].dateTime) ?? Date(),
                 isFixed: fixedReservation[indexPath.row].isConfirmed,
                 isFinished: fixedReservation[indexPath.row].isOpenUrl
             )
+            cell.setPastReservation()
         } else {
-            let nickname =  notFixedReservation[indexPath.row].senderId == UserInfo.shared.userID ? notFixedReservation[indexPath.row].receiverNickname : notFixedReservation[indexPath.row].senderNickname
+            let nickname = notFixedReservation[indexPath.row].senderId == UserInfo.shared.userID ? notFixedReservation[indexPath.row].receiverNickname : notFixedReservation[indexPath.row].senderNickname
             cell.setAsReservationList(
                 userName: "\(nickname)",
                 lastDate: toReservationDate(notFixedReservation[indexPath.row].dateTime) ?? Date(),

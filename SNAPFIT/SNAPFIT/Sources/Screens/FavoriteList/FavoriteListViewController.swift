@@ -83,20 +83,15 @@ extension FavoriteListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentUserID = likeList[indexPath.row].targetID
         // TODO: [PROFILE] 프로필 포지션 알게 되면 포지션 따라서로 변경
-        if currentUserID == 24 {
+        if likeList[indexPath.row].position == UserPosition.general.rawValue {
             lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
             profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setUserInformation(targetID: 24)
-            self.navigationController?.pushViewController(profileViewController, animated: true)
-        } else if currentUserID == 11 {
-            lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
-            profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setUserInformation(targetID: 11)
+            profileViewController.setUserInformation(targetID: currentUserID)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
             profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setUserInformation(targetID: 22)
+            profileViewController.setUserInformation(targetID: currentUserID)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
     }

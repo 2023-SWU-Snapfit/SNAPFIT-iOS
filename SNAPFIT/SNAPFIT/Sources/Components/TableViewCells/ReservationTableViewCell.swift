@@ -28,6 +28,7 @@ class ReservationTableViewCell: BorderedTableViewCell {
     }()
     
     // MARK: - UIComponents
+    var date: Date = Date()
     let dateLabel: UILabel = {
         let label: UILabel = UILabel()
         label.textColor = .sfBlack60
@@ -81,6 +82,7 @@ class ReservationTableViewCell: BorderedTableViewCell {
     }
     
     private func setDate(date: Date) {
+        self.date = date
         self.dateLabel.text = dateFormatter.string(from: date)
         self.contentView.addSubview(self.dateLabel)
         self.dateLabel.snp.makeConstraints{ make in
@@ -93,13 +95,14 @@ class ReservationTableViewCell: BorderedTableViewCell {
         switch (isFixed, isFinished) {
         case (true, true):
             self.stateButton.isEnabled = true
-            self.stateButton.setTitle(Text.tagFinished, for: .normal)
+            self.stateButton.setTitle(Text.tagDday + "\(days(from: date))", for: .normal)
+//            self.stateButton.setTitle(Text.tagFinished, for: .normal)
         case (false, true):
             self.stateButton.isEnabled = false
             self.stateButton.setTitle(Text.tagOngoing, for: .normal)
         case (true, false):
             self.stateButton.isEnabled = true
-            self.stateButton.setTitle(Text.tagDday + "9", for: .normal)
+            self.stateButton.setTitle(Text.tagDday + "\(days(from: date))", for: .normal)
         default:
             self.stateButton.isEnabled = false
             self.stateButton.setTitle(Text.tagWait, for: .normal)
@@ -117,7 +120,7 @@ class ReservationTableViewCell: BorderedTableViewCell {
         switch (isFixed, isFinished) {
         case (true, true):
             self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
-            self.rightButton.isEnabled = true
+            self.rightButton.isEnabled = false
             self.rightButton.isHidden = false
         case (false, true):
             self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonContact, attributes: attributes), for: .normal)
@@ -137,5 +140,20 @@ class ReservationTableViewCell: BorderedTableViewCell {
                 make.trailing.equalToSuperview().inset(16)
             }
         }
+    }
+    
+    func setPastReservation() {
+        if date <= Date() {
+            self.rightButton.isEnabled = true
+            self.rightButton.isHidden = false
+            let attributes = [NSAttributedString.Key.font : UIFont.b14]
+            self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
+            self.stateButton.isEnabled = true
+            self.stateButton.setTitle(Text.tagFinished, for: .normal)
+        }
+    }
+    
+    func days(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: Date(), to: date).day! + 1
     }
 }

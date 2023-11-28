@@ -12,11 +12,13 @@ struct LikeListResponseDTOElement: Codable {
     let targetID: Int
     let nickname: String
     let profileImageUrl: String?
+    let position: String
 
     enum CodingKeys: String, CodingKey {
         case targetID = "targetId"
         case nickname = "nickname"
         case profileImageUrl = "profileImageUrl"
+        case position = "position"
     }
 }
 

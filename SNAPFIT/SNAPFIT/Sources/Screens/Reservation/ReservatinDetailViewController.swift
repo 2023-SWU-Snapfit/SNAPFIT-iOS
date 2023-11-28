@@ -177,7 +177,7 @@ class ReservationDetailViewController: BaseViewController {
                 ReservationService.shared.putReservation(data: ReservationPutRequestDTO(reservationId: self.reservationID, type: .url)) { networkResult in
                     switch networkResult {
                     case .success:
-                        break
+                        print("urlOK")
                     default:
                         self.makeAlert(title: "오류 발생", message: "다시 시도해주세요.")
                     }
@@ -209,9 +209,9 @@ class ReservationDetailViewController: BaseViewController {
         }
     }
     
-    private func toReservationDate(_ targetString: String) -> Date? { //"yyyy-MM-dd HH:mm:ss"
+    private func toReservationDate(_ targetString: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.ssssZ"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         if let date = dateFormatter.date(from: targetString) {
             return date

@@ -130,7 +130,9 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
                 ReservationService.shared.postReservation(data: ReservationPostRequestDTO(receiverId: self.targetID, dateTime: self.reservedDate, content: self.suggestionTextView.text)) { networkResult in
                     switch networkResult {
                     case .success(_):
-                        self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in  })
+                        self.makeAlert(title: Text.completeTitle, message: Text.completeMessage, okAction: { _ in
+                            self.dismiss(animated: true)
+                        })
                     default:
                         self.makeAlert(title: "오류 발생", message: Message.networkError.text, okAction: { _ in  })
                     }
@@ -158,6 +160,7 @@ class ReservationSuggestionViewController: BaseViewController, DateDataDelegate 
     
     public func recieveDateData(date: Date) {
         self.dateTextView.text = self.reservationDateFormatter.string(from: date)
+        self.reservedDate = date
     }
     
     // MARK: - Layout Methods
