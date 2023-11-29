@@ -50,7 +50,7 @@ final class HomeCategoryTagTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: -
+// MARK: - UICollectionViewDataSource
 
 extension HomeCategoryTagTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

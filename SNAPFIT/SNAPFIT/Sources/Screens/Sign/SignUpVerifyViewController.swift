@@ -90,7 +90,7 @@ final class SignUpVerifyViewController: BaseViewController {
         self.enterButton.setAction {
             if self.codeTextField.text == self.code {
                 self.makeAlert(title: "인증이 완료되었습니다.") { _ in
-                    self.present(SignInViewController(), animated: true)
+                    self.navigationController?.pushViewController(SignUpUserInfoViewController(), animated: true)
                 }
             }
         }
