@@ -123,7 +123,7 @@ extension SignUpSelectPhotoViewController {
         SignService.shared.requestSignUp(data: data) { networkResult in
             switch networkResult {
             case .success:
-                self.makeAlert(title: "📸", message: "회원가입이 완료되었습니다.", okTitle: "로그인하러 가기", completion:  {
+                self.makeAlert(title: "📸", message: "회원가입이 완료되었습니다.", okTitle: "로그인하러 가기", okAction: { _ in 
                     self.dismiss(animated: true)
                 })
             default:

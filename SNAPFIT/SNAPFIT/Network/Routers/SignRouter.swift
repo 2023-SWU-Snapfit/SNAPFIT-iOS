@@ -85,7 +85,7 @@ extension SignRouter: TargetType {
             formData.append(MultipartFormData(provider: .data("\(data.cost)".data(using: .utf8)!), name: "cost"))
             formData.append(MultipartFormData(provider: .data("\(data.position)".data(using: .utf8)!), name: "position"))
             formData.append(MultipartFormData(provider: .data("\(data.contactUrl)".data(using: .utf8)!), name: "contactUrl"))
-            formData.append(MultipartFormData(provider: .data(data.interest.description.data(using: .utf8)!), name: "interest"))
+            formData.append(MultipartFormData(provider: .data(data.interest.makeFormDataString().data(using: .utf8)!), name: "interest"))
             
             return .uploadMultipart(formData)
         }
