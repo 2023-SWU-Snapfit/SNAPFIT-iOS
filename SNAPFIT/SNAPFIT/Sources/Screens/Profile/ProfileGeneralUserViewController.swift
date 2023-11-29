@@ -11,7 +11,7 @@ import SnapKit
 class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     
     var currentUser: User!
-    
+    var targetID: Int = 0
     // MARK: - Properties
     private let navigationView: SnapfitNavigationView = {
         let view: SnapfitNavigationView = SnapfitNavigationView(type: .backLikeMore)
@@ -39,6 +39,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     
     // MARK: - Methods
     public func setUserInformation(targetID: Int) {
+        self.targetID = targetID
         getUserData(targetID: targetID) { result in
             self.setProfileImage(profileImage: result.profileImageUrl)
             self.setBasicData(
@@ -90,8 +91,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     private func setContactButtonAction() {
         self.contactButton.setAction {
             lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
-            // TODO: [RESERVATION] 예약 버튼 클릭 후 동작 
-//            suggestionViewController.setUserData(user: self.currentUser)
+            suggestionViewController.setUserData(userID: self.targetID)
             suggestionViewController.modalTransitionStyle = .crossDissolve
             suggestionViewController.modalPresentationStyle = .overFullScreen
             self.present(suggestionViewController, animated: true)

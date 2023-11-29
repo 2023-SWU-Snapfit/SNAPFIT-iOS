@@ -7,10 +7,11 @@
 
 import UIKit
 
-class ReservationDetailViewController: BaseViewController {
+class ReservationDetailViewController: BaseViewController, UITextViewDelegate {
     enum Text {
         static let navigationTitle = "예약 확인"
         static let senderTitle = "보낸 사람"
+        static let recieverTitle = "받는 사람"
         static let dateTitle = "예약 일시"
         static let contentsTitle = "예약 내용"
         static let chatlinkTitle = "연락 가능한 채팅방"
@@ -19,7 +20,10 @@ class ReservationDetailViewController: BaseViewController {
     }
     
     // MARK: - Properties
-    var reservation: Reservation = Reservation(recieverID: 0, dateText: "", lastUpdateText: "")
+    var reservationID: Int = -1
+    var isConfirmed: Bool = false
+    var isOpenUrl: Bool = false
+    var senderID: Int = -1
     
     // MARK: - UI Components
     private let navigationView: SnapfitNavigationView = {
@@ -73,9 +77,10 @@ class ReservationDetailViewController: BaseViewController {
         label.font = .m13
         return label
     }()
-    private let chatilinkTextView: SnapfitTextView = {
+    private let chatlinkTextView: SnapfitTextView = {
         let view: SnapfitTextView = SnapfitTextView(isEditable: false)
-        view.text = "open.kakao.com/link=2931e77ois22dd2h11"
+        view.text = "https://open.kakao.com/o/s5BvMXUf"
+        view.tintColor = .sfBlack100
         return view
     }()
     private let urlButton: UIButton = {
@@ -107,11 +112,10 @@ class ReservationDetailViewController: BaseViewController {
         super.viewDidLoad()
         self.setNavigationView()
         self.setData()
+        self.setChatLinkAction()
         self.setConfirmButtonAction()
-        self.setButtonStyle(self.reservation.isFixed, self.reservation.isFinished)
-        self.setChatLinkLayout(self.reservation.isFixed, self.reservation.isFinished)
+        self.setUrlButtonAction()
         self.setLayout()
-        self.setButtonLayout(self.reservation.isFixed, self.reservation.isFinished)
     }
     
     // MARK: - Methods
@@ -122,23 +126,72 @@ class ReservationDetailViewController: BaseViewController {
     }
     
     private func setData() {
-        let otherID: Int = self.reservation.senderID == 133 ? self.reservation.recieverID : self.reservation.senderID
-        self.profileImageView.image = users[otherID].profileImage
-        self.nameLabel.text = "\(users[otherID].userName) 님"
-        self.dateTextView.text = self.reservation.dateText
-        self.contentsTextView.text = self.reservation.contentsText
+        ReservationService.shared.getReservationDetail(reservationId: self.reservationID) { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? ReservationDetailResponseDTO {
+                    self.reservationID = result.id
+                    self.isConfirmed = result.isConfirmed
+                    self.isOpenUrl = result.isOpenUrl
+                    self.senderID = result.senderId
+                    self.chatlinkTextView.text = result.contactUrl
+                    if UserInfo.shared.userID == result.receiverId {
+                        self.senderLabel.text = Text.senderTitle
+                        self.profileImageView.setImageUrl(result.senderProfileImageUrl ?? "")
+                        self.nameLabel.text = "\(result.senderNickname) 님"
+                        self.dateTextView.text = self.toReservationString(self.toReservationDate(result.dateTime) ?? Date())
+                        self.contentsTextView.text = result.content
+                    } else {
+                        self.senderLabel.text = Text.recieverTitle
+                        self.profileImageView.setImageUrl(result.receiverProfileImageUrl ?? "")
+                        self.nameLabel.text = "\(result.receiverNickname) 님"
+                        self.dateTextView.text =  self.toReservationString(self.toReservationDate(result.dateTime) ?? Date())
+                        self.contentsTextView.text = result.content
+                    }
+                }
+                self.setButtonStyle(self.isConfirmed, self.isOpenUrl)
+                self.setChatLinkLayout(self.isConfirmed, self.isOpenUrl)
+                self.setButtonLayout(self.isConfirmed, self.isOpenUrl)
+            default:
+                self.showNetworkErrorAlert()
+            }
+        }
     }
     
     func setConfirmButtonAction() {
         self.confirmButton.setAction {
             self.makeAlertWithCancel(okTitle: "확인") { _ in
+                ReservationService.shared.putReservation(data: ReservationPutRequestDTO(reservationId: self.reservationID, type: .confirm)) { networkResult in
+                    switch networkResult {
+                    case .success:
+                        break
+                    default:
+                        self.makeAlert(title: "오류 발생", message: "다시 시도해주세요.")
+                    }
+                }
                 self.confirmButton.isEnabled = false
             }
         }
     }
     
+    func setUrlButtonAction() {
+        self.urlButton.setAction {
+            self.makeAlertWithCancel(okTitle: "확인") { _ in
+                ReservationService.shared.putReservation(data: ReservationPutRequestDTO(reservationId: self.reservationID, type: .url)) { networkResult in
+                    switch networkResult {
+                    case .success:
+                        print("urlOK")
+                    default:
+                        self.makeAlert(title: "오류 발생", message: "다시 시도해주세요.")
+                    }
+                }
+                self.urlButton.isEnabled = false
+            }
+        }
+    }
+    
     private func setButtonStyle(_ isFixed: Bool, _ isFinished: Bool) {
-        if self.reservation.senderID == 133 {
+        if self.senderID == UserInfo.shared.userID {
             self.urlButton.isHidden = true
             self.confirmButton.isHidden = true
             return
@@ -159,16 +212,45 @@ class ReservationDetailViewController: BaseViewController {
         }
     }
     
+    private func setChatLinkAction() {
+        self.chatlinkTextView.delegate = self
+        self.chatlinkTextView.dataDetectorTypes = .link
+        self.chatlinkTextView.isSelectable = true
+        self.chatlinkTextView.isUserInteractionEnabled = true
+    }
+    
+    private func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) async -> Bool {
+        await UIApplication.shared.open(URL)
+    }
+    
+    private func toReservationDate(_ targetString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.ssssZ"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        if let date = dateFormatter.date(from: targetString) {
+            return date
+        } else {
+            return nil
+        }
+    }
+    
+    private func toReservationString(_ targetDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일 a hh시 mm분"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        return dateFormatter.string(from: targetDate)
+    }
+    
     // MARK: - Layout Methods
     private func setChatLinkLayout(_ isFixed: Bool, _ isFinished: Bool) {
-        if self.reservation.senderID == 133 && (isFinished == true || isFixed == true){
+        if self.senderID == UserInfo.shared.userID && (self.isConfirmed == true || self.isOpenUrl == true){
             self.view.addSubview(self.chatlinkLabel)
             self.chatlinkLabel.snp.makeConstraints { make in
                 make.top.equalToSuperview().inset(520)
                 make.leading.trailing.equalToSuperview().inset(20)
             }
-            self.view.addSubview(self.chatilinkTextView)
-            self.chatilinkTextView.snp.makeConstraints { make in
+            self.view.addSubview(self.chatlinkTextView)
+            self.chatlinkTextView.snp.makeConstraints { make in
                 make.top.equalTo(self.chatlinkLabel.snp.bottom).offset(8)
                 make.leading.trailing.equalToSuperview().inset(20)
             }
@@ -220,7 +302,7 @@ class ReservationDetailViewController: BaseViewController {
     }
     
     private func setButtonLayout(_ isFixed: Bool, _ isFinished: Bool) {
-        if isFixed || isFinished {
+        if self.senderID != UserInfo.shared.userID {
             self.view.addSubview(self.confirmButton)
             self.confirmButton.snp.makeConstraints { make in
                 make.bottom.equalToSuperview().inset(44)
@@ -233,17 +315,4 @@ class ReservationDetailViewController: BaseViewController {
             }
         }
     }
-}
-
-// MARK: - Extension: DataDelegate
-extension ReservationDetailViewController: ReservationDataDelegate {
-    func recieveReservationData(reservationData: Reservation) {
-        self.reservation = reservationData
-    }
-    
-    func recieveDateData(date: Date) {
-        
-    }
-    
-    
 }

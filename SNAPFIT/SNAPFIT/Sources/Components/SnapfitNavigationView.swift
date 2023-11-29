@@ -29,6 +29,7 @@ final class SnapfitNavigationView: UIView {
         static let notificationButtonImageName = "icn_bell"
         static let closeButtonImageName = "icn_x"
         static let likeButtonImageName = "icn_heart"
+        static let likeButtonOnImageName = "icn_heart_red"
         static let moreButtonIamgeName = "icn_more"
         static let saveText = "저장"
     }

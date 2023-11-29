@@ -12,6 +12,8 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
     
     // MARK: - Properties
     var currentUser: User!
+    var targetID: Int = 0
+    var likeState: Bool = false
     
     // MARK: - UIComponents
     private let navigationView: SnapfitNavigationView = {
@@ -34,12 +36,14 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setPhotographerLayout()
         self.setContactButtonAction()
+        self.setLikeButtonAction()
         self.setMoreButtonAction()
         self.setLayout()
     }
     
     // MARK: - Methods
     public func setUserInformation(targetID: Int) {
+        self.targetID = targetID
         getUserData(targetID: targetID) { result in
             self.setProfileImage(profileImage: result.profileImageUrl)
             self.setBannerImage(bannerImage: result.thumbnailImageUrl)
@@ -67,9 +71,14 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
                 }
             }
             self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0.0)
+            if Int(result.likes)! > 0 {
+                self.likeState = true
+                self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonOnImageName), for: .normal)
+                self.navigationView.likeButton.tintColor = .sfMainRed
+            }
         }
     }
-    
+    // TODO: [REGACY] 더미데이터용 setUserInformation 삭제 - User 클래스 사용 시 삭제하면 됨 (리팩토링)
     public func setUserInformation(currentUser: User) {
         self.currentUser = currentUser
 //        self.setProfileImage(profileImage: currentUser.profileImage.)
@@ -111,9 +120,24 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
         }
     }
     
+    private func setLikeButtonAction() {
+        self.navigationView.likeButton.setAction {
+            LikeService.shared.postLike(targetId: self.targetID) { _ in }
+            self.likeState.toggle()
+            if self.likeState {
+                self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonImageName), for: .normal)
+                self.navigationView.likeButton.tintColor = .sfMainRed
+            } else {
+                self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonOnImageName), for: .normal)
+                self.navigationView.likeButton.setTitleColor(.sfBlack100, for: .normal)
+            }
+        }
+    }
+    
     private func setContactButtonAction() {
         self.contactButton.setAction {
             lazy var suggestionViewController: ReservationSuggestionViewController = ReservationSuggestionViewController()
+            suggestionViewController.setUserData(userID: self.targetID)
             suggestionViewController.modalTransitionStyle = .crossDissolve
             suggestionViewController.modalPresentationStyle = .overFullScreen
             self.present(suggestionViewController, animated: true)
