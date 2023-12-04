@@ -130,16 +130,16 @@
 		FF127F382B0440DD00BD617F /* SignRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F372B0440DD00BD617F /* SignRouter.swift */; };
 		FF127F3A2B0442C500BD617F /* SignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F392B0442C500BD617F /* SignService.swift */; };
 		FF127F3D2B04438700BD617F /* SignInResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */; };
+		FF1418E42B161B7C004D657E /* SignUpSelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E22B161B7C004D657E /* SignUpSelectPhotoViewController.swift */; };
+		FF1418E52B161B7C004D657E /* SignUpUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E32B161B7C004D657E /* SignUpUserInfoViewController.swift */; };
+		FF1418E72B1623F3004D657E /* SelectPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E62B1623F3004D657E /* SelectPhotoCollectionViewCell.swift */; };
+		FF1418E92B163F6C004D657E /* SignUpResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E82B163F6C004D657E /* SignUpResponseDTO.swift */; };
+		FF1418ED2B16B91A004D657E /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FF1418F12B16E591004D657E /* PhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418F02B16E591004D657E /* PhotoRouter.swift */; };
 		FF1418F32B16E5FB004D657E /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418F22B16E5FB004D657E /* PhotoService.swift */; };
 		FF1418F72B16F190004D657E /* GetPhotoByTagResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418F62B16F190004D657E /* GetPhotoByTagResponseDTO.swift */; };
 		FF1418F92B16F3C6004D657E /* PhotoByTagUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418F82B16F3C6004D657E /* PhotoByTagUpdateDelegate.swift */; };
 		FF1418FB2B17041B004D657E /* GetMainTagPhotoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418FA2B17041B004D657E /* GetMainTagPhotoResponseDTO.swift */; };
-		FF1418E42B161B7C004D657E /* SignUpSelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E22B161B7C004D657E /* SignUpSelectPhotoViewController.swift */; };
-		FF1418E52B161B7C004D657E /* SignUpUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E32B161B7C004D657E /* SignUpUserInfoViewController.swift */; };
-		FF1418E72B1623F3004D657E /* SelectPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E62B1623F3004D657E /* SelectPhotoCollectionViewCell.swift */; };
-		FF1418E92B163F6C004D657E /* SignUpResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418E82B163F6C004D657E /* SignUpResponseDTO.swift */; };
-		FF1418ED2B16B91A004D657E /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418EC2B16B91A004D657E /* Array+.swift */; };
 		FF2939672A36340000C169E3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939662A36340000C169E3 /* SearchViewController.swift */; };
 		FF2939692A363D3300C169E3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939682A363D3300C169E3 /* Tag.swift */; };
 		FF29396C2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29396B2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift */; };
@@ -157,7 +157,8 @@
 		FF395B6F2B1D9591008BF286 /* MainPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF395B6E2B1D9591008BF286 /* MainPhoto.swift */; };
 		FF395B712B1E00FB008BF286 /* GetTopUsersResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF395B702B1E00FB008BF286 /* GetTopUsersResponseDTO.swift */; };
 		FF395B732B1E0C84008BF286 /* TopUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF395B722B1E0C84008BF286 /* TopUsers.swift */; };
-		FF395B752B1E117A008BF286 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF395B742B1E117A008BF286 /* Array+.swift */; };
+		FF395B782B1E1CAE008BF286 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FF395B7A2B1E1CF1008BF286 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF395B792B1E1CF1008BF286 /* Array+.swift */; };
 		FF896BE92AF1CD27000800ED /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BE82AF1CD27000800ED /* SignInViewController.swift */; };
 		FF896BEB2AF1FA79000800ED /* SnapfitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */; };
 		FF896BED2AF220F1000800ED /* SnapfitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEC2AF220F1000800ED /* SnapfitButton.swift */; };
@@ -292,16 +293,15 @@
 		FF127F372B0440DD00BD617F /* SignRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignRouter.swift; sourceTree = "<group>"; };
 		FF127F392B0442C500BD617F /* SignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignService.swift; sourceTree = "<group>"; };
 		FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseDTO.swift; sourceTree = "<group>"; };
+		FF1418E22B161B7C004D657E /* SignUpSelectPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSelectPhotoViewController.swift; sourceTree = "<group>"; };
+		FF1418E32B161B7C004D657E /* SignUpUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpUserInfoViewController.swift; sourceTree = "<group>"; };
+		FF1418E62B1623F3004D657E /* SelectPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		FF1418E82B163F6C004D657E /* SignUpResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseDTO.swift; sourceTree = "<group>"; };
 		FF1418F02B16E591004D657E /* PhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRouter.swift; sourceTree = "<group>"; };
 		FF1418F22B16E5FB004D657E /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		FF1418F62B16F190004D657E /* GetPhotoByTagResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoByTagResponseDTO.swift; sourceTree = "<group>"; };
 		FF1418F82B16F3C6004D657E /* PhotoByTagUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoByTagUpdateDelegate.swift; sourceTree = "<group>"; };
 		FF1418FA2B17041B004D657E /* GetMainTagPhotoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMainTagPhotoResponseDTO.swift; sourceTree = "<group>"; };
-		FF1418E22B161B7C004D657E /* SignUpSelectPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSelectPhotoViewController.swift; sourceTree = "<group>"; };
-		FF1418E32B161B7C004D657E /* SignUpUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpUserInfoViewController.swift; sourceTree = "<group>"; };
-		FF1418E62B1623F3004D657E /* SelectPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
-		FF1418E82B163F6C004D657E /* SignUpResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseDTO.swift; sourceTree = "<group>"; };
-		FF1418EC2B16B91A004D657E /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		FF2939662A36340000C169E3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FF2939682A363D3300C169E3 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		FF29396B2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 		FF395B6E2B1D9591008BF286 /* MainPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoto.swift; sourceTree = "<group>"; };
 		FF395B702B1E00FB008BF286 /* GetTopUsersResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopUsersResponseDTO.swift; sourceTree = "<group>"; };
 		FF395B722B1E0C84008BF286 /* TopUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUsers.swift; sourceTree = "<group>"; };
-		FF395B742B1E117A008BF286 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		FF395B792B1E1CF1008BF286 /* Array+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		FF896BE82AF1CD27000800ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitTextField.swift; sourceTree = "<group>"; };
 		FF896BEC2AF220F1000800ED /* SnapfitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitButton.swift; sourceTree = "<group>"; };
@@ -605,6 +605,7 @@
 			children = (
 				C77784762A003B1000B4AB8D /* SNAPFIT */,
 				C77784752A003B1000B4AB8D /* Products */,
+				FF395B762B1E1C81008BF286 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -722,12 +723,12 @@
 				C766F1772A10A41C009BC30E /* UserDefaults+.swift */,
 				C766F1792A10A43F009BC30E /* UIStackView+.swift */,
 				C766F17B2A10A455009BC30E /* UIImageView+.swift */,
+				FF395B792B1E1CF1008BF286 /* Array+.swift */,
 				C766F17D2A10A47B009BC30E /* Notification+Name+.swift */,
 				C766F17F2A10A49C009BC30E /* UIImage+.swift */,
 				C766F1812A10A4E3009BC30E /* UINavigationController.swift */,
 				C71730EF2A17C6C300155D09 /* UITabBar+.swift */,
 				C71730F12A17C6EB00155D09 /* CALayer+.swift */,
-				FF395B742B1E117A008BF286 /* Array+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -913,6 +914,13 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		FF395B762B1E1C81008BF286 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		FF896BE72AF1CD17000800ED /* Sign */ = {
 			isa = PBXGroup;
 			children = (
@@ -1045,6 +1053,7 @@
 				C766F17A2A10A43F009BC30E /* UIStackView+.swift in Sources */,
 				FF395B6F2B1D9591008BF286 /* MainPhoto.swift in Sources */,
 				FFD375D82AA0E749005099EC /* BaseService.swift in Sources */,
+				FF395B782B1E1CAE008BF286 /* (null) in Sources */,
 				C766F16E2A10A25A009BC30E /* UITextField.swift in Sources */,
 				C74499ED2A1FA84700C21AD4 /* SnapfitSearchTextField.swift in Sources */,
 				FF896BED2AF220F1000800ED /* SnapfitButton.swift in Sources */,
@@ -1060,7 +1069,7 @@
 				C74499E72A1EEBC400C21AD4 /* NotificationViewController.swift in Sources */,
 				FF9968392B0D66E300FCEAF5 /* VerifyPhoneNumberRequestDTO.swift in Sources */,
 				6A85665A2A99D97300F66321 /* MypagePhotographerEditingViewController.swift in Sources */,
-				FF1418ED2B16B91A004D657E /* Array+.swift in Sources */,
+				FF1418ED2B16B91A004D657E /* (null) in Sources */,
 				6AEC75452ADE9A41004847DA /* UserListResponseDTO.swift in Sources */,
 				6AAB9AC42ACD75C600B09A0A /* BlockRequestDTO.swift in Sources */,
 				6AAB9ABE2ACD725900B09A0A /* ReportRequestDTO.swift in Sources */,
@@ -1072,6 +1081,7 @@
 				C798F8252A2B661200886D0E /* VerticalPhotoCollectionViewCell.swift in Sources */,
 				C766F1582A1097AF009BC30E /* BaseViewController.swift in Sources */,
 				FF9837662B14D6A0004EE542 /* SignUpRequestData.swift in Sources */,
+				FF395B7A2B1E1CF1008BF286 /* Array+.swift in Sources */,
 				C70C48952A301A560052019B /* PhotographerListTableViewCell.swift in Sources */,
 				6A3C4D432AA45A73005E021E /* ReviewListResponseDTO.swift in Sources */,
 				C74499E42A1EDBFE00C21AD4 /* HomeNavigationTableViewCell.swift in Sources */,
@@ -1158,7 +1168,6 @@
 				6AB807622AD14F2600FAF8BE /* ReservationListResponseDTO.swift in Sources */,
 				6A3C4D4B2AA48E41005E021E /* ReviewPostRequestDTO.swift in Sources */,
 				C71730EE2A17427900155D09 /* ReservationViewController.swift in Sources */,
-				FF395B752B1E117A008BF286 /* Array+.swift in Sources */,
 				6A3C4D472AA4873A005E021E /* ReviewDeleteRequestDTO.swift in Sources */,
 				FF1418F12B16E591004D657E /* PhotoRouter.swift in Sources */,
 				6AF625492A5D1AC200B6FF9E /* ReservationTableViewCell.swift in Sources */,

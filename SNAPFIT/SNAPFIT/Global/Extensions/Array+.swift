@@ -2,6 +2,9 @@
 //  Array+.swift
 //  SNAPFIT
 //
+//  Created by Jungbin on 12/4/23.
+//
+
 import Foundation
 
 extension Array {
