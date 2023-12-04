@@ -67,11 +67,11 @@ final class SearchInputViewController: BaseViewController {
 
             }
             self.searchResults.users = [
-                SummaryUser(userId: 1, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
+                SummaryUser(userId: TopUsers.shared.data[0].id, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
+                SummaryUser(userId: TopUsers.shared.data[1].id, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
+                SummaryUser(userId: TopUsers.shared.data[2].id, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
+                SummaryUser(userId: TopUsers.shared.data[3].id, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
+                SummaryUser(userId: TopUsers.shared.data[4].id, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
             ]
             
             self.tableView.reloadData()
@@ -88,11 +88,11 @@ extension SearchInputViewController: UITextFieldDelegate {
         self.searchResults = SearchResult(
             photos: [],
             users: [
-                SummaryUser(userId: 1, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
-                SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
+                SummaryUser(userId: TopUsers.shared.data[0].id, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
+                SummaryUser(userId: TopUsers.shared.data[1].id, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
+                SummaryUser(userId: TopUsers.shared.data[2].id, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
+                SummaryUser(userId: TopUsers.shared.data[3].id, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
+                SummaryUser(userId: TopUsers.shared.data[4].id, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
             ]
         )
         
@@ -124,7 +124,8 @@ extension SearchInputViewController: SendUpdateDelegate {
     func sendUpdate(data: Any?) {
         lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
         profileViewController.modalPresentationStyle = .fullScreen
-        profileViewController.setUserInformation(currentUser: users[2])
+        let selectedUser = TopUsers.shared.data[data as? Int ?? 0]
+        profileViewController.setUserInformation(targetID: selectedUser.id)
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
