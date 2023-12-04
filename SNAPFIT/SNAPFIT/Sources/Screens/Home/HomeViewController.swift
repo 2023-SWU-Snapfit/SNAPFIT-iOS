@@ -40,6 +40,7 @@ final class HomeViewController: BaseViewController {
     // MARK: Properties
     
     private var isReserved: Bool = false
+    private var currentTagIndex: Int = 0
     
     // MARK: View Life Cycle
     
@@ -49,6 +50,15 @@ final class HomeViewController: BaseViewController {
         self.setLayout()
         self.setTableView()
         self.setAddGalleryButtonAction()
+        self.getMainPhoto { photoData in
+            MainPhoto.shared.data = photoData
+            self.homeTableView.reloadRows(at: [IndexPath(row: 3, section: 0), IndexPath(row: 4, section: 0)], with: .automatic)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     // MARK: Methods
@@ -61,34 +71,32 @@ final class HomeViewController: BaseViewController {
     }
 }
 
-// MARK: - UI
+// MARK: - Network
 
 extension HomeViewController {
-    
-    private func setTableView() {
-        self.homeTableView.delegate = self
-        self.homeTableView.dataSource = self
-        
-        self.homeTableView.register(cell: HomeNavigationTableViewCell.self)
-        self.homeTableView.register(cell: HomeReservationDetailTableViewCell.self)
-        self.homeTableView.register(cell: HomeSearchBarTableViewCell.self)
-        self.homeTableView.register(cell: HomeCategoryTagTableViewCell.self)
-        self.homeTableView.register(cell: HomePhotoByCategoryTableViewCell.self)
-        self.homeTableView.register(cell: HomePhotoByPersonalCetegoryTableViewCell.self)
-        self.homeTableView.register(cell: PhotographerListTableViewCell.self)
-        self.homeTableView.register(cell: HomePhotoByThemeTableViewCell.self)
+    private func getMainPhoto(completion: @escaping (GetMainTagPhotoResponseDTO) -> ()) {
+        PhotoService.shared.getMainPhoto { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? GetMainTagPhotoResponseDTO {
+                    completion(result)
+                }
+            default:
+                self.showNetworkErrorAlert()
+            }
+        }
     }
     
-    private func setLayout() {
-        self.view.addSubviews([homeTableView, addImageButton])
-        
-        self.homeTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        self.addImageButton.snp.makeConstraints { make in
-            make.width.height.equalTo(56)
-            make.bottom.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+    private func getPhotoByTag(tags: [Int], completion: @escaping ([GetPhotoByTagResponseDTO.Photo]) -> ()) {
+        PhotoService.shared.getPhotoByTag(tags: tags) { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? GetPhotoByTagResponseDTO {
+                    completion(result.photoData)
+                }
+            default:
+                self.showNetworkErrorAlert()
+            }
         }
     }
 }
@@ -110,6 +118,13 @@ extension HomeViewController: SendImageDelegate {
         vc.modalPresentationStyle = .fullScreen
         vc.setData(image: image)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeViewController: PhotoByTagUpdateDelegate {
+    func sendUpdate(tag: Int) {
+        self.currentTagIndex = tag
+        self.homeTableView.reloadRows(at: [IndexPath(row: TableRow.photoBySelectedCategory.rawValue, section: 0)], with: .automatic)
     }
 }
 
@@ -150,12 +165,14 @@ extension HomeViewController: UITableViewDataSource {
             case .categoryTag:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCategoryTagTableViewCell.className) as? HomeCategoryTagTableViewCell
                 else { return UITableViewCell() }
-                
+                cell.delegate = self
                 return cell
             case .photoBySelectedCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByCategoryTableViewCell.className) as? HomePhotoByCategoryTableViewCell
                 else { return UITableViewCell() }
                 cell.sendImageDelegate = self
+                cell.currentTagIndex = self.currentTagIndex
+                cell.collectionView.reloadData()
                 return cell
             case .photoByPersonalCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByPersonalCetegoryTableViewCell.className) as? HomePhotoByPersonalCetegoryTableViewCell
@@ -211,5 +228,37 @@ extension HomeViewController: UITableViewDelegate {
                 return 309
             }
         } else { return 0 }
+    }
+}
+
+// MARK: - UI
+
+extension HomeViewController {
+    
+    private func setTableView() {
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
+        
+        self.homeTableView.register(cell: HomeNavigationTableViewCell.self)
+        self.homeTableView.register(cell: HomeReservationDetailTableViewCell.self)
+        self.homeTableView.register(cell: HomeSearchBarTableViewCell.self)
+        self.homeTableView.register(cell: HomeCategoryTagTableViewCell.self)
+        self.homeTableView.register(cell: HomePhotoByCategoryTableViewCell.self)
+        self.homeTableView.register(cell: HomePhotoByPersonalCetegoryTableViewCell.self)
+        self.homeTableView.register(cell: PhotographerListTableViewCell.self)
+        self.homeTableView.register(cell: HomePhotoByThemeTableViewCell.self)
+    }
+    
+    private func setLayout() {
+        self.view.addSubviews([homeTableView, addImageButton])
+        
+        self.homeTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        self.addImageButton.snp.makeConstraints { make in
+            make.width.height.equalTo(56)
+            make.bottom.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+        }
     }
 }

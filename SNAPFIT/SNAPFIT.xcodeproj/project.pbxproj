@@ -130,6 +130,11 @@
 		FF127F382B0440DD00BD617F /* SignRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F372B0440DD00BD617F /* SignRouter.swift */; };
 		FF127F3A2B0442C500BD617F /* SignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F392B0442C500BD617F /* SignService.swift */; };
 		FF127F3D2B04438700BD617F /* SignInResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */; };
+		FF1418F12B16E591004D657E /* PhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418F02B16E591004D657E /* PhotoRouter.swift */; };
+		FF1418F32B16E5FB004D657E /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418F22B16E5FB004D657E /* PhotoService.swift */; };
+		FF1418F72B16F190004D657E /* GetPhotoByTagResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418F62B16F190004D657E /* GetPhotoByTagResponseDTO.swift */; };
+		FF1418F92B16F3C6004D657E /* PhotoByTagUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418F82B16F3C6004D657E /* PhotoByTagUpdateDelegate.swift */; };
+		FF1418FB2B17041B004D657E /* GetMainTagPhotoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1418FA2B17041B004D657E /* GetMainTagPhotoResponseDTO.swift */; };
 		FF2939672A36340000C169E3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939662A36340000C169E3 /* SearchViewController.swift */; };
 		FF2939692A363D3300C169E3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2939682A363D3300C169E3 /* Tag.swift */; };
 		FF29396C2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29396B2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift */; };
@@ -144,6 +149,7 @@
 		FF2E86A52AA20C7D00258D75 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A42AA20C7D00258D75 /* LikeService.swift */; };
 		FF2E86A82AA20C8900258D75 /* LikeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A72AA20C8900258D75 /* LikeRouter.swift */; };
 		FF2E86AD2AA20EB100258D75 /* LikeListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */; };
+		FF395B6F2B1D9591008BF286 /* MainPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF395B6E2B1D9591008BF286 /* MainPhoto.swift */; };
 		FF896BE92AF1CD27000800ED /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BE82AF1CD27000800ED /* SignInViewController.swift */; };
 		FF896BEB2AF1FA79000800ED /* SnapfitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */; };
 		FF896BED2AF220F1000800ED /* SnapfitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEC2AF220F1000800ED /* SnapfitButton.swift */; };
@@ -278,6 +284,11 @@
 		FF127F372B0440DD00BD617F /* SignRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignRouter.swift; sourceTree = "<group>"; };
 		FF127F392B0442C500BD617F /* SignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignService.swift; sourceTree = "<group>"; };
 		FF127F3C2B04438700BD617F /* SignInResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseDTO.swift; sourceTree = "<group>"; };
+		FF1418F02B16E591004D657E /* PhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRouter.swift; sourceTree = "<group>"; };
+		FF1418F22B16E5FB004D657E /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		FF1418F62B16F190004D657E /* GetPhotoByTagResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoByTagResponseDTO.swift; sourceTree = "<group>"; };
+		FF1418F82B16F3C6004D657E /* PhotoByTagUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoByTagUpdateDelegate.swift; sourceTree = "<group>"; };
+		FF1418FA2B17041B004D657E /* GetMainTagPhotoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMainTagPhotoResponseDTO.swift; sourceTree = "<group>"; };
 		FF2939662A36340000C169E3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FF2939682A363D3300C169E3 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		FF29396B2A3643D000C169E3 /* CategoryPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -292,6 +303,7 @@
 		FF2E86A42AA20C7D00258D75 /* LikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
 		FF2E86A72AA20C8900258D75 /* LikeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRouter.swift; sourceTree = "<group>"; };
 		FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListResponseDTO.swift; sourceTree = "<group>"; };
+		FF395B6E2B1D9591008BF286 /* MainPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoto.swift; sourceTree = "<group>"; };
 		FF896BE82AF1CD27000800ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitTextField.swift; sourceTree = "<group>"; };
 		FF896BEC2AF220F1000800ED /* SnapfitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitButton.swift; sourceTree = "<group>"; };
@@ -670,6 +682,7 @@
 				C7E900122A0BBC8200CC620B /* UserInfo.swift */,
 				C766F1752A10A3FB009BC30E /* ImageCacheManager.swift */,
 				FF9837652B14D6A0004EE542 /* SignUpRequestData.swift */,
+				FF395B6E2B1D9591008BF286 /* MainPhoto.swift */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -775,6 +788,23 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		FF1418F42B16F179004D657E /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				FF1418F52B16F180004D657E /* Response */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		FF1418F52B16F180004D657E /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				FF1418F62B16F190004D657E /* GetPhotoByTagResponseDTO.swift */,
+				FF1418FA2B17041B004D657E /* GetMainTagPhotoResponseDTO.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		FF2939652A3633F400C169E3 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -811,6 +841,7 @@
 				FF29397A2A376A6F00C169E3 /* SendUpdateDelegate.swift */,
 				6AD589952A6811C9009C7A3C /* DateDataDelegate.swift */,
 				6AFE86852A9B5A57007A8713 /* ReviewDataDelegate.swift */,
+				FF1418F82B16F3C6004D657E /* PhotoByTagUpdateDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -825,6 +856,7 @@
 				6AAB9AB92ACD5DFB00B09A0A /* BlockRouter.swift */,
 				6AB807652AD153E300FAF8BE /* ReservationRouter.swift */,
 				6A2BDB932ADD7E9C002AA2FF /* UserRouter.swift */,
+				FF1418F02B16E591004D657E /* PhotoRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -832,6 +864,7 @@
 		FF2E86A92AA20E3800258D75 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				FF1418F42B16F179004D657E /* Photo */,
 				FF127F332B04402C00BD617F /* Sign */,
 				6A2BDB972ADD7F4E002AA2FF /* User */,
 				6A2AE6172ACEC88300B42FF8 /* Reservation */,
@@ -882,6 +915,7 @@
 				6AAB9AC02ACD758600B09A0A /* BlockService.swift */,
 				6AB807672AD157A600FAF8BE /* ReservationService.swift */,
 				6A2BDB952ADD7F10002AA2FF /* UserService.swift */,
+				FF1418F22B16E5FB004D657E /* PhotoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -986,6 +1020,7 @@
 				6AA612B02A17C48B00C49095 /* ReviewCollectionViewController.swift in Sources */,
 				FF99683D2B0DA82400FCEAF5 /* SignUpSelectPositionViewController.swift in Sources */,
 				C766F17A2A10A43F009BC30E /* UIStackView+.swift in Sources */,
+				FF395B6F2B1D9591008BF286 /* MainPhoto.swift in Sources */,
 				FFD375D82AA0E749005099EC /* BaseService.swift in Sources */,
 				C766F16E2A10A25A009BC30E /* UITextField.swift in Sources */,
 				C74499ED2A1FA84700C21AD4 /* SnapfitSearchTextField.swift in Sources */,
@@ -995,6 +1030,7 @@
 				C7E900292A0BC58000CC620B /* Bundle+.swift in Sources */,
 				C744AD612A1A81C000D30F14 /* SnapfitSearchBarButton.swift in Sources */,
 				6A4448C12A98375F00208092 /* SnapfitUserInformationEditingViewController.swift in Sources */,
+				FF1418F32B16E5FB004D657E /* PhotoService.swift in Sources */,
 				6A3C4D452AA45DC1005E021E /* ReviewDetailResponseDTO.swift in Sources */,
 				6AFE86862A9B5A57007A8713 /* ReviewDataDelegate.swift in Sources */,
 				C74499E72A1EEBC400C21AD4 /* NotificationViewController.swift in Sources */,
@@ -1045,6 +1081,7 @@
 				FF9837642B14D4C2004EE542 /* SignUpRequestDTO.swift in Sources */,
 				FF2E86A32AA20C0600258D75 /* SnapfitMoyaProvider.swift in Sources */,
 				6AE4FC862B0F9B290057C660 /* UserDataMethodManager.swift in Sources */,
+				FF1418F92B16F3C6004D657E /* PhotoByTagUpdateDelegate.swift in Sources */,
 				C766F1602A109AAB009BC30E /* ClassName.swift in Sources */,
 				FF2E86A12AA20BCE00258D75 /* BaseResponseType.swift in Sources */,
 				6A3F09542AA3475300C51179 /* ReviewService.swift in Sources */,
@@ -1092,8 +1129,10 @@
 				6A3C4D4B2AA48E41005E021E /* ReviewPostRequestDTO.swift in Sources */,
 				C71730EE2A17427900155D09 /* ReservationViewController.swift in Sources */,
 				6A3C4D472AA4873A005E021E /* ReviewDeleteRequestDTO.swift in Sources */,
+				FF1418F12B16E591004D657E /* PhotoRouter.swift in Sources */,
 				6AF625492A5D1AC200B6FF9E /* ReservationTableViewCell.swift in Sources */,
 				FF2939762A36E32500C169E3 /* SearchResultTableViewHeaderView.swift in Sources */,
+				FF1418FB2B17041B004D657E /* GetMainTagPhotoResponseDTO.swift in Sources */,
 				6AA3236D2A9F19F20005453E /* SettingContactTableViewCell.swift in Sources */,
 				C766F17E2A10A47B009BC30E /* Notification+Name+.swift in Sources */,
 				FF127F3D2B04438700BD617F /* SignInResponseDTO.swift in Sources */,
@@ -1103,6 +1142,7 @@
 				FF127F362B04404700BD617F /* SignInRequestDTO.swift in Sources */,
 				6A3FA4C32A2C10AC000382CF /* ProfileGeneralUserViewController.swift in Sources */,
 				6A3D83A92AF9F9B400869535 /* ReviewEditViewController.swift in Sources */,
+				FF1418F72B16F190004D657E /* GetPhotoByTagResponseDTO.swift in Sources */,
 				FF29397D2A380F7100C169E3 /* PhotoViewController.swift in Sources */,
 				6A0E39B82A10CD4A00DC531A /* BorderedTableViewCell.swift in Sources */,
 				6A0E39B42A10CD4200DC531A /* ChattingListTableViewCell.swift in Sources */,
