@@ -51,7 +51,7 @@ final class PhotoSearchResultTableViewCell: UITableViewCell {
     }
     
     func setData(data: SearchResult.PhotoSearchResult) {
-        self.photoImageView.image = data.image
+        self.photoImageView.setImageUrl(data.imageURL)
         self.usernameLabel.text = "by. \(data.username)"
         self.tagsLabel.text = data.tagsText
     }

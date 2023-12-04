@@ -17,7 +17,7 @@ final class PhotoViewController: BaseViewController {
         return view
     }()
     
-    private let imageView: UIImageView = {
+    let imageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill

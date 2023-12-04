@@ -63,10 +63,8 @@ final class SearchInputViewController: BaseViewController {
             self.searchResults = SearchResult(photos: [], users: [])
             _ = photoList.map { photo in
                 var photoImage = UIImage()
-                photo.photoURL.getImage { image in
-                    photoImage = image
-                }
-                self.searchResults.photos.append(SearchResult.PhotoSearchResult(image: photoImage, tagsText: photo.tag.getTagText(), username: photo.nickname))
+                self.searchResults.photos.append(SearchResult.PhotoSearchResult(imageURL: photo.photoURL, tagsText: photo.tag.getTagText(), username: photo.nickname))
+
             }
             self.searchResults.users = [
                 SummaryUser(userId: 1, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
@@ -88,11 +86,7 @@ extension SearchInputViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         self.searchResults = SearchResult(
-            photos: [
-                SearchResult.PhotoSearchResult(image: UIImage(named: "sampleImage\(Tag.shared.category[0].id)") ?? UIImage(), tagsText: "#\(Tag.shared.mood[0].name) #\(Tag.shared.mood[4].name)", username: users[0].userName),
-                SearchResult.PhotoSearchResult(image: UIImage(named: "sampleImage\(Tag.shared.category[1].id)") ?? UIImage(), tagsText: "#\(Tag.shared.mood[1].name)", username: users[1].userName),
-                SearchResult.PhotoSearchResult(image: UIImage(named: "sampleImage\(Tag.shared.category[9].id)") ?? UIImage(), tagsText: "#\(Tag.shared.mood[9].name)", username: users[9].userName)
-            ],
+            photos: [],
             users: [
                 SummaryUser(userId: 1, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
                 SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
@@ -208,7 +202,7 @@ extension SearchInputViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         lazy var vc: PhotoViewController = PhotoViewController()
         vc.modalPresentationStyle = .fullScreen
-        vc.setData(image: self.searchResults.photos[indexPath.row].image)
+        vc.imageView.setImageUrl(self.searchResults.photos[indexPath.row].imageURL)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

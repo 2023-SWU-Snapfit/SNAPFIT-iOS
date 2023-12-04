@@ -12,7 +12,7 @@ struct SearchResult {
     var users: [SummaryUser]
     
     struct PhotoSearchResult {
-        let image: UIImage
+        let imageURL: String
         let tagsText: String
         let username: String
     }
