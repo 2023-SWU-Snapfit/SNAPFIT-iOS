@@ -58,14 +58,12 @@ final class HomePhotoByCategoryTableViewCell: UITableViewCell {
 
 extension HomePhotoByCategoryTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        debugPrint(self.currentTagIndex)
         return MainPhoto.shared.data.tagPhoto[self.currentTagIndex].photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalPhotoCollectionViewCell.className, for: indexPath) as? VerticalPhotoCollectionViewCell
         else { return UICollectionViewCell() }
-        debugPrint("MAINPHOTO", MainPhoto.shared.data.tagPhoto[self.currentTagIndex].photos)
         DispatchQueue.main.async {
             cell.setData(image: UIImage(), username: MainPhoto.shared.data.tagPhoto[self.currentTagIndex].photos[indexPath.row].nickname)
             cell.imageView.setImageUrl(MainPhoto.shared.data.tagPhoto[self.currentTagIndex].photos[indexPath.row].photoURL)

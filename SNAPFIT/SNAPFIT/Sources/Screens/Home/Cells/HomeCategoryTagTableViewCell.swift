@@ -73,7 +73,6 @@ extension HomeCategoryTagTableViewCell: UICollectionViewDataSource {
 
 extension HomeCategoryTagTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        debugPrint("실행됨")
         self.delegate?.sendUpdate(tag: indexPath.row)
     }
 }
