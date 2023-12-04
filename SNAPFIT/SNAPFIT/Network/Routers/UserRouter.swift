@@ -12,6 +12,7 @@ enum UserRouter {
     case putUser(data: UserPutRequestDTO)
     case getUserList(input: String, limit: Int?)
     case getUserDetail(targetId: Int)
+    case getTopUsers
 }
 
 extension UserRouter: TargetType {
@@ -26,6 +27,8 @@ extension UserRouter: TargetType {
             return "/user"
         case .getUserDetail(targetId: let targetId):
             return "/user/\(targetId)"
+        case .getTopUsers:
+            return "/user/top"
         }
     }
     
@@ -33,7 +36,7 @@ extension UserRouter: TargetType {
         switch self {
         case .putUser:
             return .put
-        case .getUserList, .getUserDetail:
+        case .getUserList, .getUserDetail, .getTopUsers:
               return  .get
         }
     }
@@ -67,7 +70,7 @@ extension UserRouter: TargetType {
                 UserListResponseDTOElement.QueryKeys.limit.rawValue : limit! > 0 ? Int(limit!) : nil
             ]
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
-        case .getUserDetail:
+        case .getUserDetail, .getTopUsers:
             return .requestPlain
         }
     }

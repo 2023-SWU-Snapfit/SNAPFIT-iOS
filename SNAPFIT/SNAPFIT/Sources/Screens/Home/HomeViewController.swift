@@ -40,6 +40,8 @@ final class HomeViewController: BaseViewController {
     // MARK: Properties
     
     private var isReserved: Bool = false
+    private var currentTagIndex: Int = 0
+    private var topUsers: [GetTopUsersResponseDTO] = []
     
     // MARK: View Life Cycle
     
@@ -49,6 +51,18 @@ final class HomeViewController: BaseViewController {
         self.setLayout()
         self.setTableView()
         self.setAddGalleryButtonAction()
+        self.getMainPhoto { photoData in
+            MainPhoto.shared.data = photoData
+            self.getTopUsers { users in
+                self.topUsers = users
+                self.homeTableView.reloadRows(at: [IndexPath(row: 3, section: 0), IndexPath(row: 4, section: 0), IndexPath(row: 5, section: 0), .init(row: TableRow.bestPhotographerList.rawValue, section: 0)], with: .automatic)
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     // MARK: Methods
@@ -61,34 +75,35 @@ final class HomeViewController: BaseViewController {
     }
 }
 
-// MARK: - UI
+// MARK: - Network
 
 extension HomeViewController {
-    
-    private func setTableView() {
-        self.homeTableView.delegate = self
-        self.homeTableView.dataSource = self
-        
-        self.homeTableView.register(cell: HomeNavigationTableViewCell.self)
-        self.homeTableView.register(cell: HomeReservationDetailTableViewCell.self)
-        self.homeTableView.register(cell: HomeSearchBarTableViewCell.self)
-        self.homeTableView.register(cell: HomeCategoryTagTableViewCell.self)
-        self.homeTableView.register(cell: HomePhotoByCategoryTableViewCell.self)
-        self.homeTableView.register(cell: HomePhotoByPersonalCetegoryTableViewCell.self)
-        self.homeTableView.register(cell: PhotographerListTableViewCell.self)
-        self.homeTableView.register(cell: HomePhotoByThemeTableViewCell.self)
+    private func getMainPhoto(completion: @escaping (GetMainTagPhotoResponseDTO) -> ()) {
+        PhotoService.shared.getMainPhoto { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? GetMainTagPhotoResponseDTO {
+                    completion(result)
+                }
+            default:
+                self.showNetworkErrorAlert()
+            }
+        }
     }
     
-    private func setLayout() {
-        self.view.addSubviews([homeTableView, addImageButton])
-        
-        self.homeTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        self.addImageButton.snp.makeConstraints { make in
-            make.width.height.equalTo(56)
-            make.bottom.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+    private func getTopUsers(completion: @escaping ([GetTopUsersResponseDTO]) -> ()) {
+        UserService.shared.getTopUsers { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? [GetTopUsersResponseDTO] {
+                    TopUsers.shared.data = result
+                    completion(result)
+                } else {
+                    debugPrint("에러네,,", responseData)
+                }
+            default:
+                self.showNetworkErrorAlert()
+            }
         }
     }
 }
@@ -99,7 +114,8 @@ extension HomeViewController: SendUpdateDelegate {
     func sendUpdate(data: Any?) {
         lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
         profileViewController.modalPresentationStyle = .fullScreen
-        profileViewController.setUserInformation(currentUser: users.shuffled()[0])
+        let selectedUser = self.topUsers[data as? Int ?? 0]
+        profileViewController.setUserInformation(targetID: selectedUser.id)
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
@@ -110,6 +126,13 @@ extension HomeViewController: SendImageDelegate {
         vc.modalPresentationStyle = .fullScreen
         vc.setData(image: image)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeViewController: PhotoByTagUpdateDelegate {
+    func sendUpdate(tag: Int) {
+        self.currentTagIndex = tag
+        self.homeTableView.reloadRows(at: [IndexPath(row: TableRow.photoBySelectedCategory.rawValue, section: 0)], with: .automatic)
     }
 }
 
@@ -150,37 +173,34 @@ extension HomeViewController: UITableViewDataSource {
             case .categoryTag:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCategoryTagTableViewCell.className) as? HomeCategoryTagTableViewCell
                 else { return UITableViewCell() }
-                
+                cell.delegate = self
                 return cell
             case .photoBySelectedCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByCategoryTableViewCell.className) as? HomePhotoByCategoryTableViewCell
                 else { return UITableViewCell() }
                 cell.sendImageDelegate = self
+                cell.currentTagIndex = self.currentTagIndex
+                cell.collectionView.reloadData()
                 return cell
             case .photoByPersonalCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByPersonalCetegoryTableViewCell.className) as? HomePhotoByPersonalCetegoryTableViewCell
                 else { return UITableViewCell() }
-                cell.setTitle(titleTag: Tag.shared.category.shuffled()[0].name)
+                cell.setTitle(titleTag: "\(UserInfo.shared.nickname) 님을 위한 추천")
                 cell.sendImageDelegate = self
+                cell.collectionView.reloadData()
                 return cell
             case .bestPhotographerList:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotographerListTableViewCell.className) as? PhotographerListTableViewCell
                 else { return UITableViewCell() }
                 cell.setTitle(titleTag: "인기 작가")
-                let userList: [SummaryUser] = [
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[2].id)") ?? UIImage(), username: users[2].userName, isPhotographer: true),
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
-                ]
-                cell.setData(data: userList)
+                cell.setData(data: self.topUsers)
                 cell.sendUpdateDelegate = self
                 return cell
             case .photoByTheme:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByThemeTableViewCell.className) as? HomePhotoByThemeTableViewCell
                 else { return UITableViewCell() }
-                cell.setData(title: "6월 추천", image: UIImage(named: "sampleImage15") ?? UIImage(), tagsText: "#반려동물 #화사한 #여름")
+                cell.setData(title: "#겨울", image: UIImage(), tagsText: "#디지털 #겨울")
+                cell.photoImageView.setImageUrl(MainPhoto.shared.data.season[0].photoURL)
                 return cell
             }
         } else { return UITableViewCell() }
@@ -211,5 +231,37 @@ extension HomeViewController: UITableViewDelegate {
                 return 309
             }
         } else { return 0 }
+    }
+}
+
+// MARK: - UI
+
+extension HomeViewController {
+    
+    private func setTableView() {
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
+        
+        self.homeTableView.register(cell: HomeNavigationTableViewCell.self)
+        self.homeTableView.register(cell: HomeReservationDetailTableViewCell.self)
+        self.homeTableView.register(cell: HomeSearchBarTableViewCell.self)
+        self.homeTableView.register(cell: HomeCategoryTagTableViewCell.self)
+        self.homeTableView.register(cell: HomePhotoByCategoryTableViewCell.self)
+        self.homeTableView.register(cell: HomePhotoByPersonalCetegoryTableViewCell.self)
+        self.homeTableView.register(cell: PhotographerListTableViewCell.self)
+        self.homeTableView.register(cell: HomePhotoByThemeTableViewCell.self)
+    }
+    
+    private func setLayout() {
+        self.view.addSubviews([homeTableView, addImageButton])
+        
+        self.homeTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        self.addImageButton.snp.makeConstraints { make in
+            make.width.height.equalTo(56)
+            make.bottom.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+        }
     }
 }

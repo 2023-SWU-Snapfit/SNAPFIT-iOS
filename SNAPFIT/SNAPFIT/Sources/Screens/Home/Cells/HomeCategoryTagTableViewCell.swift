@@ -24,6 +24,8 @@ final class HomeCategoryTagTableViewCell: UITableViewCell {
         return collectionView
     }()
     
+    var delegate: PhotoByTagUpdateDelegate?
+    
     // MARK: Initializer
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -54,23 +56,31 @@ final class HomeCategoryTagTableViewCell: UITableViewCell {
 
 extension HomeCategoryTagTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 14
+        return MainPhoto.shared.data.tagPhoto.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.className, for: indexPath) as? TagCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.setData(title: Tag.shared.category[indexPath.row].name)
+        cell.setData(title: MainPhoto.shared.data.tagPhoto[indexPath.row].tagName)
         
         return cell
     } 
 }
 
+// MARK: - UICollectionViewDelegate
+
+extension HomeCategoryTagTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.delegate?.sendUpdate(tag: indexPath.row)
+    }
+}
+
 extension HomeCategoryTagTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sizingCell = TagCollectionViewCell()
-        sizingCell.setData(title: Tag.shared.category[indexPath.row].name)
+        sizingCell.setData(title: MainPhoto.shared.data.tagPhoto[indexPath.row].tagName)
         
         let cellWidth = sizingCell.titleLabel.frame.width + 32
         let cellHeight = 32

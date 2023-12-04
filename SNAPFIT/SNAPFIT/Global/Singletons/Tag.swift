@@ -79,3 +79,58 @@ struct TagEntity {
         self.name = name
     }
 }
+
+extension Int {
+    func getTagName() -> String {
+        switch self {
+        case 1: return "필름"
+        case 2: return "디지털"
+        case 3: return "1인"
+        case 4: return "2인"
+        case 5: return "단체"
+        case 6: return "없음"
+        case 7: return "결혼/웨딩"
+        case 8: return "아기"
+        case 9: return "임신"
+        case 10: return "우정"
+        case 11: return "프로필"
+        case 12: return "학교"
+        case 13: return "가족"
+        case 14: return "커플"
+        case 15: return "여행"
+        case 16: return "파티"
+        case 17: return "반려동물"
+        case 18: return "동호회"
+        case 19: return "패션"
+        case 20: return "기타"
+        case 21: return "봄"
+        case 22: return "여름"
+        case 23: return "가을"
+        case 24: return "겨울"
+        case 25: return "꽃"
+        case 26: return "화사한"
+        case 27: return "따뜻한"
+        case 28: return "여유로운"
+        case 29: return "달콤한"
+        case 30: return "사랑스러운"
+        case 31: return "그리운"
+        case 32: return "센치한"
+        case 33: return "아련한"
+        case 34: return "폐쇄적인"
+        case 35: return "단정한"
+        case 36: return "고급스러운"
+        case 37: return "고전적인"
+        case 38: return "이국적인"
+        case 39: return "힙한"
+        case 40: return "카리스마있는"
+        case 41: return "차가운"
+        case 42: return "섹시한"
+        case 43: return "강렬한"
+        case 44: return "스포티한"
+        case 45: return "다채로운"
+        default: return ""
+        }
+    }
+    
+    
+}

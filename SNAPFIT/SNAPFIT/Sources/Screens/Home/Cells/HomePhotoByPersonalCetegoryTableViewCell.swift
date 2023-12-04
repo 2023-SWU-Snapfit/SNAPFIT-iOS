@@ -19,7 +19,7 @@ final class HomePhotoByPersonalCetegoryTableViewCell: UITableViewCell {
         return titleLabel
     }()
     
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
@@ -60,7 +60,7 @@ final class HomePhotoByPersonalCetegoryTableViewCell: UITableViewCell {
     }
     
     func setTitle(titleTag: String) {
-        self.titleLabel.text = "#" + titleTag
+        self.titleLabel.text = titleTag
     }
 }
 
@@ -68,14 +68,15 @@ final class HomePhotoByPersonalCetegoryTableViewCell: UITableViewCell {
 
 extension HomePhotoByPersonalCetegoryTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return MainPhoto.shared.data.personal.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalPhotoCollectionViewCell.className, for: indexPath) as? HorizontalPhotoCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.setData(image: UIImage(named: "sampleImage\(self.categoryData[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
+        cell.setData(image: UIImage(), username: MainPhoto.shared.data.personal[indexPath.row].nickname)
+        cell.imageView.setImageUrl(MainPhoto.shared.data.personal[indexPath.row].photoURL)
         
         return cell
     }

@@ -12,7 +12,7 @@ final class HomePhotoByCategoryTableViewCell: UITableViewCell {
     
     // MARK: Properties
     
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
@@ -28,6 +28,7 @@ final class HomePhotoByCategoryTableViewCell: UITableViewCell {
     
     var sendImageDelegate: SendImageDelegate?
     var categoryData = Tag.shared.category.shuffled()
+    var currentTagIndex: Int = 0
     
     // MARK: Initializer
     
@@ -57,14 +58,17 @@ final class HomePhotoByCategoryTableViewCell: UITableViewCell {
 
 extension HomePhotoByCategoryTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return MainPhoto.shared.data.tagPhoto[self.currentTagIndex].photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalPhotoCollectionViewCell.className, for: indexPath) as? VerticalPhotoCollectionViewCell
         else { return UICollectionViewCell() }
-        
-        cell.setData(image: UIImage(named: "sampleImage\(self.categoryData[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
+        DispatchQueue.main.async {
+            cell.setData(image: UIImage(), username: MainPhoto.shared.data.tagPhoto[self.currentTagIndex].photos[indexPath.row].nickname)
+            cell.imageView.setImageUrl(MainPhoto.shared.data.tagPhoto[self.currentTagIndex].photos[indexPath.row].photoURL)
+        }
+
         
         return cell
     }
@@ -72,7 +76,10 @@ extension HomePhotoByCategoryTableViewCell: UICollectionViewDataSource {
 
 extension HomePhotoByCategoryTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.sendImageDelegate?.sendUpdate(image: UIImage(named: "sampleImage\(self.categoryData[indexPath.row].id)") ?? UIImage())
+        if let cell = collectionView.cellForItem(at: indexPath) as? VerticalPhotoCollectionViewCell {
+            self.sendImageDelegate?.sendUpdate(image: cell.imageView.image ?? UIImage())
+        }
+        
     }
 }
 

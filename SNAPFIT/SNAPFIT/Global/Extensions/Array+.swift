@@ -2,12 +2,22 @@
 //  Array+.swift
 //  SNAPFIT
 //
-//  Created by Jungbin on 11/29/23.
+//  Created by Jungbin on 12/4/23.
 //
 
 import Foundation
 
 extension Array {
+    func getTagText() -> String {
+        var result = ""
+        self.forEach { element in
+            if let tagNum: Int = element as? Int {
+                result.append("#\(tagNum.getTagName()) ")
+            }
+        }
+        
+        return result
+    }
     func makeFormDataString() -> String {
         var string = "{"
         self.forEach {
