@@ -13,6 +13,7 @@ struct SignUpRequestDTO {
     let email: String
     let nickname: String
     let password: String
+    let instagramId: String
     let cost: String
     let position: String
     let contactUrl: String

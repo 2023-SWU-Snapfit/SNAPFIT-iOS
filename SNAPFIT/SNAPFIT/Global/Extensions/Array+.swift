@@ -2,9 +2,6 @@
 //  Array+.swift
 //  SNAPFIT
 //
-//  Created by Jungbin on 12/4/23.
-//
-
 import Foundation
 
 extension Array {
@@ -17,5 +14,14 @@ extension Array {
         }
         
         return result
+    }
+    func makeFormDataString() -> String {
+        var string = "{"
+        self.forEach {
+            string.append("\($0), ")
+        }
+        string.removeLast(2)
+        string.append("}")
+        return string
     }
 }

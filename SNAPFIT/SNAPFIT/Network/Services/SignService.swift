@@ -11,6 +11,9 @@ import Moya
 internal protocol SignServiceProtocol {
     func requestSignIn(data: SignInRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void))
     func verifyPhoneNumber(data: VerifyPhoneNumberRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void))
+    func checkNickname(data: String, completion: @escaping (NetworkResult<Any>) -> (Void))
+    func checkEmail(data: String, completion: @escaping (NetworkResult<Any>) -> (Void))
+    func requestSignUp(data: SignUpRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void))
 }
 
 final class SignService: BaseService {
@@ -42,6 +45,54 @@ extension SignService: SignServiceProtocol {
     
     func verifyPhoneNumber(data: VerifyPhoneNumberRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         self.provider.request(.verifyPhoneNumber(data: data)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
+                completion(networkResult)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    // [POST] 닉네임 중복 체크
+    
+    func checkNickname(data: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        self.provider.request(.checkNickname(data: data)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
+                completion(networkResult)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    // [POST] 이메일 중복 체크
+    
+    func checkEmail(data: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        self.provider.request(.checkEmail(data: data)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
+                completion(networkResult)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    // [POST] 회원가입 요청
+    
+    func requestSignUp(data: SignUpRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        self.provider.request(.requestSignUp(data: data)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
