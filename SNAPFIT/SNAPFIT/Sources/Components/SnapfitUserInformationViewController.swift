@@ -343,7 +343,7 @@ extension SnapfitUserInformationViewController {
         self.contentView.addSubview(self.mailSignImageView)
         self.mailSignImageView.snp.makeConstraints{ make in
             make.top.equalTo(topConstraint)
-            make.left.equalTo(leftConstraint)
+            make.left.equalTo(leftConstraint).offset(6)
             make.width.height.equalTo(20)
         }
         self.contentView.addSubview(self.mailLabel)
@@ -352,7 +352,7 @@ extension SnapfitUserInformationViewController {
             make.left.equalTo(self.mailSignImageView.snp.right).offset(4)
             make.height.equalTo(20)
         }
-        self.mailSignImageView.isHidden = self.mailLabel.text == "" ? true : false
+        mailSignImageView.isHidden = false
     }
     
     private func setGptTextViewLayout() {
