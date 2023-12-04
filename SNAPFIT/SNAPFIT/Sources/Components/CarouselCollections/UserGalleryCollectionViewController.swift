@@ -69,11 +69,11 @@ class UserGalleryCollectionViewController: UIViewController {
             make.top.equalToSuperview()
             make.left.equalTo(20)
         }
-        self.view.addSubview(self.moreButton)
-        self.moreButton.snp.makeConstraints{ make in
-            make.centerY.equalTo(self.titleLabel.snp.centerY)
-            make.right.equalToSuperview().inset(20)
-        }
+//        self.view.addSubview(self.moreButton)
+//        self.moreButton.snp.makeConstraints{ make in
+//            make.centerY.equalTo(self.titleLabel.snp.centerY)
+//            make.right.equalToSuperview().inset(20)
+//        }
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints{ make in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
