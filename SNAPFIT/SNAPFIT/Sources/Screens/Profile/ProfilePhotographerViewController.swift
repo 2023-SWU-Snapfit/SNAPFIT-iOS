@@ -71,7 +71,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
                 }
             }
             self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0.0)
-            if Int(result.likes)! > 0 {
+            if result.isLike {
                 self.likeState = true
                 self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonOnImageName), for: .normal)
                 self.navigationView.likeButton.tintColor = .sfMainRed
