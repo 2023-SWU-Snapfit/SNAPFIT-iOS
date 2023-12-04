@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ReviewDataDelegate {
-    func sendReview(data: Review)
+    func sendReview(data: ReviewDetailResponseDTO)
 }

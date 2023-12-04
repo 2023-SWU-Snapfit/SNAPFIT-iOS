@@ -10,7 +10,7 @@ import UIKit
 class ReviewDetailViewController: BaseViewController {
     
     // MARK: - Properties
-    var review: Review? = nil
+    var review: ReviewDetailResponseDTO? = nil
     
     // MARK: - UI Components
     private let navigationView: SnapfitNavigationView = {
@@ -70,12 +70,12 @@ class ReviewDetailViewController: BaseViewController {
     }
     private func setData() {
         if let reviewData = self.review {
-            self.titleLabel.text = "\(reviewData.userName)님의 후기"
-            self.scoreLabel.text = "★ \(reviewData.score)"
+            self.titleLabel.text = "\(reviewData.sender)님의 후기"
+            self.scoreLabel.text = "★ \(reviewData.star)"
         }
-        self.commentsTextView.text = self.review?.contentText
-        if let newImage = self.review?.image {
-            imageView.image = newImage
+        self.commentsTextView.text = self.review?.content
+        if let newImageUrl = self.review?.photoUrl {
+            imageView.setImageUrl(newImageUrl)
         }
     }
     private func setLayout() {

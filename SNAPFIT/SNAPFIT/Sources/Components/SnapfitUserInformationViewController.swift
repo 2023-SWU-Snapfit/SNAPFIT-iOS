@@ -220,7 +220,7 @@ class SnapfitUserInformationViewController: BaseViewController {
 }
 
 extension SnapfitUserInformationViewController: ReviewDataDelegate {
-    func sendReview(data: Review) {
+    func sendReview(data: ReviewDetailResponseDTO) {
         lazy var viewController: ReviewDetailViewController = ReviewDetailViewController()
         viewController.review = data
         viewController.modalPresentationStyle = .fullScreen
