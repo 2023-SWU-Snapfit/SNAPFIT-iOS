@@ -78,7 +78,7 @@ extension SearchViewController: UICollectionViewDataSource {
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let searchResultViewController: SearchInputViewController = SearchInputViewController()
-        searchResultViewController.setSearchByCategoryTag()
+        searchResultViewController.setSearchByCategoryTag(selectedTagIndex: indexPath.row)
         self.navigationController?.pushViewController(searchResultViewController, animated: true)
     }
 }

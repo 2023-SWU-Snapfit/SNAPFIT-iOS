@@ -24,6 +24,7 @@ struct GetPhotoByTagResponseDTO: Codable {
         let isDeleted: Bool
         let tag: [Int]
         let isPinned: Bool
+        let nickname: String
 
         enum CodingKeys: String, CodingKey {
             case id = "id"
@@ -33,6 +34,7 @@ struct GetPhotoByTagResponseDTO: Codable {
             case isDeleted = "isDeleted"
             case tag = "tag"
             case isPinned = "isPinned"
+            case nickname = "nickname"
         }
     }
 }

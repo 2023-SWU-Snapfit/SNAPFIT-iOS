@@ -8,8 +8,8 @@
 import UIKit
 
 struct SearchResult {
-    let photos: [PhotoSearchResult]
-    let users: [SummaryUser]
+    var photos: [PhotoSearchResult]
+    var users: [SummaryUser]
     
     struct PhotoSearchResult {
         let image: UIImage

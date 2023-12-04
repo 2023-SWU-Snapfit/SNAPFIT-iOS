@@ -91,24 +91,12 @@ extension HomeViewController {
         }
     }
     
-    private func getPhotoByTag(tags: [Int], completion: @escaping ([GetPhotoByTagResponseDTO.Photo]) -> ()) {
-        PhotoService.shared.getPhotoByTag(tags: tags) { networkResult in
-            switch networkResult {
-            case .success(let responseData):
-                if let result = responseData as? GetPhotoByTagResponseDTO {
-                    completion(result.photoData)
-                }
-            default:
-                self.showNetworkErrorAlert()
-            }
-        }
-    }
-    
     private func getTopUsers(completion: @escaping ([GetTopUsersResponseDTO]) -> ()) {
         UserService.shared.getTopUsers { networkResult in
             switch networkResult {
             case .success(let responseData):
                 if let result = responseData as? [GetTopUsersResponseDTO] {
+                    TopUsers.shared.data = result
                     completion(result)
                 } else {
                     debugPrint("에러네,,", responseData)
@@ -126,7 +114,7 @@ extension HomeViewController: SendUpdateDelegate {
     func sendUpdate(data: Any?) {
         lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
         profileViewController.modalPresentationStyle = .fullScreen
-        var selectedUser = self.topUsers[data as? Int ?? 0]
+        let selectedUser = self.topUsers[data as? Int ?? 0]
         profileViewController.setUserInformation(targetID: selectedUser.id)
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
