@@ -27,7 +27,7 @@ final class HomePhotoByThemeTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let photoImageView: UIImageView = {
+    let photoImageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill

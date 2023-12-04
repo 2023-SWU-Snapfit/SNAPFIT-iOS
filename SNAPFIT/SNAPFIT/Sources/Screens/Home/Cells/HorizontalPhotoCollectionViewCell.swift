@@ -12,7 +12,7 @@ final class HorizontalPhotoCollectionViewCell: UICollectionViewCell {
     
     // MARK: Properties
     
-    private let imageView: UIImageView = {
+    let imageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill

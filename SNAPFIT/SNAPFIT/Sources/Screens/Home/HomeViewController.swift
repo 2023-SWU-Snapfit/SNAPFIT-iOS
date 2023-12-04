@@ -52,7 +52,7 @@ final class HomeViewController: BaseViewController {
         self.setAddGalleryButtonAction()
         self.getMainPhoto { photoData in
             MainPhoto.shared.data = photoData
-            self.homeTableView.reloadRows(at: [IndexPath(row: 3, section: 0), IndexPath(row: 4, section: 0)], with: .automatic)
+            self.homeTableView.reloadRows(at: [IndexPath(row: 3, section: 0), IndexPath(row: 4, section: 0), IndexPath(row: 5, section: 0), IndexPath(row: 7, section: 0)], with: .automatic)
         }
     }
     
@@ -177,8 +177,9 @@ extension HomeViewController: UITableViewDataSource {
             case .photoByPersonalCategory:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByPersonalCetegoryTableViewCell.className) as? HomePhotoByPersonalCetegoryTableViewCell
                 else { return UITableViewCell() }
-                cell.setTitle(titleTag: Tag.shared.category.shuffled()[0].name)
+                cell.setTitle(titleTag: "\(UserInfo.shared.nickname) 님을 위한 추천")
                 cell.sendImageDelegate = self
+                cell.collectionView.reloadData()
                 return cell
             case .bestPhotographerList:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotographerListTableViewCell.className) as? PhotographerListTableViewCell
@@ -197,7 +198,8 @@ extension HomeViewController: UITableViewDataSource {
             case .photoByTheme:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePhotoByThemeTableViewCell.className) as? HomePhotoByThemeTableViewCell
                 else { return UITableViewCell() }
-                cell.setData(title: "6월 추천", image: UIImage(named: "sampleImage15") ?? UIImage(), tagsText: "#반려동물 #화사한 #여름")
+                cell.setData(title: "#겨울", image: UIImage(), tagsText: "#디지털 #겨울")
+                cell.photoImageView.setImageUrl(MainPhoto.shared.data.season[0].photoURL)
                 return cell
             }
         } else { return UITableViewCell() }
