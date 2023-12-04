@@ -10,6 +10,7 @@ internal protocol UserServiceProtocol {
     func putUser(data: UserPutRequestDTO, completion: @escaping (NetworkResult<Any>) -> (Void))
     func getUserList(input: String, limit: Int?, completion: @escaping (NetworkResult<Any>) -> (Void))
     func getUserDetail(targetId: Int, completion: @escaping (NetworkResult<Any>) -> (Void))
+    func getTopUsers(completion: @escaping (NetworkResult<Any>) -> (Void))
 }
 
 final class UserService: BaseService {
@@ -63,4 +64,17 @@ extension UserService: UserServiceProtocol {
         }
     }
     
+    func getTopUsers(completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        self.provider.request(.getTopUsers) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, [GetTopUsersResponseDTO].self)
+                completion(networkResult)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
 }

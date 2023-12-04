@@ -41,6 +41,7 @@ final class HomeViewController: BaseViewController {
     
     private var isReserved: Bool = false
     private var currentTagIndex: Int = 0
+    private var topUsers: [GetTopUsersResponseDTO] = []
     
     // MARK: View Life Cycle
     
@@ -52,7 +53,10 @@ final class HomeViewController: BaseViewController {
         self.setAddGalleryButtonAction()
         self.getMainPhoto { photoData in
             MainPhoto.shared.data = photoData
-            self.homeTableView.reloadRows(at: [IndexPath(row: 3, section: 0), IndexPath(row: 4, section: 0), IndexPath(row: 5, section: 0), IndexPath(row: 7, section: 0)], with: .automatic)
+            self.getTopUsers { users in
+                self.topUsers = users
+                self.homeTableView.reloadRows(at: [IndexPath(row: 3, section: 0), IndexPath(row: 4, section: 0), IndexPath(row: 5, section: 0), .init(row: TableRow.bestPhotographerList.rawValue, section: 0)], with: .automatic)
+            }
         }
     }
     
@@ -99,6 +103,21 @@ extension HomeViewController {
             }
         }
     }
+    
+    private func getTopUsers(completion: @escaping ([GetTopUsersResponseDTO]) -> ()) {
+        UserService.shared.getTopUsers { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? [GetTopUsersResponseDTO] {
+                    completion(result)
+                } else {
+                    debugPrint("에러네,,", responseData)
+                }
+            default:
+                self.showNetworkErrorAlert()
+            }
+        }
+    }
 }
 
 // MARK: - SendUpdateDelegate
@@ -107,7 +126,8 @@ extension HomeViewController: SendUpdateDelegate {
     func sendUpdate(data: Any?) {
         lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
         profileViewController.modalPresentationStyle = .fullScreen
-        profileViewController.setUserInformation(currentUser: users.shuffled()[0])
+        var selectedUser = self.topUsers[data as? Int ?? 0]
+        profileViewController.setUserInformation(targetID: selectedUser.id)
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
@@ -185,14 +205,7 @@ extension HomeViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotographerListTableViewCell.className) as? PhotographerListTableViewCell
                 else { return UITableViewCell() }
                 cell.setTitle(titleTag: "인기 작가")
-                let userList: [SummaryUser] = [
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[2].id)") ?? UIImage(), username: users[2].userName, isPhotographer: true),
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
-                    SummaryUser(userId: 1, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
-                ]
-                cell.setData(data: userList)
+                cell.setData(data: self.topUsers)
                 cell.sendUpdateDelegate = self
                 return cell
             case .photoByTheme:

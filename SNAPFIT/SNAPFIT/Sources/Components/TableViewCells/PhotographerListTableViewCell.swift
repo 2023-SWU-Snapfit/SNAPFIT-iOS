@@ -19,7 +19,7 @@ final class PhotographerListTableViewCell: UITableViewCell {
         return titleLabel
     }()
     
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
@@ -35,7 +35,7 @@ final class PhotographerListTableViewCell: UITableViewCell {
     
     // MARK: Properties
     
-    var userList: [SummaryUser] = []
+    var userList: [GetTopUsersResponseDTO] = []
     var sendUpdateDelegate: SendUpdateDelegate?
     
     // MARK: Initializer
@@ -65,8 +65,9 @@ final class PhotographerListTableViewCell: UITableViewCell {
         self.titleLabel.text = titleTag
     }
     
-    func setData(data: [SummaryUser]) {
+    func setData(data: [GetTopUsersResponseDTO]) {
         self.userList = data
+        debugPrint("topUsers", data)
         self.collectionView.reloadData()
     }
 }
@@ -81,7 +82,8 @@ extension PhotographerListTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotographerCollectionViewCell.className, for: indexPath) as? PhotographerCollectionViewCell
         else { return UICollectionViewCell() }
-        cell.setData(profileImage: self.userList[indexPath.row].image, username: self.userList[indexPath.row].username)
+        cell.setData(profileImage: UIImage(), username: self.userList[indexPath.row].nickname)
+        cell.imageView.setImageUrl(self.userList[indexPath.row].profileImageURL ?? "")
 //        cell.setData(profileImage: UIImage(named: "sampleImage\(Tag.shared.category.shuffled()[indexPath.row].id)") ?? UIImage(), username: users.shuffled()[indexPath.row].userName)
         
         return cell
@@ -92,7 +94,7 @@ extension PhotographerListTableViewCell: UICollectionViewDataSource {
 
 extension PhotographerListTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.sendUpdateDelegate?.sendUpdate(data: nil)
+        self.sendUpdateDelegate?.sendUpdate(data: indexPath.row)
     }
 }
 

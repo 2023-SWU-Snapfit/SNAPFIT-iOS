@@ -150,6 +150,7 @@
 		FF2E86A82AA20C8900258D75 /* LikeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86A72AA20C8900258D75 /* LikeRouter.swift */; };
 		FF2E86AD2AA20EB100258D75 /* LikeListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */; };
 		FF395B6F2B1D9591008BF286 /* MainPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF395B6E2B1D9591008BF286 /* MainPhoto.swift */; };
+		FF395B712B1E00FB008BF286 /* GetTopUsersResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF395B702B1E00FB008BF286 /* GetTopUsersResponseDTO.swift */; };
 		FF896BE92AF1CD27000800ED /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BE82AF1CD27000800ED /* SignInViewController.swift */; };
 		FF896BEB2AF1FA79000800ED /* SnapfitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */; };
 		FF896BED2AF220F1000800ED /* SnapfitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896BEC2AF220F1000800ED /* SnapfitButton.swift */; };
@@ -304,6 +305,7 @@
 		FF2E86A72AA20C8900258D75 /* LikeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRouter.swift; sourceTree = "<group>"; };
 		FF2E86AC2AA20EB100258D75 /* LikeListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListResponseDTO.swift; sourceTree = "<group>"; };
 		FF395B6E2B1D9591008BF286 /* MainPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhoto.swift; sourceTree = "<group>"; };
+		FF395B702B1E00FB008BF286 /* GetTopUsersResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopUsersResponseDTO.swift; sourceTree = "<group>"; };
 		FF896BE82AF1CD27000800ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FF896BEA2AF1FA79000800ED /* SnapfitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitTextField.swift; sourceTree = "<group>"; };
 		FF896BEC2AF220F1000800ED /* SnapfitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapfitButton.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 			children = (
 				6AEC75442ADE9A41004847DA /* UserListResponseDTO.swift */,
 				6AEC75472ADE9B18004847DA /* UserDetailResponseDTO.swift */,
+				FF395B702B1E00FB008BF286 /* GetTopUsersResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1091,6 +1094,7 @@
 				C74499EF2A1FAD1300C21AD4 /* HomeCategoryTagTableViewCell.swift in Sources */,
 				6AD589962A6811C9009C7A3C /* DateDataDelegate.swift in Sources */,
 				FF2E86A82AA20C8900258D75 /* LikeRouter.swift in Sources */,
+				FF395B712B1E00FB008BF286 /* GetTopUsersResponseDTO.swift in Sources */,
 				6AAB9ABC2ACD717F00B09A0A /* ReportService.swift in Sources */,
 				C766F15D2A1098D3009BC30E /* UIViewController+.swift in Sources */,
 				6A2BDB942ADD7E9C002AA2FF /* UserRouter.swift in Sources */,
