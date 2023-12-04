@@ -12,6 +12,8 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
     
     var currentUser: User!
     var targetID: Int = 0
+    var likeState: Bool = false
+    
     // MARK: - Properties
     private let navigationView: SnapfitNavigationView = {
         let view: SnapfitNavigationView = SnapfitNavigationView(type: .backLikeMore)
@@ -33,6 +35,7 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
         super.viewDidLoad()
         self.setGeneralUserLayout()
         self.setContactButtonAction()
+        self.setLikeButtonAction()
         self.setMoreButtonAction()
         self.setLayout()
     }
@@ -64,6 +67,11 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
                 }
             }
             self.setGalleryAndReviewData(gallery: result.gallery, reviews: result.review, avgStars: result.averageStars ?? 0.0)
+            if result.isLike {
+                self.likeState = true
+                self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonOnImageName), for: .normal)
+                self.navigationView.likeButton.tintColor = .sfMainRed
+            }
         }
     }
     
@@ -111,6 +119,20 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
                     // TODO: 차단 action 추가
                     print("차단")
                 })
+        }
+    }
+    
+    private func setLikeButtonAction() {
+        self.navigationView.likeButton.setAction {
+            LikeService.shared.postLike(targetId: self.targetID) { _ in }
+            self.likeState.toggle()
+            if self.likeState {
+                self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonImageName), for: .normal)
+                self.navigationView.likeButton.tintColor = .sfMainRed
+            } else {
+                self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonOnImageName), for: .normal)
+                self.navigationView.likeButton.setTitleColor(.sfBlack100, for: .normal)
+            }
         }
     }
     

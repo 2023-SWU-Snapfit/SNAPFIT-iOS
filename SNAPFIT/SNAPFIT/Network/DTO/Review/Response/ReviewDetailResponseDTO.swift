@@ -16,8 +16,8 @@ struct ReviewDetailResponseDTOElement: Codable {
     let isDeleted: Bool
     let updatedAt: String
     let photoUrl: String
-    let content: String
-    
+    let content: String?
+    let sender: String
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -29,6 +29,7 @@ struct ReviewDetailResponseDTOElement: Codable {
         case updatedAt = "updatedAt"
         case photoUrl = "photoUrl"
         case content = "content"
+        case sender = "sender"
     }
 }
 

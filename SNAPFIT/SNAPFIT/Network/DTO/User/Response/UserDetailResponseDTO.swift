@@ -15,6 +15,7 @@ struct UserDetailResponseDTOElement: Codable {
     var profileImage: UIImage? = nil
     let thumbnailImageUrl: String?
     var thumbnailImage: UIImage? = nil
+    var isLike: Bool
     let likes: String
     let position: String
     let nickname: String
@@ -30,6 +31,7 @@ struct UserDetailResponseDTOElement: Codable {
         case userId = "userId"
         case profileImageUrl = "profileImageUrl"
         case thumbnailImageUrl = "thumbnailImageUrl"
+        case isLike = "isLike"
         case likes = "likes"
         case position = "position"
         case nickname = "nickname"
