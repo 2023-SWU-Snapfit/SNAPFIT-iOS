@@ -254,7 +254,7 @@ extension SnapfitUserInformationViewController {
         }
         self.setPhoneApprovedLayout(topConstraint: 380, leftConstraint: self.photographerLabel.snp.right)
         self.setInstagramLayout(topConstraint: 450)
-        self.setMailLayout(topConstraint: 450, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
+        self.setMailLayout(topConstraint: 450, leftConstraint: self.instagramLabel.snp.right)
         self.setGptTextViewLayout()
         self.setGalleryAndReviewLayout(isPhotographer: true)
         self.setPossibleDateAndPrice()
@@ -265,7 +265,7 @@ extension SnapfitUserInformationViewController {
         self.setEssentialUILayout(profileImageTopConstraint: 104)
         self.setPhoneApprovedLayout(topConstraint: 214, leftConstraint: 20)
         self.setInstagramLayout(topConstraint: 285)
-        self.setMailLayout(topConstraint: 285, leftConstraint: self.instagramLabel.text == "" ? 20 : self.instagramLabel.snp.right)
+        self.setMailLayout(topConstraint: 285, leftConstraint: self.instagramLabel.snp.right)
         self.setGptTextViewLayout()
         self.setGalleryAndReviewLayout(isPhotographer: false)
     }
@@ -323,7 +323,7 @@ extension SnapfitUserInformationViewController {
     }
     
     private func setInstagramLayout(topConstraint: ConstraintRelatableTarget) {
-        self.instagramSignImageView.isHidden = self.instagramLabel.text == "" ? true : false
+//        self.instagramSignImageView.isHidden = self.instagramLabel.text == "" ? true : false
         self.contentView.addSubview(self.instagramSignImageView)
         self.instagramSignImageView.snp.makeConstraints{ make in
             make.top.equalTo(topConstraint)
@@ -335,7 +335,7 @@ extension SnapfitUserInformationViewController {
             make.top.equalTo(topConstraint)
             make.left.equalTo(self.instagramSignImageView.snp.right).offset(4)
             make.height.equalTo(20)
-            make.width.equalTo(self.instagramLabel.intrinsicContentSize.width + 4)
+            make.width.equalTo(self.instagramLabel.snp.width).offset(4)
         }
     }
     
