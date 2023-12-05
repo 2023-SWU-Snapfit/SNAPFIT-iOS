@@ -28,7 +28,10 @@ final class SplashViewController: BaseViewController {
         super.viewDidLoad()
         
         self.setLayout()
-        self.autoSignIn()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5) {
+            self.autoSignIn()
+        }
+        
     }
     
     // MARK: Methods
@@ -46,7 +49,8 @@ final class SplashViewController: BaseViewController {
                 userID: response.user.userID,
                 nickname: response.user.nickname,
                 email: email,
-                password: password
+                password: password,
+                position: response.user.position
             )
             
             let tabBarController = SnapfitTabBarController()

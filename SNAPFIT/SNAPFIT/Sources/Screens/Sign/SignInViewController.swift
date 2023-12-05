@@ -112,7 +112,8 @@ final class SignInViewController: BaseViewController {
                     userID: response.user.userID,
                     nickname: response.user.nickname,
                     email: self?.idTextField.text ?? "",
-                    password: self?.passwordTextField.text ?? ""
+                    password: self?.passwordTextField.text ?? "",
+                    position: response.user.position
                 )
                 
                 let tabBarController = SnapfitTabBarController()
