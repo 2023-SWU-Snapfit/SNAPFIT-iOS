@@ -88,8 +88,9 @@ extension HomePhotoByPersonalCetegoryTableViewCell: UICollectionViewDelegateFlow
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.sendImageDelegate?.sendUpdate(image: UIImage(named: "sampleImage\(self.categoryData[indexPath.row].id)") ?? UIImage())
-    }
+        if let cell = collectionView.cellForItem(at: indexPath) as? HorizontalPhotoCollectionViewCell {
+            self.sendImageDelegate?.sendUpdate(image: cell.imageView.image ?? UIImage())
+        }    }
 }
 
 // MARK: - UI
