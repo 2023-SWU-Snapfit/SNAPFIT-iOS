@@ -11,6 +11,7 @@ import Moya
 enum PhotoRouter {
     case getPhotoByTag(tags: [Int])
     case getMainPhoto
+    case searchPhoto(keyword: String)
 }
 
 extension PhotoRouter: TargetType {
@@ -32,12 +33,14 @@ extension PhotoRouter: TargetType {
             return tagPath
         case .getMainPhoto:
             return "/photo/main"
+        case .searchPhoto:
+            return "/photo"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getPhotoByTag, .getMainPhoto:
+        case .getPhotoByTag, .getMainPhoto, .searchPhoto:
             return .get
         }
     }
@@ -46,6 +49,8 @@ extension PhotoRouter: TargetType {
         switch self {
         case .getPhotoByTag, .getMainPhoto:
             return .requestPlain
+        case .searchPhoto(let keyword):
+            return .requestParameters(parameters: ["input": keyword, "limit": 5], encoding: URLEncoding.queryString)
         }
     }
     
