@@ -18,6 +18,7 @@ class ReservationTableViewCell: BorderedTableViewCell {
         static let tagOngoing = "예약 조율 중"
         static let buttonContact = "연락하기"
         static let buttonReview = "리뷰 작성"
+        static let rightButtonActionIdentifier = "rightButtonReviewAction"
     }
     
     // MARK: - Properties
@@ -26,6 +27,10 @@ class ReservationTableViewCell: BorderedTableViewCell {
         formatter.dateFormat = Text.dateFormat
         return formatter
     }()
+    var updateDelegate: SendUpdateDelegate?
+    var targetID: Int!
+    var rightButtonAction: UIAction?
+    let identity = UIAction.Identifier(Text.rightButtonActionIdentifier)
     
     // MARK: - UIComponents
     var date: Date = Date()
@@ -63,6 +68,16 @@ class ReservationTableViewCell: BorderedTableViewCell {
         self.layer.borderColor = UIColor.sfBlack100.cgColor
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8
+    }
+    
+    override func prepareForReuse() {
+        self.rightButton.removeAction(identifiedBy: UIAction.Identifier(Text.rightButtonActionIdentifier), for: .touchUpInside)
+    }
+    
+    func setRightAction() {
+        self.rightButtonAction = UIAction(identifier: self.identity) { _ in
+            self.updateDelegate?.sendUpdate(data: ReviewPostRequestDTO(star: 5, receiverId: -1, photo: Data(), content: ""))
+        }
     }
     
     func setAsReservationList(userName: String, lastDate: Date, isFixed: Bool, isFinished: Bool) {
@@ -122,14 +137,28 @@ class ReservationTableViewCell: BorderedTableViewCell {
             self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
             self.rightButton.isEnabled = false
             self.rightButton.isHidden = false
+            self.rightButton.addAction(self.rightButtonAction ?? UIAction(handler: { _ in }), for: .touchUpInside)
         case (false, true):
             self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonContact, attributes: attributes), for: .normal)
             self.rightButton.isEnabled = true
             self.rightButton.isHidden = false
+            self.rightButton.setAction {
+                ReservationService.shared.getReservationDetail(reservationId: self.targetID) { networkResult in
+                    switch networkResult {
+                    case .success(let responseData):
+                        if let result = responseData as? ReservationDetailResponseDTO {
+                            self.updateDelegate?.sendUpdate(data: result.contactUrl)
+                        }
+                    default:
+                        print("ERR")
+                    }
+                }
+            }
         case (true, false):
             self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
             self.rightButton.isEnabled = false
             self.rightButton.isHidden = false
+            self.rightButton.addAction(self.rightButtonAction ?? UIAction(handler: { _ in }), for: .touchUpInside)
         default:
             self.rightButton.isHidden = true
         }

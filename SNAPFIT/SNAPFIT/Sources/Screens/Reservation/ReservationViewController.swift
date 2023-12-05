@@ -71,10 +71,6 @@ final class ReservationViewController: BaseViewController {
     
     // MARK: - Method
     
-    private func reviewDetail() {
-        self.navigationController?.pushViewController(ReviewEditViewController(), animated: true)
-    }
-    
     private func setNavigationTitle() {
         self.navigationItem.title = "예약관리"
         self.navigationItem.largeTitleDisplayMode = .always
@@ -201,10 +197,10 @@ extension ReservationViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationTableViewCell") as! ReservationTableViewCell
-        cell.rightButton.setAction {
-            self.reviewDetail()
-        }
+        cell.setRightAction()
+        cell.updateDelegate = self
         if self.isFixedTab {
+            cell.targetID = self.fixedReservation[indexPath.row].id
             let nickname = fixedReservation[indexPath.row].senderId == UserInfo.shared.userID ? fixedReservation[indexPath.row].receiverNickname : fixedReservation[indexPath.row].senderNickname
             cell.setAsReservationList(
                 userName: "\(nickname)",
@@ -214,6 +210,7 @@ extension ReservationViewController: UITableViewDataSource {
             )
             cell.setPastReservation()
         } else {
+            cell.targetID = self.notFixedReservation[indexPath.row].id
             let nickname = notFixedReservation[indexPath.row].senderId == UserInfo.shared.userID ? notFixedReservation[indexPath.row].receiverNickname : notFixedReservation[indexPath.row].senderNickname
             cell.setAsReservationList(
                 userName: "\(nickname)",
@@ -224,5 +221,21 @@ extension ReservationViewController: UITableViewDataSource {
         }
         return cell
     }
+    
 }
 
+extension ReservationViewController: SendUpdateDelegate{
+    func sendUpdate(data: Any?) {
+        print("😀😀😀 reviewEditViewController \(data)")
+        if let stringData = data as? String {
+            if let urlData = URL(string: stringData) {
+                UIApplication.shared.open(urlData)
+            }
+        } else if let reviewData = data as? ReviewPostRequestDTO {
+            let reviewEditView: ReviewEditViewController = ReviewEditViewController()
+            reviewEditView.review = reviewData
+            reviewEditView.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(reviewEditView, animated: true)
+        }
+    }
+}
