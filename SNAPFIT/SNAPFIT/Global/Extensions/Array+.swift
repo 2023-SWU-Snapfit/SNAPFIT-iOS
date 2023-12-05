@@ -13,11 +13,14 @@ extension Array {
         self.forEach { element in
             if let tagNum: Int = element as? Int {
                 result.append("#\(tagNum.getTagName()) ")
+            } else if let tagString: String = element as? String {
+                result.append("#\(tagString) ")
             }
         }
         
         return result
     }
+    
     func makeFormDataString() -> String {
         var string = "{"
         self.forEach {
