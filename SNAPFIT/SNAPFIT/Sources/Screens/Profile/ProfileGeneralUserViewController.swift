@@ -127,11 +127,15 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
             LikeService.shared.postLike(targetId: self.targetID) { _ in }
             self.likeState.toggle()
             if self.likeState {
-                self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonImageName), for: .normal)
-                self.navigationView.likeButton.tintColor = .sfMainRed
+                DispatchQueue.main.async {
+                    self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonOnImageName)?.withRenderingMode(.alwaysOriginal), for: .normal)
+                }
+                
             } else {
-                self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonOnImageName), for: .normal)
-                self.navigationView.likeButton.setTitleColor(.sfBlack100, for: .normal)
+                DispatchQueue.main.async {
+                    self.navigationView.likeButton.setImage(UIImage(named: SnapfitNavigationView.Text.likeButtonImageName)?.withRenderingMode(.alwaysOriginal), for: .normal)
+                    
+                }
             }
         }
     }
