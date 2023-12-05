@@ -28,7 +28,10 @@ final class SplashViewController: BaseViewController {
         super.viewDidLoad()
         
         self.setLayout()
-        self.autoSignIn()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5) {
+            self.autoSignIn()
+        }
+        
     }
     
     // MARK: Methods
