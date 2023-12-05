@@ -75,22 +75,6 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
         }
     }
     
-    public func setUserInformation(currentUser: User) {
-        self.currentUser = currentUser
-        //        self.setProfileImage(profileImage: currentUser.profileImage.)
-        //        self.setBannerImage(bannerImage: currentUser.backgroundImage)
-        self.setBasicData(
-            isApproved: true,
-            nicknameText: currentUser.userName,
-            instagramText: currentUser.instagramID
-        )
-        self.setAdditionalData(
-            mailText: currentUser.emailAddress ?? "",
-            introduceText: currentUser.introduceText ?? ""
-        )
-        //        self.setGalleryAndReviewData(galleryImages: currentUser.gallery, reviews: currentUser.reviews)
-    }
-    
     private func setAdditionalData(mailText: String,introduceText: String) {
         self.setMailText(text: mailText)
         self.setIntroduceText(text: introduceText)
@@ -112,12 +96,24 @@ class ProfileGeneralUserViewController: SnapfitUserInformationViewController {
                 okTitle: "신고하기",
                 secondOkTitle: "차단하기",
                 okAction: { _ in
-                    // TODO: 신고 action 추가
-                    print("신고")
+                    BlockService.shared.postBlock(targetId: self.targetID) { networkResult in
+                        switch networkResult {
+                        case .success:
+                            print("Successfully blocked \(self.targetID)")
+                        default:
+                            print("Block ERROR")
+                        }
+                    }
                 },
                 secondOkAction: { _ in
-                    // TODO: 차단 action 추가
-                    print("차단")
+                    ReportService.shared.postReport(targetId: self.targetID) { networkResult in
+                        switch networkResult {
+                        case .success:
+                            print("Successfully reported \(self.targetID)")
+                        default:
+                            print("Block ERROR")
+                        }
+                    }
                 })
         }
     }

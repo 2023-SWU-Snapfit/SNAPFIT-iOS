@@ -77,7 +77,6 @@ class ReviewCollectionViewController: UIViewController {
 
 extension ReviewCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: [REVIEW] 리뷰 상세보기로 연결하기
         ReviewService.shared.getReviewDetail(reviewId: reviews[indexPath.row].id) { netwrokResult in
             switch netwrokResult {
             case .success(let responseData):
