@@ -14,5 +14,6 @@ extension UserDefaults {
         static var userID = "userID"
         static var email = "email"
         static var password = "password"
+        static var FCMTokenForDevice = "FCMTokenForDevice"
     }
 }
