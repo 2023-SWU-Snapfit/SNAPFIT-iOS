@@ -13,7 +13,7 @@ final class SearchViewController: BaseViewController {
     // MARK: Properties
     
     private let navigationView: SnapfitNavigationView = {
-        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backSearchButton)
+        let view: SnapfitNavigationView = SnapfitNavigationView(type: .backSearch)
         return view
     }()
     
@@ -45,9 +45,8 @@ final class SearchViewController: BaseViewController {
     // MARK: Methods
     
     private func setSearhButtonAction() {
-        self.navigationView.searchBarButton.setAction { [weak self] in
-            self?.navigationController?.pushViewController(SearchInputViewController(), animated: true)
-        }
+        self.navigationView.searchTextField.delegate = self
+
     }
     
     private func setCollectionView() {
@@ -55,6 +54,26 @@ final class SearchViewController: BaseViewController {
         self.collectionView.delegate = self
         
         self.collectionView.register(cell: CategoryPhotoCollectionViewCell.self)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let vc = SearchInputViewController()
+        vc.keyword = textField.text ?? ""
+        vc.isSearchByKeyword = true
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+//        self.searchResults = SearchResult(
+//            photos: [],
+//            users: [
+//            ]
+//        )
+//        
+//        self.tableView.reloadData()
+        return true
     }
 }
 
