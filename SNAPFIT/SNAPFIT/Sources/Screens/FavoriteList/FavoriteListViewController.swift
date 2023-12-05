@@ -36,6 +36,7 @@ class FavoriteListViewController: BaseViewController {
                     self.likeList = result
                     self.favoriteListTableView.reloadData()
                 }
+                print(self.likeList)
             case .requestErr(_):
                 print("requestError")
             case .pathErr:
@@ -81,18 +82,19 @@ extension FavoriteListViewController: UITableViewDelegate {
         82
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentUserID = likeList[indexPath.row].targetID
-        // TODO: [PROFILE] 프로필 포지션 알게 되면 포지션 따라서로 변경
-        if likeList[indexPath.row].position == UserPosition.general.rawValue {
-            lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
-            profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setUserInformation(targetID: currentUserID)
-            self.navigationController?.pushViewController(profileViewController, animated: true)
-        } else {
-            lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
-            profileViewController.modalPresentationStyle = .fullScreen
-            profileViewController.setUserInformation(targetID: currentUserID)
-            self.navigationController?.pushViewController(profileViewController, animated: true)
+        getUserData(targetID: likeList[indexPath.row].targetID) { result in
+            print(result.position)
+            if result.position != UserPosition.general.rawValue {
+                lazy var profileViewController: ProfilePhotographerViewController = ProfilePhotographerViewController()
+                profileViewController.modalPresentationStyle = .fullScreen
+                profileViewController.setUserInformation(targetID: result.userId)
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+            } else {
+                lazy var profileViewController: ProfileGeneralUserViewController = ProfileGeneralUserViewController()
+                profileViewController.modalPresentationStyle = .fullScreen
+                profileViewController.setUserInformation(targetID: result.userId)
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+            }
         }
     }
 }
