@@ -55,7 +55,7 @@ class ProfilePhotographerViewController: SnapfitUserInformationViewController {
             self.setAdditionalData(
                 mailText: result.email,
                 introduceText: result.info ?? "",
-                possibleDateText: "dd",
+                possibleDateText: result.availableTime ?? "",
                 priceText: result.cost ?? ""
             )
             if result.averageStars != 0.0 {

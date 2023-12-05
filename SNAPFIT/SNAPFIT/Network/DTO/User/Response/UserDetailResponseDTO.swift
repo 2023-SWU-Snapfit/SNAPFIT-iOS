@@ -26,6 +26,7 @@ struct UserDetailResponseDTOElement: Codable {
     let averageStars: Float?
     let review: [UserReviewList]
     let cost: String?
+    let availableTime: String?
     
     enum CodingKeys: String, CodingKey {
         case userId = "userId"
@@ -42,6 +43,7 @@ struct UserDetailResponseDTOElement: Codable {
         case averageStars = "averageStars"
         case review = "review"
         case cost = "cost"
+        case availableTime = "availableTime"
     }
 
 }

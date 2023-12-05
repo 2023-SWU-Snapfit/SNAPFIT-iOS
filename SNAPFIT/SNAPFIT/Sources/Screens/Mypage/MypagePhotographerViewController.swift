@@ -58,8 +58,7 @@ class MypagePhotographerViewController: SnapfitUserInformationViewController {
             self.setInstagramText(text: result.instagramId)
             self.setMailText(text: result.email)
             self.setIntroduceText(text: result.info ?? "")
-            // TODO: [USER] possibleData 더미 교체
-            self.setPossibleDateText(text: "아")
+            self.setPossibleDateText(text: result.availableTime ?? "")
             self.setPriceText(text: result.cost ?? "")
             self.setProfileImage(profileImage: result.profileImageUrl)
             self.setBannerImage(bannerImage: result.thumbnailImageUrl)
