@@ -83,7 +83,7 @@ class MypageGeneralUserViewController: SnapfitUserInformationViewController {
             self.setInstagramText(text: result.instagramId)
             self.setMailText(text: result.email)
             self.setIntroduceText(text: result.info ?? "")
-            self.setPossibleDateText(text: "")
+            self.setPossibleDateText(text: result.availableTime ?? "")
             self.setPriceText(text: result.cost ?? "")
             self.setProfileImage(profileImage: result.profileImageUrl)
             self.setBannerImage(bannerImage: result.thumbnailImageUrl)

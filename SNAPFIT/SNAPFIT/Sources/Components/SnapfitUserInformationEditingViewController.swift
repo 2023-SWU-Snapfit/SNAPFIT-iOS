@@ -191,7 +191,6 @@ class SnapfitUserInformationEditingViewController: BaseViewController {
     
     public func getNewUserInformation() -> User {
         let newUser = User(userName: self.nicknameTextView.text, isApproved: self.isApproved, isPhotographer: self.isPhotographer, instagramID: self.instagramTextField.text, emailAddress: self.mailTextField.text, introduceText: self.introduceTextView.text, possibleDateText: self.possibleDateTextView.text, priceText: self.priceTextView.text)
-        // TODO: image 변경된 사항 추가
         return newUser
     }
     

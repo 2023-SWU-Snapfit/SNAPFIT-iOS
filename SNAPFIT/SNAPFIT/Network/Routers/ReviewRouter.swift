@@ -48,7 +48,6 @@ extension ReviewRouter: TargetType {
     
     var task: Task {
         switch self {
-            // TODO: [ERR] task 종류 보고 사용
         case .getReviewList:
             return .requestPlain
         case .getReviewDetail:
