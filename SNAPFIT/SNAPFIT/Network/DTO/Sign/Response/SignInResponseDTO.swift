@@ -22,10 +22,12 @@ struct SignInResponseDTO: Codable {
     struct User: Codable {
         let userID: Int
         let nickname: String
+        let position: String
 
         enum CodingKeys: String, CodingKey {
             case userID = "userId"
             case nickname = "nickname"
+            case position = "position"
         }
     }
 }

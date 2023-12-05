@@ -46,7 +46,8 @@ final class SplashViewController: BaseViewController {
                 userID: response.user.userID,
                 nickname: response.user.nickname,
                 email: email,
-                password: password
+                password: password,
+                position: response.user.position
             )
             
             let tabBarController = SnapfitTabBarController()
