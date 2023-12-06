@@ -62,6 +62,7 @@
 		6AE4FC862B0F9B290057C660 /* UserDataMethodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4FC852B0F9B290057C660 /* UserDataMethodManager.swift */; };
 		6AEC75452ADE9A41004847DA /* UserListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC75442ADE9A41004847DA /* UserListResponseDTO.swift */; };
 		6AEC75482ADE9B18004847DA /* UserDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC75472ADE9B18004847DA /* UserDetailResponseDTO.swift */; };
+		6AF3A2452B1FF98F00086790 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 6AF3A2442B1FF98F00086790 /* Cosmos */; };
 		6AF625492A5D1AC200B6FF9E /* ReservationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF625482A5D1AC200B6FF9E /* ReservationTableViewCell.swift */; };
 		6AFE86862A9B5A57007A8713 /* ReviewDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFE86852A9B5A57007A8713 /* ReviewDataDelegate.swift */; };
 		C70C48952A301A560052019B /* PhotographerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48942A301A560052019B /* PhotographerListTableViewCell.swift */; };
@@ -395,6 +396,7 @@
 				FFBE8A752B1F54C00090892E /* FirebaseStorage in Frameworks */,
 				FFBE8A652B1F54C00090892E /* FirebaseInAppMessaging-Beta in Frameworks */,
 				FFBE8A732B1F54C00090892E /* FirebaseRemoteConfigSwift in Frameworks */,
+				6AF3A2452B1FF98F00086790 /* Cosmos in Frameworks */,
 				FFBE8A4D2B1F54C00090892E /* FirebaseAppDistribution-Beta in Frameworks */,
 				FFBE8A772B1F54C00090892E /* FirebaseStorageCombine-Community in Frameworks */,
 				FFBE8A4B2B1F54C00090892E /* FirebaseAppCheck in Frameworks */,
@@ -1061,6 +1063,7 @@
 				FFBE8A722B1F54C00090892E /* FirebaseRemoteConfigSwift */,
 				FFBE8A742B1F54C00090892E /* FirebaseStorage */,
 				FFBE8A762B1F54C00090892E /* FirebaseStorageCombine-Community */,
+				6AF3A2442B1FF98F00086790 /* Cosmos */,
 			);
 			productName = SNAPFIT;
 			productReference = C77784742A003B1000B4AB8D /* SNAPFIT.app */;
@@ -1095,6 +1098,7 @@
 				C7E900362A0BCDD000CC620B /* XCRemoteSwiftPackageReference "Moya" */,
 				C7E900392A0BCE0800CC620B /* XCRemoteSwiftPackageReference "RxSwift" */,
 				FFBE8A412B1F54C00090892E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6AF3A2432B1FF98F00086790 /* XCRemoteSwiftPackageReference "Cosmos" */,
 			);
 			productRefGroup = C77784752A003B1000B4AB8D /* Products */;
 			projectDirPath = "";
@@ -1507,6 +1511,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		6AF3A2432B1FF98F00086790 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 23.0.0;
+			};
+		};
 		C7E900362A0BCDD000CC620B /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -1538,6 +1550,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6A013C892A08E6EF00DF2FF4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		6AF3A2442B1FF98F00086790 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AF3A2432B1FF98F00086790 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
 		};
 		C7E900372A0BCDD000CC620B /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
