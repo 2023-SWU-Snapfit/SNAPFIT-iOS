@@ -31,6 +31,8 @@ final class SearchInputViewController: BaseViewController {
     // MARK: Properties
     
     private var searchResults: SearchResult = SearchResult(photos: [], users: [])
+    var keyword: String = ""
+    var isSearchByKeyword: Bool = false
     
     // MARK: View Life Cycle
     
@@ -56,27 +58,41 @@ final class SearchInputViewController: BaseViewController {
     
     private func setSearchTextField() {
         self.navigationView.searchTextField.delegate = self
+        self.navigationView.searchTextField.text = self.keyword
+        self.searchResults = SearchResult(photos: [], users: [])
+        if self.isSearchByKeyword {
+            self.searchByKeyword(keyword: self.keyword) { photos in
+                _ = photos.map { photo in
+                    self.searchResults.photos.append(SearchResult.PhotoSearchResult(imageURL: photo.photoURL, tagsText: photo.tag.getTagText(), username: photo.nickname))
+                }
+                self.setDummyUsers()
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func setSearchByCategoryTag(selectedTagIndex: Int) {
         self.getPhotoByTag(tags: [selectedTagIndex + 7]) { photoList in
             self.searchResults = SearchResult(photos: [], users: [])
             _ = photoList.map { photo in
-                var photoImage = UIImage()
                 self.searchResults.photos.append(SearchResult.PhotoSearchResult(imageURL: photo.photoURL, tagsText: photo.tag.getTagText(), username: photo.nickname))
 
             }
-            self.searchResults.users = [
-                SummaryUser(userId: TopUsers.shared.data[0].id, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
-                SummaryUser(userId: TopUsers.shared.data[1].id, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
-                SummaryUser(userId: TopUsers.shared.data[2].id, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
-                SummaryUser(userId: TopUsers.shared.data[3].id, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
-                SummaryUser(userId: TopUsers.shared.data[4].id, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
-            ]
+            self.setDummyUsers()
             
             self.tableView.reloadData()
         }
 //        _ = self.textFieldShouldReturn(self.navigationView.searchTextField)
+    }
+    
+    private func setDummyUsers() {
+        self.searchResults.users = [
+            SummaryUser(userId: TopUsers.shared.data[0].id, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
+            SummaryUser(userId: TopUsers.shared.data[1].id, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
+            SummaryUser(userId: TopUsers.shared.data[2].id, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
+            SummaryUser(userId: TopUsers.shared.data[3].id, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
+            SummaryUser(userId: TopUsers.shared.data[4].id, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
+        ]
     }
 }
 
@@ -85,18 +101,16 @@ final class SearchInputViewController: BaseViewController {
 extension SearchInputViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        self.searchResults = SearchResult(
-            photos: [],
-            users: [
-                SummaryUser(userId: TopUsers.shared.data[0].id, image: users[2].profileImage ?? UIImage(), username: users[2].userName, isPhotographer: true),
-                SummaryUser(userId: TopUsers.shared.data[1].id, image: UIImage(named: "sampleImage\(Tag.shared.category[3].id)") ?? UIImage(), username: users[3].userName, isPhotographer: true),
-                SummaryUser(userId: TopUsers.shared.data[2].id, image: UIImage(named: "sampleImage\(Tag.shared.category[4].id)") ?? UIImage(), username: users[4].userName, isPhotographer: true),
-                SummaryUser(userId: TopUsers.shared.data[3].id, image: UIImage(named: "sampleImage\(Tag.shared.category[5].id)") ?? UIImage(), username: users[5].userName, isPhotographer: true),
-                SummaryUser(userId: TopUsers.shared.data[4].id, image: UIImage(named: "sampleImage\(Tag.shared.category[6].id)") ?? UIImage(), username: users[6].userName, isPhotographer: true)
-            ]
-        )
-        
-        self.tableView.reloadData()
+        self.searchResults = SearchResult(photos: [], users: [])
+        if self.isSearchByKeyword {
+            self.searchByKeyword(keyword: textField.text ?? "") { photos in
+                _ = photos.map { photo in
+                    self.searchResults.photos.append(SearchResult.PhotoSearchResult(imageURL: photo.photoURL, tagsText: photo.tag.getTagText(), username: photo.nickname))
+                }
+                self.setDummyUsers()
+                self.tableView.reloadData()
+            }
+        }
         return true
     }
 }
@@ -105,6 +119,7 @@ extension SearchInputViewController: UITextFieldDelegate {
 
 extension SearchInputViewController {
     private func getPhotoByTag(tags: [Int], completion: @escaping ([GetPhotoByTagResponseDTO.Photo]) -> ()) {
+        self.activityIndicator.startAnimating()
         PhotoService.shared.getPhotoByTag(tags: tags) { networkResult in
             switch networkResult {
             case .success(let responseData):
@@ -114,6 +129,22 @@ extension SearchInputViewController {
             default:
                 self.showNetworkErrorAlert()
             }
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func searchByKeyword(keyword: String, completion: @escaping ([SearchPhotoResponseDTO.Photo]) -> ()) {
+        self.activityIndicator.startAnimating()
+        PhotoService.shared.searchPhoto(keyword: keyword) { networkResult in
+            switch networkResult {
+            case .success(let responseData):
+                if let result = responseData as? SearchPhotoResponseDTO {
+                    completion(result.photoData)
+                }
+            default:
+                self.showNetworkErrorAlert()
+            }
+            self.activityIndicator.stopAnimating()
         }
     }
 }

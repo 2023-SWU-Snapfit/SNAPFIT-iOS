@@ -11,6 +11,7 @@ import Moya
 internal protocol PhotoServiceProtocol {
     func getPhotoByTag(tags: [Int], completion: @escaping (NetworkResult<Any>) -> (Void))
     func getMainPhoto(completion: @escaping (NetworkResult<Any>) -> (Void))
+    func searchPhoto(keyword: String, completion: @escaping (NetworkResult<Any>) -> (Void))
 }
 
 final class PhotoService: BaseService {
@@ -47,6 +48,22 @@ extension PhotoService: PhotoServiceProtocol {
                 let statusCode = response.statusCode
                 let data = response.data
                 let networkResult = self.judgeStatus(by: statusCode, data, GetMainTagPhotoResponseDTO.self)
+                completion(networkResult)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    // [GET] 사진 검색
+    
+    func searchPhoto(keyword: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        self.provider.request(.searchPhoto(keyword: keyword)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, SearchPhotoResponseDTO.self)
                 completion(networkResult)
             case .failure(let error):
                 debugPrint(error)
