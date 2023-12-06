@@ -81,7 +81,7 @@ final class SignUpVerifyViewController: BaseViewController {
     
     private func setCodeButtonAction() {
         self.sendCodeButton.setAction {
-            let text = "01077221394"
+            let text = self.phoneNumberTextField.text ?? ""
             self.sendCode(data: .init(phoneNumber: text))
         }
     }
