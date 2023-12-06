@@ -18,7 +18,7 @@ class ReservationTableViewCell: BorderedTableViewCell {
         static let tagOngoing = "예약 조율 중"
         static let buttonContact = "연락하기"
         static let buttonReview = "리뷰 작성"
-        static let rightButtonActionIdentifier = "rightButtonReviewAction"
+        static let rightButtonReviewActionIdentifier = "rightButtonReviewAction"
     }
     
     // MARK: - Properties
@@ -29,8 +29,8 @@ class ReservationTableViewCell: BorderedTableViewCell {
     }()
     var updateDelegate: SendUpdateDelegate?
     var targetID: Int!
-    var rightButtonAction: UIAction?
-    let identity = UIAction.Identifier(Text.rightButtonActionIdentifier)
+    var rightButtonReviewAction: UIAction?
+    let identity = UIAction.Identifier(Text.rightButtonReviewActionIdentifier)
     
     // MARK: - UIComponents
     var date: Date = Date()
@@ -71,12 +71,26 @@ class ReservationTableViewCell: BorderedTableViewCell {
     }
     
     override func prepareForReuse() {
-        self.rightButton.removeAction(identifiedBy: UIAction.Identifier(Text.rightButtonActionIdentifier), for: .touchUpInside)
+        self.rightButton.removeAction(identifiedBy: UIAction.Identifier(Text.rightButtonReviewActionIdentifier), for: .touchUpInside)
     }
     
     func setRightAction() {
-        self.rightButtonAction = UIAction(identifier: self.identity) { _ in
-            self.updateDelegate?.sendUpdate(data: ReviewPostRequestDTO(star: 5, receiverId: -1, photo: Data(), content: ""))
+        self.rightButtonReviewAction = UIAction(identifier: self.identity) { _ in
+            ReservationService.shared.getReservationDetail(reservationId: self.targetID) { networkResult in
+                switch networkResult {
+                case .success(let responseData):
+                    if let result = responseData as? ReservationDetailResponseDTO {
+                        let reviewData = ReviewPostRequestDTO(
+                            star: 5,
+                            receiverId: result.receiverId != UserInfo.shared.userID ? result.receiverId : result.senderId,
+                            photo: Data(),
+                            content: "")
+                        self.updateDelegate?.sendUpdate(data: reviewData)
+                    }
+                default:
+                    print("setRightButtonServerERR")
+                }
+            }
         }
     }
     
@@ -137,7 +151,7 @@ class ReservationTableViewCell: BorderedTableViewCell {
             self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
             self.rightButton.isEnabled = false
             self.rightButton.isHidden = false
-            self.rightButton.addAction(self.rightButtonAction ?? UIAction(handler: { _ in }), for: .touchUpInside)
+            self.rightButton.addAction(self.rightButtonReviewAction ?? UIAction(handler: { _ in }), for: .touchUpInside)
         case (false, true):
             self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonContact, attributes: attributes), for: .normal)
             self.rightButton.isEnabled = true
@@ -158,7 +172,7 @@ class ReservationTableViewCell: BorderedTableViewCell {
             self.rightButton.setAttributedTitle(NSAttributedString(string: Text.buttonReview, attributes: attributes), for: .normal)
             self.rightButton.isEnabled = false
             self.rightButton.isHidden = false
-            self.rightButton.addAction(self.rightButtonAction ?? UIAction(handler: { _ in }), for: .touchUpInside)
+            self.rightButton.addAction(self.rightButtonReviewAction ?? UIAction(handler: { _ in }), for: .touchUpInside)
         default:
             self.rightButton.isHidden = true
         }

@@ -226,7 +226,6 @@ extension ReservationViewController: UITableViewDataSource {
 
 extension ReservationViewController: SendUpdateDelegate{
     func sendUpdate(data: Any?) {
-        print("😀😀😀 reviewEditViewController \(data)")
         if let stringData = data as? String {
             if let urlData = URL(string: stringData) {
                 UIApplication.shared.open(urlData)
@@ -234,6 +233,7 @@ extension ReservationViewController: SendUpdateDelegate{
         } else if let reviewData = data as? ReviewPostRequestDTO {
             let reviewEditView: ReviewEditViewController = ReviewEditViewController()
             reviewEditView.review = reviewData
+            reviewEditView.setData()
             reviewEditView.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(reviewEditView, animated: true)
         }

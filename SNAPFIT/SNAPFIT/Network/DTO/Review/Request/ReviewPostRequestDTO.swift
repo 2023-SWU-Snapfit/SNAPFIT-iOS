@@ -8,10 +8,10 @@
 import Foundation
 
 struct ReviewPostRequestDTOElement: Codable {
-    let star: Int
+    var star: Int
     let receiverId: Int
-    let photo: Data
-    let content: String
+    var photo: Data
+    var content: String
 
     enum CodingKeys: String, CodingKey {
         case star = "star"
